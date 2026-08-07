@@ -1,0 +1,168 @@
+import { Link } from "wouter";
+import { ArrowRight as ArrowRightIcon } from "lucide-react";
+import { TrendingUp, Users, Clock, Target } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Card, CardContent } from "@/components/ui/card";
+
+const caseStudies = [
+  {
+    id: 1,
+    title: "PayFlow Technologies — Fintech Platform",
+    industry: "Finance",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    clientGoal: "Attract investors and enterprise clients with a professional digital presence.",
+    process: "Discovery → Strategy → Custom React Platform → API Integration → Testing → Launch",
+    beforeAfter: "From zero online presence to a professional platform generating qualified leads daily.",
+    results: "150% increase in qualified leads, 40% reduction in bounce rate, top 3 Google rankings.",
+    roi: "₦500K investment generated ₦5M+ in new client revenue within 3 months.",
+    stats: [{ icon: TrendingUp, value: "150%", label: "Lead Increase" }, { icon: Users, value: "40%", label: "Bounce Reduction" }, { icon: Clock, value: "8 weeks", label: "Delivery Time" }],
+  },
+  {
+    id: 2,
+    title: "Lagos Luxury Homes — Real Estate Portal",
+    industry: "Real Estate",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+    clientGoal: "Create a property listing platform with virtual tours and advanced search.",
+    process: "Research → UX Design → 3D Integration → Development → Testing → Launch",
+    beforeAfter: "From manual listings to an automated platform with 300+ properties.",
+    results: "300+ properties listed, 200% increase in inquiries, 85% user satisfaction.",
+    roi: "₦800K investment generated ₦15M+ in property sales within 6 months.",
+    stats: [{ icon: TrendingUp, value: "200%", label: "Inquiry Increase" }, { icon: Users, value: "300+", label: "Properties" }, { icon: Target, value: "85%", label: "Satisfaction" }],
+  },
+  {
+    id: 3,
+    title: "MedCare Nigeria — Healthcare Platform",
+    industry: "Healthcare",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
+    clientGoal: "Build a patient management and appointment booking system for multi-branch hospitals.",
+    process: "Requirements → Architecture → Development → Integration → Testing → Deployment",
+    beforeAfter: "From paper-based bookings to a fully digital patient management system.",
+    results: "60% reduction in no-show rates, 3x increase in online bookings.",
+    roi: "₦1.2M investment saved ₦5M+ annually in operational efficiency.",
+    stats: [{ icon: TrendingUp, value: "3x", label: "Online Bookings" }, { icon: Users, value: "60%", label: "Fewer No-Shows" }, { icon: Clock, value: "12 weeks", label: "Delivery Time" }],
+  },
+  {
+    id: 4,
+    title: "Ankara Luxe — E-commerce Store",
+    industry: "E-commerce",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
+    clientGoal: "Build a scalable e-commerce platform with local payment support for a Nigerian fashion brand.",
+    process: "Brand Analysis → UX Design → Shopify Development → Payment Integration → Launch",
+    beforeAfter: "From Instagram-only sales to a full e-commerce platform processing ₦50M+ monthly.",
+    results: "₦50M+ monthly revenue, 95% mobile conversion rate, top-selling fashion brand.",
+    roi: "₦500K investment generated ₦50M+ monthly revenue — 100x return.",
+    stats: [{ icon: TrendingUp, value: "₦50M", label: "Monthly Revenue" }, { icon: Users, value: "95%", label: "Mobile Rate" }, { icon: Target, value: "100x", label: "ROI" }],
+  },
+  {
+    id: 5,
+    title: "Adeyemi & Partners — Law Firm Website",
+    industry: "Law Firms",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop",
+    clientGoal: "Establish a prestigious online presence that conveys trust and expertise.",
+    process: "Brand Strategy → Design → Development → SEO → Content → Launch",
+    beforeAfter: "From minimal web presence to top 3 Google rankings for key legal terms.",
+    results: "80% increase in consultation requests, first-page Google rankings.",
+    roi: "₦250K investment generated 5x increase in new client consultations.",
+    stats: [{ icon: TrendingUp, value: "80%", label: "More Consultations" }, { icon: Target, value: "#1-3", label: "Google Rankings" }, { icon: Users, value: "5x", label: "Client Growth" }],
+  },
+  {
+    id: 6,
+    title: "Green Earth Foundation — NGO Platform",
+    industry: "NGOs",
+    image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&h=400&fit=crop",
+    clientGoal: "Create a donation platform and volunteer management system for an environmental NGO.",
+    process: "Impact Analysis → Design → Development → Payment Integration → Launch",
+    beforeAfter: "From manual donations to an automated platform with real-time impact tracking.",
+    results: "200% increase in donations, 150+ new volunteers recruited in first quarter.",
+    roi: "₦300K investment generated 200% increase in annual donations.",
+    stats: [{ icon: TrendingUp, value: "200%", label: "Donation Increase" }, { icon: Users, value: "150+", label: "New Volunteers" }, { icon: Target, value: "4x", label: "Impact Reach" }],
+  },
+];
+
+export default function CaseStudies() {
+  const sectionRef = useScrollReveal();
+
+  return (
+    <div ref={sectionRef}>
+      <PageHeader
+        title="Case Studies"
+        description="Real results from real projects. Explore our detailed success stories and see how we've helped businesses achieve their goals."
+        breadcrumb={[{ label: "Case Studies", href: "/case-studies" }]}
+      />
+
+      <section className="py-20">
+        <div className="container">
+          <div className="space-y-12">
+            {caseStudies.map((cs, i) => (
+              <div key={cs.id} className="scroll-reveal" style={{ transitionDelay: `${i * 40}ms` }}>
+                <Card className="glass-card border-0 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                      <div className="lg:col-span-2">
+                        <img src={cs.image} alt={cs.title} className="w-full h-full object-cover min-h-[250px]" loading="lazy" />
+                      </div>
+                      <div className="lg:col-span-3 p-8">
+                        <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-brand-secondary/10 text-brand-secondary mb-4">
+                          {cs.industry}
+                        </span>
+                        <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: "var(--font-heading)" }}>{cs.title}</h3>
+
+                        <div className="space-y-3 mb-6">
+                          <div>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Client Goal</p>
+                            <p className="text-sm text-foreground/80">{cs.clientGoal}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Results</p>
+                            <p className="text-sm text-foreground/80">{cs.results}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">ROI</p>
+                            <p className="text-sm text-brand-success font-medium">{cs.roi}</p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border/50">
+                          {cs.stats.map((stat, j) => (
+                            <div key={j} className="text-center">
+                              <p className="text-xl font-bold text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>{stat.value}</p>
+                              <p className="text-xs text-muted-foreground">{stat.label}</p>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="mt-6">
+                          <Link href={`/case-studies/${cs.id}`}>
+                            <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:gap-3 transition-all">
+                              Read Full Case Study <ArrowRightIcon size={16} />
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gradient-brand text-white">
+        <div className="container text-center">
+          <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Ready for Your Own Success Story?</h2>
+          <p className="text-white/70 max-w-xl mx-auto mb-8">
+            Let's discuss how we can deliver similar results for your business.
+          </p>
+          <Link href="/contact">
+            <span className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-brand bg-white rounded-xl hover:shadow-xl transition-all duration-300">
+              Get Free Consultation <ArrowRightIcon size={20} />
+            </span>
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
