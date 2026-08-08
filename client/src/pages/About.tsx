@@ -7,10 +7,10 @@ import { Link } from "wouter";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
 const team = [
-  { name: "Ashflex CEO", role: "Founder & CEO", bio: "10+ years leading digital innovation across Africa and beyond.", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face" },
-  { name: "Lead Designer", role: "Creative Director", bio: "Award-winning designer with expertise in UI/UX and brand identity.", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" },
-  { name: "Senior Developer", role: "Technical Lead", bio: "Full-stack engineer specializing in scalable web applications.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" },
-  { name: "SEO Strategist", role: "Digital Marketing Lead", bio: "Data-driven marketer who drives organic growth for businesses.", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face" },
+  { name: "Uzodimma Ogbonnaya", role: "Founder & CEO", bio: "10+ years leading digital innovation across Africa and beyond.", img: "/manus-storage/team-ceo_103bb175.png" },
+  { name: "Adaeze Nwosu", role: "Creative Director", bio: "Award-winning designer with expertise in UI/UX and brand identity.", img: "/manus-storage/team-designer_31932908.png" },
+  { name: "Chidi Eze", role: "Technical Lead", bio: "Full-stack engineer specializing in scalable web applications.", img: "/manus-storage/team-developer_8a4edf68.png" },
+  { name: "Ngozi Obi", role: "Digital Marketing Lead", bio: "Data-driven marketer who drives organic growth for businesses.", img: "/manus-storage/team-marketer_e9c29036.png" },
 ];
 
 function CounterStat({ value, suffix, label }: { value: number; suffix: string; label: string }) {

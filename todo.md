@@ -119,3 +119,17 @@
 - [x] Build individual case study detail pages
 - [x] Build SEO Checklist, Branding Guide, Digital Marketing Guide resource pages
 - [x] Add page meta tags / SEO structure (usePageMeta hook + index.html structured data)
+## Image Replacement (user request)
+- [x] Audit all current placeholder image URLs across pages
+- [x] Generate team photos (4 team members, professional portraits)
+- [x] Generate portfolio screenshots/mockups (9 portfolio projects, realistic website mockups)
+- [x] Generate images via media tools and reference via /manus-storage URLs
+- [x] Update About page team section
+- [x] Update Portfolio data and PortfolioDetail screenshots
+- [x] Update homepage portfolio preview images
+- [x] Verify visuals (screenshots: About, Portfolio, Blog, Case Studies, Home)
+- [x] Generate blog cover images (9 posts) and update Blog/BlogPost
+- [x] Update case study images (CaseStudies, CaseStudyDetail) to match portfolio mockups
+- [x] Remove all unsplash references from codebase
+- [x] TypeScript check and tests pass
+- [x] Save checkpoint after image replacement
