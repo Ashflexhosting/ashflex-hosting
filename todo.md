@@ -187,4 +187,4 @@
 - [x] Update PortfolioDetail with verified client websites and an official-source note
 - [x] Run TypeScript/tests and visually verify the refreshed portfolio pages
 - [x] Verify refreshed portfolio pages on list and detail views
-- [ ] Save and publish the verified portfolio-content refresh
+- [x] Save and publish the verified portfolio-content refresh
