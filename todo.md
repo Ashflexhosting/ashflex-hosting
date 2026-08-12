@@ -153,4 +153,4 @@
 
 ## Footer Phone Number Correction (user-provided)
 - [x] Correct the footer phone number and tap-to-call link to 08023138892
-- [ ] Save and publish the validated footer contact-details update
+- [x] Save and publish the validated footer contact-details update
