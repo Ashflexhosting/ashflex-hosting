@@ -145,3 +145,12 @@
 - [x] Add a regression test for unique navigation keys
 - [x] Verify the homepage console is clear after rendering the full footer navigation
 - [x] Save and publish the duplicate-key repair checkpoint
+
+## Footer Contact Details (user-provided)
+- [x] Replace the placeholder footer phone number with corrected number 08023138892
+- [x] Replace the placeholder footer email address with info@ashflexwebdesign.com
+- [x] Verify the rendered footer details
+
+## Footer Phone Number Correction (user-provided)
+- [x] Correct the footer phone number and tap-to-call link to 08023138892
+- [ ] Save and publish the validated footer contact-details update

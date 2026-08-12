@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { footerCompanyLinkKey, footerCompanyLinks } from "../shared/footerNavigation";
+import { siteContact } from "../shared/siteContact";
 
 describe("footer company navigation", () => {
   it("generates a unique React key for every displayed company link", () => {
@@ -15,5 +16,11 @@ describe("footer company navigation", () => {
     expect(careers).toBeDefined();
     expect(contact).toBeDefined();
     expect(footerCompanyLinkKey(...careers!)).not.toBe(footerCompanyLinkKey(...contact!));
+  });
+
+  it("uses the configured Ashflex business contact details", () => {
+    expect(siteContact.email).toBe("info@ashflexwebdesign.com");
+    expect(siteContact.phoneDisplay).toBe("08023138892");
+    expect(siteContact.phoneHref).toBe("tel:08023138892");
   });
 });

@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
+import { siteContact } from "@shared/siteContact";
 
 export default function Footer() {
   return (
@@ -22,11 +23,11 @@ export default function Footer() {
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail size={16} />
-                <span>hello@ashflex.com</span>
+                <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors">{siteContact.email}</a>
               </div>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Phone size={16} />
-                <span>+234 800 ASHFLEX</span>
+                <a href={siteContact.phoneHref} className="hover:text-white transition-colors">{siteContact.phoneDisplay}</a>
               </div>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <MapPin size={16} />
