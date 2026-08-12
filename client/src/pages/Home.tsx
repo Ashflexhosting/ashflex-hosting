@@ -220,16 +220,26 @@ export default function Home() {
                 <span>Nigeria's Leading Web Design Agency</span>
               </div>
 
-              <h1 className="scroll-reveal text-5xl md:text-6xl lg:text-[5.4rem] font-extrabold text-white leading-[0.98] tracking-tight mb-8" style={{ fontFamily: "var(--font-heading)" }}>
-                We craft{" "}
-                <span className="relative inline-block">
-                  <span className="text-gradient">websites</span>
-                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-brand-accent" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M0 8 Q 60 2 120 7 T 200 6" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.9" />
-                  </svg>
+              <h1
+                className="scroll-reveal text-[1.9rem] sm:text-5xl md:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                <span className="whitespace-nowrap">
+                  We craft{" "}
+                  <span className="relative inline-block">
+                    <span className="text-gradient">websites</span>
+                    <svg
+                      className="absolute -bottom-1.5 left-0 w-full h-2.5 text-brand-accent"
+                      viewBox="0 0 200 12"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path d="M0 8 Q 60 2 120 7 T 200 6" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.9" />
+                    </svg>
+                  </span>
                 </span>
                 <br />
-                that turn clicks into{" "}
+                <span className="whitespace-nowrap">that turn clicks into{" "}</span>
                 <span className="text-outline">customers.</span>
               </h1>
 

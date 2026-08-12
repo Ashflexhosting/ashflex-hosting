@@ -290,4 +290,9 @@
 - [x] Diagnose hero overflow: floating mockups/metric cards exceeded the fold on 768-900px laptop heights (measured via live DOM geometry)
 - [x] Fix hero so all content fits within common laptop viewport heights (cap hero max height, compact vertical spacing, resize/reposition mockup cards, hide phone card below xl, smaller mobile subhead)
 - [x] Verify at 1280x800, 1366x768, 1440x900, and 375x812; tests pass (24/24)
-- [ ] Save checkpoint and confirm the auto-published version
+- [x] Save checkpoint (e169ca01) and confirm the auto-published version — live bundle index-DOyNxIxQ.js contains max-h-[900px] + min-h-screen hero classes, deployment verified
+
+## Hero Headline Reference Match (user request: hero.webp)
+- [x] Rework headline so "We craft websites" flows inline on the first line, then "that turn clicks into" and "customers." wrap naturally like the reference
+- [x] Tune font scale/breakpoints so headline keeps the compact, bold look at laptop widths
+- [x] Verify against reference on desktop, checkpoint and publish
