@@ -195,4 +195,4 @@
 - [x] Implement combined filtering and an informative empty state
 - [x] Add regression coverage for filter options and combined filter behavior
 - [x] Verify the filtering experience on desktop and mobile, with clean automated and runtime checks
-- [ ] Save and publish the portfolio filtering enhancement
+- [x] Save and publish the portfolio filtering enhancement
