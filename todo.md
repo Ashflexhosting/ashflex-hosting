@@ -207,3 +207,9 @@
 - [x] Show visitors a clear confirmation after submitting
 - [x] Add Vitest coverage for submission validation and persistence
 - [x] Verify the full flow end-to-end and publish
+
+## Admin Submissions Dashboard (user-requested)
+- [x] Add admin-only tRPC procedures for listing submissions and updating status
+- [x] Review the ClientPortal structure and add the Submissions tab with role gating
+- [x] Add Vitest coverage for admin access control and status updates
+- [x] Verify the dashboard end-to-end and publish

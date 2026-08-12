@@ -1,10 +1,15 @@
 import { COOKIE_NAME } from "@shared/const";
 import { z } from "zod";
-import { createContactSubmission } from "./db";
+import {
+  createContactSubmission,
+  deleteContactSubmission,
+  listContactSubmissions,
+  updateContactSubmissionStatus,
+} from "./db";
 import { notifyOwner } from "./_core/notification";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 
 export const contactInputSchema = z.object({
   fullName: z
@@ -85,7 +90,27 @@ export const appRouter = router({
 
         return { id, notificationSent } as const;
       }),
+
+    submissions: router({
+    list: adminProcedure.query(() => listContactSubmissions(200)),
+    markStatus: adminProcedure
+      .input(
+        z.object({
+          id: z.number().int().positive(),
+          status: z.enum(["new", "read", "responded"]),
+        }),
+      )
+      .mutation(async ({ input }) => {
+        await updateContactSubmissionStatus(input.id, input.status);
+        return { success: true } as const;
+      }),
+    deleteSubmission: adminProcedure
+      .input(z.object({ id: z.number().int().positive() }))
+      .mutation(async ({ input }) => {
+        await deleteContactSubmission(input.id);
+                return { success: true } as const;
+      }),
+    }),
   }),
 });
-
 export type AppRouter = typeof appRouter;

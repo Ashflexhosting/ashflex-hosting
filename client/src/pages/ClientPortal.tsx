@@ -6,10 +6,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   LayoutDashboard, FileText, DollarSign, MessageSquare, Calendar,
   Download, Upload, TrendingUp, CheckCircle, Clock, AlertCircle,
-  ArrowRight, FileCheck, Briefcase, Shield
+  ArrowRight, FileCheck, Briefcase, Shield, Trash2, Mail, Phone,
+  Inbox, MailOpen, Reply
 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { toast } from "sonner";
 
 const mockProjects = [
   { name: "Lagos Luxury Homes", status: "In Progress", progress: 75, lastUpdate: "2 days ago" },
@@ -46,7 +52,224 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+const submissionStatusLabel: Record<string, string> = {
+  new: "New",
+  read: "Read",
+  responded: "Responded",
+};
+
+const submissionStatusColor: Record<string, string> = {
+  new: "bg-red-100 text-red-700",
+  read: "bg-blue-100 text-blue-700",
+  responded: "bg-green-100 text-green-700",
+};
+
+function AdminSubmissions() {
+  const utils = trpc.useUtils();
+  const [selected, setSelected] = useState<number | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+
+  const listQuery = trpc.contact.submissions.list.useQuery(undefined, {
+    refetchOnWindowFocus: false,
+  });
+
+  const markStatus = trpc.contact.submissions.markStatus.useMutation({
+    onSuccess: () => {
+      utils.contact.submissions.list.invalidate();
+      toast.success("Submission status updated");
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const deleteMutation = trpc.contact.submissions.deleteSubmission.useMutation({
+    onSuccess: () => {
+      setDeleteId(null);
+      utils.contact.submissions.list.invalidate();
+      toast.success("Submission deleted");
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const submissions = listQuery.data ?? [];
+  const filtered = statusFilter === "all"
+    ? submissions
+    : submissions.filter((s) => s.status === statusFilter);
+
+  const detail = submissions.find((s) => s.id === selected) ?? null;
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-semibold" style={{ fontFamily: "var(--font-heading)" }}>Contact Submissions</h3>
+          <p className="text-sm text-muted-foreground">{submissions.length} total submission{submissions.length === 1 ? "" : "s"} in the database.</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {["all", "new", "read", "responded"].map((filter) => (
+            <Button
+              key={filter}
+              variant={statusFilter === filter ? "default" : "outline"}
+              size="sm"
+              onClick={() => setStatusFilter(filter)}
+            >
+              {filter === "all" ? "All" : submissionStatusLabel[filter]}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {listQuery.isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-2 border-brand-secondary border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : filtered.length === 0 ? (
+        <Card className="glass-card border-0 p-10 text-center">
+          <CardContent className="p-0">
+            <Inbox size={32} className="text-muted-foreground mx-auto mb-3" />
+            <p className="font-medium">No submissions found</p>
+            <p className="text-sm text-muted-foreground">
+              {statusFilter === "all" ? "No contact form submissions have been received yet." : `No submissions with status "${submissionStatusLabel[statusFilter]}".`}
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="space-y-4">
+          {filtered.map((submission) => (
+            <Card key={submission.id} className="glass-card border-0 p-5">
+              <CardContent className="p-0">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="font-semibold">{submission.fullName}</p>
+                      <span className={`px-2.5 py-1 text-xs font-medium rounded-full ${submissionStatusColor[submission.status] || "bg-gray-100 text-gray-700"}`}>
+                        {submissionStatusLabel[submission.status]}
+                      </span>
+                      {submission.service ? (
+                        <Badge variant="outline" className="text-xs">{submission.service}</Badge>
+                      ) : null}
+                    </div>
+                    <div className="flex items-center gap-4 mt-1.5 text-xs text-muted-foreground flex-wrap">
+                      <span className="inline-flex items-center gap-1"><Mail size={12} />{submission.email}</span>
+                      {submission.phone ? (
+                        <span className="inline-flex items-center gap-1"><Phone size={12} />{submission.phone}</span>
+                      ) : null}
+                      <span>{new Date(submission.createdAt).toLocaleString()}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <select
+                      value={submission.status}
+                      onChange={(e) =>
+                        markStatus.mutate({ id: submission.id, status: e.target.value as "new" | "read" | "responded" })
+                      }
+                      disabled={markStatus.isPending}
+                      className="px-2 py-1.5 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-brand-secondary/50"
+                    >
+                      <option value="new">New</option>
+                      <option value="read">Read</option>
+                      <option value="responded">Responded</option>
+                    </select>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="inline-flex items-center gap-1"
+                      onClick={() => setSelected(submission.id)}
+                    >
+                      <MailOpen size={14} />Open
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                      onClick={() => setDeleteId(submission.id)}
+                    >
+                      <Trash2 size={14} />Delete
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {/* Message detail dialog */}
+      <Dialog open={selected !== null} onOpenChange={(open) => !open && setSelected(null)}>
+        <DialogContent className="max-w-lg">
+          {detail ? (
+            <>
+              <DialogHeader>
+                <DialogTitle>{detail.fullName}</DialogTitle>
+                <DialogDescription className="flex items-center gap-3 flex-wrap">
+                  <span className="inline-flex items-center gap-1"><Mail size={14} />{detail.email}</span>
+                  {detail.phone ? <span className="inline-flex items-center gap-1"><Phone size={14} />{detail.phone}</span> : null}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-2">
+                {detail.service ? (
+                  <p className="text-sm"><span className="font-medium">Service:</span> {detail.service}</p>
+                ) : null}
+                <p className="text-sm text-muted-foreground">Received {new Date(detail.createdAt).toLocaleString()}</p>
+                <div className="rounded-xl bg-muted p-4 text-sm">{detail.message}</div>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="inline-flex items-center gap-1"
+                    asChild
+                  >
+                    <a href={`mailto:${detail.email}?subject=${encodeURIComponent(`Re: Your inquiry — Ashflex Web Design`)}`}>
+                      <Reply size={14} />Reply by Email
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={markStatus.isPending}
+                    onClick={() => {
+                      markStatus.mutate({ id: detail.id, status: "responded" });
+                      setSelected(null);
+                    }}
+                  >
+                    <CheckCircle size={14} />Mark Responded
+                  </Button>
+                </div>
+              </div>
+            </>
+          ) : null}
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete confirmation dialog */}
+      <Dialog open={deleteId !== null} onOpenChange={(open) => !open && setDeleteId(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Delete submission?</DialogTitle>
+            <DialogDescription>
+              This permanently removes the submission from the database. This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2">
+            <Button variant="outline" onClick={() => setDeleteId(null)}>Cancel</Button>
+            <Button
+              variant="destructive"
+              disabled={deleteMutation.isPending}
+              onClick={() => {
+                if (deleteId !== null) deleteMutation.mutate({ id: deleteId });
+              }}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
 function PortalDashboard({ user }: { user: any }) {
+  const isAdmin = user?.role === "admin";
   return (
     <div className="space-y-8">
       {/* Stats */}
@@ -73,12 +296,13 @@ function PortalDashboard({ user }: { user: any }) {
 
       {/* Tabs */}
       <Tabs defaultValue="projects">
-        <TabsList className="grid grid-cols-5 w-full">
+        <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${isAdmin ? 6 : 5}, minmax(0, 1fr))` }}>
           <TabsTrigger value="projects">Projects</TabsTrigger>
           <TabsTrigger value="invoices">Invoices</TabsTrigger>
           <TabsTrigger value="tickets">Tickets</TabsTrigger>
           <TabsTrigger value="files">Files</TabsTrigger>
           <TabsTrigger value="meetings">Meetings</TabsTrigger>
+          {isAdmin ? <TabsTrigger value="submissions">Submissions</TabsTrigger> : null}
         </TabsList>
 
         <TabsContent value="projects" className="mt-6">
@@ -182,6 +406,12 @@ function PortalDashboard({ user }: { user: any }) {
             </Card>
           </div>
         </TabsContent>
+
+        {isAdmin ? (
+          <TabsContent value="submissions" className="mt-6">
+            <AdminSubmissions />
+          </TabsContent>
+        ) : null}
       </Tabs>
     </div>
   );

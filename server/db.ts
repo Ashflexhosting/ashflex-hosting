@@ -105,8 +105,23 @@ export async function createContactSubmission(
   return { id };
 }
 
-export async function listContactSubmissions(limit = 50) {
+export async function listContactSubmissions(limit = 50): Promise<typeof contactSubmissions.$inferSelect[]> {
   const db = await getDb();
   if (!db) return [];
   return db.select().from(contactSubmissions).orderBy(desc(contactSubmissions.createdAt)).limit(limit);
+}
+
+export async function updateContactSubmissionStatus(
+  id: number,
+  status: "new" | "read" | "responded",
+): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available; submission status could not be updated");
+  await db.update(contactSubmissions).set({ status }).where(eq(contactSubmissions.id, id));
+}
+
+export async function deleteContactSubmission(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available; submission could not be deleted");
+  await db.delete(contactSubmissions).where(eq(contactSubmissions.id, id));
 }
