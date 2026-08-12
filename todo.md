@@ -229,3 +229,7 @@
 ## Process Flow Connectors (user-requested)
 - [x] Add connecting visual lines between process steps 01-07 to emphasize continuous flow
 - [x] Verify connectors render across desktop and mobile and publish
+
+## Animated Flow Connectors (user-requested)
+- [x] Animate the connecting lines to fill with color progressively as the user scrolls
+- [x] Verify the animation on desktop and publish
