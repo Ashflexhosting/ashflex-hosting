@@ -241,6 +241,6 @@
 - [x] Add a GitHub Actions workflow that builds the Vite static site and publishes to GitHub Pages on every push to main
 - [x] Handle API/backend limitations for the static mirror (static-friendly fallbacks for contact portal features)
 - [x] Verify the workflow runs and the mirror site renders; push to GitHub
-- [ ] Fix mirrored-site asset paths: build mirror with base=/ashflex-hosting/ so JS/CSS resolve correctly
-- [ ] Rewrite hard-coded /manus-storage/ refs for the mirror build so favicon/logo load on GitHub Pages
-- [ ] Verify the live mirror at https://ashflexhosting.github.io/ashflex-hosting/ (boot + SPA routes)
+- [x] Fix mirrored-site asset paths: build mirror with base=/ashflex-hosting/ so JS/CSS resolve correctly
+- [x] Rewrite hard-coded /manus-storage/ refs for the mirror build so favicon/logo load on GitHub Pages
+- [x] Verify the live mirror at https://ashflexhosting.github.io/ashflex-hosting/ (boot + SPA routes) — mirror boots, deep links render, assets HTTP 200, canonical site unaffected
