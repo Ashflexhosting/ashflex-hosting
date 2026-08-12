@@ -311,3 +311,12 @@
 - [x] Upload screenshots as static assets and update portfolio image fields
 - [x] Also update CaseStudies and CaseStudyDetail images to the same live screenshots
 - [x] Verify portfolio cards show real screenshots, run tests (24/24), checkpoint and publish
+
+## Three Portfolio & Social Improvements (user-requested)
+- [x] Capture 2 inner-page screenshots per portfolio project from live sites (18 total)
+- [x] Upload inner-page screenshots and add them to the portfolio data ([live, inner-1, inner-2] per project)
+- [x] Extend PortfolioDetail gallery to a 3-column grid with click-to-open lightbox (prev/next, keyboard nav, counter)
+- [x] Add "Live site" external badge linking each portfolio card to the client website (opens in new tab, does not hijack card click)
+- [x] Found official Ashflex social links (Facebook, X/Twitter, Instagram) from ashflexwebdesign.com footer
+- [x] Add social icons to footer (brand column) and top utility bar (desktop)
+- [x] Verify rendering, run tests (24/24), checkpoint and publish

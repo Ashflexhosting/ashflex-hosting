@@ -40,7 +40,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Shutterspeed Projects",
     website: "https://shutterspeedprojects.com/",
-    screenshots: ["/manus-storage/portfolio-shutterspeed-live_ff13c8ca.webp", "/manus-storage/portfolio-shutterspeed-live_ff13c8ca.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-shutterspeed-live_ff13c8ca.webp",
+      "/manus-storage/portfolio-shutterspeed-inner-1_2263a89d.webp",
+      "/manus-storage/portfolio-shutterspeed-inner-2_f28325e4.webp",
+    ],
   },
   {
     id: 2,
@@ -53,7 +57,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Kingwesl Interior",
     website: "https://kingwesl.com/",
-    screenshots: ["/manus-storage/portfolio-kingwesl-live_bd256695.webp", "/manus-storage/portfolio-kingwesl-live_bd256695.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-kingwesl-live_bd256695.webp",
+      "/manus-storage/portfolio-kingwesl-inner-1_924bda63.webp",
+      "/manus-storage/portfolio-kingwesl-inner-2_b5a895b5.webp",
+    ],
   },
   {
     id: 3,
@@ -66,7 +74,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "B.C. First Nations Auto Finance",
     website: "https://bcfirstnationsautofinance.ca/",
-    screenshots: ["/manus-storage/portfolio-bcfirstnations-live_9c99bcce.webp", "/manus-storage/portfolio-bcfirstnations-live_9c99bcce.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-bcfirstnations-live_9c99bcce.webp",
+      "/manus-storage/portfolio-bcfirstnations-inner-1_8960b80a.webp",
+      "/manus-storage/portfolio-bcfirstnations-inner-2_967ad11d.webp",
+    ],
   },
   {
     id: 4,
@@ -79,7 +91,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Aerolead Aviation",
     website: "https://aeroleadaviation.com/",
-    screenshots: ["/manus-storage/portfolio-aerolead-live_0bed67a4.webp", "/manus-storage/portfolio-aerolead-live_0bed67a4.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-aerolead-live_0bed67a4.webp",
+      "/manus-storage/portfolio-aerolead-inner-1_356b711c.webp",
+      "/manus-storage/portfolio-aerolead-inner-2_a4db409a.webp",
+    ],
   },
   {
     id: 5,
@@ -92,7 +108,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "8 Radiance Empowerment",
     website: "https://eightradiance.org/",
-    screenshots: ["/manus-storage/portfolio-eightradiance-live_0fcdc31e.webp", "/manus-storage/portfolio-eightradiance-live_0fcdc31e.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-eightradiance-live_0fcdc31e.webp",
+      "/manus-storage/portfolio-eightradiance-inner-1_db06949a.webp",
+      "/manus-storage/portfolio-eightradiance-inner-2_1bde7cf5.webp",
+    ],
   },
   {
     id: 6,
@@ -105,7 +125,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Sam & Sara",
     website: "https://samandsara.com/",
-    screenshots: ["/manus-storage/portfolio-samandsara-live_74253bfc.webp", "/manus-storage/portfolio-samandsara-live_74253bfc.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-samandsara-live_74253bfc.webp",
+      "/manus-storage/portfolio-samandsara-inner-1_357a2d3d.webp",
+      "/manus-storage/portfolio-samandsara-inner-2_ce2fefa7.webp",
+    ],
   },
   {
     id: 7,
@@ -118,7 +142,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Becca & Miche Travels",
     website: "http://beccamichetravels.com/",
-    screenshots: ["/manus-storage/portfolio-beccamiche-live_d7861633.webp", "/manus-storage/portfolio-beccamiche-live_d7861633.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-beccamiche-live_d7861633.webp",
+      "/manus-storage/portfolio-beccamiche-inner-1_f92d8935.webp",
+      "/manus-storage/portfolio-beccamiche-inner-2_304c1641.webp",
+    ],
   },
   {
     id: 8,
@@ -131,7 +159,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Barmest Nigeria Limited",
     website: "https://barmest.com/",
-    screenshots: ["/manus-storage/portfolio-barmest-live_ef28f37f.webp", "/manus-storage/portfolio-barmest-live_ef28f37f.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-barmest-live_ef28f37f.webp",
+      "/manus-storage/portfolio-barmest-inner-1_77014575.webp",
+      "/manus-storage/portfolio-barmest-inner-2_0118c7d6.webp",
+    ],
   },
   {
     id: 9,
@@ -144,7 +176,11 @@ export const portfolioItems: PortfolioItem[] = [
     results: publicMetricsNote,
     client: "Neboc Hotel & Suites",
     website: "https://nebochotels.com/",
-    screenshots: ["/manus-storage/portfolio-neboc-live_f8b4cdb7.webp", "/manus-storage/portfolio-neboc-live_f8b4cdb7.webp"],
+    screenshots: [
+      "/manus-storage/portfolio-neboc-live_f8b4cdb7.webp",
+      "/manus-storage/portfolio-neboc-inner-1_7cbed751.webp",
+      "/manus-storage/portfolio-neboc-inner-2_ff1b0e9f.webp",
+    ],
   },
 ];
 

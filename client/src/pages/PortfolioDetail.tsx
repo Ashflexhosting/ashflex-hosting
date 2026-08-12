@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { ArrowRight, ArrowLeft, CheckCircle, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioItems } from "@/data/portfolio";
@@ -9,6 +10,24 @@ export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
   const sectionRef = useScrollReveal();
   const project = portfolioItems.find((p) => p.id === Number(id));
+  const gallery = project?.screenshots?.length ? project.screenshots : [];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % gallery.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length));
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex, gallery.length]);
+
+  const goToShot = (dir: 1 | -1) => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + dir + gallery.length) % gallery.length);
+  };
 
   if (!project) {
     return (
@@ -69,18 +88,27 @@ export default function PortfolioDetail() {
             {/* Screenshots Gallery */}
             <div className="lg:col-span-3 mt-4">
               <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {(project.screenshots?.length ? project.screenshots : [project.image, project.image, project.image, project.image]).map((shot, n) => (
-                  <div key={n} className="scroll-reveal rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group">
-                    <div className="overflow-hidden rounded-[0.9rem] bg-brand">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {gallery.map((shot, n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    className="scroll-reveal text-left rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group"
+                    onClick={() => setLightboxIndex(n)}
+                    aria-label={`View ${project.title} screenshot ${n + 1}`}
+                  >
+                    <span className="block overflow-hidden rounded-[0.9rem] bg-brand relative">
                       <img
                         src={shot}
                         alt={`${project.title} screenshot ${n + 1}`}
                         className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                       />
-                    </div>
-                  </div>
+                      <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
+                      </span>
+                    </span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -136,6 +164,54 @@ export default function PortfolioDetail() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && gallery[lightboxIndex] && (
+        <div
+          className="fixed inset-0 z-50 bg-brand/95 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Viewing ${project.title} screenshot ${lightboxIndex + 1}`}
+        >
+          <button
+            type="button"
+            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Close"
+          >
+            <X size={20} />
+          </button>
+          {gallery.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="absolute left-4 md:left-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); goToShot(-1); }}
+                aria-label="Previous screenshot"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                type="button"
+                className="absolute right-4 md:right-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); goToShot(1); }}
+                aria-label="Next screenshot"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
+          )}
+          <img
+            src={gallery[lightboxIndex]}
+            alt={`${project.title} screenshot ${lightboxIndex + 1}`}
+            className="max-w-[92vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
+            {lightboxIndex + 1} / {gallery.length}
+          </span>
+        </div>
+      )}
 
       {/* CTA */}
       <section className="py-20 bg-gradient-brand text-white">

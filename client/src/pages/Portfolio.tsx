@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, SlidersHorizontal, ExternalLink } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioIndustries, portfolioItems } from "@/data/portfolio";
@@ -105,9 +105,19 @@ export default function Portfolio() {
                         </div>
                         <h3 className="mb-2 text-lg font-semibold" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
                         <p className="line-clamp-2 text-sm text-muted-foreground">{item.challenge}</p>
-                        <div className="mt-3 flex items-center gap-2">
-                          <span className="text-sm font-medium text-brand-secondary">View Details</span>
-                          <ArrowRight size={14} className="text-brand-secondary" aria-hidden="true" />
+                        <div className="mt-3 flex items-center justify-between gap-2">
+                          <span className="flex items-center gap-2 text-sm font-medium text-brand-secondary">
+                            View Details <ArrowRight size={14} className="text-brand-secondary" aria-hidden="true" />
+                          </span>
+                          <a
+                            href={item.website}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-secondary/10 px-3 py-1.5 text-xs font-semibold text-brand-secondary transition-colors hover:bg-brand-secondary hover:text-white"
+                          >
+                            Live site <ExternalLink size={12} aria-hidden="true" />
+                          </a>
                         </div>
                       </CardContent>
                     </Card>

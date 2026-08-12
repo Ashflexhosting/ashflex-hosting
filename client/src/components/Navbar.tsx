@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Mail, Phone } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 import { brandLogoUrl } from "@shared/brand";
 
 const mainNav = [
@@ -80,6 +81,34 @@ export default function Navbar() {
             <Link href="/client-portal" className={topLinkClass}>
               Client Portal
             </Link>
+            <span className="mx-1 h-3 w-px bg-white/25" aria-hidden="true" />
+            <a
+              href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ashflex on Facebook"
+              className="text-white/70 hover:text-brand-cyan transition-colors"
+            >
+              <Facebook size={14} />
+            </a>
+            <a
+              href="https://twitter.com/AshflexH"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ashflex on X"
+              className="text-white/70 hover:text-brand-cyan transition-colors"
+            >
+              <Twitter size={14} />
+            </a>
+            <a
+              href="https://www.instagram.com/ashflexwebdesign/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ashflex on Instagram"
+              className="text-white/70 hover:text-brand-cyan transition-colors"
+            >
+              <Instagram size={14} />
+            </a>
           </div>
           <div className="flex items-center gap-5">
             <a href="tel:08023138892" className="flex items-center gap-1.5 hover:text-white transition-colors">

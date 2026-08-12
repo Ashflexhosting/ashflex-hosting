@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 import { siteContact } from "@shared/siteContact";
 import { brandLogoUrl } from "@shared/brand";
@@ -18,6 +19,35 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed mb-4">
               We build high-performance websites that help businesses increase visibility, improve credibility, and convert visitors into paying customers.
             </p>
+            <div className="flex items-center gap-3 mb-4">
+              <a
+                href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on Facebook"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-brand-accent hover:text-brand"
+              >
+                <Facebook size={16} />
+              </a>
+              <a
+                href="https://twitter.com/AshflexH"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on X"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-brand-accent hover:text-brand"
+              >
+                <Twitter size={16} />
+              </a>
+              <a
+                href="https://www.instagram.com/ashflexwebdesign/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on Instagram"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-brand-accent hover:text-brand"
+              >
+                <Instagram size={16} />
+              </a>
+            </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail size={16} />
