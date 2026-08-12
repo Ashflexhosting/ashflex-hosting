@@ -133,3 +133,9 @@
 - [x] Remove all unsplash references from codebase
 - [x] TypeScript check and tests pass
 - [x] Save checkpoint after image replacement
+
+## Homepage Hero Background Refresh (user request)
+- [x] Generate a custom dark-navy hero background image with a text-safe focal composition
+- [x] Integrate the new hero image with a contrast overlay and responsive behavior
+- [x] Verify the homepage hero with desktop screenshot, TypeScript check, and unit tests
+- [ ] Save and publish the hero background update checkpoint

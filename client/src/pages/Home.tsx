@@ -142,11 +142,17 @@ export default function Home() {
   return (
     <div className="min-h-screen" ref={sectionRef}>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-gradient-brand overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-secondary/20 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-accent/15 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-brand-secondary/5 to-brand-accent/5 rounded-full blur-[80px]" />
+      <section className="relative min-h-screen flex items-center bg-[#0F172A] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
+          style={{ backgroundImage: "url('/manus-storage/ashflex-hero-background_ee4a0039.png')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.96)_0%,rgba(15,23,42,0.88)_42%,rgba(15,23,42,0.54)_72%,rgba(15,23,42,0.68)_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.30)_0%,rgba(15,23,42,0.10)_46%,rgba(15,23,42,0.68)_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0" aria-hidden="true">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-secondary/15 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-accent/10 rounded-full blur-[100px]" />
         </div>
 
         {/* Grid pattern */}
