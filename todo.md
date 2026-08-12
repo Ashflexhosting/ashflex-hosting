@@ -222,3 +222,6 @@
 - [x] Diagnose 404: Navbar links to /client-portal but route is registered at /portal
 - [x] Redirect /client-portal to /portal so all nav links work
 - [x] Verify portal loads and publish
+
+## How We Work Row Expansion (user-requested)
+- [x] Re-add steps 05-07 as a second row sized to span the full grid width (3 cards across the 4-column track)
