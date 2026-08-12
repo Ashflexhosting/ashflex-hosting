@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, RotateCcw, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, SlidersHorizontal } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  filterPortfolioItems,
-  portfolioIndustries,
-  portfolioItems,
-  serviceTypes,
-} from "@/data/portfolio";
+import { portfolioIndustries, portfolioItems } from "@/data/portfolio";
 import { Card, CardContent } from "@/components/ui/card";
 
 const filterButtonClass = (isActive: boolean) =>
@@ -21,20 +16,14 @@ const filterButtonClass = (isActive: boolean) =>
 export default function Portfolio() {
   const sectionRef = useScrollReveal();
   const [activeIndustry, setActiveIndustry] = useState("All");
-  const [activeService, setActiveService] = useState("All");
-  const filtered = filterPortfolioItems({ industry: activeIndustry, service: activeService });
-  const hasActiveFilters = activeIndustry !== "All" || activeService !== "All";
-
-  const clearFilters = () => {
-    setActiveIndustry("All");
-    setActiveService("All");
-  };
+  const filtered = activeIndustry === "All" ? portfolioItems : portfolioItems.filter((item) => item.category === activeIndustry);
+  const hasActiveFilter = activeIndustry !== "All";
 
   return (
     <div ref={sectionRef}>
       <PageHeader
         title="Our Portfolio"
-        description="Browse selected Ashflex projects across industries and website design services. Use the filters to find work that is most relevant to your business."
+        description="Browse selected Ashflex projects across industries. Filter by industry to find work that is most relevant to your business."
         breadcrumb={[{ label: "Portfolio", href: "/portfolio" }]}
       />
 
@@ -48,10 +37,10 @@ export default function Portfolio() {
                   <span className="text-xs font-bold uppercase tracking-[0.16em]">Portfolio Finder</span>
                 </div>
                 <h2 className="text-2xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-                  Find work by industry or service type
+                  Find work by industry
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  Combine filters to narrow the projects shown below.
+                  Pick an industry to narrow the projects shown below.
                 </p>
               </div>
               <p className="rounded-full bg-white px-4 py-2 text-sm font-medium text-foreground shadow-sm" aria-live="polite">
@@ -59,7 +48,7 @@ export default function Portfolio() {
               </p>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1fr_1fr_auto] lg:items-end">
+            <div className="grid gap-6 lg:items-end">
               <div role="group" aria-labelledby="industry-filter-label">
                 <p id="industry-filter-label" className="mb-3 text-sm font-semibold text-foreground">Industry</p>
                 <div className="flex flex-wrap gap-2">
@@ -84,41 +73,6 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
-
-              <div role="group" aria-labelledby="service-filter-label">
-                <p id="service-filter-label" className="mb-3 text-sm font-semibold text-foreground">Service type</p>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setActiveService("All")}
-                    className={filterButtonClass(activeService === "All")}
-                    aria-pressed={activeService === "All"}
-                  >
-                    All services
-                  </button>
-                  {serviceTypes.map((service) => (
-                    <button
-                      type="button"
-                      key={service}
-                      onClick={() => setActiveService(service)}
-                      className={filterButtonClass(activeService === service)}
-                      aria-pressed={activeService === service}
-                    >
-                      {service}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={clearFilters}
-                disabled={!hasActiveFilters}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 text-sm font-medium text-foreground transition-all duration-200 hover:border-brand-secondary/35 hover:text-brand-secondary disabled:cursor-not-allowed disabled:opacity-45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
-              >
-                <RotateCcw size={15} aria-hidden="true" />
-                Clear filters
-              </button>
             </div>
           </div>
 
@@ -164,17 +118,16 @@ export default function Portfolio() {
           ) : (
             <div className="rounded-3xl border border-dashed border-brand-secondary/30 bg-brand-secondary/5 px-6 py-16 text-center">
               <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-                No projects match both filters
+                No projects match this industry
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground">
-                Try a different industry or service type to explore more Ashflex projects.
+                No projects match the selected industry yet.
               </p>
               <button
                 type="button"
-                onClick={clearFilters}
+                onClick={() => setActiveIndustry("All")}
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-secondary/25 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
               >
-                <RotateCcw size={15} aria-hidden="true" />
                 Show all projects
               </button>
             </div>

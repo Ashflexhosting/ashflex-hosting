@@ -301,3 +301,6 @@
 - [x] Add scroll-triggered count-up animation to homepage Trusted By stats (250+, 98%, 10+, 15+)
 - [x] Respect prefers-reduced-motion (fall back to static values)
 - [x] Verify animation on desktop and mobile, run tests, checkpoint and publish
+
+## Remove Portfolio Filter (user-requested)
+- [x] Remove category filter buttons from the portfolio page and show all projects directly
