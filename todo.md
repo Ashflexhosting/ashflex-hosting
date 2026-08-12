@@ -244,3 +244,7 @@
 - [x] Fix mirrored-site asset paths: build mirror with base=/ashflex-hosting/ so JS/CSS resolve correctly
 - [x] Rewrite hard-coded /manus-storage/ refs for the mirror build so favicon/logo load on GitHub Pages
 - [x] Verify the live mirror at https://ashflexhosting.github.io/ashflex-hosting/ (boot + SPA routes) — mirror boots, deep links render, assets HTTP 200, canonical site unaffected
+
+## Layout Width Regression (user-reported)
+- [x] Diagnose why the 1200px site width is not showing on the live site (Tailwind's default .container utility at 1536px was winning the cascade over the custom @layer components rule)
+- [x] Enforce 1200px max-width on the global container by moving the override into @layer utilities; verified .container computes 1200px in browser and pages render within 1200px
