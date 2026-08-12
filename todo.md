@@ -196,3 +196,6 @@
 - [x] Add regression coverage for filter options and combined filter behavior
 - [x] Verify the filtering experience on desktop and mobile, with clean automated and runtime checks
 - [x] Save and publish the portfolio filtering enhancement
+
+## 1200px Site Layout Width (user-requested)
+- [ ] Reduce the site's content layout width to 1200px and verify key pages
