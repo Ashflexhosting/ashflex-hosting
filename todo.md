@@ -178,4 +178,4 @@
 - [x] Verify all three improvements on desktop and mobile
 - [x] Verify the square icon is referenced by favicon, Open Graph, and Twitter metadata
 - [x] Restore accessible navigation contrast over dark hero and page-header backgrounds
-- [ ] Save and publish the three branding improvements update
+- [x] Save and publish the three branding improvements update
