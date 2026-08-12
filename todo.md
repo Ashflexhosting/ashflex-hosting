@@ -278,3 +278,10 @@
 - [x] Add an application form (role selector, name, email, portfolio/LinkedIn, message) stored in a new jobApplications table with admin management procedures and owner notifications
 - [x] Register the route and update footer "Careers" link (now /careers)
 - [x] Verify on desktop, run tests (24 passed), checkpoint and publish (auto-publish)
+
+## Homepage Redesign (user-requested: modern & creative)
+- [x] Audit the current Home.tsx structure and preserve all content (copy, stats, sections, CTAs)
+- [x] Redesign hero: modern asymmetric layout with bolder typography, creative motion, and floating UI elements (kinetic gradient/outline headline, floating browser mockup, metric cards, phone card, glow orbs, noise texture)
+- [x] Redesign mid-page sections: marquee service ticker, bento services grid with featured card + CTA tile, offset dark why-choose-us band, numbered process timeline with flow connectors, portfolio numbered rows with hover image peek, industries tile strip, carousel testimonials, rebalanced pricing
+- [x] Add creative touches: scroll-driven motion, glass/neon accents, marquee/animated elements with prefers-reduced-motion guard
+- [x] Visual verification on desktop and mobile, run tests (24 passed), checkpoint and publish (auto-publish)
