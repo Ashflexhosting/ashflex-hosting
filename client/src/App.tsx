@@ -64,6 +64,7 @@ function Router() {
       <Route path="/resources/digital-marketing-guide" component={DigitalMarketingGuide} />
       <Route path="/contact" component={Contact} />
       <Route path="/portal" component={ClientPortal} />
+      <Route path="/client-portal" component={ClientPortal} />
       {/* SEO Landing Pages */}
       <Route path="/seo/:slug" component={SEOLanding} />
       <Route path="/404" component={NotFound} />

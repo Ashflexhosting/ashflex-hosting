@@ -217,3 +217,8 @@
 ## Homepage Process Duplication Fix (user-requested)
 - [x] Remove duplicated second row of process steps (05, 06, 07) from the How We Work section
 - [x] Verify homepage renders steps 01-07 once each and publish
+
+## Client Portal 404 Fix (user-reported)
+- [x] Diagnose 404: Navbar links to /client-portal but route is registered at /portal
+- [x] Redirect /client-portal to /portal so all nav links work
+- [x] Verify portal loads and publish
