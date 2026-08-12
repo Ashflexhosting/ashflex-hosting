@@ -255,3 +255,9 @@
 - [x] Keep main nav focused on core pages (Home, About, Services, Portfolio, Industries, Pricing, Case Studies)
 - [x] Make top bar responsive (hidden on mobile; links appear in a grouped "More" section in the mobile menu) and verified desktop + mobile
 - [x] Checkpoint and publish (auto-publish)
+
+## Menu Links Not Working (user-reported)
+- [x] Diagnose why top-bar and main nav links fail to navigate (custom raw-location hook for the GitHub mirror broke wouter Link updates — URL changed but routes didn't re-render)
+- [x] Fix navigation by replacing the custom hook with wouter's native <Router base={...}> handling (works for both root and mirror deployments)
+- [x] Verify clicking all top-bar and nav links navigates correctly (click-through test of 10 routes on dev + live)
+- [x] Checkpoint and publish (auto-publish)

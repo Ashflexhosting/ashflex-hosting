@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Router as BaseRouter, Switch, useLocation } from "wouter";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/Navbar";
@@ -78,24 +78,14 @@ function Router() {
 // continue to match exactly as they do on the canonical root deployment.
 // Raw location hook (no wouter dependency) that strips the deployment base
 // path (e.g. /ashflex-hosting/ on GitHub Pages) before route matching.
-function useBasePathLocation(): [string, (to: string, options?: { replace?: boolean }) => void] {
-  const base = import.meta.env.BASE_URL ?? "/";
-  const stripBase = (p: string) =>
-    base === "/" ? p : p.replace(new RegExp(`^${base.replace(/\/$/, "")}`), "") || "/";
-  const [path, setPath] = useState(() => stripBase(window.location.pathname));
-  useEffect(() => {
-    const onChange = () => setPath(stripBase(window.location.pathname));
-    window.addEventListener("popstate", onChange);
-    return () => window.removeEventListener("popstate", onChange);
-  }, [base]);
-  const navigate = (to: string, options?: { replace?: boolean }) => {
-    const target = base === "/" ? to : `${base.replace(/\/$/, "")}${to === "/" ? "" : to}`;
-    if (options?.replace) window.history.replaceState(null, "", target);
-    else window.history.pushState(null, "", target);
-    setPath(stripBase(window.location.pathname));
-  };
-  return [path, navigate];
-}
+// Mirror-friendly base path: when deployed under a subpath (e.g.
+// /ashflex-hosting/ on GitHub Pages), Vite injects import.meta.env.BASE_URL.
+// Passing it to wouter's <Router base={...}> makes route matching, Link
+// navigation, and deep links work identically to the root deployment.
+const routerBase = (() => {
+  const raw = import.meta.env.BASE_URL ?? "/";
+  return raw === "/" ? undefined : raw.replace(/\/$/, "");
+})();
 
 function App() {
   // Mirror-friendly base path: when deployed under a subpath (e.g.
@@ -107,7 +97,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <BaseRouter hook={useBasePathLocation}>
+          <BaseRouter base={routerBase}>
           <Navbar />
           <ScrollToTop />
           <Router />
