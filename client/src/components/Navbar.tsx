@@ -48,6 +48,11 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location]);
 
+  const navLinkClass = scrolled
+    ? "text-foreground/70 hover:text-foreground"
+    : "text-white/80 hover:text-white";
+  const activeNavLinkClass = scrolled ? "text-brand-secondary" : "text-brand-cyan";
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -73,8 +78,8 @@ export default function Navbar() {
                 href={item.href}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                   location === item.href
-                    ? "text-brand-secondary"
-                    : "text-foreground/70 hover:text-foreground"
+                    ? activeNavLinkClass
+                    : navLinkClass
                 }`}
               >
                 {item.label}
@@ -97,7 +102,7 @@ export default function Navbar() {
             </div>
           ))}
           <Link href="/resources">
-            <span className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-lg transition-colors">
+            <span className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${navLinkClass}`}>
               Resources
             </span>
           </Link>
@@ -105,7 +110,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
           <Link href="/client-portal">
-            <span className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-lg transition-colors">
+            <span className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${navLinkClass}`}>
               Client Portal
             </span>
           </Link>
@@ -118,7 +123,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+          className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >

@@ -365,13 +365,15 @@ export default function Home() {
               <div key={item.id} className="scroll-reveal" style={{ transitionDelay: `${i * 60}ms` }}>
                 <Link href={`/portfolio/${item.id}`}>
                   <Card className="glass-card border-0 overflow-hidden hover-lift">
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        loading="lazy"
-                      />
+                    <div className="bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
+                      <div className="aspect-video overflow-hidden bg-brand">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
                     <CardContent className="p-5">
                       <div className="flex items-center gap-2 mb-2">

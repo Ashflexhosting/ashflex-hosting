@@ -29,11 +29,11 @@ export default function PortfolioDetail() {
 
       <section className="py-20">
         <div className="container max-w-5xl">
-          <div className="scroll-reveal mb-12">
+          <div className="scroll-reveal mb-12 rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[3px] shadow-2xl shadow-brand-secondary/15">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full rounded-2xl shadow-2xl shadow-black/10"
+              className="w-full rounded-[0.9rem] bg-brand"
             />
           </div>
 
@@ -71,13 +71,15 @@ export default function PortfolioDetail() {
               <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {(project.screenshots?.length ? project.screenshots : [project.image, project.image, project.image, project.image]).map((shot, n) => (
-                  <div key={n} className="scroll-reveal overflow-hidden rounded-2xl group">
-                    <img
-                      src={shot}
-                      alt={`${project.title} screenshot ${n + 1}`}
-                      className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                  <div key={n} className="scroll-reveal rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group">
+                    <div className="overflow-hidden rounded-[0.9rem] bg-brand">
+                      <img
+                        src={shot}
+                        alt={`${project.title} screenshot ${n + 1}`}
+                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>

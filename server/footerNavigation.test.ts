@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { footerCompanyLinkKey, footerCompanyLinks } from "../shared/footerNavigation";
 import { siteContact } from "../shared/siteContact";
-import { brandLogoUrl } from "../shared/brand";
+import { brandIconUrl, brandLogoUrl } from "../shared/brand";
 
 describe("footer company navigation", () => {
   it("generates a unique React key for every displayed company link", () => {
@@ -27,5 +27,9 @@ describe("footer company navigation", () => {
 
   it("uses the uploaded official Ashflex logo asset", () => {
     expect(brandLogoUrl).toBe("/manus-storage/ashflex-website-design-logo-v2_ad90e878.png");
+  });
+
+  it("uses a dedicated square icon asset for favicon and social-avatar contexts", () => {
+    expect(brandIconUrl).toBe("/manus-storage/ashflex-icon-mark_24502111.png");
   });
 });

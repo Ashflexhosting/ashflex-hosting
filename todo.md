@@ -168,3 +168,14 @@
 - [x] Refresh global palette tokens to use the logo-inspired blue, red, white, and aqua colors
 - [x] Verify key pages for accessible contrast on desktop and mobile
 - [x] Save and publish the refreshed logo and palette update
+
+## Three Brand Continuity Improvements (user-requested)
+- [x] Replace Contact-page placeholder phone details with 08023138892 and its tap-to-call link
+- [x] Replace Contact-page placeholder email with info@ashflexwebdesign.com and its mail link
+- [x] Create and upload a square Ashflex icon-only mark for favicon and social use
+- [x] Update favicon and social-sharing metadata to the square icon
+- [x] Refresh portfolio mockup framing with the blue, red, white, and aqua palette
+- [x] Verify all three improvements on desktop and mobile
+- [x] Verify the square icon is referenced by favicon, Open Graph, and Twitter metadata
+- [x] Restore accessible navigation contrast over dark hero and page-header backgrounds
+- [ ] Save and publish the three branding improvements update

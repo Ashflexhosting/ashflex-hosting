@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
+import { siteContact } from "@shared/siteContact";
 
 const contactFaqs = [
   { q: "How much does a website cost?", a: "Website costs vary based on complexity, pages, and features. Basic sites start around \u20A6150,000, while custom business solutions range from \u20A6500,000 to \u20A65M+. Use our free Website Cost Calculator for an instant estimate." },
@@ -58,8 +59,9 @@ export default function Contact() {
                         </div>
                         <div>
                           <p className="text-sm font-medium">Phone</p>
-                          <p className="text-sm text-muted-foreground">+234 800 123 4567</p>
-                          <p className="text-sm text-muted-foreground">+234 901 234 5678</p>
+                          <a href={siteContact.phoneHref} className="text-sm text-muted-foreground hover:text-brand-secondary transition-colors">
+                            {siteContact.phoneDisplay}
+                          </a>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -68,8 +70,9 @@ export default function Contact() {
                         </div>
                         <div>
                           <p className="text-sm font-medium">Email</p>
-                          <p className="text-sm text-muted-foreground">hello@ashflex.com</p>
-                          <p className="text-sm text-muted-foreground">support@ashflex.com</p>
+                          <a href={`mailto:${siteContact.email}`} className="text-sm text-muted-foreground hover:text-brand-secondary transition-colors break-all">
+                            {siteContact.email}
+                          </a>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -95,7 +98,7 @@ export default function Contact() {
                   </CardContent>
                 </Card>
 
-                <a href="https://wa.me/2348001234567" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/2348023138892" target="_blank" rel="noopener noreferrer">
                   <Card className="glass-card border-0 p-6 hover-lift cursor-pointer border-brand-secondary/20">
                     <CardContent className="p-0 flex items-center gap-4">
                       <MessageSquare size={24} className="text-green-500" />
@@ -159,7 +162,7 @@ export default function Contact() {
                             type="tel"
                             value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                            placeholder="+234 800 123 4567"
+                            placeholder="0802 313 8892"
                             className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-brand-secondary/50 focus:border-brand-secondary transition-all"
                           />
                         </div>
