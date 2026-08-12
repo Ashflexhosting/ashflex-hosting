@@ -213,3 +213,7 @@
 - [x] Review the ClientPortal structure and add the Submissions tab with role gating
 - [x] Add Vitest coverage for admin access control and status updates
 - [x] Verify the dashboard end-to-end and publish
+
+## Homepage Process Duplication Fix (user-requested)
+- [x] Remove duplicated second row of process steps (05, 06, 07) from the How We Work section
+- [x] Verify homepage renders steps 01-07 once each and publish

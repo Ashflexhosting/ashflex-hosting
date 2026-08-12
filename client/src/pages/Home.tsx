@@ -319,18 +319,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          {/* Extra steps in second row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            {processSteps.slice(4).map((step, i) => (
-              <div key={i} className="scroll-reveal" style={{ transitionDelay: `${(i + 4) * 60}ms` }}>
-                <div className="glass-card p-6 h-full border-0">
-                  <div className="text-5xl font-bold text-brand-secondary/10 mb-4" style={{ fontFamily: "var(--font-heading)" }}>{step.step}</div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
