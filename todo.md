@@ -198,4 +198,4 @@
 - [x] Save and publish the portfolio filtering enhancement
 
 ## 1200px Site Layout Width (user-requested)
-- [ ] Reduce the site's content layout width to 1200px and verify key pages
+- [x] Reduce the site's content layout width to 1200px and verify key pages
