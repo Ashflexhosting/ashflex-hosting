@@ -167,4 +167,4 @@
 - [x] Replace navigation, footer, favicon, and social logo references
 - [x] Refresh global palette tokens to use the logo-inspired blue, red, white, and aqua colors
 - [x] Verify key pages for accessible contrast on desktop and mobile
-- [ ] Save and publish the refreshed logo and palette update
+- [x] Save and publish the refreshed logo and palette update
