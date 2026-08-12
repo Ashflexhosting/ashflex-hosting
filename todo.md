@@ -138,4 +138,4 @@
 - [x] Generate a custom dark-navy hero background image with a text-safe focal composition
 - [x] Integrate the new hero image with a contrast overlay and responsive behavior
 - [x] Verify the homepage hero with desktop screenshot, TypeScript check, and unit tests
-- [ ] Save and publish the hero background update checkpoint
+- [x] Save and publish the hero background update checkpoint
