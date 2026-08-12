@@ -179,3 +179,12 @@
 - [x] Verify the square icon is referenced by favicon, Open Graph, and Twitter metadata
 - [x] Restore accessible navigation contrast over dark hero and page-header backgrounds
 - [x] Save and publish the three branding improvements update
+
+## Verified Portfolio Content Refresh (user-requested)
+- [x] Review https://ashflexwebdesign.com/projects for approved descriptions and confirm quantified success metrics are not published there
+- [x] Confirm and save the approved project mapping in portfolio cards and detail pages
+- [x] Confirm placeholder success metrics are replaced with transparent public-status text where metrics are unavailable
+- [x] Update PortfolioDetail with verified client websites and an official-source note
+- [x] Run TypeScript/tests and visually verify the refreshed portfolio pages
+- [x] Verify refreshed portfolio pages on list and detail views
+- [ ] Save and publish the verified portfolio-content refresh

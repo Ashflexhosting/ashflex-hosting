@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle, ExternalLink } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioItems } from "@/data/portfolio";
@@ -102,6 +102,19 @@ export default function PortfolioDetail() {
                     <p className="font-semibold">{project.technologies.join(", ")}</p>
                   </div>
                 </div>
+
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:text-brand-accent transition-colors"
+                >
+                  View Live Project <ExternalLink size={15} />
+                </a>
+
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                  Project description sourced from Ashflex’s official portfolio listing.
+                </p>
 
                 <div className="mt-8">
                   <Link href="/contact">
