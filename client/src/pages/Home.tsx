@@ -308,10 +308,22 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
             {processSteps.slice(0, 4).map((step, i) => (
-              <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 60}ms` }}>
-                <div className="glass-card p-6 h-full border-0">
+              <div key={i} className="scroll-reveal relative" style={{ transitionDelay: `${i * 60}ms` }}>
+                {i < 3 && (
+                  <div
+                    className="hidden lg:block absolute top-12 h-px pointer-events-none"
+                    style={{
+                      left: "calc(50% + 2rem)",
+                      background: "linear-gradient(90deg, oklch(0.55 0.19 262) 0%, oklch(0.72 0.16 205) 100%)",
+                      opacity: 0.55,
+                      width: "calc(100% - 4rem)",
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="glass-card p-6 h-full border-0 relative z-10">
                   <div className="text-5xl font-bold text-brand-secondary/10 mb-4" style={{ fontFamily: "var(--font-heading)" }}>{step.step}</div>
                   <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
@@ -319,10 +331,36 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+          {/* Flow connector: S-curve from step 04 (right of row 1) down to step 05 (left of row 2) */}
+          <div className="hidden lg:block my-2" aria-hidden="true">
+            <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="w-full h-10" fill="none">
+              <defs>
+                <linearGradient id="flowCurve" x1="0" y1="0" x2="100" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#06B6D4" />
+                  <stop offset="1" stopColor="#3B82F6" />
+                </linearGradient>
+              </defs>
+              <path d="M 100 0 C 100 20, 0 20, 0 40" stroke="url(#flowCurve)" strokeWidth="0.6" opacity="0.6" />
+              <path d="M 0 34 L 0 40 L 6 40" stroke="#3B82F6" strokeWidth="0.6" opacity="0.6" />
+            </svg>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-1 relative">
             {processSteps.slice(4).map((step, i) => (
-              <div key={i + 4} className="scroll-reveal" style={{ transitionDelay: `${(i + 4) * 60}ms` }}>
-                <div className="glass-card p-6 h-full border-0">
+              <div key={i + 4} className="scroll-reveal relative" style={{ transitionDelay: `${(i + 4) * 60}ms` }}>
+                {i < 2 && (
+                  <div
+                    className="hidden lg:block absolute top-12 h-px pointer-events-none"
+                    style={{
+                      left: "calc(50% + 2rem)",
+                      background: "linear-gradient(90deg, oklch(0.72 0.16 205) 0%, oklch(0.55 0.19 262) 100%)",
+                      opacity: 0.55,
+                      width: "calc(100% - 4rem)",
+                      transform: "rotate(180deg)",
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="glass-card p-6 h-full border-0 relative z-10">
                   <div className="text-5xl font-bold text-brand-secondary/10 mb-4" style={{ fontFamily: "var(--font-heading)" }}>{step.step}</div>
                   <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>

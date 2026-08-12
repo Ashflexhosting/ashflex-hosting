@@ -225,3 +225,7 @@
 
 ## How We Work Row Expansion (user-requested)
 - [x] Re-add steps 05-07 as a second row sized to span the full grid width (3 cards across the 4-column track)
+
+## Process Flow Connectors (user-requested)
+- [x] Add connecting visual lines between process steps 01-07 to emphasize continuous flow
+- [x] Verify connectors render across desktop and mobile and publish
