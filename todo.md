@@ -248,3 +248,10 @@
 ## Layout Width Regression (user-reported)
 - [x] Diagnose why the 1200px site width is not showing on the live site (Tailwind's default .container utility at 1536px was winning the cascade over the custom @layer components rule)
 - [x] Enforce 1200px max-width on the global container by moving the override into @layer utilities; verified .container computes 1200px in browser and pages render within 1200px
+
+## Top Utility Bar (user-requested)
+- [x] Create a slim top utility bar above the main navigation (dark navy, Blog/Resources/Client Portal left, phone + email right)
+- [x] Move Blog, Resources, and Client Portal links from the main nav into the top bar
+- [x] Keep main nav focused on core pages (Home, About, Services, Portfolio, Industries, Pricing, Case Studies)
+- [x] Make top bar responsive (hidden on mobile; links appear in a grouped "More" section in the mobile menu) and verified desktop + mobile
+- [x] Checkpoint and publish (auto-publish)

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, Mail, Phone } from "lucide-react";
 import { brandLogoUrl } from "@shared/brand";
 
 const mainNav = [
@@ -11,7 +11,12 @@ const mainNav = [
   { label: "Industries", href: "/industries" },
   { label: "Pricing", href: "/pricing" },
   { label: "Case Studies", href: "/case-studies" },
+];
+
+const topBarNav = [
   { label: "Blog", href: "/blog" },
+  { label: "Resources", href: "/resources" },
+  { label: "Client Portal", href: "/client-portal" },
 ];
 
 const servicesDropdown = [
@@ -48,6 +53,7 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location]);
 
+  const topLinkClass = "hover:text-white transition-colors";
   const navLinkClass = scrolled
     ? "text-foreground/70 hover:text-foreground"
     : "text-white/80 hover:text-white";
@@ -61,6 +67,33 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
+      {/* Top utility bar: Blog · Resources · Client Portal */}
+      <div className="hidden lg:block border-b border-white/10 bg-[#071B5A]/85 backdrop-blur-md">
+        <div className="container flex items-center justify-between h-9 text-[13px] text-white/75">
+          <div className="flex items-center gap-4">
+            <Link href="/blog" className={topLinkClass}>
+              Blog
+            </Link>
+            <Link href="/resources" className={topLinkClass}>
+              Resources
+            </Link>
+            <Link href="/client-portal" className={topLinkClass}>
+              Client Portal
+            </Link>
+          </div>
+          <div className="flex items-center gap-5">
+            <a href="tel:08023138892" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Phone size={13} className="text-brand-cyan" />
+              08023138892
+            </a>
+            <a href="mailto:info@ashflexwebdesign.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail size={13} className="text-brand-cyan" />
+              info@ashflexwebdesign.com
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="container flex items-center justify-between h-18 lg:h-20">
         <Link href="/">
           <img
@@ -101,19 +134,9 @@ export default function Navbar() {
               )}
             </div>
           ))}
-          <Link href="/resources">
-            <span className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${navLinkClass}`}>
-              Resources
-            </span>
-          </Link>
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Link href="/client-portal">
-            <span className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${navLinkClass}`}>
-              Client Portal
-            </span>
-          </Link>
           <Link href="/contact">
             <span className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
               Get Free Quote
@@ -144,18 +167,19 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/resources"
-              className="block px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
-            >
-              Resources
-            </Link>
-            <Link
-              href="/client-portal"
-              className="block px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
-            >
-              Client Portal
-            </Link>
+            <div className="border-t border-border/50 my-2" />
+            <p className="px-4 pt-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              More
+            </p>
+            {topBarNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
             <Link href="/contact">
               <span className="block w-full text-center px-5 py-3 mt-2 text-base font-semibold text-white bg-gradient-primary rounded-xl">
                 Get Free Quote
