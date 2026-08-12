@@ -144,4 +144,4 @@
 - [x] Locate and fix the remaining duplicate `/contact` React key warning
 - [x] Add a regression test for unique navigation keys
 - [x] Verify the homepage console is clear after rendering the full footer navigation
-- [ ] Save and publish the duplicate-key repair checkpoint
+- [x] Save and publish the duplicate-key repair checkpoint
