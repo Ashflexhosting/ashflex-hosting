@@ -32,7 +32,7 @@ export default function StickyCTA() {
               Free Audit
             </span>
           </Link>
-          <a href="tel:+2348001234567" className="flex items-center gap-2 text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors">
+          <a href="tel:+2348023138892" className="flex items-center gap-2 text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors">
             <Phone size={16} />
             <span className="hidden sm:inline">Call Now</span>
           </a>

@@ -650,7 +650,7 @@ export default function Home() {
                 Get Free Consultation <ArrowRight size={20} />
               </span>
             </Link>
-            <a href="https://wa.me/2348001234567" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/2348023138892" target="_blank" rel="noopener noreferrer">
               <span className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white border-2 border-white/20 rounded-xl hover:bg-white/5 transition-all duration-300">
                 <MessageSquare size={20} /> Chat on WhatsApp
               </span>

@@ -261,3 +261,8 @@
 - [x] Fix navigation by replacing the custom hook with wouter's native <Router base={...}> handling (works for both root and mirror deployments)
 - [x] Verify clicking all top-bar and nav links navigates correctly (click-through test of 10 routes on dev + live)
 - [x] Checkpoint and publish (auto-publish)
+
+## WhatsApp Number Fix (user-requested)
+- [x] Update WhatsAppButton to use real number 08023138892 (2348023138892)
+- [x] Update all other placeholder phone occurrences (wa.me link on Home, tel link in StickyCTA)
+- [x] Checkpoint and publish
