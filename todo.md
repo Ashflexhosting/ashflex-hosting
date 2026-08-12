@@ -304,3 +304,10 @@
 
 ## Remove Portfolio Filter (user-requested)
 - [x] Remove category filter buttons from the portfolio page and show all projects directly
+
+## Portfolio Live-Site Screenshots (user-requested)
+- [x] Collect live website URL for each of the 9 portfolio projects
+- [x] Capture desktop screenshots of each live project site
+- [x] Upload screenshots as static assets and update portfolio image fields
+- [x] Also update CaseStudies and CaseStudyDetail images to the same live screenshots
+- [x] Verify portfolio cards show real screenshots, run tests (24/24), checkpoint and publish
