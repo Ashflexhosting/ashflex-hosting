@@ -154,3 +154,10 @@
 ## Footer Phone Number Correction (user-provided)
 - [x] Correct the footer phone number and tap-to-call link to 08023138892
 - [x] Save and publish the validated footer contact-details update
+
+## Official Brand Logo Integration (user-provided)
+- [x] Upload the supplied Ashflex Website Design logo as a managed web asset
+- [x] Replace navigation and footer text marks with the official responsive logo
+- [x] Update favicon and social-sharing metadata to use the official logo
+- [x] Verify logo rendering in desktop navigation/footer and mobile navigation
+- [ ] Save and publish the official logo integration update

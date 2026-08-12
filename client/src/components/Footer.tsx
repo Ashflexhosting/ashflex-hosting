@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 import { siteContact } from "@shared/siteContact";
+import { brandLogoUrl } from "@shared/brand";
 
 export default function Footer() {
   return (
@@ -9,14 +10,11 @@ export default function Footer() {
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
-              <span className="text-xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
-                Ash<span className="text-brand-accent">flex</span>
-              </span>
-            </div>
+            <img
+              src={brandLogoUrl}
+              alt="Ashflex Website Design"
+              className="mb-4 h-16 w-auto rounded-md object-contain"
+            />
             <p className="text-white/60 text-sm leading-relaxed mb-4">
               We build high-performance websites that help businesses increase visibility, improve credibility, and convert visitors into paying customers.
             </p>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { brandLogoUrl } from "@shared/brand";
 
 const mainNav = [
   { label: "Home", href: "/" },
@@ -57,14 +58,11 @@ export default function Navbar() {
     >
       <div className="container flex items-center justify-between h-18 lg:h-20">
         <Link href="/">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
-              <span className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-heading)" }}>A</span>
-            </div>
-            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
-              Ash<span className="text-brand-secondary">flex</span>
-            </span>
-          </div>
+          <img
+            src={brandLogoUrl}
+            alt="Ashflex Website Design"
+            className="h-12 w-auto rounded-md object-contain shadow-sm sm:h-14"
+          />
         </Link>
 
         {/* Desktop Nav */}

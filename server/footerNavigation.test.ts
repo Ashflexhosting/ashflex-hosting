@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { footerCompanyLinkKey, footerCompanyLinks } from "../shared/footerNavigation";
 import { siteContact } from "../shared/siteContact";
+import { brandLogoUrl } from "../shared/brand";
 
 describe("footer company navigation", () => {
   it("generates a unique React key for every displayed company link", () => {
@@ -22,5 +23,9 @@ describe("footer company navigation", () => {
     expect(siteContact.email).toBe("info@ashflexwebdesign.com");
     expect(siteContact.phoneDisplay).toBe("08023138892");
     expect(siteContact.phoneHref).toBe("tel:08023138892");
+  });
+
+  it("uses the uploaded official Ashflex logo asset", () => {
+    expect(brandLogoUrl).toBe("/manus-storage/ashflexwebdesign-logo_1f36d8f4.png");
   });
 });
