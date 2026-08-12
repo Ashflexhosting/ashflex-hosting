@@ -44,9 +44,8 @@ jobs:
         with:
           name: github-pages
           path: site
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      - name: Extract artifact (pages artifact is a tar)
+        run: tar -xf site/artifact.tar -C site && rm -f site/artifact.tar
       - name: Push built site to gh-pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
