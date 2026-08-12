@@ -262,6 +262,12 @@
 - [x] Verify clicking all top-bar and nav links navigates correctly (click-through test of 10 routes on dev + live)
 - [x] Checkpoint and publish (auto-publish)
 
+## Favicon Size Increase (user-requested)
+- [x] Crop the icon mark to its content and rebuild the icon so the glyph fills ~92% of each tile (bigger on screen)
+- [x] Export a full favicon set: multi-density ICO (16/32/48/64), 192px, 512px PNG, and 180px apple-touch-icon
+- [x] Register the icon set in index.html and update og:image/twitter:image to the 512px icon
+- [x] Checkpoint and publish
+
 ## WhatsApp Number Fix (user-requested)
 - [x] Update WhatsAppButton to use real number 08023138892 (2348023138892)
 - [x] Update all other placeholder phone occurrences (wa.me link on Home, tel link in StickyCTA)
