@@ -285,3 +285,9 @@
 - [x] Redesign mid-page sections: marquee service ticker, bento services grid with featured card + CTA tile, offset dark why-choose-us band, numbered process timeline with flow connectors, portfolio numbered rows with hover image peek, industries tile strip, carousel testimonials, rebalanced pricing
 - [x] Add creative touches: scroll-driven motion, glass/neon accents, marquee/animated elements with prefers-reduced-motion guard
 - [x] Visual verification on desktop and mobile, run tests (24 passed), checkpoint and publish (auto-publish)
+
+## Hero Overflow on Laptop (user-reported)
+- [x] Diagnose hero overflow: floating mockups/metric cards exceeded the fold on 768-900px laptop heights (measured via live DOM geometry)
+- [x] Fix hero so all content fits within common laptop viewport heights (cap hero max height, compact vertical spacing, resize/reposition mockup cards, hide phone card below xl, smaller mobile subhead)
+- [x] Verify at 1280x800, 1366x768, 1440x900, and 375x812; tests pass (24/24)
+- [ ] Save checkpoint and confirm the auto-published version

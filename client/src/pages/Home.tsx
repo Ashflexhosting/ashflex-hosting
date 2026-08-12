@@ -161,21 +161,24 @@ const heroMockups = [
     value: "+312%",
     accent: "bg-brand-accent",
     cls: "rotate-6 translate-y-2",
-    left: "60px",
+    left: "30px",
+    top: "120px",
   },
   {
     title: "PageSpeed",
     value: "98/100",
     accent: "bg-brand-secondary",
     cls: "-rotate-3 -translate-y-3",
-    left: "190px",
+    left: "155px",
+    top: "200px",
   },
   {
     title: "Leads / mo",
     value: "2,400+",
     accent: "bg-brand-cyan",
-    cls: "rotate-2 translate-y-8",
-    left: "300px",
+    cls: "rotate-2 translate-y-6",
+    left: "240px",
+    top: "280px",
   },
 ];
 
@@ -190,7 +193,7 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
       {/* ============ HERO — editorial split with kinetic type ============ */}
-      <section className="relative min-h-screen flex items-center bg-brand noise-texture overflow-hidden">
+      <section className="relative min-h-screen max-h-[900px] flex items-center bg-brand noise-texture overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
           style={{ backgroundImage: "url('/manus-storage/ashflex-hero-background_ee4a0039.png')" }}
@@ -208,7 +211,7 @@ export default function Home() {
           <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
         </div>
 
-        <div className="container relative z-10 pt-32 pb-24">
+        <div className="container relative z-10 pt-24 pb-16 md:pt-28 md:pb-20">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
@@ -230,11 +233,11 @@ export default function Home() {
                 <span className="text-outline">customers.</span>
               </h1>
 
-              <p className="scroll-reveal text-lg md:text-xl text-white/65 max-w-xl leading-relaxed mb-10" style={{ transitionDelay: "120ms" }}>
+              <p className="scroll-reveal text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8" style={{ transitionDelay: "120ms" }}>
                 High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
               </p>
 
-              <div className="scroll-reveal flex flex-col sm:flex-row items-start gap-4 mb-16" style={{ transitionDelay: "220ms" }}>
+              <div className="scroll-reveal flex flex-col sm:flex-row items-start gap-4 mb-10" style={{ transitionDelay: "220ms" }}>
                 <Link href="/contact">
                   <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
                     Get Free Quote
@@ -257,27 +260,27 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: floating mockup cards */}
-            <div className="lg:col-span-5 hidden lg:block relative min-h-[480px]">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-white/10" aria-hidden="true" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-white/5 rotate-12" aria-hidden="true" />
+            {/* Right: floating mockup cards — bounded stack sized to fit laptop viewports */}
+            <div className="lg:col-span-5 hidden lg:block relative">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" aria-hidden="true" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-white/5 rotate-12" aria-hidden="true" />
 
               {/* browser card */}
-              <div className="absolute top-6 left-4 scroll-reveal-right w-72 glass-card-dark border-white/15 p-0 overflow-hidden" style={{ transitionDelay: "150ms" }}>
-                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
-                  <span className="h-2.5 w-2.5 rounded-full bg-brand-accent/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-brand-cyan/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-brand-secondary/80" />
-                  <span className="ml-3 text-[11px] text-white/40">ashflexwebdesign.com</span>
+              <div className="absolute top-2 left-0 scroll-reveal-right w-60 glass-card-dark border-white/15 p-0 overflow-hidden" style={{ transitionDelay: "150ms" }}>
+                <div className="flex items-center gap-1.5 px-3 py-2.5 border-b border-white/10">
+                  <span className="h-2 w-2 rounded-full bg-brand-accent/80" />
+                  <span className="h-2 w-2 rounded-full bg-brand-cyan/80" />
+                  <span className="h-2 w-2 rounded-full bg-brand-secondary/80" />
+                  <span className="ml-2 text-[10px] text-white/40 truncate">ashflexwebdesign.com</span>
                 </div>
-                <div className="p-5">
-                  <div className="h-2 w-24 rounded bg-gradient-primary mb-3" />
-                  <div className="h-2.5 w-full rounded bg-white/10 mb-2" />
-                  <div className="h-2.5 w-4/5 rounded bg-white/10 mb-4" />
-                  <div className="grid grid-cols-3 gap-2">
-                    <div className="h-14 rounded-lg bg-gradient-to-br from-brand-secondary/30 to-brand-cyan/20 border border-white/10" />
-                    <div className="h-14 rounded-lg bg-gradient-to-br from-brand-accent/25 to-brand-secondary/20 border border-white/10" />
-                    <div className="h-14 rounded-lg bg-gradient-to-br from-brand-cyan/25 to-brand-accent/15 border border-white/10" />
+                <div className="p-4">
+                  <div className="h-1.5 w-20 rounded bg-gradient-primary mb-2.5" />
+                  <div className="h-2 w-full rounded bg-white/10 mb-1.5" />
+                  <div className="h-2 w-4/5 rounded bg-white/10 mb-3" />
+                  <div className="grid grid-cols-3 gap-1.5">
+                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-secondary/30 to-brand-cyan/20 border border-white/10" />
+                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-accent/25 to-brand-secondary/20 border border-white/10" />
+                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-cyan/25 to-brand-accent/15 border border-white/10" />
                   </div>
                 </div>
               </div>
@@ -286,9 +289,9 @@ export default function Home() {
               {heroMockups.map((m, i) => (
                 <div
                   key={m.title}
-                  className={`absolute glass-card-dark border-white/15 px-5 py-4 scroll-reveal-right ${m.cls}`}
+                  className={`absolute glass-card-dark border-white/15 px-4 py-3 scroll-reveal-right ${m.cls}`}
                   style={{
-                    top: `${190 + i * 105}px`,
+                    top: m.top,
                     left: m.left,
                     transitionDelay: `${(i + 2) * 130}ms`,
                     animation: `${i % 2 === 0 ? "float-slow" : "float-slow-delayed"}`,
@@ -296,18 +299,18 @@ export default function Home() {
                 >
                   <div className="flex items-center gap-2.5">
                     <span className={`h-2 w-2 rounded-full ${m.accent}`} />
-                    <span className="text-white/55 text-xs uppercase tracking-wider">{m.title}</span>
+                    <span className="text-white/55 text-[11px] uppercase tracking-wider">{m.title}</span>
                   </div>
-                  <div className="mt-1.5 text-2xl font-extrabold text-white" style={{ fontFamily: "var(--font-heading)" }}>{m.value}</div>
+                  <div className="mt-1 text-xl font-extrabold text-white" style={{ fontFamily: "var(--font-heading)" }}>{m.value}</div>
                 </div>
               ))}
 
-              {/* phone card */}
-              <div className="absolute top-[330px] right-2 w-28 glass-card-dark border-white/15 p-3 scroll-reveal-right rotate-3" style={{ transitionDelay: "600ms" }} aria-hidden="true">
-                <div className="h-2 w-10 rounded bg-gradient-primary mb-2.5 mx-auto" />
-                <div className="h-1.5 w-full rounded bg-white/10 mb-1.5" />
-                <div className="h-1.5 w-4/5 rounded bg-white/10 mb-3" />
-                <div className="h-16 rounded-lg bg-gradient-to-br from-brand-secondary/35 to-brand-cyan/25 border border-white/10" />
+              {/* phone card — hidden on shorter laptop viewports */}
+              <div className="absolute top-[270px] right-2 w-24 glass-card-dark border-white/15 p-2.5 scroll-reveal-right rotate-3 hidden xl:block" style={{ transitionDelay: "600ms" }} aria-hidden="true">
+                <div className="h-1.5 w-8 rounded bg-gradient-primary mb-2 mx-auto" />
+                <div className="h-1 w-full rounded bg-white/10 mb-1.5" />
+                <div className="h-1 w-4/5 rounded bg-white/10 mb-2.5" />
+                <div className="h-12 rounded-lg bg-gradient-to-br from-brand-secondary/35 to-brand-cyan/25 border border-white/10" />
               </div>
             </div>
           </div>
