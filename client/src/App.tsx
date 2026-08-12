@@ -28,6 +28,7 @@ import SEOChecklist from "./pages/SEOChecklist";
 import BrandingGuide from "./pages/BrandingGuide";
 import DigitalMarketingGuide from "./pages/DigitalMarketingGuide";
 import Contact from "./pages/Contact";
+import Careers from "./pages/Careers";
 import ClientPortal from "./pages/ClientPortal";
 import SEOLanding from "./pages/SEOLanding";
 import NotFound from "./pages/NotFound";
@@ -62,6 +63,7 @@ function Router() {
       <Route path="/resources/seo-checklist" component={SEOChecklist} />
       <Route path="/resources/branding-guide" component={BrandingGuide} />
       <Route path="/resources/digital-marketing-guide" component={DigitalMarketingGuide} />
+      <Route path="/careers" component={Careers} />
       <Route path="/contact" component={Contact} />
       <Route path="/portal" component={ClientPortal} />
       <Route path="/client-portal" component={ClientPortal} />

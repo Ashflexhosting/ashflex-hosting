@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { desc } from "drizzle-orm";
-import { contactSubmissions, InsertContactSubmission, InsertUser, users } from "../drizzle/schema";
+import { contactSubmissions, InsertContactSubmission, InsertJobApplication, InsertUser, jobApplications, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -124,4 +124,38 @@ export async function deleteContactSubmission(id: number): Promise<void> {
   const db = await getDb();
   if (!db) throw new Error("Database not available; submission could not be deleted");
   await db.delete(contactSubmissions).where(eq(contactSubmissions.id, id));
+}
+
+export async function createJobApplication(
+  application: InsertJobApplication,
+): Promise<{ id: number }> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available; job application could not be stored");
+  }
+
+  const [result] = await db.insert(jobApplications).values(application);
+  const id = (result as unknown as { insertId: number }).insertId;
+  return { id };
+}
+
+export async function listJobApplications(limit = 50): Promise<typeof jobApplications.$inferSelect[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(jobApplications).orderBy(desc(jobApplications.createdAt)).limit(limit);
+}
+
+export async function updateJobApplicationStatus(
+  id: number,
+  status: "new" | "read" | "responded",
+): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available; application status could not be updated");
+  await db.update(jobApplications).set({ status }).where(eq(jobApplications.id, id));
+}
+
+export async function deleteJobApplication(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available; application could not be deleted");
+  await db.delete(jobApplications).where(eq(jobApplications.id, id));
 }

@@ -4,7 +4,7 @@ export const footerCompanyLinks = [
   ["Case Studies", "/case-studies"],
   ["Pricing", "/pricing"],
   ["Blog", "/blog"],
-  ["Careers", "/contact"],
+  ["Careers", "/careers"],
   ["Contact", "/contact"],
 ] as const;
 

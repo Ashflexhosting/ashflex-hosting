@@ -272,3 +272,9 @@
 - [x] Update WhatsAppButton to use real number 08023138892 (2348023138892)
 - [x] Update all other placeholder phone occurrences (wa.me link on Home, tel link in StickyCTA)
 - [x] Checkpoint and publish
+
+## Careers Page (user-requested)
+- [x] Create /careers page with hero, 5 open roles with requirements, culture section, and CTA banner
+- [x] Add an application form (role selector, name, email, portfolio/LinkedIn, message) stored in a new jobApplications table with admin management procedures and owner notifications
+- [x] Register the route and update footer "Careers" link (now /careers)
+- [x] Verify on desktop, run tests (24 passed), checkpoint and publish (auto-publish)
