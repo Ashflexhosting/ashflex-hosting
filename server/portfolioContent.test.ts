@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { portfolioItems } from "../client/src/data/portfolio";
+import {
+  filterPortfolioItems,
+  portfolioIndustries,
+  portfolioItems,
+  serviceTypes,
+} from "../client/src/data/portfolio";
 
 describe("verified portfolio content", () => {
   it("uses the approved client projects from Ashflex’s official projects listing", () => {
@@ -22,5 +27,35 @@ describe("verified portfolio content", () => {
 
   it("links each listed project to its live client website", () => {
     expect(portfolioItems.every((project) => /^https?:\/\//.test(project.website))).toBe(true);
+  });
+});
+
+describe("portfolio filters", () => {
+  it("exposes each represented industry and service type without duplicate options", () => {
+    expect(portfolioIndustries).toEqual([
+      "Corporate",
+      "Interiors",
+      "Finance",
+      "Education",
+      "NGOs",
+      "E-commerce",
+      "Travel",
+      "Hospitality",
+    ]);
+    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design"]);
+  });
+
+  it("returns projects that match the selected industry and service together", () => {
+    expect(filterPortfolioItems({ industry: "Corporate", service: "Website Design" }).map((project) => project.title)).toEqual([
+      "Shutterspeed Projects",
+    ]);
+    expect(filterPortfolioItems({ industry: "Corporate", service: "One-page Website Design" }).map((project) => project.title)).toEqual([
+      "Barmest Nigeria Limited",
+    ]);
+  });
+
+  it("supports an all-projects reset and returns an empty collection for unmatched combinations", () => {
+    expect(filterPortfolioItems()).toEqual(portfolioItems);
+    expect(filterPortfolioItems({ industry: "Education", service: "One-page Website Design" })).toEqual([]);
   });
 });

@@ -24,6 +24,8 @@ export const categories = [
   "Hospitality",
 ];
 
+export const portfolioIndustries = categories.filter((category) => category !== "All");
+
 const publicMetricsNote = "Public success metrics are not published on Ashflex’s official project listing.";
 
 export const portfolioItems: PortfolioItem[] = [
@@ -146,7 +148,24 @@ export const portfolioItems: PortfolioItem[] = [
   },
 ];
 
+export const serviceTypes = Array.from(
+  new Set(portfolioItems.flatMap((item) => item.technologies)),
+);
+
+export interface PortfolioFilters {
+  industry?: string;
+  service?: string;
+}
+
+export function filterPortfolioItems({ industry = "All", service = "All" }: PortfolioFilters = {}) {
+  return portfolioItems.filter((item) => {
+    const matchesIndustry = industry === "All" || item.category === industry;
+    const matchesService = service === "All" || item.technologies.includes(service);
+
+    return matchesIndustry && matchesService;
+  });
+}
+
 export function getPortfolioByCategory(category: string) {
-  if (category === "All") return portfolioItems;
-  return portfolioItems.filter((item) => item.category === category);
+  return filterPortfolioItems({ industry: category });
 }

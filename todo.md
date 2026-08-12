@@ -188,3 +188,11 @@
 - [x] Run TypeScript/tests and visually verify the refreshed portfolio pages
 - [x] Verify refreshed portfolio pages on list and detail views
 - [x] Save and publish the verified portfolio-content refresh
+
+## Portfolio Industry and Service Filtering (user-requested)
+- [x] Review existing portfolio fields and filter controls for industry and service coverage
+- [x] Add accessible industry and service-type filter controls with a clear all-projects reset
+- [x] Implement combined filtering and an informative empty state
+- [x] Add regression coverage for filter options and combined filter behavior
+- [x] Verify the filtering experience on desktop and mobile, with clean automated and runtime checks
+- [ ] Save and publish the portfolio filtering enhancement
