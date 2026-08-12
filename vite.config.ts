@@ -150,9 +150,40 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+// Build for the GitHub Pages mirror at /ashflex-hosting/ when requested.
+// Default base ("/") is used for Manus hosting.
+const mirrorBase = process.env.VITE_BUILD_BASE || "/";
+// The canonical site host serving /manus-storage/ assets (mirrors must fetch
+// from the canonical deployment, not from their own root path).
+const MANUS_STORAGE_HOST = "https://ashflexweb-pzcsotak.manus.space";
 
+/**
+ * Rewrites bare `/manus-storage/...` asset refs in index.html to absolute
+ * canonical URLs when building for an external mirror, so favicons and OG
+ * images still load on GitHub Pages.
+ */
+function vitePluginRewriteStorageRefs(): Plugin {
+  const isMirror = mirrorBase !== "/";
+  return {
+    name: "rewrite-storage-refs",
+    transformIndexHtml(html) {
+      if (!isMirror) return html;
+      return html.replace(/(href|content|src)="\/manus-storage\/([^"\s]+)"/g, `$1="${MANUS_STORAGE_HOST}/manus-storage/$2"`);
+    },
+    ...(isMirror
+      ? {
+          renderChunk(code) {
+            // Rewrite runtime `/manus-storage/...` refs in JS bundles (image
+            // URLs resolved in React components) to the canonical CDN host.
+            return code.replace(/"\/manus-storage\//g, `"${MANUS_STORAGE_HOST}/manus-storage/`);
+          },
+        }
+      : {}),
+  };
+}
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginRewriteStorageRefs()];
 export default defineConfig({
+  base: mirrorBase,
   plugins,
   resolve: {
     alias: {
