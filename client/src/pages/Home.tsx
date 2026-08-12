@@ -122,7 +122,8 @@ const industries = [
 /* ---------- small creative bits ---------- */
 
 function CounterStat({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay?: string }) {
-  const { count, ref } = useCounter(value);
+  const msDelay = delay ? parseInt(delay, 10) : 0;
+  const { count, ref } = useCounter(value, 2200, 0, msDelay);
   return (
     <div ref={ref} className="group">
       <div className="text-4xl md:text-5xl font-extrabold text-white leading-none" style={{ fontFamily: "var(--font-heading)", transitionDelay: delay }}>

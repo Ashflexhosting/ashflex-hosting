@@ -296,3 +296,8 @@
 - [x] Rework headline so "We craft websites" flows inline on the first line, then "that turn clicks into" and "customers." wrap naturally like the reference
 - [x] Tune font scale/breakpoints so headline keeps the compact, bold look at laptop widths
 - [x] Verify against reference on desktop, checkpoint and publish
+
+## Animated Stat Counters (user-requested)
+- [x] Add scroll-triggered count-up animation to homepage Trusted By stats (250+, 98%, 10+, 15+)
+- [x] Respect prefers-reduced-motion (fall back to static values)
+- [x] Verify animation on desktop and mobile, run tests, checkpoint and publish
