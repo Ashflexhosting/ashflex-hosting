@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trpc } from "@/lib/trpc";
 import { ArrowRight, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -25,14 +26,29 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
 
+  const submitMutation = trpc.contact.submit.useMutation({
+    onSuccess: () => {
+      setSubmitted(true);
+      toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Something went wrong. Please try again or reach us by phone.");
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill in all required fields");
       return;
     }
-    setSubmitted(true);
-    toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+    submitMutation.mutate({
+      fullName: form.name,
+      email: form.email,
+      phone: form.phone,
+      service: form.service,
+      message: form.message,
+    });
   };
 
   return (
@@ -199,10 +215,23 @@ export default function Contact() {
                       </div>
                       <button
                         type="submit"
-                        className="w-full px-6 py-3.5 rounded-xl bg-gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200 flex items-center justify-center gap-2"
+                        disabled={submitMutation.isPending}
+                        className="w-full px-6 py-3.5 rounded-xl bg-gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        Send Message <ArrowRight size={18} />
+                        {submitMutation.isPending ? (
+                          <>
+                            <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message <ArrowRight size={18} />
+                          </>
+                        )}
                       </button>
+                      <p className="text-xs text-muted-foreground text-center">
+                        Your submission is stored securely and an alert is sent to the Ashflex team at {siteContact.email}.
+                      </p>
                     </form>
                   </CardContent>
                 </Card>

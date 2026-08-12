@@ -199,3 +199,11 @@
 
 ## 1200px Site Layout Width (user-requested)
 - [x] Reduce the site's content layout width to 1200px and verify key pages
+
+## Contact Form Wiring (user-requested)
+- [x] Create a contact_submissions database table and query helpers
+- [x] Build the backend submission procedure with validation
+- [x] Send owner notifications of each submission so they land in info@ashflexwebdesign.com
+- [x] Show visitors a clear confirmation after submitting
+- [x] Add Vitest coverage for submission validation and persistence
+- [x] Verify the full flow end-to-end and publish

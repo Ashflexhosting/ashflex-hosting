@@ -1,7 +1,32 @@
 import { COOKIE_NAME } from "@shared/const";
+import { z } from "zod";
+import { createContactSubmission } from "./db";
+import { notifyOwner } from "./_core/notification";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+
+export const contactInputSchema = z.object({
+  fullName: z
+    .string()
+    .min(1, "Full name is required")
+    .max(200, "Full name is too long")
+    .trim(),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please provide a valid email address")
+    .max(320, "Email is too long")
+    .trim()
+    .toLowerCase(),
+  phone: z.string().max(40, "Phone number is too long").trim().optional().or(z.literal("")),
+  service: z.string().max(60, "Service name is too long").trim().optional().or(z.literal("")),
+  message: z
+    .string()
+    .min(1, "Message is required")
+    .max(5000, "Message is too long (5000 characters maximum)")
+    .trim(),
+});
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -23,6 +48,44 @@ export const appRouter = router({
   //     db.getUserTodos(ctx.user.id)
   //   ),
   // }),
+
+  contact: router({
+    submit: publicProcedure
+      .input(contactInputSchema)
+      .mutation(async ({ input }) => {
+        const phone = input.phone || null;
+        const service = input.service || null;
+
+        // Persist the submission so no lead is lost.
+        const { id } = await createContactSubmission({
+          fullName: input.fullName,
+          email: input.email,
+          phone,
+          service,
+          message: input.message,
+        });
+
+        // Route the submission to the owner so it lands in info@ashflexwebdesign.com.
+        // notifyOwner returns false if the upstream service is temporarily down; the
+        // submission itself is still stored so no lead is lost.
+        const serviceLabel = service ? ` (interested in ${service})` : "";
+        const notificationSent = await notifyOwner({
+          title: `New contact form submission from ${input.fullName}`,
+          content:
+            `New lead via the website contact form${serviceLabel}.\n` +
+            `Name: ${input.fullName}\n` +
+            `Email: ${input.email}\n` +
+            (phone ? `Phone: ${phone}\n` : "") +
+            (service ? `Service: ${service}\n` : "") +
+            `Message: ${input.message}`,
+        }).catch((error) => {
+          console.error("[Contact] Owner notification failed:", error);
+          return false;
+        });
+
+        return { id, notificationSent } as const;
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
