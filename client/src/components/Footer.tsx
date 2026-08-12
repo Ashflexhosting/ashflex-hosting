@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 
 export default function Footer() {
   return (
@@ -57,16 +58,8 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Company</h4>
             <div className="space-y-2">
-              {[
-                ["About Us", "/about"],
-                ["Portfolio", "/portfolio"],
-                ["Case Studies", "/case-studies"],
-                ["Pricing", "/pricing"],
-                ["Blog", "/blog"],
-                ["Careers", "/contact"],
-                ["Contact", "/contact"],
-              ].map(([label, href]) => (
-                <Link key={href} href={href}>
+              {footerCompanyLinks.map(([label, href]) => (
+                <Link key={footerCompanyLinkKey(label, href)} href={href}>
                   <span className="block text-white/60 text-sm hover:text-white transition-colors">{label}</span>
                 </Link>
               ))}

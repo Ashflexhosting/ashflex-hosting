@@ -139,3 +139,9 @@
 - [x] Integrate the new hero image with a contrast overlay and responsive behavior
 - [x] Verify the homepage hero with desktop screenshot, TypeScript check, and unit tests
 - [x] Save and publish the hero background update checkpoint
+
+## Duplicate Navigation Key Repair (user-reported)
+- [x] Locate and fix the remaining duplicate `/contact` React key warning
+- [x] Add a regression test for unique navigation keys
+- [x] Verify the homepage console is clear after rendering the full footer navigation
+- [ ] Save and publish the duplicate-key repair checkpoint
