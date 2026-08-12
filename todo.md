@@ -161,3 +161,10 @@
 - [x] Update favicon and social-sharing metadata to use the official logo
 - [x] Verify logo rendering in desktop navigation/footer and mobile navigation
 - [x] Save and publish the official logo integration update
+
+## Logo and Brand Palette Refresh (user-provided)
+- [x] Upload the newly supplied Ashflex logo as the official web asset
+- [x] Replace navigation, footer, favicon, and social logo references
+- [x] Refresh global palette tokens to use the logo-inspired blue, red, white, and aqua colors
+- [x] Verify key pages for accessible contrast on desktop and mobile
+- [ ] Save and publish the refreshed logo and palette update

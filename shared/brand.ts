@@ -1,1 +1,1 @@
-export const brandLogoUrl = "/manus-storage/ashflexwebdesign-logo_1f36d8f4.png";
+export const brandLogoUrl = "/manus-storage/ashflex-website-design-logo-v2_ad90e878.png";

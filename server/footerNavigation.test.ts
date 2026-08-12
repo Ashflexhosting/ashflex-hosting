@@ -26,6 +26,6 @@ describe("footer company navigation", () => {
   });
 
   it("uses the uploaded official Ashflex logo asset", () => {
-    expect(brandLogoUrl).toBe("/manus-storage/ashflexwebdesign-logo_1f36d8f4.png");
+    expect(brandLogoUrl).toBe("/manus-storage/ashflex-website-design-logo-v2_ad90e878.png");
   });
 });
