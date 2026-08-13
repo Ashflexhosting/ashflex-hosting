@@ -555,10 +555,15 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
-## iMac Frame on Portfolio Detail Screenshots (user-requested, v3)
-- [ ] Rebuild the frame as an iMac-style mockup: slim dark display surround, silver aluminum chin below the screen, silver stand neck and rounded base matching the reference
+## iMac Frame v4 — Match Reference Exactly (user-requested)
+- [ ] Redesign the frame to match the reference: wide flat dark bezel on all sides, tall silver chin integrated into the body (not a separate lip), Apple-style logo on chin, neck stand below, thin horizontal base slab
 - [ ] Keep content scrollable (hover auto-scroll + "Scroll to view" hint) and responsive
 - [ ] Verify rendering on detail pages, tests 24/24, checkpoint and publish (auto-publish)
+
+## iMac Frame on Portfolio Detail Screenshots (user-requested, v3)
+- [x] Rebuilt the frame as an iMac-style mockup: slim dark display surround with camera dot, silver aluminum chin (wider than display) with centered logo accent, tapered stand neck, rounded silver base
+- [x] Content remains scrollable — hover auto-scroll and "Scroll to view" hint preserved; responsive
+- [x] Verified on /portfolio/7 full-page, tests 24/24, checkpoint saved and auto-published
 
 ## Reference-Style MacBook Laptop Frame (user-requested, v2)
 - [x] Rebuilt LaptopFrame to match the reference mockup: slim dark bezel with camera dot, silver aluminum deck wider than the lid, chamfered front edge, centered opening notch, hinge gap
