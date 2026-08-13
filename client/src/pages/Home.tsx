@@ -11,6 +11,7 @@ import { useCounter } from "@/hooks/useCounter";
 import { services } from "@/data/services";
 import { portfolioItems } from "@/data/portfolio";
 import { faqs } from "@/data/faq";
+import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { useState } from "react";
 import {
   Accordion,

@@ -468,3 +468,9 @@
 - [x] Add smooth hover animations to the project rows in the home page "Our Work" section (row lift + white-to-brand gradient tint + rounded-2xl hit area, index number gradient + scale, category pill gradient fill, title text-gradient, description slide-right, icon button rotate-45 + scale, image peek scale-from-95 with zoom on hover)
 - [x] Hover effects kept at 300ms ease-out; transforms only for GPU-friendly motion
 - [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Our Work Screenshot Enlargement + Scroll Effect (user-requested)
+- [x] Increase the Our Work hover screenshot peek by 50% (w-56 h-40 → w-84 h-60)
+- [x] Wire ScrollableScreenshot into the peek with vertical scroll-on-hover auto-scroll, starting from the top of the capture, with the scroll hint (lazy-mount so the scroller is created fresh on hover, resetting to the top)
+- [x] Peep retains right-24 absolute position with fade/scale transition; inner static image for pre-hover state on larger screens
+- [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
