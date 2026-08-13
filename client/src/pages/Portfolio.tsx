@@ -87,7 +87,7 @@ export default function Portfolio() {
                         <ScrollableScreenshot
                           src={item.image}
                           alt={`Scroll through the ${item.title} website capture`}
-                          height="h-60"
+                          height="h-90"
                           className="transition-transform duration-500 group-hover:scale-[1.02]"
                           rounded={false}
                         />

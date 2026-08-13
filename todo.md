@@ -390,4 +390,6 @@
 - [x] Portfolio card images: make full-page captures vertically scrollable (scroll-to-view-full-screenshot)
 - [x] Portfolio detail gallery: scrollable full-page viewing in gallery tiles
 - [x] Case study detail gallery: scrollable full-page viewing in gallery tiles
-- [ ] Verify desktop + mobile rendering, run tests, checkpoint and publish (auto-publish)
+- [x] Verify desktop + mobile rendering, run tests, checkpoint and publish (auto-publish)
+- [x] Increase portfolio card screenshot frame height by ~50% (h-60 -> h-90)
+- [x] Auto-scroll the screenshot vertically while hovering the card (smooth loop through the full capture)
