@@ -216,8 +216,3 @@
   .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 }
 
-/* Hero top padding increased by 20px per user request (old pt-32/md:pt-44 + 20px) */
-.hero-top-padding { padding-top: calc(128px + 20px); }
-@media (min-width: 768px) {
-  .hero-top-padding { padding-top: calc(280px + 20px); }
-}

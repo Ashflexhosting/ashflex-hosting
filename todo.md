@@ -513,9 +513,13 @@
 - [x] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay (multiply blend over navy #0F172A with a layered navy gradient overlay) so content stays readable
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
-## Hero Top Padding Adjusted to +20px (user-requested)
-- [ ] Change the extra hero top padding from 80px to 20px (mobile calc(128px+20px), desktop calc(280px+20px))
+## Hero Extra Top Padding Removed (user-requested)
+- [ ] Remove the extra hero top padding entirely, restoring the original values (mobile 128px, desktop 280px)
 - [ ] Verify rendering on the home page, checkpoint and publish (auto-publish)
+
+## Hero Top Padding Adjusted to +20px (user-requested)
+- [x] Changed the extra hero top padding from 80px to 20px: responsive hero-top-padding class (mobile calc(128px+20px), desktop calc(280px+20px))
+- [x] Verified rendering on the home page, tests 24/24, checkpoint saved and auto-published
 
 ## Hero Top Padding Increase (user-requested)
 - [x] Increased hero top padding by 80px: responsive hero-top-padding class (mobile calc(128px+80px), desktop calc(280px+80px))
