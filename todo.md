@@ -555,10 +555,15 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
-## Reference-Style MacBook Laptop Frame (user-requested, v2)
-- [ ] Rebuild LaptopFrame to match the reference mockup: silver laptop base/keyboard deck spanning full width, slim dark bezel around the screen, screen at ~16:9-ish ratio inside the deck, hinge lip detail
+## iMac Frame on Portfolio Detail Screenshots (user-requested, v3)
+- [ ] Rebuild the frame as an iMac-style mockup: slim dark display surround, silver aluminum chin below the screen, silver stand neck and rounded base matching the reference
 - [ ] Keep content scrollable (hover auto-scroll + "Scroll to view" hint) and responsive
 - [ ] Verify rendering on detail pages, tests 24/24, checkpoint and publish (auto-publish)
+
+## Reference-Style MacBook Laptop Frame (user-requested, v2)
+- [x] Rebuilt LaptopFrame to match the reference mockup: slim dark bezel with camera dot, silver aluminum deck wider than the lid, chamfered front edge, centered opening notch, hinge gap
+- [x] Content remains scrollable — hover auto-scroll and "Scroll to view" hint preserved; responsive
+- [x] Verified on /portfolio/1 and /portfolio/7 (viewport + full-page), tests 24/24, checkpoint saved and auto-published
 
 ## Laptop Frame on Portfolio Detail Screenshots (user-requested)
 - [x] Created reusable LaptopFrame component: dark bezel with camera dot, rounded screen corners, tapered base lip; hero screenshot wrapped on all 12 portfolio detail pages (removed the old gradient ring)
