@@ -393,3 +393,4 @@
 - [x] Verify desktop + mobile rendering, run tests, checkpoint and publish (auto-publish)
 - [x] Increase portfolio card screenshot frame height by ~50% (h-60 -> h-90)
 - [x] Auto-scroll the screenshot vertically while hovering the card (smooth loop through the full capture)
+- [x] Fix nested anchor error on portfolio pages (Live site link inside clickable card Link)

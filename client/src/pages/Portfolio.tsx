@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 import { ArrowRight, SlidersHorizontal, ExternalLink } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -16,6 +16,7 @@ const filterButtonClass = (isActive: boolean) =>
 
 export default function Portfolio() {
   const sectionRef = useScrollReveal();
+  const [, navigate] = useLocation();
   const [activeIndustry, setActiveIndustry] = useState("All");
   const filtered = activeIndustry === "All" ? portfolioItems : portfolioItems.filter((item) => item.category === activeIndustry);
   const hasActiveFilter = activeIndustry !== "All";
@@ -81,8 +82,19 @@ export default function Portfolio() {
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filtered.map((item, index) => (
                 <div key={item.id} className="scroll-reveal" style={{ transitionDelay: `${index * 50}ms` }}>
-                  <Link href={`/portfolio/${item.id}`}>
-                    <Card className="glass-card h-full overflow-hidden border-0 hover-lift">
+                  <div
+                    role="article"
+                    aria-label={`${item.title} project card`}
+                    className="cursor-pointer"
+                    onClick={() => navigate(`/portfolio/${item.id}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        navigate(`/portfolio/${item.id}`);
+                      }
+                    }}
+                  >
+                    <Card className="glass-card h-full overflow-hidden border-0 hover-lift" tabIndex={0}>
                       <div className="bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
                         <ScrollableScreenshot
                           src={item.image}
@@ -121,7 +133,7 @@ export default function Portfolio() {
                         </div>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </div>
                 </div>
               ))}
             </div>
