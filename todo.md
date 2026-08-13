@@ -497,8 +497,13 @@
 - [x] Verified rendering on /portfolio and /portfolio/3, tests passing (24/24), checkpoint saved and auto-published
 
 ## Screenshot Upscaling Round 2 (user-requested: remaining projects)
-- [ ] Upscale the remaining full-page captures 2x with Lanczos q88 WebP (kingwesl, eightradiance, samsara, barmest, neboc, galcon-home/about/services)
-- [ ] Upload the HD variants to project storage
-- [ ] Swap HD URLs in portfolio.ts (card + screenshots) for the remaining projects
-- [ ] Swap HD URLs in any case study pages using these captures
-- [ ] Verify rendering on /portfolio, run tests (24/24), checkpoint and publish (auto-publish)
+- [x] Upscaled 6 projects' captures 2x with Lanczos q88 WebP (kingwesl 702x3772, eightradiance 760x4222, samsara 760x4032, barmest 1520x3524, neboc 760x3550, galcon home/about/services 1786x1536 from raw browser captures)
+- [x] Uploaded all HD variants to project storage
+- [x] Swapped HD URLs in portfolio.ts (card + screenshots) for the remaining projects
+- [x] Swapped HD URLs in CaseStudies.tsx for galcon
+- [x] Verified rendering on /portfolio, /portfolio/2, /portfolio/12; tests passing (24/24), checkpoint f10fc09a saved and auto-published
+
+## Revert Round-2 Upscaling (user-reported: HD versions made these worse)
+- [x] Reverted kingwesl, eightradiance, samsara, barmest, neboc, galcon-home/about/services URLs in portfolio.ts to the original captures (jpg/png originals from user uploads; sed-swap of all 48 refs)
+- [x] Reverted galcon HD URL in CaseStudies.tsx to the original galcon-home_06339665.webp
+- [x] Verified rendering on /portfolio, /portfolio/2, /portfolio/12; tests passing (24/24), checkpoint saved and auto-published
