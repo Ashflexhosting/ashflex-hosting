@@ -428,3 +428,9 @@
 - [x] Wire FullPageLightbox into CaseStudyDetail gallery tiles for consistency
 - [x] Keep caption + counter in toolbar, prev/next arrows, Escape / Arrow keys, body scroll lock
 - [x] Verify rendering on /portfolio/3 and /case-studies/7, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Portfolio Screenshot Replacement Round 4: Shutterspeed (user-uploaded full-page capture)
+- [x] Convert the user's Shutterspeed capture (570px wide) to WebP and upload to project storage (shutterspeed-fullpage_eb390ac4.webp)
+- [x] Replace Shutterspeed's card image, detail hero, gallery screenshots and captions in portfolio.ts
+- [x] Update the CaseStudies page image for the related case entry
+- [x] Verify rendering on /portfolio and /portfolio/1, run tests (24/24), checkpoint and publish (auto-publish)

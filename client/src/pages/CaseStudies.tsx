@@ -10,7 +10,7 @@ const caseStudies = [
     id: 1,
     title: "PayFlow Technologies — Fintech Platform",
     industry: "Finance",
-    image: "/manus-storage/portfolio-shutterspeed-live_ff13c8ca.webp",
+    image: "/manus-storage/shutterspeed-fullpage_eb390ac4.webp",
     clientGoal: "Attract investors and enterprise clients with a professional digital presence.",
     process: "Discovery → Strategy → Custom React Platform → API Integration → Testing → Launch",
     beforeAfter: "From zero online presence to a professional platform generating qualified leads daily.",
