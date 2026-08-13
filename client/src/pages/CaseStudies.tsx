@@ -94,7 +94,7 @@ const caseStudies = [
     id: 8,
     title: "Marvel Tex Attraction — Savings Platform",
     industry: "NGOs",
-    image: "/manus-storage/marvel-home_66014832.webp",
+    image: "/manus-storage/marveltex-fullpage_157aa86e.webp",
     clientGoal: "Build a member-facing cooperative savings platform with wallet, savings cycles, and an empowerment program.",
     process: "Requirements → UI/UX Design → Platform Development → Dashboard → Testing → Launch",
     beforeAfter: "From informal group savings to a structured platform with wallet tracking and payouts.",

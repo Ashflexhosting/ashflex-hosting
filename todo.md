@@ -434,3 +434,9 @@
 - [x] Replace Shutterspeed's card image, detail hero, gallery screenshots and captions in portfolio.ts
 - [x] Update the CaseStudies page image for the related case entry
 - [x] Verify rendering on /portfolio and /portfolio/1, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Portfolio Screenshot Replacement Round 5: Marvel Tex Attraction (user-uploaded full-page capture)
+- [x] Convert the user's Marvel Tex Attraction capture (380px wide) to WebP and upload to project storage (marveltex-fullpage_157aa86e.webp)
+- [x] Replace Marvel Tex Attraction's card image, detail hero, gallery screenshots and captions in portfolio.ts
+- [x] Update the CaseStudies page image for the related case entry
+- [x] Verify rendering on /portfolio/11, run tests (24/24), checkpoint and publish (auto-publish)
