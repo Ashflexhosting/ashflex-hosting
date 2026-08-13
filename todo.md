@@ -514,9 +514,9 @@
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
 ## Mobile Responsiveness & Layout Scaling Audit (user-requested)
-- [ ] Audit key pages (Home, Portfolio, Portfolio detail, Services, Pricing, Contact) on 375px and 768px viewports, logging layout/scale issues
-- [ ] Fix identified issues (overflow, font scaling, spacing, grid stacking, nav)
-- [ ] Verify fixes via mobile screenshots, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Audited key pages on 375px and 768px; found oversized screenshot frames and below-fold blank navy frames from lazy loading
+- [x] Fixed: card frames h-[min(50vh,15rem)], detail hero h-[min(55vh,32rem)], ScrollableScreenshot preloader via IntersectionObserver (rootMargin 1500px)
+- [x] Verified via 375px full-page screenshots, tests 24/24, checkpoint saved and auto-published
 
 ## Our Process Overlay Slightly Transparent (user-requested)
 - [x] Reduced the Our Process section navy gradient overlay opacity (0.92/0.86/0.95 → 0.78/0.72/0.82) so the skyscraper background image is slightly visible while keeping text readable
@@ -554,3 +554,8 @@
 - [x] Identified 3 broken PNG screenshots returning 403 on the live site: Barmest, Eight Radiance, Sam & Sara
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
+
+## Laptop Frame on Portfolio Detail Screenshots (user-requested)
+- [ ] Wrap the portfolio detail hero screenshot in a laptop (MacBook-style) frame: screen bezel, rounded corners, notch/camera, base lip
+- [ ] Keep the frame scrollable (auto-scroll on hover still works), responsive on mobile, and consistent in the lightbox
+- [ ] Verify rendering on detail pages, tests 24/24, checkpoint and publish (auto-publish)

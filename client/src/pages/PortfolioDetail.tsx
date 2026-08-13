@@ -7,6 +7,7 @@ import { portfolioItems } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import FullPageLightbox from "@/components/FullPageLightbox";
+import LaptopFrame from "@/components/LaptopFrame";
 
 export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
@@ -57,12 +58,15 @@ export default function PortfolioDetail() {
         <div className="container max-w-5xl">
           {/* Hero screenshot + Project Info side by side, like the case study layout */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12 items-start">
-            <div className="lg:col-span-2 scroll-reveal rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[3px] shadow-2xl shadow-brand-secondary/15">
-              <ScrollableScreenshot
-                src={project.image}
-                alt={`Scroll through the ${project.title} website capture`}
-                height="h-[min(55vh,32rem)]"
-              />
+            <div className="lg:col-span-2 scroll-reveal">
+              <LaptopFrame>
+                <ScrollableScreenshot
+                  src={project.image}
+                  alt={`Scroll through the ${project.title} website capture`}
+                  height="h-[min(55vh,32rem)]"
+                  rounded={false}
+                />
+              </LaptopFrame>
             </div>
 
             <div className="scroll-reveal" style={{ transitionDelay: "100ms" }}>
