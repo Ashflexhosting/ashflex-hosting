@@ -474,3 +474,8 @@
 - [x] Wire ScrollableScreenshot into the peek with vertical scroll-on-hover auto-scroll, starting from the top of the capture, with the scroll hint (lazy-mount so the scroller is created fresh on hover, resetting to the top)
 - [x] Peep retains right-24 absolute position with fade/scale transition; inner static image for pre-hover state on larger screens
 - [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Our Work Peek Fix (user-reported: 50% larger + scroll-on-hover not working)
+- [ ] Diagnose why the peek/scroll-on-hover doesn't work on the live home page (pointer-events-none blocking? lg:hidden breakpoint? mounted condition?)
+- [ ] Fix the peek so hovering a row reveals the large scrollable full-page capture
+- [ ] Verify on the live site, run tests (24/24), checkpoint and publish (auto-publish)

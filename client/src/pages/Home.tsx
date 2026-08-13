@@ -572,13 +572,25 @@ export default function Home() {
                 <span className="hidden sm:flex shrink-0 w-10 h-10 rounded-full border border-border group-hover:bg-gradient-primary group-hover:border-transparent group-hover:text-white group-hover:scale-110 group-hover:rotate-45 text-muted-foreground items-center justify-center transition-all duration-300 ease-out">
                   <ArrowUpRight size={18} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
                 </span>
-                {/* hover image peek */}
+                {/* hover image peek — 50% larger, vertical scroll-through on hover, starting from the top header */}
                 <div
-                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-56 h-40 rounded-2xl overflow-hidden border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25 transition-all duration-300 ease-out pointer-events-none ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-4 scale-95"}`}
+                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-84 transition-all duration-300 ease-out pointer-events-none ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-4 scale-95"}`}
                   style={{ zIndex: hoveredPortfolio === item.id ? 30 : 0 }}
                   aria-hidden="true"
                 >
-                  <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
+                  {hoveredPortfolio === item.id ? (
+                    <ScrollableScreenshot
+                      key={item.id}
+                      src={item.image}
+                      alt={`${item.title} full-page screenshot`}
+                      height="h-60"
+                      className="rounded-2xl border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25"
+                    />
+                  ) : (
+                    <div className="h-60 rounded-2xl overflow-hidden border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25 bg-brand">
+                      <img src={item.image} alt="" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}
