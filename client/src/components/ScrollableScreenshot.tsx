@@ -94,6 +94,25 @@ export default function ScrollableScreenshot({
   }, [src]);
 
   const resolvedHeight = resolveHeight(height);
+  // Responsive form: "md:h-[desktop] h-[mobile]" — drive with a matchMedia listener
+  const [mobileHeight, desktopHeight] = (() => {
+    const m = height?.match(/^md:(h-\[[^\]]+\])\s+(h-\[[^\]]+\])$/);
+    if (!m) return [null, null] as [string | null, string | null];
+    return [resolveHeight(m[2]), resolveHeight(m[1])];
+  })();
+  const responsiveContainerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!mobileHeight || !desktopHeight) return;
+    const el = responsiveContainerRef.current;
+    if (!el) return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const apply = () => {
+      el.style.height = mq.matches ? desktopHeight : mobileHeight;
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, [mobileHeight, desktopHeight]);
 
   // Auto-scroll the capture vertically while the frame is hovered, so
   // visitors can preview the full page screenshot without manual scrolling.
@@ -163,7 +182,13 @@ export default function ScrollableScreenshot({
   return (
     <div
       className={`relative w-full overflow-hidden bg-brand ${rounded ? "rounded-[0.9rem]" : ""} ${className}`}
-      style={{ height: resolvedHeight }}
+      style={{ height: responsiveContainerRef.current ? undefined : resolvedHeight }}
+      ref={(el) => {
+        responsiveContainerRef.current = el;
+        if (!el) return;
+        if (mobileHeight && desktopHeight) return; // listener manages height
+        el.style.height = resolvedHeight;
+      }}
     >
       {/* Hovering anywhere over the frame auto-scrolls the capture */}
       <div

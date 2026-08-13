@@ -555,9 +555,13 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
+## Phone Mockup Height Increase (user-requested)
+- [ ] Increase the phone mockup screen height on mobile (below md) so it is taller, matching the desktop increase
+- [ ] Verify rendering on 375px, tests 24/24, checkpoint and publish (auto-publish)
+
 ## iMac Frame Height Extension (user-requested)
-- [ ] Extend the hero screenshot frame height on portfolio detail pages so the iMac mockup is taller (fuller iMac display proportion, e.g. h-[min(70vh,38rem)])
-- [ ] Keep the phone frame height sensible on mobile; verify rendering, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Extended the hero screenshot frame height from h-[min(55vh,32rem)] to h-[min(72vh,40rem)] so the iMac mockup is taller and shows more of the capture
+- [x] Phone frame height unchanged on mobile; verified rendering, tests 24/24, checkpoint saved and auto-published
 
 ## iMac Frame Enhancements (user-requested)
 - [x] Added subtle diagonal glass glare (soft white sheen overlay) on the screen for realism
