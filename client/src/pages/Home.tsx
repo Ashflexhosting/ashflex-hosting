@@ -678,7 +678,7 @@ export default function Home() {
             <CarouselContent>
               {testimonials.map((t, i) => (
                 <CarouselItem key={i}>
-                  <Card className="glass-card-dark border-0 p-9">
+                  <div className="glass-card-dark border-0 p-9">
                     <CardContent className="p-0">
                       <div className="flex items-center gap-1 mb-5">
                         {Array.from({ length: t.rating }).map((_, j) => (
@@ -698,7 +698,7 @@ export default function Home() {
                         </div>
                       </div>
                     </CardContent>
-                  </Card>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>

@@ -367,3 +367,4 @@
 - [x] Add Galcon Engineering (https://galconengineering.com/) to portfolio with homepage, About, Services screenshots
 - [x] Add three new case study cards on /case-studies and detail pages /case-studies/7-9 with related-project links
 - [x] Verify rendering (portfolio, case studies, detail pages) and run test suite
+- [x] Fix testimonial section on homepage — comments not showing (user-reported): Card bg-card won cascade over glass-card-dark; replaced with plain div
