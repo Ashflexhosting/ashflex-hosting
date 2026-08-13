@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { getServiceBySlug, hostingTiers, services } from "@/data/services";
+import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
 import { Button } from "@/components/ui/button";
 
 export default function ServiceDetail() {
@@ -68,6 +68,17 @@ export default function ServiceDetail() {
 
             <div className="lg:col-span-1">
               <div className="glass-card border-0 p-6 sticky top-24">
+                {servicePricingImages[service.slug] && (
+                  <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl">
+                    <img
+                      src={servicePricingImages[service.slug]}
+                      alt={`${service.title} illustration`}
+                      className="w-full h-44 object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                  </div>
+                )}
                 <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>Pricing</h3>
                 <p className="text-3xl font-bold text-brand-secondary mb-1" style={{ fontFamily: "var(--font-heading)" }}>{service.price}</p>
                 <p className="text-sm text-muted-foreground mb-6">Starting price. Custom quotes available.</p>
@@ -114,6 +125,17 @@ export default function ServiceDetail() {
                     <span className="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-primary text-white text-xs font-bold uppercase tracking-wide">
                       <Star size={13} className="fill-white" /> Most Popular
                     </span>
+                  )}
+                  {hostingTierImages[tier.name] && (
+                    <div className="relative -m-8 mb-5 -mt-8 overflow-hidden rounded-t-2xl">
+                      <img
+                        src={hostingTierImages[tier.name]}
+                        alt={`${tier.name} hosting package illustration`}
+                        className="w-full h-40 object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                    </div>
                   )}
                   <h3 className="text-xl font-bold mb-1" style={{ fontFamily: "var(--font-heading)" }}>{tier.name}</h3>
                   <p className="text-sm text-muted-foreground mb-5">{tier.tagline}</p>

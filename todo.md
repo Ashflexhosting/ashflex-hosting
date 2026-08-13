@@ -449,3 +449,12 @@
 ## Screenshot Card Height (user-requested)
 - [x] Increase the main screenshot card height on portfolio detail pages (h-96 → h-[32rem])
 - [x] Verify rendering on /portfolio/3 (desktop), checkpoint and publish (auto-publish)
+
+## Service Page Pricing Card Images (user-requested; user confirmed scope = BOTH)
+- [x] Located service pages and pricing cards (sidebar pricing card on each service detail page + 3 hosting tier cards on /services/hosting-domain)
+- [x] Generated 19 brand-consistent images (16 service illustrations + 3 hosting tier illustrations; dark navy with blue/red/aqua accents)
+- [x] Images hosted in project storage with reserved URLs (live placeholders until generation completes)
+- [x] Image mapped per service slug in client/src/data/services.ts (servicePricingImages + hostingTierImages)
+- [x] Placed themed image above the sidebar pricing card on all service detail pages (bleeds to card edge, gradient fade, h-44)
+- [x] Placed themed images on top of the 3 hosting tier cards (Starter/Professional/Business, bleed to card edge, h-40)
+- [x] Verified rendering on /services/website-design and /services/hosting-domain, run tests (24/24), checkpoint and publish (auto-publish)

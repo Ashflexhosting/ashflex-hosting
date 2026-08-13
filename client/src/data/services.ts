@@ -219,3 +219,30 @@ export const hostingTiers: HostingTier[] = [
 export function getServiceBySlug(slug: string) {
   return services.find((s) => s.slug === slug);
 }
+
+/** Themed images for each service pricing card (generated, brand-consistent). */
+export const servicePricingImages: Record<string, string> = {
+  "website-design": "/manus-storage/svc-website-design_7b919611.png",
+  "website-development": "/manus-storage/svc-website-development_ad41e9fa.png",
+  "wordpress-development": "/manus-storage/svc-wordpress_44332d74.png",
+  "ecommerce-development": "/manus-storage/svc-ecommerce_82727d0e.png",
+  "ui-ux-design": "/manus-storage/svc-uiux_5fb91aae.png",
+  "branding-logo-design": "/manus-storage/svc-branding_ff4a0f7c.png",
+  "seo-services": "/manus-storage/svc-seo_44fd11d1.png",
+  "google-ads": "/manus-storage/svc-google-ads_bf23551c.png",
+  "social-media-marketing": "/manus-storage/svc-social-media_fbca7407.png",
+  "content-writing": "/manus-storage/svc-content-writing_f94cd845.png",
+  "website-maintenance": "/manus-storage/svc-maintenance_eddbf5d9.png",
+  "speed-optimization": "/manus-storage/svc-speed_a16e6691.png",
+  "hosting-domain": "/manus-storage/svc-hosting_94f7a063.png",
+  "api-integration": "/manus-storage/svc-api_24618d05.png",
+  "ai-automation": "/manus-storage/svc-ai-automation_36c51dfd.png",
+  "custom-business-systems": "/manus-storage/svc-business-systems_80a7790f.png",
+};
+
+/** Themed images for the three hosting tier cards. */
+export const hostingTierImages: Record<string, string> = {
+  Starter: "/manus-storage/hosting-starter_90202bd8.png",
+  Professional: "/manus-storage/hosting-professional_e6f731cd.png",
+  Business: "/manus-storage/hosting-business_91d7222a.png",
+};
