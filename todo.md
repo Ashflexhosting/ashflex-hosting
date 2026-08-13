@@ -354,12 +354,13 @@
 - [x] Verify rendering (/blog shows 12 posts, /blog/10 renders, /case-studies/2 related section), TypeScript clean, tests 24/24, checkpoint and publish
 
 ## New Portfolio Projects: Afnaf, Marvel Attraction, Galcon (user-requested)
-- [ ] Visit afnaf.ca, marvelattraction.com, galconengineering.com and gather business/industry info
-- [ ] Capture live-site screenshots (homepage + 2 inner) for each of the 3 projects
-- [ ] Upload screenshots as static assets
-- [ ] Add 3 new entries to portfolio data with descriptions, metrics, and screenshots
-- [ ] Add corresponding case study entries/pages for the 3 projects
-- [ ] Verify rendering (portfolio, portfolio detail, case studies), run tests, checkpoint and publish
+- [x] Superseded by the completed block "Three New Portfolio Projects" below (same scope, checkpoint f2b1edfe)
+- [x] Visit afnaf.ca, marvelattraction.com, galconengineering.com and gather business/industry info
+- [x] Capture live-site screenshots (homepage + 2 inner) for each of the 3 projects
+- [x] Upload screenshots as static assets
+- [x] Add 3 new entries to portfolio data with descriptions, metrics, and screenshots
+- [x] Add corresponding case study entries/pages for the 3 projects
+- [x] Verify rendering (portfolio, portfolio detail, case studies), run tests, checkpoint and publish
 
 ## Three New Portfolio Projects (user-requested)
 - [x] Add Afnaf Auto Sales (https://afnaf.ca/) to portfolio with homepage, About, Trade-In screenshots
@@ -370,10 +371,10 @@
 - [x] Fix testimonial section on homepage — comments not showing (user-reported): Card bg-card won cascade over glass-card-dark; replaced with plain div
 
 ## Contact Form Real Email Delivery (user-requested: wire up contact form for real sending)
-- [ ] Add email delivery of each contact submission to info@ashflexwebdesign.com (Resend or equivalent via managed email API)
-- [ ] Extend submit procedure to record email delivery status and keep DB persistence + owner notification
-- [ ] Add Vitest coverage for the email delivery path
-- [ ] Test the live form end-to-end (DB row + email delivery + owner notification)
+- [x] Superseded by user's decision: mailto fallback wired up (see "Contact Form Mailto Wiring" block); Resend API key deferred until user provides it
+- [x] Owner notification via Manus Notification Service already in place (contact + careers)
+- [x] DB persistence for all submissions, admin reviewable in client portal
+- [ ] Deferred: Resend email delivery (API key needed from user) + delivery status + email delivery vitest + live E2E test
 
 ## User-Provided Portfolio Screenshots (user-uploaded full-page captures, 7 projects)
 - [x] Replace Kingwesl portfolio screenshots with the user's uploaded full-page capture (kingwesl.com)
@@ -401,3 +402,9 @@
 - [x] Contact form: open the visitor's email client (mailto) pre-filled after a successful DB save
 - [x] Careers form: apply the same mailto fallback for job applications
 - [x] Verify the success flow in the browser, run tests, checkpoint and publish (auto-publish)
+
+## Portfolio Card Hover Effects (user-requested)
+- [x] Add lift/shadow hover animation on portfolio project cards (translate + scale + deep shadow)
+- [x] Add image zoom and gradient-border glow enhancements on card screenshots while hovering
+- [x] Keep the existing scroll-on-hover auto-scroll behavior working with the new effects (auto-scroll runs independently of the CSS transforms)
+- [x] Verify rendering (desktop), run tests (24/24), checkpoint and publish (auto-publish)

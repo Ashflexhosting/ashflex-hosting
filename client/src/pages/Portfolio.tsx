@@ -94,23 +94,23 @@ export default function Portfolio() {
                       }
                     }}
                   >
-                    <Card className="glass-card h-full overflow-hidden border-0 hover-lift" tabIndex={0}>
-                      <div className="bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
+                    <Card className="glass-card portfolio-card h-full overflow-hidden border-0" tabIndex={0}>
+                      <div className="portfolio-border bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
                         <ScrollableScreenshot
                           src={item.image}
                           alt={`Scroll through the ${item.title} website capture`}
                           height="h-90"
-                          className="transition-transform duration-500 group-hover:scale-[1.02]"
+                          className="portfolio-image"
                           rounded={false}
                         />
                       </div>
                       <CardContent className="p-5">
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                          <span className="rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-medium text-brand-secondary">
+                          <span className="portfolio-tags rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-medium text-brand-secondary">
                             {item.category}
                           </span>
                           {item.technologies.map((service) => (
-                            <span key={service} className="rounded-full bg-brand-cyan/10 px-3 py-1 text-xs font-medium text-brand-cyan">
+                            <span key={service} className="portfolio-tags rounded-full bg-brand-cyan/10 px-3 py-1 text-xs font-medium text-brand-cyan">
                               {service}
                             </span>
                           ))}
@@ -119,14 +119,14 @@ export default function Portfolio() {
                         <p className="line-clamp-2 text-sm text-muted-foreground">{item.challenge}</p>
                         <div className="mt-3 flex items-center justify-between gap-2">
                           <span className="flex items-center gap-2 text-sm font-medium text-brand-secondary">
-                            View Details <ArrowRight size={14} className="text-brand-secondary" aria-hidden="true" />
+                            View Details <ArrowRight size={14} className="portfolio-arrow text-brand-secondary" aria-hidden="true" />
                           </span>
                           <a
                             href={item.website}
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-secondary/10 px-3 py-1.5 text-xs font-semibold text-brand-secondary transition-colors hover:bg-brand-secondary hover:text-white"
+                            className="portfolio-live inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-secondary/10 px-3 py-1.5 text-xs font-semibold text-brand-secondary hover:bg-brand-secondary hover:text-white"
                           >
                             Live site <ExternalLink size={12} aria-hidden="true" />
                           </a>
