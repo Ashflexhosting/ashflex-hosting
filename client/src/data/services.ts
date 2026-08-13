@@ -242,7 +242,7 @@ export const servicePricingImages: Record<string, string> = {
 
 /** Themed images for the three hosting tier cards. */
 export const hostingTierImages: Record<string, string> = {
-  Starter: "/manus-storage/hosting-starter_90202bd8.png",
+  Starter: "/manus-storage/hosting-starter-v2_ecbe48f4.png",
   Professional: "/manus-storage/hosting-professional_e6f731cd.png",
   Business: "/manus-storage/hosting-business_91d7222a.png",
 };
