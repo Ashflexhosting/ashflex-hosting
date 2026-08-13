@@ -114,7 +114,7 @@ export const services = [
     description: "Reliable hosting solutions with SSL, daily backups, and 99.9% uptime.",
     icon: "Server",
     features: ["Shared Hosting", "VPS Hosting", "Domain Registration", "SSL Certificates"],
-    price: "From ₦15,000/yr",
+    price: "From ₦30,000/yr",
   },
   {
     id: "api-integration",
