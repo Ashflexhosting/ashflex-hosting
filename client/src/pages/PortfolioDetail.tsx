@@ -5,6 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioItems } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
+import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 
 export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
@@ -52,10 +53,10 @@ export default function PortfolioDetail() {
       <section className="py-20">
         <div className="container max-w-5xl">
           <div className="scroll-reveal mb-12 rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[3px] shadow-2xl shadow-brand-secondary/15">
-            <img
+            <ScrollableScreenshot
               src={project.image}
-              alt={project.title}
-              className="w-full rounded-[0.9rem] bg-brand"
+              alt={`Scroll through the ${project.title} website capture`}
+              height="h-96"
             />
           </div>
 
@@ -100,12 +101,11 @@ export default function PortfolioDetail() {
                     onClick={() => setLightboxIndex(n)}
                     aria-label={`View ${project.title} screenshot ${n + 1}`}
                   >
-                      <span className="block overflow-hidden rounded-[0.9rem] bg-brand relative">
-                        <img
+                      <span className="relative">
+                        <ScrollableScreenshot
                           src={shot}
-                          alt={`${project.title} screenshot ${n + 1}`}
-                          className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
+                          alt={`Scroll through ${project.title} screenshot ${n + 1}`}
+                          height="h-64"
                         />
                         <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                           <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
@@ -205,12 +205,17 @@ export default function PortfolioDetail() {
               </button>
             </>
           )}
-          <img
-            src={gallery[lightboxIndex]}
-            alt={`${project.title} screenshot ${lightboxIndex + 1}`}
-            className="max-w-[92vw] max-h-[80vh] object-contain rounded-xl shadow-2xl"
+          <div
+            className="relative flex-1 w-full max-w-[92vw] max-h-[80vh] rounded-xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <ScrollableScreenshot
+              src={gallery[lightboxIndex]}
+              alt={`${project.title} screenshot ${lightboxIndex + 1}`}
+              height="h-[75vh]"
+              className="rounded-none"
+            />
+          </div>
           <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
             {captionFor(lightboxIndex)} · {lightboxIndex + 1} / {gallery.length}
           </span>

@@ -385,3 +385,9 @@
 - [x] Replace Barmest Nigeria Limited portfolio screenshots with the user's uploaded full-page capture
 - [x] Upload 7 images to project storage and update portfolio data (card + gallery images)
 - [x] Verify portfolio page rendering and run tests (24/24), checkpoint and publish (auto-publish)
+
+## Scrollable Portfolio Screenshots (user-requested)
+- [x] Portfolio card images: make full-page captures vertically scrollable (scroll-to-view-full-screenshot)
+- [x] Portfolio detail gallery: scrollable full-page viewing in gallery tiles
+- [x] Case study detail gallery: scrollable full-page viewing in gallery tiles
+- [ ] Verify desktop + mobile rendering, run tests, checkpoint and publish (auto-publish)

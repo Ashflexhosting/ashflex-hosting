@@ -5,6 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioIndustries, portfolioItems } from "@/data/portfolio";
 import { Card, CardContent } from "@/components/ui/card";
+import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 
 const filterButtonClass = (isActive: boolean) =>
   `rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 ${
@@ -83,14 +84,13 @@ export default function Portfolio() {
                   <Link href={`/portfolio/${item.id}`}>
                     <Card className="glass-card h-full overflow-hidden border-0 hover-lift">
                       <div className="bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
-                        <div className="aspect-video overflow-hidden bg-brand">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
-                            loading="lazy"
-                          />
-                        </div>
+                        <ScrollableScreenshot
+                          src={item.image}
+                          alt={`Scroll through the ${item.title} website capture`}
+                          height="h-60"
+                          className="transition-transform duration-500 group-hover:scale-[1.02]"
+                          rounded={false}
+                        />
                       </div>
                       <CardContent className="p-5">
                         <div className="mb-2 flex flex-wrap items-center gap-2">
