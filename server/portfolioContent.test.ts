@@ -17,6 +17,9 @@ describe("verified portfolio content", () => {
       "Sam & Sara",
       "Becca & Miche Travels",
       "Barmest Nigeria Limited",
+      "Afnaf Auto Sales",
+      "Marvel Tex Attraction",
+      "Galcon Engineering (Nig) Limited",
       "Neboc Hotel & Suites",
     ]);
   });
@@ -42,12 +45,13 @@ describe("portfolio filters", () => {
       "Travel",
       "Hospitality",
     ]);
-    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design"]);
+    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application"]);
   });
 
   it("returns projects that match the selected industry and service together", () => {
     expect(filterPortfolioItems({ industry: "Corporate", service: "Website Design" }).map((project) => project.title)).toEqual([
       "Shutterspeed Projects",
+      "Galcon Engineering",
     ]);
     expect(filterPortfolioItems({ industry: "Corporate", service: "One-page Website Design" }).map((project) => project.title)).toEqual([
       "Barmest Nigeria Limited",
@@ -57,5 +61,6 @@ describe("portfolio filters", () => {
   it("supports an all-projects reset and returns an empty collection for unmatched combinations", () => {
     expect(filterPortfolioItems()).toEqual(portfolioItems);
     expect(filterPortfolioItems({ industry: "Education", service: "One-page Website Design" })).toEqual([]);
+    expect(filterPortfolioItems({ industry: "Finance", service: "Web Application" }).map((project) => project.title)).toEqual(["Afnaf Auto Sales"]);
   });
 });

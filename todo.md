@@ -352,3 +352,18 @@
 - [x] Wire hosting tier "Choose" buttons to WhatsApp (wa.me/2348023138892) with pre-filled message naming tier + price; kept contact-form alternative note
 - [x] Write 3 SEO blog posts (ids 10/11/12: website cost guide, redesign signs, WordPress CMS) added to Blog.tsx + BlogPost.tsx, with full bodies, pricing-consistent numbers
 - [x] Verify rendering (/blog shows 12 posts, /blog/10 renders, /case-studies/2 related section), TypeScript clean, tests 24/24, checkpoint and publish
+
+## New Portfolio Projects: Afnaf, Marvel Attraction, Galcon (user-requested)
+- [ ] Visit afnaf.ca, marvelattraction.com, galconengineering.com and gather business/industry info
+- [ ] Capture live-site screenshots (homepage + 2 inner) for each of the 3 projects
+- [ ] Upload screenshots as static assets
+- [ ] Add 3 new entries to portfolio data with descriptions, metrics, and screenshots
+- [ ] Add corresponding case study entries/pages for the 3 projects
+- [ ] Verify rendering (portfolio, portfolio detail, case studies), run tests, checkpoint and publish
+
+## Three New Portfolio Projects (user-requested)
+- [x] Add Afnaf Auto Sales (https://afnaf.ca/) to portfolio with homepage, About, Trade-In screenshots
+- [x] Add Marvel Tex Attraction (https://marvelattraction.com/) to portfolio with homepage, Empowerment Program, How It Works screenshots
+- [x] Add Galcon Engineering (https://galconengineering.com/) to portfolio with homepage, About, Services screenshots
+- [x] Add three new case study cards on /case-studies and detail pages /case-studies/7-9 with related-project links
+- [x] Verify rendering (portfolio, case studies, detail pages) and run test suite
