@@ -415,3 +415,9 @@
 - [x] Replace B.C. First Nations Auto Finance portfolio screenshots with the user's uploaded full-page capture (Alberta First Nations Auto Finance)
 - [x] Upload 3 images to project storage (WebP) and update portfolio data (card image + gallery screenshots + captions) and CaseStudies page entry
 - [x] Verify portfolio listing + detail pages /portfolio/3,4,7 rendering, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Portfolio Screenshot Assignment Correction (user-requested)
+- [x] Revert B.C. First Nations Auto Finance to its original screenshot (bcfna-fullpage_70ffe564.png)
+- [x] Move the Alberta First Nations Auto Finance capture (bcfna-fullpage_218634ea.webp) to the Afnaf Auto Sales entry
+- [x] Revert the CaseStudies page entry (case 3) back to the original BC capture; case 7 (Afnaf) pointed at the Alberta capture
+- [x] Verify portfolio + detail pages render correctly (/portfolio/3 shows BC capture, /portfolio/10 shows Alberta capture), run tests (24/24), checkpoint and publish (auto-publish)
