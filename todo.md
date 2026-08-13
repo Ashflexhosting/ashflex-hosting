@@ -458,3 +458,8 @@
 - [x] Placed themed image above the sidebar pricing card on all service detail pages (bleeds to card edge, gradient fade, h-44)
 - [x] Placed themed images on top of the 3 hosting tier cards (Starter/Professional/Business, bleed to card edge, h-40)
 - [x] Verified rendering on /services/website-design and /services/hosting-domain, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Home "Our Work" Filter Removal (user-requested)
+- [x] Locate the filter controls in the "Our Work" section of Home.tsx (category pill buttons, activeCategory state, empty-filter message)
+- [x] Remove the filter buttons/tabs and related state; featured list now always shows the first 6 projects
+- [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)

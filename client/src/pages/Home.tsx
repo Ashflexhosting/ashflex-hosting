@@ -185,11 +185,8 @@ const heroMockups = [
 
 export default function Home() {
   const sectionRef = useScrollReveal();
-  const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredPortfolio, setHoveredPortfolio] = useState<number | null>(null);
-  const filteredPortfolio = activeCategory === "All"
-    ? portfolioItems.slice(0, 6)
-    : portfolioItems.filter((p) => p.category === activeCategory).slice(0, 6);
+  const filteredPortfolio = portfolioItems.slice(0, 6);
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
@@ -544,28 +541,11 @@ export default function Home() {
       {/* ============ PORTFOLIO — numbered list with image peek ============ */}
       <section className="py-28 bg-muted/30 relative">
         <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-            <div>
-              <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Our Work</p>
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
-                Featured <span className="text-gradient">portfolio</span>
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-2.5">
-              {["All", "Corporate", "Real Estate", "Healthcare", "E-commerce", "Law Firms"].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    activeCategory === cat
-                      ? "bg-gradient-primary text-white shadow-lg shadow-brand-secondary/25"
-                      : "bg-white text-foreground/70 hover:text-foreground border border-border hover:border-brand-secondary/40"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+          <div className="mb-10">
+            <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Our Work</p>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
+              Featured <span className="text-gradient">portfolio</span>
+            </h2>
           </div>
 
           {/* list rows */}
@@ -601,9 +581,6 @@ export default function Home() {
                 </div>
               </Link>
             ))}
-            {filteredPortfolio.length === 0 && (
-              <div className="py-16 text-center text-muted-foreground">No projects match this filter — try another category.</div>
-            )}
           </div>
 
           <div className="text-center mt-12">
