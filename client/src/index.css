@@ -138,7 +138,7 @@
   .portfolio-card .portfolio-border { transition: background 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
   .portfolio-card:hover .portfolio-border { background: linear-gradient(135deg, #F20549, #0757F7, #33C9D4); box-shadow: 0 8px 24px rgba(7, 87, 247, 0.25); }
   .portfolio-card .portfolio-image { transition: transform 260ms var(--ease-out); }
-  .portfolio-card:hover .portfolio-image { transform: scale(1.02); }
+  .portfolio-card:hover .portfolio-image { transform: none; }
   .portfolio-card .portfolio-arrow { transition: transform 180ms var(--ease-out), color 180ms var(--ease-out); }
   .portfolio-card:hover .portfolio-arrow { transform: translateX(4px); color: #F20549; }
   .portfolio-card .portfolio-live { transition: background 180ms var(--ease-out), color 180ms var(--ease-out), transform 180ms var(--ease-out); }

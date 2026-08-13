@@ -485,6 +485,13 @@
 - [x] Verified via ScrollableScreenshot behavior (shared by Our Work peek, portfolio cards, galleries, lightbox), tests passing (24/24), checkpoint 2486aa5e saved and auto-published
 
 ## Our Work Peek Stability Fix (user-reported: peek disappears / auto-scroll not working)
-- [ ] Diagnose: peek wrapper is pointer-events-none so pointerenter/leave on the scrollable child cancels the hoveredPortfolio state when the cursor touches the "scroll to view" hint
-- [ ] Make the peek itself register hover (give it pointer-events-auto) so moving onto the frame keeps the hover state and the auto-scroll continues
-- [ ] Verify the frame stays visible while hovering/scrolling the frame, run tests (24/24), checkpoint and publish (auto-publish)
+- [x] Diagnosed (debug agent, high confidence): peek wrapper pointer-events-none meant the cursor leaving the text row fired onMouseLeave, unmounting the peek just as the cursor moved toward the frame/hint
+- [x] Hover handlers moved to a shared wrapper div containing both the row link and the peek; peek is pointer-events-auto and stays mounted (toggled via opacity/visibility), so moving onto the frame or "Scroll to view" hint keeps hover + auto-scroll active
+- [x] ScrollableScreenshot gained a parent-controlled `active` prop to keep its auto-scroll in sync with the shared hover region
+- [x] Verified rendering on /, tests passing (24/24), checkpoint 58691caa saved and auto-published
+
+## Screenshot Sharpness Fix (user-reported: blurred portfolio/Detail screenshots)
+- [x] Diagnosed (debug agent): source captures too narrow for rendered sizes on 2x DPR screens (380–760px sources in ~513px cards / ~800px detail hero need ~1000–1600px), plus hover scale(1.02) on .portfolio-image softening bitmaps
+- [x] Upscaled 5 fullpage captures 2x with Lanczos at q88 WebP (marveltex 380→760, shutterspeed 570→1140, bcfna 734→1468, aerolead+beccamiche 760→1520) and re-uploaded to project storage (-hd variants)
+- [x] Swapped URLs in portfolio.ts (card + screenshots) and CaseStudies.tsx; removed the .portfolio-image hover scale transform in index.css
+- [x] Verified rendering on /portfolio and /portfolio/3, tests passing (24/24), checkpoint saved and auto-published
