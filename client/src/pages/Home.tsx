@@ -554,30 +554,30 @@ export default function Home() {
               <Link
                 key={item.id}
                 href={`/portfolio/${item.id}`}
-                className="group relative flex items-center gap-6 md:gap-10 py-6 border-b border-border/60 hover:bg-card/50 transition-colors duration-300"
+                className="group relative flex items-center gap-6 md:gap-10 py-6 px-4 md:px-6 -mx-4 md:-mx-6 rounded-2xl border-b border-border/60 hover:bg-gradient-to-br hover:from-white hover:to-brand-secondary/5 hover:border-brand-secondary/30 hover:shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-0.5 transition-all duration-300 ease-out will-change-transform"
                 onMouseEnter={() => setHoveredPortfolio(item.id)}
                 onMouseLeave={() => setHoveredPortfolio(null)}
               >
-                <span className="hidden md:flex shrink-0 w-12 text-lg font-extrabold text-muted-foreground/40 group-hover:text-brand-secondary group-hover:text-gradient transition-all" style={{ fontFamily: "var(--font-heading)" }}>
+                <span className="hidden md:flex shrink-0 w-12 text-lg font-extrabold text-muted-foreground/40 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-primary group-hover:scale-110 transition-all duration-300 ease-out origin-bottom-left" style={{ fontFamily: "var(--font-heading)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-brand-secondary/10 text-brand-secondary">{item.category}</span>
+                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-brand-secondary/10 text-brand-secondary group-hover:bg-gradient-primary group-hover:text-white transition-all duration-300">{item.category}</span>
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold truncate group-hover:text-gradient transition-all" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-1 mt-1">{item.challenge}</p>
+                  <h3 className="text-lg md:text-xl font-bold truncate group-hover:text-gradient transition-all duration-300" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-1 mt-1 group-hover:translate-x-1 transition-transform duration-300">{item.challenge}</p>
                 </div>
-                <span className="hidden sm:flex shrink-0 w-10 h-10 rounded-full border border-border group-hover:bg-gradient-primary group-hover:border-transparent group-hover:text-white text-muted-foreground items-center justify-center transition-all duration-300">
-                  <ArrowUpRight size={18} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                <span className="hidden sm:flex shrink-0 w-10 h-10 rounded-full border border-border group-hover:bg-gradient-primary group-hover:border-transparent group-hover:text-white group-hover:scale-110 group-hover:rotate-45 text-muted-foreground items-center justify-center transition-all duration-300 ease-out">
+                  <ArrowUpRight size={18} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
                 </span>
                 {/* hover image peek */}
                 <div
-                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-56 h-40 rounded-2xl overflow-hidden border border-border/70 shadow-xl transition-all duration-300 pointer-events-none ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
+                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-56 h-40 rounded-2xl overflow-hidden border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25 transition-all duration-300 ease-out pointer-events-none ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-4 scale-95"}`}
                   style={{ zIndex: hoveredPortfolio === item.id ? 30 : 0 }}
                   aria-hidden="true"
                 >
-                  <img src={item.image} alt="" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
                 </div>
               </Link>
             ))}

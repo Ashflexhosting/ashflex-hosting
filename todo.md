@@ -463,3 +463,8 @@
 - [x] Locate the filter controls in the "Our Work" section of Home.tsx (category pill buttons, activeCategory state, empty-filter message)
 - [x] Remove the filter buttons/tabs and related state; featured list now always shows the first 6 projects
 - [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Our Work Row Hover Animations (user-requested)
+- [x] Add smooth hover animations to the project rows in the home page "Our Work" section (row lift + white-to-brand gradient tint + rounded-2xl hit area, index number gradient + scale, category pill gradient fill, title text-gradient, description slide-right, icon button rotate-45 + scale, image peek scale-from-95 with zoom on hover)
+- [x] Hover effects kept at 300ms ease-out; transforms only for GPU-friendly motion
+- [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
