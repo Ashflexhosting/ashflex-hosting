@@ -513,9 +513,13 @@
 - [x] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay (multiply blend over navy #0F172A with a layered navy gradient overlay) so content stays readable
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
-## Hero Top Padding Increase (user-requested)
-- [ ] Increase the hero section top padding by 80px so the top-left Ashflex text clears the browser frame
+## Hero Top Padding Adjusted to +20px (user-requested)
+- [ ] Change the extra hero top padding from 80px to 20px (mobile calc(128px+20px), desktop calc(280px+20px))
 - [ ] Verify rendering on the home page, checkpoint and publish (auto-publish)
+
+## Hero Top Padding Increase (user-requested)
+- [x] Increased hero top padding by 80px: responsive hero-top-padding class (mobile calc(128px+80px), desktop calc(280px+80px))
+- [x] Verified rendering on the home page, tests 24/24, checkpoint saved and auto-published
 
 ## Our Process Section Light Header Text (user-requested)
 - [x] Change the "Our Process" section heading and sub-heading to light colors: eyebrow in sky-400, h2 white with a blue-300/cyan-300/white gradient accent on "work", subheading white/70
