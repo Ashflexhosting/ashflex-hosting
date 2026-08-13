@@ -320,3 +320,8 @@
 - [x] Found official Ashflex social links (Facebook, X/Twitter, Instagram) from ashflexwebdesign.com footer
 - [x] Add social icons to footer (brand column) and top utility bar (desktop)
 - [x] Verify rendering, run tests (24/24), checkpoint and publish
+
+## Screenshot Captions (user-requested)
+- [x] Add descriptive caption field to each portfolio screenshot (e.g., "Homepage", "About page", "Services")
+- [x] Show captions under gallery images on the portfolio detail page (also in the lightbox counter)
+- [x] Verify, run tests (24/24), checkpoint and publish

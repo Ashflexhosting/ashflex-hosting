@@ -10,6 +10,7 @@ export interface PortfolioItem {
   client: string;
   website: string;
   screenshots?: string[];
+  screenshotCaptions?: string[];
 }
 
 export const categories = [
@@ -45,6 +46,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-shutterspeed-inner-1_2263a89d.webp",
       "/manus-storage/portfolio-shutterspeed-inner-2_f28325e4.webp",
     ],
+    screenshotCaptions: ["Homepage", "Contact page", "About Us page"],
   },
   {
     id: 2,
@@ -62,6 +64,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-kingwesl-inner-1_924bda63.webp",
       "/manus-storage/portfolio-kingwesl-inner-2_b5a895b5.webp",
     ],
+    screenshotCaptions: ["Homepage", "Services section", "Portfolio projects"],
   },
   {
     id: 3,
@@ -79,6 +82,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-bcfirstnations-inner-1_8960b80a.webp",
       "/manus-storage/portfolio-bcfirstnations-inner-2_967ad11d.webp",
     ],
+    screenshotCaptions: ["Homepage", "Why Choose Us", "Customer stories"],
   },
   {
     id: 4,
@@ -96,6 +100,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-aerolead-inner-1_356b711c.webp",
       "/manus-storage/portfolio-aerolead-inner-2_a4db409a.webp",
     ],
+    screenshotCaptions: ["Homepage", "Features overview", "Courses page"],
   },
   {
     id: 5,
@@ -113,6 +118,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-eightradiance-inner-1_db06949a.webp",
       "/manus-storage/portfolio-eightradiance-inner-2_1bde7cf5.webp",
     ],
+    screenshotCaptions: ["Homepage", "About the organisation", "Programs section"],
   },
   {
     id: 6,
@@ -130,6 +136,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-samandsara-inner-1_357a2d3d.webp",
       "/manus-storage/portfolio-samandsara-inner-2_ce2fefa7.webp",
     ],
+    screenshotCaptions: ["Homepage", "Featured collections", "Products page"],
   },
   {
     id: 7,
@@ -147,6 +154,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-beccamiche-inner-1_f92d8935.webp",
       "/manus-storage/portfolio-beccamiche-inner-2_304c1641.webp",
     ],
+    screenshotCaptions: ["Homepage", "Travel services", "Popular destinations"],
   },
   {
     id: 8,
@@ -164,6 +172,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-barmest-inner-1_77014575.webp",
       "/manus-storage/portfolio-barmest-inner-2_0118c7d6.webp",
     ],
+    screenshotCaptions: ["Homepage", "Core services", "Who we are"],
   },
   {
     id: 9,
@@ -181,6 +190,7 @@ export const portfolioItems: PortfolioItem[] = [
       "/manus-storage/portfolio-neboc-inner-1_7cbed751.webp",
       "/manus-storage/portfolio-neboc-inner-2_ff1b0e9f.webp",
     ],
+    screenshotCaptions: ["Homepage", "About the hotel", "Rooms & suites"],
   },
 ];
 

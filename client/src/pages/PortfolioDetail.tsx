@@ -11,7 +11,10 @@ export default function PortfolioDetail() {
   const sectionRef = useScrollReveal();
   const project = portfolioItems.find((p) => p.id === Number(id));
   const gallery = project?.screenshots?.length ? project.screenshots : [];
+  const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const captionFor = (index: number) => captions[index] || "Screenshot";
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -97,18 +100,19 @@ export default function PortfolioDetail() {
                     onClick={() => setLightboxIndex(n)}
                     aria-label={`View ${project.title} screenshot ${n + 1}`}
                   >
-                    <span className="block overflow-hidden rounded-[0.9rem] bg-brand relative">
-                      <img
-                        src={shot}
-                        alt={`${project.title} screenshot ${n + 1}`}
-                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
+                      <span className="block overflow-hidden rounded-[0.9rem] bg-brand relative">
+                        <img
+                          src={shot}
+                          alt={`${project.title} screenshot ${n + 1}`}
+                          className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
+                        </span>
                       </span>
-                    </span>
-                  </button>
+                      <span className="block px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
+                    </button>
                 ))}
               </div>
             </div>
@@ -204,11 +208,11 @@ export default function PortfolioDetail() {
           <img
             src={gallery[lightboxIndex]}
             alt={`${project.title} screenshot ${lightboxIndex + 1}`}
-            className="max-w-[92vw] max-h-[85vh] object-contain rounded-xl shadow-2xl"
+            className="max-w-[92vw] max-h-[80vh] object-contain rounded-xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
           <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
-            {lightboxIndex + 1} / {gallery.length}
+            {captionFor(lightboxIndex)} · {lightboxIndex + 1} / {gallery.length}
           </span>
         </div>
       )}
