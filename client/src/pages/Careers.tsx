@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { siteContact } from "@shared/siteContact";
+import { buildMailtoLink } from "@/lib/mailto";
 
 export const OPEN_ROLES = [
   {
@@ -82,9 +83,20 @@ export default function Careers() {
   const [form, setForm] = useState({ name: "", email: "", portfolio: "", message: "" });
 
   const applyMutation = trpc.careers.submit.useMutation({
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       setSubmitted(true);
-      toast.success("Application received! We'll review it and get back to you within 5 business days.");
+      toast.success("Application recorded! Opening your email app to send it to our inbox…");
+
+      // Same mailto fallback as the contact form: the visitor's email client opens
+      // with the application pre-filled for info@ashflexwebdesign.com; the record is
+      // also stored in the database so nothing is lost.
+      const link = buildMailtoLink({
+        fullName: variables.fullName,
+        email: variables.email,
+        context: `Job application: ${variables.role}`,
+        message: variables.message,
+      });
+      window.location.href = link;
     },
     onError: (error) => {
       toast.error(error.message || "Something went wrong. Please try again or email us directly.");

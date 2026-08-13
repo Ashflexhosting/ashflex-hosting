@@ -395,3 +395,9 @@
 - [x] Auto-scroll the screenshot vertically while hovering the card (smooth loop through the full capture)
 - [x] Fix nested anchor error on portfolio pages (Live site link inside clickable card Link)
 - [x] Change portfolio page background to #D8D8D8
+
+## Contact Form Mailto Wiring (user-requested: mailto fallback for now)
+- [x] Build a shared mailto link generator (recipient info@ashflexwebdesign.com with subject + body) and a vitest covering it
+- [x] Contact form: open the visitor's email client (mailto) pre-filled after a successful DB save
+- [x] Careers form: apply the same mailto fallback for job applications
+- [x] Verify the success flow in the browser, run tests, checkpoint and publish (auto-publish)

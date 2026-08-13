@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
 import { siteContact } from "@shared/siteContact";
+import { buildMailtoLink } from "@/lib/mailto";
 
 const contactFaqs = [
   { q: "How much does a website cost?", a: "Website costs vary based on complexity, pages, and features. Basic sites start around \u20A6150,000, while custom business solutions range from \u20A6500,000 to \u20A65M+. Use our free Website Cost Calculator for an instant estimate." },
@@ -27,9 +28,22 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
 
   const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       setSubmitted(true);
-      toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+      toast.success("Message recorded! Opening your email app to send it to our inbox…");
+
+      // Mailto fallback: route the inquiry to info@ashflexwebdesign.com by opening
+      // the visitor's own email client with the message pre-filled. Submissions are
+      // also stored in the site database, so no lead is lost even if no mail app
+      // is configured (the visitor can email info@ashflexwebdesign.com directly).
+      const link = buildMailtoLink({
+        fullName: variables.fullName,
+        email: variables.email,
+        phone: variables.phone || undefined,
+        context: variables.service || undefined,
+        message: variables.message,
+      });
+      window.location.href = link;
     },
     onError: (error) => {
       toast.error(error.message || "Something went wrong. Please try again or reach us by phone.");
@@ -136,9 +150,14 @@ export default function Contact() {
                     <div className="w-16 h-16 rounded-full bg-brand-success/10 flex items-center justify-center mx-auto mb-6">
                       <ArrowRight size={32} className="text-brand-success" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>Message Sent!</h3>
+                    <h3 className="text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>Message Recorded!</h3>
+                    <p className="text-muted-foreground mb-2">
+                      Your enquiry has been saved, and your email app has been opened so the
+                      message reaches <a href={`mailto:${siteContact.email}`} className="text-brand-secondary font-medium hover:underline">{siteContact.email}</a> directly.
+                    </p>
                     <p className="text-muted-foreground mb-6">
-                      Thank you for reaching out. We'll review your message and get back to you within 24 hours.
+                      If the email didn't open automatically, you can send it manually using the
+                      link above. We'll get back to you within 24 hours.
                     </p>
                   </CardContent>
                 </Card>
@@ -230,7 +249,8 @@ export default function Contact() {
                         )}
                       </button>
                       <p className="text-xs text-muted-foreground text-center">
-                        Your submission is stored securely and an alert is sent to the Ashflex team at {siteContact.email}.
+                        Your submission is stored securely, and your email app will open with the
+                        message addressed to {siteContact.email} so it lands straight in our inbox.
                       </p>
                     </form>
                   </CardContent>
