@@ -329,3 +329,8 @@
 ## Hosting Price Update (user-requested)
 - [x] Update hosting package price to start from ₦30,000/year (Hosting & Domain service card + FAQ answer)
 - [x] Verify, run tests (24/24), checkpoint and publish
+
+## Hero Line Break & Corner Label Fix (user-requested)
+- [x] Wrap "customers." onto its own line in the hero headline (3 lines: "We craft websites" / "that turn clicks into" / "customers.")
+- [x] Increase hero top padding (pt-32 / md:pt-44) so the rotated "Ashflex Studio · Lagos" corner label is fully visible
+- [x] Verify on laptop/desktop and mobile (375px), run tests (24/24), checkpoint and publish

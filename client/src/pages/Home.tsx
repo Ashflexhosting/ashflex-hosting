@@ -208,11 +208,11 @@ export default function Home() {
         </div>
 
         {/* corner label */}
-        <div className="absolute top-28 left-4 md:left-10 z-10 hidden md:flex items-center gap-3 rotate-[-90deg] origin-top-left text-white/40 text-xs uppercase tracking-[0.3em]" aria-hidden="true">
+        <div className="absolute top-32 left-4 md:left-10 z-10 hidden md:flex items-center gap-3 rotate-[-90deg] origin-top-left text-white/40 text-xs uppercase tracking-[0.3em]" aria-hidden="true">
           <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
         </div>
 
-        <div className="container relative z-10 pt-24 pb-16 md:pt-28 md:pb-20">
+        <div className="container relative z-10 pt-32 pb-16 md:pt-44 md:pb-20">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
@@ -236,7 +236,8 @@ export default function Home() {
                 </span>
                 <br />
                 <span className="whitespace-nowrap">that turn clicks into{" "}</span>
-                <span className="text-outline">customers.</span>
+                <br />
+                <span className="whitespace-nowrap text-outline">customers.</span>
               </h1>
 
               <p className="scroll-reveal text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8" style={{ transitionDelay: "120ms" }}>
