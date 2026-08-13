@@ -64,7 +64,7 @@ export default function PortfolioDetail() {
                 <ScrollableScreenshot
                   src={project.image}
                   alt={`Scroll through the ${project.title} website capture`}
-                  height="md:h-[min(72vh,40rem)] h-[min(75vh,42rem)]"
+                  height="h-[min(55vh,32rem)]"
                   rounded={false}
                   scrollerRef={heroScrollerRef}
                 />

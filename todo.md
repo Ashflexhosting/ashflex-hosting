@@ -555,9 +555,13 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
+## Frame Height Increase Reversed (user-requested)
+- [ ] Restore the hero frame to its pre-increase height (h-[min(55vh,32rem)]) on both desktop and mobile, removing the responsive md: form
+- [ ] Verify rendering, tests 24/24, checkpoint and publish (auto-publish)
+
 ## Phone Mockup Height Increase (user-requested)
-- [ ] Increase the phone mockup screen height on mobile (below md) so it is taller, matching the desktop increase
-- [ ] Verify rendering on 375px, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Increased phone mockup height on mobile: h-[min(75vh,42rem)] below md vs md:h-[min(72vh,40rem)] on desktop; ScrollableScreenshot supports the responsive "md:h-[..] h-[..]" form via a matchMedia listener
+- [x] Verified rendering on 375px, tests 24/24, checkpoint saved and auto-published
 
 ## iMac Frame Height Extension (user-requested)
 - [x] Extended the hero screenshot frame height from h-[min(55vh,32rem)] to h-[min(72vh,40rem)] so the iMac mockup is taller and shows more of the capture
