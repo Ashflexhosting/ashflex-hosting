@@ -421,3 +421,10 @@
 - [x] Move the Alberta First Nations Auto Finance capture (bcfna-fullpage_218634ea.webp) to the Afnaf Auto Sales entry
 - [x] Revert the CaseStudies page entry (case 3) back to the original BC capture; case 7 (Afnaf) pointed at the Alberta capture
 - [x] Verify portfolio + detail pages render correctly (/portfolio/3 shows BC capture, /portfolio/10 shows Alberta capture), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Gallery High-Resolution Lightbox (user-requested)
+- [x] New FullPageLightbox component: fit-to-width mode (full capture displayed at natural resolution, vertically scrollable) + zoom mode (wheel/pinch zoom 0.5x–4x, drag-to-pan, 100% reset)
+- [x] Wire FullPageLightbox into PortfolioDetail gallery tiles (replacing the old fixed dialog)
+- [x] Wire FullPageLightbox into CaseStudyDetail gallery tiles for consistency
+- [x] Keep caption + counter in toolbar, prev/next arrows, Escape / Arrow keys, body scroll lock
+- [x] Verify rendering on /portfolio/3 and /case-studies/7, run tests (24/24), checkpoint and publish (auto-publish)

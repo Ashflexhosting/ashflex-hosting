@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { ArrowRight, ArrowLeft, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioItems } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
+import FullPageLightbox from "@/components/FullPageLightbox";
 
 export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,8 @@ export default function PortfolioDetail() {
   const gallery = project?.screenshots?.length ? project.screenshots : [];
   const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const shots = gallery.map((src, n) => ({ src, caption: captions[n] || "Screenshot" }));
 
   const captionFor = (index: number) => captions[index] || "Screenshot";
 
@@ -169,57 +172,15 @@ export default function PortfolioDetail() {
         </div>
       </section>
 
-      {/* Lightbox */}
-      {lightboxIndex !== null && gallery[lightboxIndex] && (
-        <div
-          className="fixed inset-0 z-50 bg-brand/95 backdrop-blur-sm flex items-center justify-center"
-          onClick={() => setLightboxIndex(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Viewing ${project.title} screenshot ${lightboxIndex + 1}`}
-        >
-          <button
-            type="button"
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-            aria-label="Close"
-          >
-            <X size={20} />
-          </button>
-          {gallery.length > 1 && (
-            <>
-              <button
-                type="button"
-                className="absolute left-4 md:left-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                onClick={(e) => { e.stopPropagation(); goToShot(-1); }}
-                aria-label="Previous screenshot"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button
-                type="button"
-                className="absolute right-4 md:right-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                onClick={(e) => { e.stopPropagation(); goToShot(1); }}
-                aria-label="Next screenshot"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </>
-          )}
-          <div
-            className="relative flex-1 w-full max-w-[92vw] max-h-[80vh] rounded-xl shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ScrollableScreenshot
-              src={gallery[lightboxIndex]}
-              alt={`${project.title} screenshot ${lightboxIndex + 1}`}
-              height="h-[75vh]"
-              className="rounded-none"
-            />
-          </div>
-          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
-            {captionFor(lightboxIndex)} · {lightboxIndex + 1} / {gallery.length}
-          </span>
-        </div>
+      {/* High-resolution lightbox */}
+      {lightboxIndex !== null && shots[lightboxIndex] && (
+        <FullPageLightbox
+          shots={shots}
+          initialIndex={lightboxIndex}
+          projectTitle={project.title}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={(i) => setLightboxIndex(i)}
+        />
       )}
 
       {/* CTA */}

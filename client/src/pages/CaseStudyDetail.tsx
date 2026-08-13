@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { ArrowRight, ArrowLeft, TrendingUp, Users, Clock, Target, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowLeft, TrendingUp, Users, Clock, Target } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { portfolioItems } from "@/data/portfolio";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
+import FullPageLightbox from "@/components/FullPageLightbox";
 
 const caseStudies = [
   {
@@ -128,22 +129,7 @@ export default function CaseStudyDetail() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const captionFor = (index: number) => captions[index] || "Screenshot";
-
-  useEffect(() => {
-    if (lightboxIndex === null) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightboxIndex(null);
-      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % gallery.length));
-      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length));
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [lightboxIndex, gallery.length]);
-
-  const goToShot = (dir: 1 | -1) => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex + dir + gallery.length) % gallery.length);
-  };
+  const shots = gallery.map((src, n) => ({ src, caption: captions[n] || "Screenshot" }));
 
   if (!cs) {
     return (
@@ -299,57 +285,15 @@ export default function CaseStudyDetail() {
         </div>
       </section>
 
-      {/* Lightbox */}
-      {lightboxIndex !== null && gallery[lightboxIndex] && (
-        <div
-          className="fixed inset-0 z-50 bg-brand/95 backdrop-blur-sm flex items-center justify-center"
-          onClick={() => setLightboxIndex(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Viewing ${captionFor(lightboxIndex)} screenshot`}
-        >
-          <button
-            type="button"
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-            aria-label="Close"
-          >
-            <X size={20} />
-          </button>
-          {gallery.length > 1 && (
-            <>
-              <button
-                type="button"
-                className="absolute left-4 md:left-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                onClick={(e) => { e.stopPropagation(); goToShot(-1); }}
-                aria-label="Previous screenshot"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button
-                type="button"
-                className="absolute right-4 md:right-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                onClick={(e) => { e.stopPropagation(); goToShot(1); }}
-                aria-label="Next screenshot"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </>
-          )}
-          <div
-            className="relative flex-1 w-full max-w-[92vw] max-h-[80vh] rounded-xl shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ScrollableScreenshot
-              src={gallery[lightboxIndex]}
-              alt={`${cs.title} screenshot ${lightboxIndex + 1}`}
-              height="h-[75vh]"
-              className="rounded-none"
-            />
-          </div>
-          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
-            {captionFor(lightboxIndex)} · {lightboxIndex + 1} / {gallery.length}
-          </span>
-        </div>
+      {/* High-resolution lightbox */}
+      {lightboxIndex !== null && shots[lightboxIndex] && (
+        <FullPageLightbox
+          shots={shots}
+          initialIndex={lightboxIndex}
+          projectTitle={cs.title}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={(i) => setLightboxIndex(i)}
+        />
       )}
     </div>
   );
