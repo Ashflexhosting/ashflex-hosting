@@ -368,3 +368,20 @@
 - [x] Add three new case study cards on /case-studies and detail pages /case-studies/7-9 with related-project links
 - [x] Verify rendering (portfolio, case studies, detail pages) and run test suite
 - [x] Fix testimonial section on homepage — comments not showing (user-reported): Card bg-card won cascade over glass-card-dark; replaced with plain div
+
+## Contact Form Real Email Delivery (user-requested: wire up contact form for real sending)
+- [ ] Add email delivery of each contact submission to info@ashflexwebdesign.com (Resend or equivalent via managed email API)
+- [ ] Extend submit procedure to record email delivery status and keep DB persistence + owner notification
+- [ ] Add Vitest coverage for the email delivery path
+- [ ] Test the live form end-to-end (DB row + email delivery + owner notification)
+
+## User-Provided Portfolio Screenshots (user-uploaded full-page captures, 7 projects)
+- [x] Replace Kingwesl portfolio screenshots with the user's uploaded full-page capture (kingwesl.com)
+- [x] Replace B.C. First Nations Auto Finance portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace Sam & Sara portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace Marvel Tex Attraction portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace 8 Radiance Empowerment (Eight Radiance NGO) portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace Neboc Hotel Suites & Events Centre portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace Barmest Nigeria Limited portfolio screenshots with the user's uploaded full-page capture
+- [x] Upload 7 images to project storage and update portfolio data (card + gallery images)
+- [x] Verify portfolio page rendering and run tests (24/24), checkpoint and publish (auto-publish)
