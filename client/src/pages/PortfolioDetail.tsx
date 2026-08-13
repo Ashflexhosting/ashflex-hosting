@@ -55,72 +55,17 @@ export default function PortfolioDetail() {
 
       <section className="py-20">
         <div className="container max-w-5xl">
-          <div className="scroll-reveal mb-12 rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[3px] shadow-2xl shadow-brand-secondary/15">
-            <ScrollableScreenshot
-              src={project.image}
-              alt={`Scroll through the ${project.title} website capture`}
-              height="h-96"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2 scroll-reveal">
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>The Challenge</h3>
-                <p className="text-foreground/80 leading-relaxed">{project.challenge}</p>
-              </div>
-
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>The Solution</h3>
-                <p className="text-foreground/80 leading-relaxed">{project.solution}</p>
-              </div>
-
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>Results</h3>
-                <p className="text-foreground/80 leading-relaxed">{project.results}</p>
-              </div>
-
-              <div className="p-6 bg-brand-secondary/5 rounded-2xl border border-brand-secondary/10">
-                <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>Technologies Used</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="px-4 py-2 text-sm font-medium rounded-xl bg-white border border-brand-secondary/20 text-brand-secondary">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          {/* Hero screenshot + Project Info side by side, like the case study layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12 items-start">
+            <div className="lg:col-span-2 scroll-reveal rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[3px] shadow-2xl shadow-brand-secondary/15">
+              <ScrollableScreenshot
+                src={project.image}
+                alt={`Scroll through the ${project.title} website capture`}
+                height="h-96"
+              />
             </div>
 
-            {/* Screenshots Gallery */}
-            <div className="lg:col-span-3 mt-4">
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {gallery.map((shot, n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    className="scroll-reveal text-left rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group"
-                    onClick={() => setLightboxIndex(n)}
-                    aria-label={`View ${project.title} screenshot ${n + 1}`}
-                  >
-                      <span className="relative">
-                        <ScrollableScreenshot
-                          src={shot}
-                          alt={`Scroll through ${project.title} screenshot ${n + 1}`}
-                          height="h-64"
-                        />
-                        <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                          <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
-                        </span>
-                      </span>
-                      <span className="block px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
-                    </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-1">
+            <div className="scroll-reveal" style={{ transitionDelay: "100ms" }}>
               <div className="glass-card border-0 p-6 sticky top-24">
                 <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Info</h3>
                 <div className="space-y-4">
@@ -168,6 +113,62 @@ export default function PortfolioDetail() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="scroll-reveal space-y-8 mb-12">
+            <div>
+              <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>The Challenge</h3>
+              <p className="text-foreground/80 leading-relaxed">{project.challenge}</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>The Solution</h3>
+              <p className="text-foreground/80 leading-relaxed">{project.solution}</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>Results</h3>
+              <p className="text-foreground/80 leading-relaxed">{project.results}</p>
+            </div>
+
+            <div className="p-6 bg-brand-secondary/5 rounded-2xl border border-brand-secondary/10">
+              <h3 className="text-xl font-semibold mb-3 text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>Technologies Used</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="px-4 py-2 text-sm font-medium rounded-xl bg-white border border-brand-secondary/20 text-brand-secondary">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Screenshots Gallery */}
+          <div className="scroll-reveal">
+            <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {gallery.map((shot, n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    className="scroll-reveal text-left rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group"
+                    onClick={() => setLightboxIndex(n)}
+                    aria-label={`View ${project.title} screenshot ${n + 1}`}
+                  >
+                      <span className="relative">
+                        <ScrollableScreenshot
+                          src={shot}
+                          alt={`Scroll through ${project.title} screenshot ${n + 1}`}
+                          height="h-64"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
+                        </span>
+                      </span>
+                      <span className="block px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
+                    </button>
+                ))}
+              </div>
           </div>
         </div>
       </section>

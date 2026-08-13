@@ -440,3 +440,8 @@
 - [x] Replace Marvel Tex Attraction's card image, detail hero, gallery screenshots and captions in portfolio.ts
 - [x] Update the CaseStudies page image for the related case entry
 - [x] Verify rendering on /portfolio/11, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Project Info Card Layout (user-requested)
+- [x] Study the case study detail page layout: Project Info card sits in the right column beside/under the screenshot card
+- [x] Restructure PortfolioDetail: hero screenshot card (2/3) on the left, Project Info card (1/3, sticky) in the right column; case narrative and screenshots gallery follow below (responsive: stacks on mobile)
+- [x] Verify rendering on /portfolio/3 (desktop), run tests (24/24), checkpoint and publish (auto-publish)
