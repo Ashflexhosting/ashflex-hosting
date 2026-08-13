@@ -34,7 +34,7 @@ const caseStudies = [
     id: 3,
     title: "MedCare Nigeria — Healthcare Platform",
     industry: "Healthcare",
-    image: "/manus-storage/portfolio-bcfirstnations-live_9c99bcce.webp",
+    image: "/manus-storage/bcfna-fullpage_218634ea.webp",
     clientGoal: "Build a patient management and appointment booking system for multi-branch hospitals.",
     process: "Requirements → Architecture → Development → Integration → Testing → Deployment",
     beforeAfter: "From paper-based bookings to a fully digital patient management system.",

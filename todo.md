@@ -408,3 +408,10 @@
 - [x] Add image zoom and gradient-border glow enhancements on card screenshots while hovering
 - [x] Keep the existing scroll-on-hover auto-scroll behavior working with the new effects (auto-scroll runs independently of the CSS transforms)
 - [x] Verify rendering (desktop), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Portfolio Screenshot Replacement Round 3 (user-uploaded full-page captures)
+- [x] Replace Becca & Miche Travels portfolio screenshots with the user's uploaded full-page capture (beccamichetravels.com; 351px capture upscaled to 760px wide)
+- [x] Replace Aerolead Aviation School portfolio screenshots with the user's uploaded full-page capture
+- [x] Replace B.C. First Nations Auto Finance portfolio screenshots with the user's uploaded full-page capture (Alberta First Nations Auto Finance)
+- [x] Upload 3 images to project storage (WebP) and update portfolio data (card image + gallery screenshots + captions) and CaseStudies page entry
+- [x] Verify portfolio listing + detail pages /portfolio/3,4,7 rendering, run tests (24/24), checkpoint and publish (auto-publish)
