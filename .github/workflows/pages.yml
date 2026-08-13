@@ -28,8 +28,14 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: VITE_BUILD_BASE=/ashflex-hosting/ npx vite build
-      - name: Add 404 handler for SPA routes
-        run: cp dist/public/index.html dist/public/404.html
+      - name: Add custom 404 handler for SPA routes
+        run: cp 404.html dist/public/404.html
+      - name: Commit the branded 404.html alongside the built site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add 404.html
+          git commit -qm "Mirror: branded 404.html for deep-link redirects" || true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/public
@@ -58,4 +64,3 @@ jobs:
           git commit -qm "Deploy site: ${{ github.sha }}"
           git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git push -q -f origin gh-pages
-# Pages enabled by owner 2026-08-12

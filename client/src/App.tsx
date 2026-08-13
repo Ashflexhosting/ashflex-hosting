@@ -41,6 +41,23 @@ function ScrollToTop() {
   return null;
 }
 
+// Restores a requested path after the GitHub Pages mirror's custom 404.html
+// redirects a direct deep-link request into the app as `?r=<path>`. The app
+// navigates to the restored path once, then cleans the query string.
+function RestoreRedirectedPath() {
+  const [, navigate] = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("r");
+    if (requested) {
+      params.delete("r");
+      const target = ("/" + requested.replace(/^\/+/, "")).replace(/^\/\//, "/");
+      navigate(target + (params.toString() ? "?" + params.toString() : ""));
+    }
+  }, [navigate]);
+  return null;
+}
+
 function Router() {
   return (
     <Switch>
@@ -102,6 +119,7 @@ function App() {
           <BaseRouter base={routerBase}>
           <Navbar />
           <ScrollToTop />
+          <RestoreRedirectedPath />
           <Router />
           <Footer />
           <WhatsAppButton />

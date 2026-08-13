@@ -516,3 +516,7 @@
 ## Our Process Section Light Header Text (user-requested)
 - [x] Change the "Our Process" section heading and sub-heading to light colors: eyebrow in sky-400, h2 white with a blue-300/cyan-300/white gradient accent on "work", subheading white/70
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
+
+## GitHub Pages Mirror Custom 404 Redirect (user-requested)
+- [ ] Create a branded 404.html for the mirror that redirects direct deep-link requests back to the mirror base so the SPA can route the original path
+- [ ] Push it to Ashflexhosting/ashflex-hosting and verify live 404 handling on the mirror
