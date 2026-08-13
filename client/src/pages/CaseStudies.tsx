@@ -106,7 +106,7 @@ const caseStudies = [
     id: 9,
     title: "Galcon Engineering — Corporate Website",
     industry: "Construction",
-    image: "/manus-storage/galcon-home_06339665.webp",
+    image: "/manus-storage/galcon-home-hd_81e57ed2.webp",
     clientGoal: "Showcase 30+ years of engineering excellence with project galleries, services, and a renovation cost calculator.",
     process: "Content Audit → Design → Multi-page Development → Gallery System → Launch",
     beforeAfter: "From an outdated brochure-style site to a modern corporate website covering every service line.",

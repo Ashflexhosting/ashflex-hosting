@@ -495,3 +495,10 @@
 - [x] Upscaled 5 fullpage captures 2x with Lanczos at q88 WebP (marveltex 380→760, shutterspeed 570→1140, bcfna 734→1468, aerolead+beccamiche 760→1520) and re-uploaded to project storage (-hd variants)
 - [x] Swapped URLs in portfolio.ts (card + screenshots) and CaseStudies.tsx; removed the .portfolio-image hover scale transform in index.css
 - [x] Verified rendering on /portfolio and /portfolio/3, tests passing (24/24), checkpoint saved and auto-published
+
+## Screenshot Upscaling Round 2 (user-requested: remaining projects)
+- [ ] Upscale the remaining full-page captures 2x with Lanczos q88 WebP (kingwesl, eightradiance, samsara, barmest, neboc, galcon-home/about/services)
+- [ ] Upload the HD variants to project storage
+- [ ] Swap HD URLs in portfolio.ts (card + screenshots) for the remaining projects
+- [ ] Swap HD URLs in any case study pages using these captures
+- [ ] Verify rendering on /portfolio, run tests (24/24), checkpoint and publish (auto-publish)
