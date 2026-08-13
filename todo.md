@@ -346,3 +346,9 @@
 - [x] Add captioned gallery lightbox to case study detail pages (mapped to portfolio project screenshots, 3-col grid, Esc/arrow-key nav)
 - [x] Add hosting tier spec-comparison table (14 feature rows across Starter/Professional/Business) under the pricing cards
 - [x] Verify rendering (hosting page, /case-studies/1, mobile 375px), run tests (24/24), checkpoint and publish
+
+## Three Follow-Ups Round 2 (user-requested, do all 3)
+- [x] Add "More projects like this" section to case study detail pages (2 related case studies with portfolio thumbnails, links to /case-studies/{id})
+- [x] Wire hosting tier "Choose" buttons to WhatsApp (wa.me/2348023138892) with pre-filled message naming tier + price; kept contact-form alternative note
+- [x] Write 3 SEO blog posts (ids 10/11/12: website cost guide, redesign signs, WordPress CMS) added to Blog.tsx + BlogPost.tsx, with full bodies, pricing-consistent numbers
+- [x] Verify rendering (/blog shows 12 posts, /blog/10 renders, /case-studies/2 related section), TypeScript clean, tests 24/24, checkpoint and publish

@@ -98,6 +98,36 @@ const blogPosts = [
     date: "Nov 15, 2025",
     readTime: "7 min",
   },
+  {
+    id: 10,
+    title: "How Much Does a Website Cost in Nigeria in 2026? (Complete Price Guide)",
+    category: "Web Design",
+    excerpt: "An honest, detailed breakdown of website costs in Nigeria in 2026 — from domains and hosting to agency pricing, so you can budget with confidence.",
+    image: "/manus-storage/blog-webdesign_fe599a26.png",
+    author: "Ashflex Team",
+    date: "Aug 12, 2026",
+    readTime: "12 min",
+  },
+  {
+    id: 11,
+    title: "10 Signs Your Business Needs a Website Redesign",
+    category: "Web Design",
+    excerpt: "Is your website costing you customers? Here are the ten warning signs that it's time to redesign your business website.",
+    image: "/manus-storage/blog-mobile_027a9e52.png",
+    author: "Ashflex Team",
+    date: "Aug 6, 2026",
+    readTime: "7 min",
+  },
+  {
+    id: 12,
+    title: "Why WordPress Is the Best CMS for Nigerian Businesses in 2026",
+    category: "WordPress",
+    excerpt: "From affordability to local payment integrations, discover why WordPress remains the smartest content management choice for Nigerian businesses.",
+    image: "/manus-storage/blog-wordpress_fb3989c6.png",
+    author: "Ashflex Team",
+    date: "Aug 1, 2026",
+    readTime: "9 min",
+  },
 ];
 
 export default function Blog() {

@@ -141,17 +141,18 @@ export default function ServiceDetail() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact">
-                    <span
-                      className={`block w-full text-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                        tier.highlighted
-                          ? "bg-gradient-primary text-white hover:shadow-lg hover:shadow-brand-secondary/25"
-                          : "border border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white"
-                      }`}
-                    >
-                      Choose {tier.name}
-                    </span>
-                  </Link>
+                  <a
+                    href={`https://wa.me/2348023138892?text=${encodeURIComponent(`Hello Ashflex Web Design! I'd like to enquire about the ${tier.name} hosting package (${tier.price}/year). Please share the next steps.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full text-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                      tier.highlighted
+                        ? "bg-gradient-primary text-white hover:shadow-lg hover:shadow-brand-secondary/25"
+                        : "border border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white"
+                    }`}
+                  >
+                    Choose {tier.name}
+                  </a>
                 </div>
               ))}
             </div>

@@ -217,6 +217,36 @@ export default function CaseStudyDetail() {
             </div>
           )}
 
+          {/* Related Case Studies */}
+          <div className="mb-16">
+            <h3 className="text-xl font-semibold mb-6 scroll-reveal" style={{ fontFamily: "var(--font-heading)" }}>More Projects Like This</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {caseStudies
+                .filter((c) => c.id !== cs.id)
+                .slice(0, 2)
+                .map((related) => {
+                  const relatedProject = portfolioItems.find((p) => p.id === related.portfolioProjectId);
+                  return (
+                    <Link key={related.id} href={`/case-studies/${related.id}`}>
+                      <span className="block scroll-reveal group cursor-pointer glass-card border-0 p-4 hover:shadow-lg hover:shadow-black/5 transition-all duration-200">
+                        <div className="overflow-hidden rounded-xl mb-3">
+                          <img
+                            src={relatedProject?.image || ""}
+                            alt={related.title}
+                            className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
+                        <p className="text-xs font-medium text-brand-secondary mb-1">{related.industry} Case Study</p>
+                        <h4 className="font-semibold text-foreground/90 group-hover:text-brand-secondary transition-colors">{related.title}</h4>
+                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{related.results}</p>
+                      </span>
+                    </Link>
+                  );
+                })}
+            </div>
+          </div>
+
           {/* Navigation & CTA */}
           <div className="flex items-center justify-between pt-8 border-t border-border/50 scroll-reveal">
             <Link href="/case-studies">
