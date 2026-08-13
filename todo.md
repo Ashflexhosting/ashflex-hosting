@@ -334,3 +334,9 @@
 - [x] Wrap "customers." onto its own line in the hero headline (3 lines: "We craft websites" / "that turn clicks into" / "customers.")
 - [x] Increase hero top padding (pt-32 / md:pt-44) so the rotated "Ashflex Studio · Lagos" corner label is fully visible
 - [x] Verify on laptop/desktop and mobile (375px), run tests (24/24), checkpoint and publish
+
+## Hosting Tier Breakdown (user-requested)
+- [x] Define Starter/Professional/Business tier data with specific features, storage, email, bandwidth and pricing (₦30,000 / ₦60,000 / ₦120,000 per year) in hostingTiers (services.ts)
+- [x] Add hosting tiers to services data and render a tier comparison section on the Hosting & Domain service detail page (Starter/Professional/Business cards, Most Popular badge, storage/bandwidth/email/domains specs)
+- [x] Update related mentions: FAQ hosting answer lists the three tiers; Pricing page has no hosting mention; service description updated
+- [x] Verify rendering on desktop (full-page), run tests (24/24), checkpoint and publish

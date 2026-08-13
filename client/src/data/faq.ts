@@ -25,7 +25,7 @@ export const faqs = [
   },
   {
     question: "Do you provide hosting services?",
-    answer: "Yes, we offer reliable hosting solutions with 99.9% uptime guarantee, SSL certificates, daily backups, and CDN. Hosting packages start from ₦30,000/year.",
+    answer: "Yes, we offer reliable hosting solutions with 99.9% uptime guarantee, SSL certificates, daily backups, and CDN. Hosting packages come in three tiers: Starter at ₦30,000/year, Professional at ₦60,000/year, and Business at ₦120,000/year, each with dedicated storage, email, and bandwidth allowances.",
   },
   {
     question: "Can I update the website myself?",

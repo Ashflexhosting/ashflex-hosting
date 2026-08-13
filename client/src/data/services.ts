@@ -111,7 +111,7 @@ export const services = [
     id: "hosting-domain",
     slug: "hosting-domain",
     title: "Hosting & Domain",
-    description: "Reliable hosting solutions with SSL, daily backups, and 99.9% uptime.",
+    description: "Reliable hosting solutions with SSL, daily backups, and 99.9% uptime — choose from Starter, Professional, or Business tiers.",
     icon: "Server",
     features: ["Shared Hosting", "VPS Hosting", "Domain Registration", "SSL Certificates"],
     price: "From ₦30,000/yr",
@@ -142,6 +142,77 @@ export const services = [
     icon: "Settings",
     features: ["CRM Systems", "ERP Solutions", "Custom Dashboards", "Workflow Tools"],
     price: "From ₦500,000",
+  },
+];
+
+export interface HostingTier {
+  name: string;
+  price: string;
+  pricePerYear: number;
+  tagline: string;
+  storage: string;
+  bandwidth: string;
+  emailAccounts: string;
+  domains: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+export const hostingTiers: HostingTier[] = [
+  {
+    name: "Starter",
+    price: "₦30,000/yr",
+    pricePerYear: 30000,
+    tagline: "Perfect for personal sites and small landing pages.",
+    storage: "2 GB SSD",
+    bandwidth: "50 GB/mo",
+    emailAccounts: "2 mailboxes",
+    domains: "1 domain registration (free for year 1)",
+    features: [
+      "Free SSL Certificate",
+      "Weekly Backups",
+      "99.9% Uptime Guarantee",
+      "cPanel Control Panel",
+      "1 Website",
+    ],
+  },
+  {
+    name: "Professional",
+    price: "₦60,000/yr",
+    pricePerYear: 60000,
+    tagline: "Ideal for growing businesses and professional sites.",
+    storage: "10 GB SSD",
+    bandwidth: "Unmetered",
+    emailAccounts: "10 mailboxes",
+    domains: "1 domain + free .com.ng domain",
+    features: [
+      "Free SSL Certificate",
+      "Daily Backups",
+      "99.9% Uptime Guarantee",
+      "cPanel Control Panel",
+      "Up to 5 Websites",
+      "Priority Support",
+    ],
+    highlighted: true,
+  },
+  {
+    name: "Business",
+    price: "₦120,000/yr",
+    pricePerYear: 120000,
+    tagline: "Built for high-traffic stores and business-critical sites.",
+    storage: "50 GB NVMe",
+    bandwidth: "Unmetered",
+    emailAccounts: "50 mailboxes",
+    domains: "2 domains (free for year 1)",
+    features: [
+      "Free Wildcard SSL",
+      "Real-Time Backups",
+      "99.9% Uptime Guarantee",
+      "NVMe Storage & CDN",
+      "Unlimited Websites",
+      "Priority 24/7 Support",
+      "Malware Scanning & Removal",
+    ],
   },
 ];
 
