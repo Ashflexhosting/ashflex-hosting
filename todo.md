@@ -445,3 +445,7 @@
 - [x] Study the case study detail page layout: Project Info card sits in the right column beside/under the screenshot card
 - [x] Restructure PortfolioDetail: hero screenshot card (2/3) on the left, Project Info card (1/3, sticky) in the right column; case narrative and screenshots gallery follow below (responsive: stacks on mobile)
 - [x] Verify rendering on /portfolio/3 (desktop), run tests (24/24), checkpoint and publish (auto-publish)
+
+## Screenshot Card Height (user-requested)
+- [x] Increase the main screenshot card height on portfolio detail pages (h-96 → h-[32rem])
+- [x] Verify rendering on /portfolio/3 (desktop), checkpoint and publish (auto-publish)
