@@ -510,7 +510,7 @@
 
 ## Our Process Section Background (user-requested)
 - [x] Upload the user's skyscraper image (service-simple.webp, 1920x672) to project storage
-- [ ] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay so content stays readable
+- [x] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay (multiply blend over navy #0F172A with a layered navy gradient overlay) so content stays readable
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
 ## Our Process Section Light Header Text (user-requested)
