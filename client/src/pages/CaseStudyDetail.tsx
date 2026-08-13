@@ -1,15 +1,17 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { ArrowRight, ArrowLeft, TrendingUp, Users, Clock, Target } from "lucide-react";
+import { ArrowRight, ArrowLeft, TrendingUp, Users, Clock, Target, X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
+import { portfolioItems } from "@/data/portfolio";
 
 const caseStudies = [
   {
     id: 1,
     title: "PayFlow Technologies — Fintech Platform",
     industry: "Finance",
-    image: "/manus-storage/portfolio-shutterspeed-live_ff13c8ca.webp",
+    portfolioProjectId: 1,
     clientGoal: "Attract investors and enterprise clients with a professional digital presence.",
     process: "Discovery → Strategy → Custom React Platform → API Integration → Testing → Launch",
     beforeAfter: "From zero online presence to a professional platform generating qualified leads daily.",
@@ -21,7 +23,7 @@ const caseStudies = [
     id: 2,
     title: "Lagos Luxury Homes — Real Estate Portal",
     industry: "Real Estate",
-    image: "/manus-storage/portfolio-kingwesl-live_bd256695.webp",
+    portfolioProjectId: 2,
     clientGoal: "Create a property listing platform with virtual tours and advanced search.",
     process: "Research → UX Design → 3D Integration → Development → Testing → Launch",
     beforeAfter: "From manual listings to an automated platform with 300+ properties.",
@@ -33,7 +35,7 @@ const caseStudies = [
     id: 3,
     title: "MedCare Nigeria — Healthcare Platform",
     industry: "Healthcare",
-    image: "/manus-storage/portfolio-bcfirstnations-live_9c99bcce.webp",
+    portfolioProjectId: 9,
     clientGoal: "Build a patient management and appointment booking system for multi-branch hospitals.",
     process: "Requirements → Architecture → Development → Integration → Testing → Deployment",
     beforeAfter: "From paper-based bookings to a fully digital patient management system.",
@@ -45,7 +47,7 @@ const caseStudies = [
     id: 4,
     title: "Ankara Luxe — E-commerce Store",
     industry: "E-commerce",
-    image: "/manus-storage/portfolio-samandsara-live_74253bfc.webp",
+    portfolioProjectId: 6,
     clientGoal: "Build a scalable e-commerce platform with local payment support for a Nigerian fashion brand.",
     process: "Brand Analysis → UX Design → Shopify Development → Payment Integration → Launch",
     beforeAfter: "From Instagram-only sales to a full e-commerce platform processing ₦50M+ monthly.",
@@ -57,7 +59,7 @@ const caseStudies = [
     id: 5,
     title: "Adeyemi & Partners — Law Firm Website",
     industry: "Law Firms",
-    image: "/manus-storage/portfolio-barmest-live_ef28f37f.webp",
+    portfolioProjectId: 8,
     clientGoal: "Establish a prestigious online presence that conveys trust and expertise.",
     process: "Brand Strategy → Design → Development → SEO → Content → Launch",
     beforeAfter: "From minimal web presence to top 3 Google rankings for key legal terms.",
@@ -69,7 +71,7 @@ const caseStudies = [
     id: 6,
     title: "Green Earth Foundation — NGO Platform",
     industry: "NGOs",
-    image: "/manus-storage/portfolio-eightradiance-live_0fcdc31e.webp",
+    portfolioProjectId: 5,
     clientGoal: "Create a donation platform and volunteer management system for an environmental NGO.",
     process: "Impact Analysis → Design → Development → Payment Integration → Launch",
     beforeAfter: "From manual donations to an automated platform with real-time impact tracking.",
@@ -83,6 +85,28 @@ export default function CaseStudyDetail() {
   const { id } = useParams<{ id: string }>();
   const sectionRef = useScrollReveal();
   const cs = caseStudies.find((c) => c.id === Number(id));
+  const project = portfolioItems.find((p) => p.id === cs?.portfolioProjectId);
+  const gallery = project?.screenshots?.length ? project.screenshots : [];
+  const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const captionFor = (index: number) => captions[index] || "Screenshot";
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % gallery.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length));
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex, gallery.length]);
+
+  const goToShot = (dir: 1 | -1) => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + dir + gallery.length) % gallery.length);
+  };
 
   if (!cs) {
     return (
@@ -92,6 +116,8 @@ export default function CaseStudyDetail() {
       </div>
     );
   }
+
+  const heroImage = project?.image || "";
 
   return (
     <div ref={sectionRef}>
@@ -105,7 +131,13 @@ export default function CaseStudyDetail() {
         <div className="container max-w-5xl">
           {/* Hero Image */}
           <div className="scroll-reveal mb-12">
-            <img src={cs.image} alt={cs.title} className="w-full rounded-2xl shadow-2xl shadow-black/10" />
+            {heroImage ? (
+              <img src={heroImage} alt={cs.title} className="w-full rounded-2xl shadow-2xl shadow-black/10" />
+            ) : (
+              <div className="w-full h-64 rounded-2xl bg-brand-secondary/10 flex items-center justify-center text-muted-foreground">
+                Project screenshot unavailable
+              </div>
+            )}
           </div>
 
           {/* Project Overview */}
@@ -155,20 +187,35 @@ export default function CaseStudyDetail() {
           </div>
 
           {/* Screenshots Gallery */}
-          <div className="mb-16">
-            <h3 className="text-xl font-semibold mb-4 scroll-reveal" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[1, 2, 3, 4].map((n) => (
-                <div key={n} className="scroll-reveal overflow-hidden rounded-2xl group">
-                  <img
-                    src={cs.image}
-                    alt={`${cs.title} screenshot ${n}`}
-                    className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              ))}
+          {gallery.length > 0 && (
+            <div className="mb-16">
+              <h3 className="text-xl font-semibold mb-4 scroll-reveal" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {gallery.map((shot, n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    className="scroll-reveal text-left rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group"
+                    onClick={() => setLightboxIndex(n)}
+                    aria-label={`View ${captionFor(n)} screenshot`}
+                  >
+                    <span className="block overflow-hidden rounded-[0.9rem] bg-brand relative">
+                      <img
+                        src={shot}
+                        alt={`${cs.title} screenshot ${n + 1}`}
+                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
+                      </span>
+                    </span>
+                    <span className="block px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Navigation & CTA */}
           <div className="flex items-center justify-between pt-8 border-t border-border/50 scroll-reveal">
@@ -185,6 +232,54 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && gallery[lightboxIndex] && (
+        <div
+          className="fixed inset-0 z-50 bg-brand/95 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Viewing ${captionFor(lightboxIndex)} screenshot`}
+        >
+          <button
+            type="button"
+            className="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Close"
+          >
+            <X size={20} />
+          </button>
+          {gallery.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="absolute left-4 md:left-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); goToShot(-1); }}
+                aria-label="Previous screenshot"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                type="button"
+                className="absolute right-4 md:right-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); goToShot(1); }}
+                aria-label="Next screenshot"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </>
+          )}
+          <img
+            src={gallery[lightboxIndex]}
+            alt={`${cs.title} screenshot ${lightboxIndex + 1}`}
+            className="max-w-[92vw] max-h-[80vh] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 text-xs text-white/70 bg-white/10 rounded-full">
+            {captionFor(lightboxIndex)} · {lightboxIndex + 1} / {gallery.length}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

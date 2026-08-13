@@ -340,3 +340,9 @@
 - [x] Add hosting tiers to services data and render a tier comparison section on the Hosting & Domain service detail page (Starter/Professional/Business cards, Most Popular badge, storage/bandwidth/email/domains specs)
 - [x] Update related mentions: FAQ hosting answer lists the three tiers; Pricing page has no hosting mention; service description updated
 - [x] Verify rendering on desktop (full-page), run tests (24/24), checkpoint and publish
+
+## Three Follow-Up Improvements (user-requested, do all 3)
+- [x] Add social icons (Facebook, X, Instagram) to the mobile menu's contact row (circular buttons above Get Free Quote)
+- [x] Add captioned gallery lightbox to case study detail pages (mapped to portfolio project screenshots, 3-col grid, Esc/arrow-key nav)
+- [x] Add hosting tier spec-comparison table (14 feature rows across Starter/Professional/Business) under the pricing cards
+- [x] Verify rendering (hosting page, /case-studies/1, mobile 375px), run tests (24/24), checkpoint and publish

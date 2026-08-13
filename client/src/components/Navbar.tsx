@@ -209,6 +209,35 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+            <div className="flex items-center justify-center gap-3 py-2">
+              <a
+                href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on Facebook"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://twitter.com/AshflexH"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on X"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+              >
+                <Twitter size={18} />
+              </a>
+              <a
+                href="https://www.instagram.com/ashflexwebdesign/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ashflex on Instagram"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+              >
+                <Instagram size={18} />
+              </a>
+            </div>
             <Link href="/contact">
               <span className="block w-full text-center px-5 py-3 mt-2 text-base font-semibold text-white bg-gradient-primary rounded-xl">
                 Get Free Quote

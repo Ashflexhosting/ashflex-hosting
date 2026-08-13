@@ -155,6 +155,59 @@ export default function ServiceDetail() {
                 </div>
               ))}
             </div>
+            {/* Spec comparison table */}
+            <div className="mt-16 scroll-reveal overflow-x-auto">
+              <table className="w-full min-w-[640px] text-sm">
+                <thead>
+                  <tr className="text-left">
+                    <th className="py-3 pr-4 font-semibold text-muted-foreground">Feature</th>
+                    {hostingTiers.map((tier) => (
+                      <th
+                        key={tier.name}
+                        className={`py-3 px-4 font-bold ${tier.highlighted ? "text-brand-secondary" : ""}`}
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {tier.name}
+                        {tier.highlighted && <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wide bg-gradient-primary text-white rounded-full px-2 py-0.5 align-middle">Popular</span>}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="border-t border-border/50">
+                  {[
+                    { label: "Price (per year)", values: hostingTiers.map((t) => t.price), isPrice: true },
+                    { label: "Storage", values: hostingTiers.map((t) => t.storage) },
+                    { label: "Bandwidth", values: hostingTiers.map((t) => t.bandwidth) },
+                    { label: "Email mailboxes", values: hostingTiers.map((t) => t.emailAccounts) },
+                    { label: "Domains included", values: hostingTiers.map((t) => t.domains) },
+                    { label: "SSL certificate", values: ["Free SSL", "Free SSL", "Free Wildcard SSL"] },
+                    { label: "Backups", values: ["Weekly", "Daily", "Real-time"] },
+                    { label: "Uptime guarantee", values: ["99.9%", "99.9%", "99.9%"] },
+                    { label: "Control panel", values: ["cPanel", "cPanel", "cPanel"] },
+                    { label: "CDN", values: [false, false, true] },
+                    { label: "Malware scanning", values: [false, false, true] },
+                    { label: "Priority support", values: [false, true, true] },
+                    { label: "24/7 priority support", values: [false, false, true] },
+                    { label: "Multiple websites", values: ["1", "Up to 5", "Unlimited"] },
+                  ].map((row) => (
+                    <tr key={row.label} className="border-t border-border/30">
+                      <td className="py-3 pr-4 text-muted-foreground">{row.label}</td>
+                      {row.values.map((v, i) => (
+                        <td key={i} className={`py-3 px-4 ${row.isPrice ? "font-bold text-brand-secondary" : ""}`}>
+                          {v === true ? (
+                            <CheckCircle size={16} className="text-brand-success" aria-label="Included" />
+                          ) : v === false ? (
+                            <span className="inline-block w-4 h-px bg-muted-foreground/40" aria-label="Not included" />
+                          ) : (
+                            <span className="text-foreground/85">{v}</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="text-center text-sm text-muted-foreground mt-8">
               All packages include domain registration support and free setup. Custom VPS and dedicated hosting also available on request.
             </p>
