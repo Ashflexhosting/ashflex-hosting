@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /** Pixels per second the capture scrolls while hovered */
 const HOVER_SCROLL_SPEED = 60;
@@ -48,6 +48,36 @@ export default function ScrollableScreenshot({
 }: ScrollableScreenshotProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
+
+  // Below-fold full-page captures use native lazy loading by default, but
+  // that leaves them blank until the user scrolls near them. Preload each
+  // capture eagerly once its frame comes within two viewports of the screen,
+  // so mobile visitors never see empty navy frames while scrolling the grid.
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    let observer: IntersectionObserver | null = null;
+    if ("IntersectionObserver" in window && "loading" in img) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Force the browser to start fetching immediately by re-setting src
+              const keep = img.src;
+              img.loading = "eager";
+              img.src = "";
+              img.src = keep;
+              observer?.disconnect();
+            }
+          });
+        },
+        { rootMargin: "0px 0px 1500px 0px" }
+      );
+      observer.observe(img);
+    }
+    return () => observer?.disconnect();
+  }, [src]);
 
   const resolvedHeight = resolveHeight(height);
 
@@ -150,6 +180,7 @@ export default function ScrollableScreenshot({
           [data-screenshot-scroller]:hover::-webkit-scrollbar-thumb { background: rgba(37, 99, 235, 0.75); }
         `}</style>
         <img
+          ref={imgRef}
           src={src}
           alt={alt}
           draggable={false}

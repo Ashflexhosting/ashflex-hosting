@@ -99,7 +99,7 @@ export default function Portfolio() {
                         <ScrollableScreenshot
                           src={item.image}
                           alt={`Scroll through the ${item.title} website capture`}
-                          height="h-90"
+                          height="h-[min(50vh,15rem)]"
                           className="portfolio-image"
                           rounded={false}
                         />

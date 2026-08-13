@@ -513,9 +513,14 @@
 - [x] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay (multiply blend over navy #0F172A with a layered navy gradient overlay) so content stays readable
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
+## Mobile Responsiveness & Layout Scaling Audit (user-requested)
+- [ ] Audit key pages (Home, Portfolio, Portfolio detail, Services, Pricing, Contact) on 375px and 768px viewports, logging layout/scale issues
+- [ ] Fix identified issues (overflow, font scaling, spacing, grid stacking, nav)
+- [ ] Verify fixes via mobile screenshots, tests 24/24, checkpoint and publish (auto-publish)
+
 ## Our Process Overlay Slightly Transparent (user-requested)
-- [ ] Reduce the navy gradient overlay opacity on the "Our Process" section so the skyscraper background image is slightly visible while keeping text readable
-- [ ] Verify rendering on the home page, checkpoint and publish (auto-publish)
+- [x] Reduced the Our Process section navy gradient overlay opacity (0.92/0.86/0.95 → 0.78/0.72/0.82) so the skyscraper background image is slightly visible while keeping text readable
+- [x] Verified rendering on the home page, tests 24/24, checkpoint saved and auto-published
 
 ## Hero Extra Top Padding Removed (user-requested)
 - [x] Removed the extra hero top padding entirely, restoring original pt-32 (128px mobile) / md:pt-44 (280px desktop); unused hero-top-padding CSS deleted
@@ -539,3 +544,8 @@
 - [x] Updated .github/workflows/pages.yml build step to cp 404.html into dist/public instead of a generic index.html copy
 - [x] Pushed commit 6bee14f to Ashflexhosting/ashflex-hosting; Actions both green; gh-pages deploy d4a6d77 ("Deploy site: 6bee14f") live
 - [x] Verified live: former 404 deep links (e.g. /services/website-design) now render the real page; invalid paths land on the app's in-app 404 ("Page Not Found"); tests 24/24
+
+## Mobile Responsiveness & Layout Scaling Audit (user-requested)
+- [x] Audited key pages (Home, Portfolio, Portfolio detail, Services, Pricing, Contact) on 375px and 768px viewports; found oversized screenshot frames on mobile (h-90 cards, 32rem detail hero) and below-fold blank navy frames from native lazy loading
+- [x] Fixed: portfolio card frames now h-[min(50vh,15rem)], detail hero h-[min(55vh,32rem)], and ScrollableScreenshot uses an IntersectionObserver preloader (rootMargin 1500px) to force eager fetch before frames reach the viewport
+- [x] Verified via 375px full-page screenshots (nearly all captures render; home/pricing/portfolio stack correctly), tests 24/24, checkpoint saved and auto-published
