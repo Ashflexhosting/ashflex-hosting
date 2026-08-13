@@ -216,11 +216,6 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
-              <div className="scroll-reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/15 text-white/75 text-sm mb-8 backdrop-blur-sm">
-                <Sparkles size={15} className="text-brand-cyan" />
-                <span>Nigeria's Leading Web Design Agency</span>
-              </div>
-
               <h1
                 className="scroll-reveal text-[1.9rem] sm:text-5xl md:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
                 style={{ fontFamily: "var(--font-heading)" }}
