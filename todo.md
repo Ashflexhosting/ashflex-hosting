@@ -513,9 +513,13 @@
 - [x] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay (multiply blend over navy #0F172A with a layered navy gradient overlay) so content stays readable
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
-## Hero Extra Top Padding Removed (user-requested)
-- [ ] Remove the extra hero top padding entirely, restoring the original values (mobile 128px, desktop 280px)
+## Our Process Overlay Slightly Transparent (user-requested)
+- [ ] Reduce the navy gradient overlay opacity on the "Our Process" section so the skyscraper background image is slightly visible while keeping text readable
 - [ ] Verify rendering on the home page, checkpoint and publish (auto-publish)
+
+## Hero Extra Top Padding Removed (user-requested)
+- [x] Removed the extra hero top padding entirely, restoring original pt-32 (128px mobile) / md:pt-44 (280px desktop); unused hero-top-padding CSS deleted
+- [x] Verified rendering on the home page, tests 24/24, checkpoint saved and auto-published
 
 ## Hero Top Padding Adjusted to +20px (user-requested)
 - [x] Changed the extra hero top padding from 80px to 20px: responsive hero-top-padding class (mobile calc(128px+20px), desktop calc(280px+20px))

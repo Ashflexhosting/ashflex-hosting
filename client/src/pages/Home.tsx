@@ -471,7 +471,7 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(180deg, oklch(0.24 0.09 262 / 0.92) 0%, oklch(0.24 0.09 262 / 0.86) 50%, oklch(0.24 0.09 262 / 0.95) 100%)",
+            background: "linear-gradient(180deg, oklch(0.24 0.09 262 / 0.78) 0%, oklch(0.24 0.09 262 / 0.72) 50%, oklch(0.24 0.09 262 / 0.82) 100%)",
           }}
           aria-hidden="true"
         />
