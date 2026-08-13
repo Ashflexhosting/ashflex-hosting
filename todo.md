@@ -549,3 +549,8 @@
 - [x] Audited key pages (Home, Portfolio, Portfolio detail, Services, Pricing, Contact) on 375px and 768px viewports; found oversized screenshot frames on mobile (h-90 cards, 32rem detail hero) and below-fold blank navy frames from native lazy loading
 - [x] Fixed: portfolio card frames now h-[min(50vh,15rem)], detail hero h-[min(55vh,32rem)], and ScrollableScreenshot uses an IntersectionObserver preloader (rootMargin 1500px) to force eager fetch before frames reach the viewport
 - [x] Verified via 375px full-page screenshots (nearly all captures render; home/pricing/portfolio stack correctly), tests 24/24, checkpoint saved and auto-published
+
+## Missing Portfolio Screenshots (user-reported, after mobile audit)
+- [x] Identified 3 broken PNG screenshots returning 403 on the live site: Barmest, Eight Radiance, Sam & Sara
+- [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
+- [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
