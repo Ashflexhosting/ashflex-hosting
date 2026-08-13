@@ -555,10 +555,16 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
+## iMac Frame Enhancements (user-requested)
+- [ ] Subtle reflection/glare effect on the iMac screen for realism
+- [ ] Responsive switch: iMac frame on desktop, mobile phone mockup on smaller screens (below md breakpoint)
+- [ ] Manual scroll controls: visible scrollbar on the frame plus up/down navigation arrows that scroll at controlled speed
+- [ ] Verify on desktop and 375px viewports, tests 24/24, checkpoint and publish (auto-publish)
+
 ## iMac Frame v4 — Match Reference Exactly (user-requested)
-- [ ] Redesign the frame to match the reference: wide flat dark bezel on all sides, tall silver chin integrated into the body (not a separate lip), Apple-style logo on chin, neck stand below, thin horizontal base slab
-- [ ] Keep content scrollable (hover auto-scroll + "Scroll to view" hint) and responsive
-- [ ] Verify rendering on detail pages, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Redesigned the frame to match the reference: tall dark body with thick flat bezel and camera dot, seamless integrated silver chin (full width, rounded bottom) with centered Apple-style logo, tapered dark neck, thin horizontal base slab
+- [x] Content remains scrollable — hover auto-scroll and "Scroll to view" hint preserved; responsive
+- [x] Verified on /portfolio/7 full-page, tests 24/24, checkpoint saved and auto-published
 
 ## iMac Frame on Portfolio Detail Screenshots (user-requested, v3)
 - [x] Rebuilt the frame as an iMac-style mockup: slim dark display surround with camera dot, silver aluminum chin (wider than display) with centered logo accent, tapered stand neck, rounded silver base

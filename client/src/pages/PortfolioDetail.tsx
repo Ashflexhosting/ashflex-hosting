@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
 import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
@@ -13,6 +13,7 @@ export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
   const sectionRef = useScrollReveal();
   const project = portfolioItems.find((p) => p.id === Number(id));
+  const heroScrollerRef = useRef<HTMLDivElement | null>(null);
   const gallery = project?.screenshots?.length ? project.screenshots : [];
   const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -59,12 +60,13 @@ export default function PortfolioDetail() {
           {/* Hero screenshot + Project Info side by side, like the case study layout */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12 items-start">
             <div className="lg:col-span-2 scroll-reveal">
-              <LaptopFrame>
+              <LaptopFrame scrollerRef={heroScrollerRef}>
                 <ScrollableScreenshot
                   src={project.image}
                   alt={`Scroll through the ${project.title} website capture`}
                   height="h-[min(55vh,32rem)]"
                   rounded={false}
+                  scrollerRef={heroScrollerRef}
                 />
               </LaptopFrame>
             </div>

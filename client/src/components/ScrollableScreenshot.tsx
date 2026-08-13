@@ -36,6 +36,11 @@ interface ScrollableScreenshotProps {
    * flips from true to false the frame resets to the top.
    */
   active?: boolean;
+  /**
+   * Optional ref that is forwarded to the inner scrollable div so an external
+   * controller (e.g. the device frame's navigation arrows) can drive it.
+   */
+  scrollerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function ScrollableScreenshot({
@@ -45,8 +50,17 @@ export default function ScrollableScreenshot({
   className = "",
   rounded = true,
   active = false,
+  scrollerRef: externalRef,
 }: ScrollableScreenshotProps) {
-  const scrollerRef = useRef<HTMLDivElement>(null);
+  const internalRef = useRef<HTMLDivElement>(null);
+  // Merge internal ref with an optional forwarded ref so both can drive the scroller
+  const mergeRef = (el: HTMLDivElement | null) => {
+    (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+    if (externalRef) {
+      (externalRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+    }
+  };
+  const scrollerRef = internalRef;
   const [scrolled, setScrolled] = useState(false);
 
   // Below-fold full-page captures use native lazy loading by default, but
@@ -159,7 +173,7 @@ export default function ScrollableScreenshot({
       >
         {/* Scrollable tall image — visitors scroll to view the full capture */}
         <div
-          ref={scrollerRef}
+          ref={mergeRef}
           onScroll={() => {
             const el = scrollerRef.current;
             if (el && el.scrollTop > 2 && !scrolled) setScrolled(true);
