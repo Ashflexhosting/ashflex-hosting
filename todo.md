@@ -555,7 +555,12 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
-## Laptop Frame on Portfolio Detail Screenshots (user-requested)
-- [ ] Wrap the portfolio detail hero screenshot in a laptop (MacBook-style) frame: screen bezel, rounded corners, notch/camera, base lip
-- [ ] Keep the frame scrollable (auto-scroll on hover still works), responsive on mobile, and consistent in the lightbox
+## Reference-Style MacBook Laptop Frame (user-requested, v2)
+- [ ] Rebuild LaptopFrame to match the reference mockup: silver laptop base/keyboard deck spanning full width, slim dark bezel around the screen, screen at ~16:9-ish ratio inside the deck, hinge lip detail
+- [ ] Keep content scrollable (hover auto-scroll + "Scroll to view" hint) and responsive
 - [ ] Verify rendering on detail pages, tests 24/24, checkpoint and publish (auto-publish)
+
+## Laptop Frame on Portfolio Detail Screenshots (user-requested)
+- [x] Created reusable LaptopFrame component: dark bezel with camera dot, rounded screen corners, tapered base lip; hero screenshot wrapped on all 12 portfolio detail pages (removed the old gradient ring)
+- [x] Frame is fully scrollable — hover auto-scroll and "Scroll to view" hint work inside; responsive via viewport-height screen
+- [x] Verified on /portfolio/1 and /portfolio/4, tests 24/24, checkpoint saved and auto-published
