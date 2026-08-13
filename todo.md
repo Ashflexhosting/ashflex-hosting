@@ -476,6 +476,10 @@
 - [x] Verify rendering on the home page (full-page screenshot), run tests (24/24), checkpoint and publish (auto-publish)
 
 ## Our Work Peek Fix (user-reported: 50% larger + scroll-on-hover not working)
-- [ ] Diagnose why the peek/scroll-on-hover doesn't work on the live home page (pointer-events-none blocking? lg:hidden breakpoint? mounted condition?)
-- [ ] Fix the peek so hovering a row reveals the large scrollable full-page capture
-- [ ] Verify on the live site, run tests (24/24), checkpoint and publish (auto-publish)
+- [x] Diagnosed: previous edit (w-84/h-60 + ScrollableScreenshot) had failed to apply to disk; re-applied the peek markup
+- [x] Fix verified: hovering a row reveals the enlarged (w-84 h-60) scrollable capture with auto-scroll from the top header; works on lg+ screens
+- [x] Tests passing (24/24), checkpoint fd420644 saved and auto-published
+
+## Our Work Peek Auto-Scroll Direction (user-requested)
+- [ ] Make hover auto-scroll a single smooth pass: top → bottom, then hold at the bottom (no looping jump)
+- [ ] Verify on hover in browser, run tests (24/24), checkpoint and publish (auto-publish)

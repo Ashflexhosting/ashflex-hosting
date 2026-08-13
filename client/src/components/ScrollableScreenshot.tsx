@@ -58,12 +58,12 @@ export default function ScrollableScreenshot({
       if (now < pauseUntilRef.current) return;
       const dt = Math.min(now - last, 50) / 1000;
       last = now;
-      el.scrollTop += HOVER_SCROLL_SPEED * dt;
-      // Loop back to the top when the capture bottom is reached
-      if (el.scrollTop >= el.scrollHeight - el.clientHeight) {
-        el.scrollTop = 0;
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      el.scrollTop = Math.min(el.scrollTop + HOVER_SCROLL_SPEED * dt, maxScroll);
+      // Single smooth top-to-bottom pass: hold at the bottom instead of looping
+      if (el.scrollTop < maxScroll) {
+        rafRef.current = requestAnimationFrame(tick);
       }
-      rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
   };
