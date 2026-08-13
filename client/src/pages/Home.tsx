@@ -457,14 +457,31 @@ export default function Home() {
       </section>
 
       {/* ============ PROCESS — numbered timeline ============ */}
-      <section className="py-28 relative">
-        <div className="container">
+      <section
+        className="py-28 relative"
+        style={{
+          backgroundImage: "url(/manus-storage/process-bg_22383687.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundBlendMode: "multiply",
+          backgroundColor: "#0F172A",
+        }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(180deg, oklch(0.24 0.09 262 / 0.92) 0%, oklch(0.24 0.09 262 / 0.86) 50%, oklch(0.24 0.09 262 / 0.95) 100%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="container relative">
           <div className="text-center mb-16">
-            <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Our Process</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-              How we <span className="text-gradient">work</span>
+            <p className="text-sky-400 font-semibold text-sm uppercase tracking-wider mb-3">Our Process</p>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white" style={{ fontFamily: "var(--font-heading)" }}>
+              How we <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-white bg-clip-text text-transparent">work</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
               Our proven 7-step process ensures every project is delivered on time, on budget, and beyond expectations.
             </p>
           </div>

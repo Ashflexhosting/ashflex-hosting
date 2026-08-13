@@ -507,3 +507,12 @@
 - [x] Reverted kingwesl, eightradiance, samsara, barmest, neboc, galcon-home/about/services URLs in portfolio.ts to the original captures (jpg/png originals from user uploads; sed-swap of all 48 refs)
 - [x] Reverted galcon HD URL in CaseStudies.tsx to the original galcon-home_06339665.webp
 - [x] Verified rendering on /portfolio, /portfolio/2, /portfolio/12; tests passing (24/24), checkpoint saved and auto-published
+
+## Our Process Section Background (user-requested)
+- [x] Upload the user's skyscraper image (service-simple.webp, 1920x672) to project storage
+- [ ] Apply it as the background of the "Our Process" section on the home page with appropriate blend/overlay so content stays readable
+- [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
+
+## Our Process Section Light Header Text (user-requested)
+- [x] Change the "Our Process" section heading and sub-heading to light colors: eyebrow in sky-400, h2 white with a blue-300/cyan-300/white gradient accent on "work", subheading white/70
+- [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
