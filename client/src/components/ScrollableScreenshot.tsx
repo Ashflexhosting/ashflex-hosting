@@ -30,6 +30,12 @@ interface ScrollableScreenshotProps {
   height?: string;
   className?: string;
   rounded?: boolean;
+  /**
+   * Parent-controlled hover state (used by the Our Work peek, where the hover
+   * region lives outside the frame). When true, auto-scroll runs; when it
+   * flips from true to false the frame resets to the top.
+   */
+  active?: boolean;
 }
 
 export default function ScrollableScreenshot({
@@ -38,6 +44,7 @@ export default function ScrollableScreenshot({
   height = "h-64",
   className = "",
   rounded = true,
+  active = false,
 }: ScrollableScreenshotProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -90,6 +97,24 @@ export default function ScrollableScreenshot({
     const el = scrollerRef.current;
     if (el) el.scrollTop = 0; // reset to the top once the card is no longer hovered
   };
+
+  // Parent-controlled hover (Our Work peek): keep the auto-scroll in sync
+  // with the parent's hover region so the frame never disappears mid-scroll.
+  const prevActive = useRef<boolean | undefined>(undefined);
+  if (prevActive.current === undefined) {
+    prevActive.current = active;
+  } else if (prevActive.current !== active) {
+    prevActive.current = active;
+    if (active) {
+      hoveredRef.current = true;
+      startScroll();
+    } else {
+      hoveredRef.current = false;
+      stopScroll();
+      const el = scrollerRef.current;
+      if (el) el.scrollTop = 0;
+    }
+  }
 
   return (
     <div

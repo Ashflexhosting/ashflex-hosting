@@ -552,12 +552,15 @@ export default function Home() {
           {/* list rows */}
           <div className="relative">
             {filteredPortfolio.map((item, i) => (
-              <Link
+              <div
                 key={item.id}
-                href={`/portfolio/${item.id}`}
-                className="group relative flex items-center gap-6 md:gap-10 py-6 px-4 md:px-6 -mx-4 md:-mx-6 rounded-2xl border-b border-border/60 hover:bg-gradient-to-br hover:from-white hover:to-brand-secondary/5 hover:border-brand-secondary/30 hover:shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-0.5 transition-all duration-300 ease-out will-change-transform"
+                className="relative group"
                 onMouseEnter={() => setHoveredPortfolio(item.id)}
                 onMouseLeave={() => setHoveredPortfolio(null)}
+              >
+              <Link
+                href={`/portfolio/${item.id}`}
+                className="group relative flex items-center gap-6 md:gap-10 py-6 px-4 md:px-6 -mx-4 md:-mx-6 rounded-2xl border-b border-border/60 hover:bg-gradient-to-br hover:from-white hover:to-brand-secondary/5 hover:border-brand-secondary/30 hover:shadow-lg hover:shadow-brand-secondary/10 hover:-translate-y-0.5 transition-all duration-300 ease-out will-change-transform"
               >
                 <span className="hidden md:flex shrink-0 w-12 text-lg font-extrabold text-muted-foreground/40 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-primary group-hover:scale-110 transition-all duration-300 ease-out origin-bottom-left" style={{ fontFamily: "var(--font-heading)" }}>
                   {String(i + 1).padStart(2, "0")}
@@ -572,27 +575,24 @@ export default function Home() {
                 <span className="hidden sm:flex shrink-0 w-10 h-10 rounded-full border border-border group-hover:bg-gradient-primary group-hover:border-transparent group-hover:text-white group-hover:scale-110 group-hover:rotate-45 text-muted-foreground items-center justify-center transition-all duration-300 ease-out">
                   <ArrowUpRight size={18} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
                 </span>
-                {/* hover image peek — 50% larger, vertical scroll-through on hover, starting from the top header */}
+                {/* hover image peek — 50% larger, vertical scroll-through on hover, starting from the top header.
+                    The peek is pointer-events-auto and part of the hover region, so moving the cursor onto it
+                    (e.g., the "Scroll to view" hint) keeps the frame visible and the auto-scroll running. */}
                 <div
-                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-84 transition-all duration-300 ease-out pointer-events-none ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-4 scale-95"}`}
-                  style={{ zIndex: hoveredPortfolio === item.id ? 30 : 0 }}
+                  className={`hidden lg:block absolute right-24 top-1/2 -translate-y-1/2 w-84 pointer-events-auto transition-all duration-300 ease-out ${hoveredPortfolio === item.id ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-4 scale-95 pointer-events-none"}`}
+                  style={{ zIndex: hoveredPortfolio === item.id ? 30 : 0, visibility: hoveredPortfolio === item.id ? "visible" : "hidden" }}
                   aria-hidden="true"
                 >
-                  {hoveredPortfolio === item.id ? (
-                    <ScrollableScreenshot
-                      key={item.id}
-                      src={item.image}
-                      alt={`${item.title} full-page screenshot`}
-                      height="h-60"
-                      className="rounded-2xl border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25"
-                    />
-                  ) : (
-                    <div className="h-60 rounded-2xl overflow-hidden border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25 bg-brand">
-                      <img src={item.image} alt="" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                  )}
+                  <ScrollableScreenshot
+                    src={item.image}
+                    alt={`${item.title} full-page screenshot`}
+                    height="h-60"
+                    className="rounded-2xl border border-brand-secondary/30 shadow-2xl shadow-brand-secondary/25"
+                    active={hoveredPortfolio === item.id}
+                  />
                 </div>
               </Link>
+              </div>
             ))}
           </div>
 
