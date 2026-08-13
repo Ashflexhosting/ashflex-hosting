@@ -555,9 +555,13 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
+## Desktop Frame Height Revert Only (user-requested)
+- [ ] Keep the taller mobile frame (h-[min(75vh,42rem)]) but restore desktop to h-[min(55vh,32rem)] via the responsive "md:h-[55vh/32rem] h-[75vh/42rem]" form
+- [ ] Verify on desktop and 375px, tests 24/24, checkpoint and publish (auto-publish)
+
 ## Frame Height Increase Reversed (user-requested)
-- [ ] Restore the hero frame to its pre-increase height (h-[min(55vh,32rem)]) on both desktop and mobile, removing the responsive md: form
-- [ ] Verify rendering, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Restored the hero frame to its pre-increase height h-[min(55vh,32rem)] on all screen sizes, removing the responsive md: form
+- [x] Verified rendering, tests 24/24, checkpoint saved and auto-published
 
 ## Phone Mockup Height Increase (user-requested)
 - [x] Increased phone mockup height on mobile: h-[min(75vh,42rem)] below md vs md:h-[min(72vh,40rem)] on desktop; ScrollableScreenshot supports the responsive "md:h-[..] h-[..]" form via a matchMedia listener
