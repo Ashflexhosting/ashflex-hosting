@@ -232,7 +232,7 @@ export const servicePricingImages: Record<string, string> = {
   "google-ads": "/manus-storage/svc-google-ads_bf23551c.png",
   "social-media-marketing": "/manus-storage/svc-social-media_fbca7407.png",
   "content-writing": "/manus-storage/svc-content-writing_f94cd845.png",
-  "website-maintenance": "/manus-storage/svc-maintenance_eddbf5d9.png",
+  "website-maintenance": "/manus-storage/svc-maintenance-v2_cac95f0a.webp",
   "speed-optimization": "/manus-storage/svc-speed_a16e6691.png",
   "hosting-domain": "/manus-storage/svc-hosting_94f7a063.png",
   "api-integration": "/manus-storage/svc-api_24618d05.png",
