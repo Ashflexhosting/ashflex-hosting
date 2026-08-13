@@ -555,9 +555,19 @@
 - [x] Re-uploaded the HD WebP captures with fresh storage keys (all 200) and swapped the URLs in portfolio.ts; no stale references remain
 - [x] Verified all 12 cards render on desktop, tests 24/24, checkpoint saved and auto-published
 
+## iMac Frame v5 — Match desktopframe.jpg Reference Exactly (user-requested)
+- [ ] Rebuild the desktop frame to match the reference: wide ~16:9 white screen, thick rounded dark bezel (camera dot top-center), silver aluminum chin spanning full width with Apple logo, slim silver stand neck and curved base
+- [ ] Keep content scrollable (hover auto-scroll + "Scroll to view" hint), arrows, glare, and responsive phone switch
+- [ ] Verify rendering on desktop and mobile, tests 24/24, checkpoint and publish (auto-publish)
+
+## iMac Frame Problem Fix (user-reported)
+- [ ] Identify the rendering problem with the iMac frame on portfolio detail pages
+- [ ] Fix the issue and verify rendering on desktop and mobile
+- [ ] Tests 24/24, checkpoint and publish (auto-publish)
+
 ## Desktop Frame Height Revert Only (user-requested)
-- [ ] Keep the taller mobile frame (h-[min(75vh,42rem)]) but restore desktop to h-[min(55vh,32rem)] via the responsive "md:h-[55vh/32rem] h-[75vh/42rem]" form
-- [ ] Verify on desktop and 375px, tests 24/24, checkpoint and publish (auto-publish)
+- [x] Kept the taller mobile frame h-[min(75vh,42rem)] while restoring desktop to h-[min(55vh,32rem)] via the responsive "md:h-[min(55vh,32rem)] h-[min(75vh,42rem)]" form
+- [x] Verified on desktop (iMac frame renders capture correctly) and mobile, tests 24/24, checkpoint saved and auto-published
 
 ## Frame Height Increase Reversed (user-requested)
 - [x] Restored the hero frame to its pre-increase height h-[min(55vh,32rem)] on all screen sizes, removing the responsive md: form

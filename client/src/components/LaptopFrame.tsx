@@ -121,34 +121,46 @@ function ScrollArrows({ scrollerRef }: { scrollerRef: React.RefObject<HTMLDivEle
 }
 
 /**
- * iMac-style all-in-one desktop frame: tall dark body with thick flat bezel,
- * integrated silver chin with Apple logo, tapered neck, thin base.
+ * iMac-style all-in-one desktop frame matching the user's reference
+ * (desktopframe.jpg): wide ~16:9 screen inside a thick rounded dark bezel
+ * with a camera dot, a silver aluminum chin spanning the full width with
+ * the Apple logo, and a slim silver stand with a curved base.
  * A diagonal sheen overlay gives the glass a realistic glare.
  */
 function ImacFrame({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`w-full ${className ?? ""}`}>
-      {/* Display body */}
-      <div className="relative w-full bg-[#161618] p-[3.5%] pb-0 rounded-[0.35rem] shadow-[0_3px_12px_rgba(0,0,0,0.35)]">
-        <div className="absolute top-[1.6%] left-1/2 -translate-x-1/2 w-[0.5rem] h-[0.5rem] rounded-full bg-[#3a3a3e] ring-1 ring-black/40 z-10" />
-        <div className="relative w-full overflow-hidden rounded-[0.1rem] bg-brand">{children}</div>
+      {/* Display body: thick rounded black bezel */}
+      <div
+        className="relative w-full rounded-[1.1rem] shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+        style={{
+          background: "linear-gradient(180deg, #2e2e32 0%, #111113 40%, #0a0a0c 100%)",
+          padding: "5.5% 4% 0",
+        }}
+      >
+        {/* Camera dot on the top bezel */}
+        <div className="absolute top-[4%] left-1/2 -translate-x-1/2 w-[0.45rem] h-[0.45rem] rounded-full bg-[#0f0f10] ring-1 ring-black/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] z-10" />
+        {/* Screen: white face with rounded corners */}
+        <div className="relative w-full overflow-hidden rounded-[0.35rem] bg-white">{children}</div>
       </div>
-      {/* Integrated silver chin */}
-      <div className="relative w-full h-[1.9rem] bg-gradient-to-b from-[#d8d8db] via-[#c6c6cb] to-[#b0b0b6] -mt-px">
-        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+      {/* Silver chin spanning the full width, with the Apple logo */}
+      <div className="relative w-full h-[2.6rem] rounded-b-[0.9rem] bg-gradient-to-b from-[#e8e8eb] via-[#cfcfd3] to-[#b7b7bd] shadow-[inset_0_1px_0_rgba(255,255,255,0.85),inset_0_-3px_6px_rgba(0,0,0,0.12)] -mt-[0.3rem] pt-[0.2rem] z-[2]">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-[0.55rem]">
           <AppleLogo />
         </div>
       </div>
-      {/* Stand neck */}
-      <div className="relative mx-auto w-[30%]">
+      {/* Slim silver stand neck */}
+      <div className="relative mx-auto w-[34%] -mt-[0.15rem]">
         <div
-          className="h-[10px] bg-gradient-to-b from-[#4a4a4e] via-[#3c3c40] to-[#303034]"
-          style={{ clipPath: "polygon(18% 0, 82% 0, 100% 100%, 0 100%)" }}
+          className="h-[14px] bg-gradient-to-b from-[#c8c8cc] via-[#b4b4ba] to-[#a2a2a8] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-2px_3px_rgba(0,0,0,0.15)]"
+          style={{ clipPath: "polygon(24% 0, 76% 0, 100% 100%, 0 100%)" }}
         />
       </div>
-      {/* Base slab */}
-      <div className="mx-auto w-[52%]">
-        <div className="h-[6px] rounded-[4px] bg-gradient-to-b from-[#c0c0c5] to-[#9e9ea4] shadow-[0_2px_5px_rgba(0,0,0,0.25)]" />
+      {/* Curved silver base */}
+      <div className="mx-auto w-[62%] -mt-[0.1rem]">
+        <div
+          className="h-[10px] rounded-[999px] bg-gradient-to-b from-[#d4d4d8] via-[#bfbfc4] to-[#a5a5ab] shadow-[0_3px_8px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.8)]"
+        />
       </div>
     </div>
   );
