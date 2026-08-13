@@ -518,5 +518,8 @@
 - [x] Verify rendering on the home page, run tests (24/24), checkpoint and publish (auto-publish)
 
 ## GitHub Pages Mirror Custom 404 Redirect (user-requested)
-- [ ] Create a branded 404.html for the mirror that redirects direct deep-link requests back to the mirror base so the SPA can route the original path
-- [ ] Push it to Ashflexhosting/ashflex-hosting and verify live 404 handling on the mirror
+- [x] Created branded 404.html (navy brand palette, "Ashflex Web Design" logo block, 404 gradient headline) that window.location.replace-redirects deep links into the SPA with ?r=<path>; fallback buttons + shown requested path
+- [x] Added app-side RestoreRedirectedPath in client/src/App.tsx (reads ?r=, navigates to /<path> via wouter, cleans the query string)
+- [x] Updated .github/workflows/pages.yml build step to cp 404.html into dist/public instead of a generic index.html copy
+- [x] Pushed commit 6bee14f to Ashflexhosting/ashflex-hosting; Actions both green; gh-pages deploy d4a6d77 ("Deploy site: 6bee14f") live
+- [x] Verified live: former 404 deep links (e.g. /services/website-design) now render the real page; invalid paths land on the app's in-app 404 ("Page Not Found"); tests 24/24
