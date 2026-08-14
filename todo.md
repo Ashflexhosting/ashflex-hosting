@@ -735,3 +735,9 @@
 ## Homepage Hero Fade-In on Load (user-requested)
 - [x] Added hero-fade-in CSS keyframes (800ms opacity+translateY with staggered delay variants d1-d5, prefers-reduced-motion guard) and applied them: h1 fades in on load, subline 120ms, CTAs 240ms, stats 360ms, iMac 480ms (then loops float-slow from 1.2s), Live Demo button 600ms; replaced scroll-reveal classes on hero elements so the entrance is not blocked by the intersection observer
 - [x] Verified desktop screenshot of hero renders fully; tests pass; checkpoint and publish
+
+## Remove API Integration Service (user-requested)
+- [x] Removed the API Integration entry from the services catalog (client/src/data/services.ts) including its image mapping, and removed its slug from the Infrastructure & AI category in Services.tsx
+- [x] Removed from navbar services dropdown (desktop + mobile); /services/api-integration now falls through to the existing "Service Not Found" page with a Back to Services link (route kept generic via params)
+- [x] Updated homepage "Explore all 16 services" → "Explore all 15 services"; pricing/case study/cost calculator mentions of "API integrations" retained as feature line items of delivered projects, not offered services (server map.ts comment untouched)
+- [x] Verified Services page renders the 15-service catalog in 4 groups and removed-slug page shows Service Not Found; 29/29 tests pass; checkpoint and publish

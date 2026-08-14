@@ -117,15 +117,6 @@ export const services = [
     price: "From ₦30,000/yr",
   },
   {
-    id: "api-integration",
-    slug: "api-integration",
-    title: "API Integration",
-    description: "Seamless integrations connecting your systems, tools, and platforms.",
-    icon: "Plug",
-    features: ["REST APIs", "Payment APIs", "Third-Party Integrations", "Custom Connectors"],
-    price: "From ₦80,000",
-  },
-  {
     id: "ai-automation",
     slug: "ai-automation",
     title: "AI Automation",
@@ -235,7 +226,7 @@ export const servicePricingImages: Record<string, string> = {
   "website-maintenance": "/manus-storage/svc-maintenance-v2_cac95f0a.webp",
   "speed-optimization": "/manus-storage/svc-speed_a16e6691.png",
   "hosting-domain": "/manus-storage/svc-hosting_94f7a063.png",
-  "api-integration": "/manus-storage/svc-api_24618d05.png",
+
   "ai-automation": "/manus-storage/svc-ai-automation_36c51dfd.png",
   "custom-business-systems": "/manus-storage/svc-business-systems_80a7790f.png",
 };

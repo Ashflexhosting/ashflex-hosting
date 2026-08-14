@@ -34,7 +34,6 @@ const servicesDropdown = [
   { label: "Maintenance", href: "/services/website-maintenance" },
   { label: "Speed Optimization", href: "/services/speed-optimization" },
   { label: "Hosting & Domain", href: "/services/hosting-domain" },
-  { label: "API Integration", href: "/services/api-integration" },
   { label: "AI Automation", href: "/services/ai-automation" },
   { label: "Custom Systems", href: "/services/custom-business-systems" },
 ];

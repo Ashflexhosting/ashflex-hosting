@@ -572,7 +572,7 @@ export default function Home() {
             </div>
             <Link href="/services">
               <span className="group inline-flex items-center gap-2 text-brand-secondary font-semibold hover:gap-3.5 transition-all">
-                Explore all 16 services
+                Explore all 15 services
                 <ArrowUpRight size={20} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </Link>

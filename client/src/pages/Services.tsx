@@ -111,7 +111,7 @@ const serviceGroups: ServiceGroup[] = [
     id: "infrastructure",
     label: "Infrastructure & AI",
     kicker: "Power & Automate",
-    slugIds: ["website-maintenance", "speed-optimization", "hosting-domain", "api-integration", "ai-automation"],
+    slugIds: ["website-maintenance", "speed-optimization", "hosting-domain", "ai-automation"],
     accent: "text-brand-cyan",
   },
 ];
