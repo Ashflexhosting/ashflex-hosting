@@ -15,14 +15,12 @@ import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
 
 const TRUSTED_BRANDS = [
-  { name: "Shutterspeed", monogram: "S", accent: "text-blue-600", border: "border-blue-400/50" },
-  { name: "Kingwesl", monogram: "K", accent: "text-amber-600", border: "border-amber-400/50" },
-  { name: "Afnaf Auto Sales", monogram: "A", accent: "text-emerald-600", border: "border-emerald-400/50" },
-  { name: "Marvel Tex", monogram: "M", accent: "text-rose-600", border: "border-rose-400/50" },
-  { name: "Galcon Eng.", monogram: "G", accent: "text-cyan-600", border: "border-cyan-400/50" },
-  { name: "Neboc Hotel", monogram: "N", accent: "text-violet-600", border: "border-violet-400/50" },
-  { name: "Aerolead", monogram: "A", accent: "text-sky-600", border: "border-sky-400/50" },
-  { name: "Barmest", monogram: "B", accent: "text-orange-600", border: "border-orange-400/50" },
+  { name: "Gyro Air", logo: "/manus-storage/gyroairltd_c8ff1651.webp" },
+  { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_797c38d3.webp" },
+  { name: "Karossy Travels", logo: "/manus-storage/karossytravels_2536252b.webp" },
+  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_3a76bf25.webp" },
+  { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_eb283657.webp" },
+  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeedprojects_c5e4d659.webp" },
 ];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -558,18 +556,14 @@ export default function Home() {
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
             <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-6 md:px-9 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
-              <span
-                className={`inline-flex h-8 w-8 md:h-9 md:w-9 items-center justify-center rounded-lg border ${brand.border} bg-white/70 text-sm md:text-base font-extrabold tracking-tight ${brand.accent} transition-transform duration-300 hover:-translate-y-0.5`}
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {brand.monogram}
-              </span>
-              <span
-                className="ml-2.5 text-sm md:text-base font-bold tracking-wide text-foreground/50 transition-colors duration-300"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                {brand.name}
-              </span>
+              <div className="inline-flex h-14 md:h-16 items-center justify-center overflow-visible rounded-xl px-4 py-2 transition-transform duration-300 hover:-translate-y-0.5">
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  loading="lazy"
+                  className="h-12 md:h-14 w-auto max-w-[180px] md:max-w-[210px] object-contain drop-shadow-sm transition-transform duration-500 hover:scale-105"
+                />
+              </div>
             </div>
           ))}
         </div>
