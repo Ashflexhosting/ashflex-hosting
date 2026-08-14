@@ -841,3 +841,7 @@
 
 ## Services page Design & Experience background (user-requested)
 - [x] Set the user-provided designer.webp as the background of the 4th highlight card in the Design & Experience section on the Services page with a transparent overlay — photo renders as bg-cover bg-center with a low-opacity navy gradient (0.55→0.18→0.30) so the image stays clearly visible and text readable; other cards unchanged; verified via full-page screenshot of /services
+
+## Design & Experience cards refinement (user-requested)
+- [x] Adjust the 4th card overlay — dark navy gradient (0.82→0.60→0.78) for clear text, backgroundPosition 55% 15% to center the designer's face, plus subtle zoom-in (scale-110, 700ms ease-out) on the background at card hover
+- [x] Add a matching high-quality background to the other highlight card (development row, 4th position) — brand-designer-workspace image (Cosmonavt brand identity process photo) with the same dark overlay and hover zoom; Website Design / UI-UX / Branding service cards themselves remain photo-free so the card text doesn't clash with their icon tiles

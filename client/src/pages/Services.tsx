@@ -177,7 +177,7 @@ const groupHighlights: Record<string, { kicker: string; title: string; message: 
     bg: "linear-gradient(135deg, #0757F7, #F20549)",
     orbA: "rgba(255,255,255,0.18)",
     orbB: "#33C9D4",
-  },
+  }, // design highlight now uses designer photo bg via highlightBgs
   development: {
     kicker: "Our Standard",
     title: "Code that ships fast and scales further.",
@@ -207,9 +207,23 @@ const groupHighlights: Record<string, { kicker: string; title: string; message: 
   },
 };
 
+/* Background photos per highlight card in the Design & Experience section —
+   matching high-quality images with a dark transparent overlay for clear text. */
+const highlightBgs: Record<string, { url: string; pos: string }> = {
+  design: {
+    url: "/manus-storage/designer_3d478783.webp",
+    pos: "55% 15%", // designer's face sits in the upper-right area; keeps it centered-ish in the tall card
+  },
+  development: {
+    url: "/manus-storage/brand-designer-workspace_b1b6c2f2.jpg",
+    pos: "center center",
+  },
+};
+
 function HighlightCard({ groupId }: { groupId: string }) {
   const h = groupHighlights[groupId] ?? groupHighlights.design;
-  const isDesign = groupId === "design";
+  const bg = highlightBgs[groupId];
+  const isPhotoCard = groupId === "design" || groupId === "development";
   return (
     <WLink href="/contact">
       <div
@@ -217,24 +231,28 @@ function HighlightCard({ groupId }: { groupId: string }) {
         style={{ transitionDelay: "180ms" }}
         aria-label={`${h.kicker}: ${h.title}`}
       >
-        {/* Designer photo background for the Design & Experience highlight card, with a transparent overlay */}
-        {isDesign ? (
+        {/* Photo background with subtle zoom-in on hover, or layered brand gradient */}
+        {bg ? (
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/manus-storage/designer_3d478783.webp')" }}
+            className="absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform"
+            style={{ backgroundImage: `url('${bg.url}')`, backgroundPosition: bg.pos }}
             aria-hidden="true"
           />
         ) : (
           <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
         )}
-        {/* Overlay — kept highly transparent on the design card so the photo stays clearly visible */}
-        {isDesign ? (
-          <div className="absolute inset-0 bg-navy/20" style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.55) 0%, rgba(7, 27, 90, 0.18) 45%, rgba(7, 27, 90, 0.30) 100%)" }} aria-hidden="true" />
+        {/* Dark overlay — keeps the photo visible while text stays clearly readable */}
+        {bg ? (
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.82) 0%, rgba(10, 18, 64, 0.60) 55%, rgba(15, 27, 91, 0.78) 100%)" }}
+            aria-hidden="true"
+          />
         ) : (
           <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
         )}
         {/* Noise texture only on non-photo cards */}
-        {!isDesign && <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />}
+        {!isPhotoCard && <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />}
         <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
         <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
         {/* hover glow halo that brightens on hover */}
