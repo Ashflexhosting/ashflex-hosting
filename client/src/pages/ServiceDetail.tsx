@@ -113,11 +113,11 @@ const PROCESS_STEPS = [
             <div className="lg:col-span-1">
               <div className="glass-card border-0 p-6 sticky top-24">
                 {servicePricingImages[service.slug] && (
-                  <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl">
+                  <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl group">
                     <img
                       src={servicePricingImages[service.slug]}
                       alt={`${service.title} illustration`}
-                      className="w-full h-44 object-cover"
+                      className="w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />

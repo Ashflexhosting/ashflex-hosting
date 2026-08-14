@@ -861,3 +861,7 @@
 
 ## E-commerce page image swap (user-requested)
 - [x] Replace the image above the pricing card on the E-commerce Development service page with the user-provided friends-shopping-shoes-online-5PAKNV1.webp (uploaded to /manus-storage/friends-shopping-shoes-online-5PAKNV1_df16bf19.webp); verified on /services/ecommerce-development
+
+## Pricing card image consistency (user-requested)
+- [x] Add a subtle zoom-in hover effect to the pricing card images — ServiceDetail.tsx wrapper now uses group-hover:scale-110 (700ms ease-out), applying uniformly to all service pricing images including the new e-commerce photo
+- [x] Audited pricing card images on all 15 service pages — dark-tech illustration style consistent across 13 pages; fixed the broken AI Automation image by regenerating a matching dark-navy neural-network illustration (replaced failed svc-ai-automation_36c51dfd.png with svc-ai-automation_v2); website-maintenance uses the user-provided bright illustration and e-commerce the user-provided photo (intentional overrides); zoom hover uniform sitewide

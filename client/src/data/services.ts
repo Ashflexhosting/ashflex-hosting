@@ -227,7 +227,7 @@ export const servicePricingImages: Record<string, string> = {
   "speed-optimization": "/manus-storage/svc-speed_a16e6691.png",
   "hosting-domain": "/manus-storage/svc-hosting_94f7a063.png",
 
-  "ai-automation": "/manus-storage/svc-ai-automation_36c51dfd.png",
+  "ai-automation": "/manus-storage/svc-ai-automation_v2_736c025b.png",
   "custom-business-systems": "/manus-storage/svc-business-systems_80a7790f.png",
 };
 
