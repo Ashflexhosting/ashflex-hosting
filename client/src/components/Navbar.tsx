@@ -241,11 +241,6 @@ export default function Navbar() {
             style={{ backgroundImage: "url('/manus-storage/focus-spotlight-effect_ce3ba633.jpg')" }}
             aria-hidden="true"
           />
-          {/* Brightening overlay: keeps the spotlight glow visible while a soft white haze keeps text crisp */}
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 via-[45%] to-transparent"
-            aria-hidden="true"
-          />
           {/* Pulsing warm glow overlay that follows the spotlight's center */}
           <div
             className="absolute inset-0 animate-[glow-pulse_4s_ease-in-out_infinite] pointer-events-none"
@@ -263,17 +258,17 @@ export default function Navbar() {
                 className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
-                <span className="text-base font-semibold text-[#0a1240] tracking-tight">
+                <span className="text-base font-semibold text-white tracking-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
                   {item.label}
                 </span>
-                <span className="ml-auto text-brand-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                   →
                 </span>
               </Link>
             ))}
             <div className="flex items-center gap-3 px-4 my-2">
               <span className="h-px flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-secondary/90">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">
                 More
               </p>
               <span className="h-px flex-1 bg-gradient-to-l from-amber-500/50 to-transparent" />
@@ -285,8 +280,8 @@ export default function Navbar() {
                 className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-                <span className="text-base font-medium text-brand/90">{item.label}</span>
-                <span className="ml-auto text-brand-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                <span className="text-base font-medium text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{item.label}</span>
+                <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                   →
                 </span>
               </Link>

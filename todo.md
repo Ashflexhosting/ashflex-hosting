@@ -887,3 +887,6 @@
 ## Trusted brands section restyle (user-requested)
 - [x] Change the trusted brands section background colour to #D8D8D8
 - [x] Replace the static two-row brand grid with a continuous horizontal marquee (duplicate the brand set, seamless infinite scroll, pause on hover, prefers-reduced-motion guard)
+
+## Mobile menu white gradient removal (Aug 14, 2026)
+- [x] Remove the white brightening gradient overlay from the mobile menu dropdown — spotlight image now shows cleanly with only the warm glow-pulse pulse retained; menu text switched to white with subtle drop-shadow and arrows/divider to amber-300 for contrast; verified in browser DOM (0 white overlays, image present, 13 links) and 29/29 tests pass
