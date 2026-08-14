@@ -277,7 +277,7 @@ export default function Home() {
                 style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
               >
                 <img
-                  src="/manus-storage/galcon-imac_8f72a11c.webp"
+                  src="/manus-storage/galcon-imac-hero-v2-clean_817f7b2b.webp"
                   alt="Galcon Engineering website displayed on an iMac"
                   className="w-full drop-shadow-2xl"
                   loading="eager"

@@ -618,3 +618,5 @@
 - [x] Created reusable LaptopFrame component: dark bezel with camera dot, rounded screen corners, tapered base lip; hero screenshot wrapped on all 12 portfolio detail pages (removed the old gradient ring)
 - [x] Frame is fully scrollable — hover auto-scroll and "Scroll to view" hint work inside; responsive via viewport-height screen
 - [x] Verified on /portfolio/1 and /portfolio/4, tests 24/24, checkpoint saved and auto-published
+
+- [x] Generate an improved hero iMac mockup image (similar to current, better quality) and replace current hero asset
