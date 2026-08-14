@@ -1,9 +1,33 @@
 import { useParams, Link } from "wouter";
-import { ArrowRight, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, Star } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
-import { Button } from "@/components/ui/button";
+
+const FEATURE_ICONS = [Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, CheckCircle];
+
+const PROCESS_STEPS = [
+  {
+    title: "Discovery & Research",
+    body: "We dig into your business, audience, and goals to build a foundation that shapes every design decision.",
+  },
+  {
+    title: "Planning & Strategy",
+    body: "A clear roadmap — site structure, user journeys, and deliverables — agreed before a single pixel is drawn.",
+  },
+  {
+    title: "Design & Development",
+    body: "Your design comes to life with clean, fast, SEO-ready code and an iterative review loop with you at the centre.",
+  },
+  {
+    title: "Testing & Optimization",
+    body: "Cross-device, cross-browser testing plus performance tuning so every visitor gets a flawless experience.",
+  },
+  {
+    title: "Launch & Support",
+    body: "A careful, monitored launch followed by ongoing support — because your site is only as strong as the team behind it.",
+  },
+];
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -29,37 +53,58 @@ export default function ServiceDetail() {
         breadcrumb={[{ label: "Services", href: "/services" }, { label: service.title }]}
       />
 
-      <section className="py-20">
-        <div className="container max-w-4xl">
+      {/* Dark editorial intro — banner + pricing card untouched */}
+      <section className="relative overflow-hidden bg-[#0a1230] text-white">
+        <div className="glow-orb top-0 -left-24 w-96 h-96 opacity-60 pointer-events-none" aria-hidden="true" />
+        <div className="glow-orb bottom-0 -right-24 w-96 h-96 opacity-40 pointer-events-none" aria-hidden="true" style={{ background: "radial-gradient(circle, rgba(6,182,212,0.35), transparent 70%)" }} />
+        <div className="container max-w-4xl relative py-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
+              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> Our Approach
+              </p>
               <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-                {service.title} Solutions
+                <span className="bg-gradient-to-r from-white via-white to-brand-accent bg-clip-text text-transparent">{service.title} Solutions</span>
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              <p className="text-lg text-white/70 leading-relaxed mb-10">
                 At Ashflex Web Design, we deliver comprehensive {service.title.toLowerCase()} solutions tailored to your business needs. Our team combines creative excellence with technical expertise to produce results that drive real growth.
               </p>
 
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>What's Included</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                {service.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle size={20} className="text-brand-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground/80">{feature}</span>
-                  </div>
-                ))}
+              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> What's Included
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
+                {service.features.map((feature, i) => {
+                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
+                  return (
+                    <div
+                      key={i}
+                      className="bento-reveal relative group rounded-2xl bg-white/[0.05] backdrop-blur-sm border border-white/10 p-5 hover:bg-white/[0.09] transition-colors duration-300"
+                      style={{ transitionDelay: `${i * 70}ms` }}
+                    >
+                      <span className="absolute top-4 right-4 font-mono text-[11px] text-white/30">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-brand-secondary to-brand-accent mb-3">
+                        <Icon size={19} className="text-white" />
+                      </span>
+                      <span className="block text-[15px] font-medium text-white/90 leading-snug">{feature}</span>
+                    </div>
+                  );
+                })}
               </div>
 
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Process</h3>
-              <div className="space-y-6 mb-10">
-                {["Discovery & Research", "Planning & Strategy", "Design & Development", "Testing & Optimization", "Launch & Support"].map((step, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-brand-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm font-bold text-brand-secondary">{i + 1}</span>
+              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> Our Process
+              </p>
+              <div className="relative space-y-5 mb-4">
+                <span className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-brand-secondary/60 via-brand-accent/40 to-transparent pointer-events-none" aria-hidden="true" />
+                {PROCESS_STEPS.map((step, i) => (
+                  <div key={i} className="bento-reveal relative flex items-start gap-5" style={{ transitionDelay: `${i * 70}ms` }}>
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-brand-secondary to-brand-accent flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand-secondary/30">
+                      <span className="text-sm font-bold text-white">{i + 1}</span>
                     </div>
-                    <div>
-                      <h4 className="font-semibold">{step}</h4>
-                      <p className="text-sm text-muted-foreground">Thorough execution of each phase ensures quality results.</p>
+                    <div className="rounded-2xl bg-white/[0.05] backdrop-blur-sm border border-white/10 p-5 flex-1 hover:bg-white/[0.09] transition-colors duration-300">
+                      <h4 className="font-semibold text-white mb-1" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h4>
+                      <p className="text-sm text-white/60 leading-relaxed">{step.body}</p>
                     </div>
                   </div>
                 ))}
@@ -67,7 +112,7 @@ export default function ServiceDetail() {
             </div>
 
             <div className="lg:col-span-1">
-              <div className="glass-card border-0 p-6 sticky top-24">
+              <div className="glass-card border-0 p-6 sticky top-24 [backdrop-filter:blur(14px)] [background:linear-gradient(160deg,rgba(255,255,255,0.97),rgba(255,255,255,0.88))] shadow-xl">
                 {servicePricingImages[service.slug] && (
                   <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl">
                     <img
@@ -238,19 +283,28 @@ export default function ServiceDetail() {
         </section>
       )}
 
-      {/* Related Services */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center" style={{ fontFamily: "var(--font-heading)" }}>
-            Related Services
-          </h2>
+      {/* Related Services — dark editorial band */}
+      <section className="relative overflow-hidden bg-[#0a1230] text-white">
+        <div className="glow-orb -top-24 right-0 w-[30rem] h-[30rem] opacity-50 pointer-events-none" aria-hidden="true" style={{ background: "radial-gradient(circle, rgba(7,87,247,0.4), transparent 70%)" }} />
+        <div className="container relative py-20">
+          <div className="text-center mb-12">
+            <p className="inline-flex items-center gap-2 mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+              <span className="inline-block w-8 h-px bg-brand-accent" /> Keep Exploring
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>
+              <span className="bg-gradient-to-r from-white via-white to-brand-accent bg-clip-text text-transparent">Related Services</span>
+            </h2>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedServices.map((s, i) => (
               <Link key={s.slug} href={`/services/${s.slug}`}>
-                <div className="glass-card border-0 p-6 hover-lift">
-                  <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{s.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{s.description}</p>
-                  <span className="text-brand-secondary text-sm font-medium">Learn More →</span>
+                <div className="bento-reveal group relative rounded-2xl bg-white/[0.05] backdrop-blur-sm border border-white/10 p-6 hover:bg-white/[0.09] hover:-translate-y-1.5 transition-all duration-300" style={{ transitionDelay: `${i * 60}ms` }}>
+                  <span className="font-mono text-[11px] text-white/30">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="text-lg font-semibold mb-2 mt-3" style={{ fontFamily: "var(--font-heading)" }}>{s.title}</h3>
+                  <p className="text-sm text-white/60 mb-4 leading-relaxed">{s.description}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-accent group-hover:gap-2.5 transition-all duration-300">
+                    Learn More <ArrowRight size={14} />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -258,10 +312,14 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-brand text-white">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Ready to Get Started?</h2>
+      {/* CTA — glow orbs + gradient headline */}
+      <section className="relative overflow-hidden bg-gradient-brand text-white">
+        <div className="glow-orb -top-24 -left-24 w-96 h-96 opacity-70 pointer-events-none" aria-hidden="true" />
+        <div className="glow-orb -bottom-24 -right-24 w-96 h-96 opacity-60 pointer-events-none" aria-hidden="true" style={{ background: "radial-gradient(circle, rgba(242,5,73,0.45), transparent 70%)" }} />
+        <div className="container relative py-24 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            <span className="bg-gradient-to-r from-white via-brand-accent to-white bg-clip-text text-transparent">Ready to Get Started?</span>
+          </h2>
           <p className="text-white/70 max-w-xl mx-auto mb-8">
             Let's discuss how our {service.title.toLowerCase()} services can help your business grow.
           </p>

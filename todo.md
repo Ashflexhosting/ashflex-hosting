@@ -764,3 +764,9 @@
 - [x] Added HelpCircle tooltips to E-commerce (store setup + payment gateway), SEO Package (basic/advanced +N75k/complete +N150k coverage), and Annual Maintenance (updates, patches, backups, fixes, monitoring); also added the Complete SEO option to the package grid
 - [x] Added "Download Breakdown (PDF)" button: client-side generation of a formatted text estimate (header, date, pages/design base cost, selected extras, total, contact info) downloaded as ashflex-estimate-YYYY-MM-DD.pdf; no new dependencies
 - [x] Verified calculator + pricing page render correctly with tooltips and PDF button; 29/29 tests pass; checkpoint and publish
+
+## Service Detail Pages Redesign (user-requested)
+- [x] Redesigned ServiceDetail body: dark navy editorial intro (glow orbs, accent eyebrow labels, gradient heading), bento feature cards (dark glass, gradient icon tiles, monospace indices, staggered bento-reveal), vertical process timeline with gradient connector + glass step cards; Related Services as dark editorial band; CTA with glow orbs + gradient headline
+- [x] Kept the PageHeader banner untouched (identical title/description/breadcrumb)
+- [x] Kept the pricing card untouched (only solidified white backdrop for contrast on the dark section)
+- [x] Verified /services/website-design, hosting-domain, seo-services, google-ads render correctly with new design; 29/29 tests pass; checkpoint and publish
