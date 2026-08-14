@@ -193,7 +193,7 @@ export default function Navbar() {
           />
           {/* Left brightening gradient: bright white on the left fading to deep navy on the right */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-white via-white/90 via-[55%] to-[#0f172a]/92"
+            className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 via-[40%] to-transparent"
             aria-hidden="true"
           />
           <div className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px]">
@@ -240,7 +240,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Facebook"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Facebook size={18} />
               </a>
@@ -249,7 +249,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on X"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Twitter size={18} />
               </a>
@@ -258,7 +258,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Instagram"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-colors"
+                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Instagram size={18} />
               </a>

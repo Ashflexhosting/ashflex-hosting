@@ -819,3 +819,7 @@
 ## Mobile menu redesign
 - [x] Redesign the mobile menu dropdown as a modern creative panel with an image background and a left brightening gradient overlay — dark-navy brand texture, white-to-navy left brightening gradient, numbered rows (01..07) with hover slide + arrow, "More" divider for Blog/Resources/Client Portal, social icons row, gradient CTA, numbered main links + hover lift on secondary
 - [x] Verify at mobile width, run tests, checkpoint and publish — menu verified in browser (DOM-exposed since it renders only below lg width); text colors use existing theme classes (text-brand, text-brand/80); tests 29/29
+
+## Mobile menu refinements
+- [x] Make the brightening gradient more subtle — softened from solid white (from-white via-white/90 via-[55%] to-[#0f172a]/92) to a semi-transparent wash (from-white/85 via-white/45 via-[40%] to-transparent) so the underlying brand image is gently visible and the navy link text stands out clearly
+- [x] Add a subtle bounce/scale tap animation to the mobile menu social icons — active:scale-110 plus a new bounce-scale keyframe (1→1.18→0.94→1.06→1 over 400ms, ease-out, gated by prefers-reduced-motion), verified class wiring; visual tap test left to the user on a real device
