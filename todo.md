@@ -807,3 +807,7 @@
 - [x] Added a circular scroll progress ring around the Back to Top button: 48px SVG ring (r=22, circumference 138.23) with blue→cyan gradient stroke, rotated -90deg so it starts at the top; fill advances 0–100% as page scrolls, 150ms ease-out animation; the arrow button sits inset with its gradient background
 - [x] Sped up the active tab indicator slide from 300ms to 200ms (transition-all duration-200 ease-out); inactive tabs now show a subtle hover effect — slight lift (-translate-y-0.5), soft blue shadow, and border tint
 - [x] Verified on desktop and 375px mobile — ring, shadow, and indicator all render; 29/29 tests pass; checkpoint and publish
+
+## Back to Top reposition
+- [x] Moved the Back to Top button from bottom-right to bottom-left (fixed left-6) so it sits opposite the WhatsApp button and no longer blocks it
+- [x] Verified at 375px mobile — WhatsApp stays bottom-right, Back to Top not visible at top of page as expected; 29/29 tests pass; checkpoint and publish

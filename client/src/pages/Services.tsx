@@ -808,7 +808,7 @@ export default function Services() {
 
       {/* ============ Back to Top — floating button with scroll progress ring ============ */}
       <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
+        className={`fixed bottom-6 left-6 z-50 transition-all duration-300 ${
           showTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-3 pointer-events-none"
         }`}
         style={{ bottom: "min(24px, calc(100dvh - 180px))" }}
