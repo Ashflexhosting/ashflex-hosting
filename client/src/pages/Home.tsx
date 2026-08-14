@@ -556,12 +556,12 @@ export default function Home() {
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
             <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-4 md:px-5 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
-              <div className="inline-flex items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+              <div className="inline-flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5">
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
-                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-500 hover:grayscale-0 hover:scale-105"
+                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-[1.12]"
                 />
               </div>
             </div>
