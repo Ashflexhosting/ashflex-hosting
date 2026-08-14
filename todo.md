@@ -815,3 +815,7 @@
 ## Homepage hero mobile buttons
 - [x] Shrunk the two hero CTA buttons so they sit side by side on one line on mobile — both buttons now share an equal-width flex row (flex-1 each), with compact padding (px-3 py-3.5) and smaller text (text-xs) on mobile, scaling back to full size (sm:px-8 sm:py-4 text-base) at sm+; labels stay "Get Free Quote" / "View Portfolio" centered with icons
 - [x] Verified at 375px — both buttons on the same line, balanced widths; 29/29 tests pass; checkpoint and publish
+
+## Mobile menu redesign
+- [x] Redesign the mobile menu dropdown as a modern creative panel with an image background and a left brightening gradient overlay — dark-navy brand texture, white-to-navy left brightening gradient, numbered rows (01..07) with hover slide + arrow, "More" divider for Blog/Resources/Client Portal, social icons row, gradient CTA, numbered main links + hover lift on secondary
+- [x] Verify at mobile width, run tests, checkpoint and publish — menu verified in browser (DOM-exposed since it renders only below lg width); text colors use existing theme classes (text-brand, text-brand/80); tests 29/29

@@ -184,31 +184,57 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-border/50 shadow-xl">
-          <div className="container py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-            {mainNav.map((item) => (
+        <div className="lg:hidden relative overflow-hidden border-t border-white/15 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-300">
+          {/* Image background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
+            aria-hidden="true"
+          />
+          {/* Left brightening gradient: bright white on the left fading to deep navy on the right */}
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-white via-white/90 via-[55%] to-[#0f172a]/92"
+            aria-hidden="true"
+          />
+          <div className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px]">
+            {mainNav.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10 hover:pl-5"
               >
-                {item.label}
+                <span className="text-[11px] font-bold tracking-widest text-brand-secondary/50 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-base font-semibold text-brand tracking-tight">
+                  {item.label}
+                </span>
+                <span className="ml-auto text-brand-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                  →
+                </span>
               </Link>
             ))}
-            <div className="border-t border-border/50 my-2" />
-            <p className="px-4 pt-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              More
-            </p>
+            <div className="flex items-center gap-3 px-4 my-2">
+              <span className="h-px flex-1 bg-gradient-to-r from-brand-secondary/40 to-transparent" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-secondary/70">
+                More
+              </p>
+              <span className="h-px flex-1 bg-gradient-to-l from-brand-secondary/40 to-transparent" />
+            </div>
             {topBarNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-3 text-base font-medium rounded-lg hover:bg-muted transition-colors"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10 hover:pl-5"
               >
-                {item.label}
+                <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
+                <span className="text-base font-medium text-brand/80">{item.label}</span>
+                <span className="ml-auto text-brand-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                  →
+                </span>
               </Link>
             ))}
-            <div className="flex items-center justify-center gap-3 py-2">
+            <div className="flex items-center justify-center gap-3 py-3">
               <a
                 href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
                 target="_blank"
@@ -238,8 +264,9 @@ export default function Navbar() {
               </a>
             </div>
             <Link href="/contact">
-              <span className="block w-full text-center px-5 py-3 mt-2 text-base font-semibold text-white bg-gradient-primary rounded-xl">
+              <span className="group block w-full text-center px-5 py-3 mt-1 text-base font-semibold text-white bg-gradient-primary rounded-xl shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/40 hover:-translate-y-0.5 transition-all duration-300">
                 Get Free Quote
+                <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </Link>
           </div>
