@@ -670,3 +670,8 @@
 - [x] Add smooth scroll-triggered staggered fade-in (slide-up) to the bento Mission/Vision cards (new bento-reveal CSS class: opacity + 44px slide + subtle scale + blur-in shadow, 750ms; registered in useScrollReveal observer)
 - [x] Verify the stats band count-up animation triggers on scroll into view (useCounter IntersectionObserver at 10% threshold with staggered delays, fallback to final value if observer misses)
 - [x] Run tests 24/24, typecheck clean, checkpoint and publish
+## Services Page Redesign (user-requested: creative & modern, banner untouched)
+- [x] Audit current Services page content and structure
+- [x] Redesign service cards and section layout with the modern design language: marquee strip, asymmetric intro with 4 value chips, 4 grouped service categories (Design/Development/Marketing/Infrastructure & AI) with numbered dark glass bento cards, scroll-reveal staggered animations, and dark editorial CTA with glow orbs
+- [x] Preserve the existing PageHeader banner exactly as-is
+- [x] Verify on desktop (1280) and mobile (375) full-page screenshots, typecheck clean, tests 24/24, checkpoint and publish
