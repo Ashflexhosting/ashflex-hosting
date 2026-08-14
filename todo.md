@@ -909,3 +909,5 @@
 - [x] Added grayscale filter with smooth full-color hover transition (500ms) on marquee logos
 - [x] Increased logo size (h-16/h-20) and reduced inter-logo gap (px-2/px-3)
 - [x] Processed logo backgrounds to transparent (flood-fill removal, feathered edges) and re-pointed marquee to transparent assets; verified on desktop; 29/29 tests pass
+
+- [x] Slightly increased the spacing between the marquee logos (px-4 md:px-5), verified on desktop; 29/29 tests pass
