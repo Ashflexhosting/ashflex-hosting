@@ -247,6 +247,11 @@ export default function Services() {
         breadcrumb={[{ label: "Services", href: "/services" }]}
       />
 
+      {/* ============ Sticky category navigation ============ */}
+      <div ref={navRef} className="relative z-40">
+        <CategoryNav groups={serviceGroups} activeId={activeId} />
+      </div>
+
       {/* ============ Marquee strip ============ */}
       <div className="relative bg-gradient-brand border-y border-white/10 overflow-hidden py-3.5">
         <div className="marquee-track whitespace-nowrap" aria-hidden="true">
@@ -312,11 +317,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
-      {/* ============ Sticky category navigation — above the service cards ============ */}
-      <div ref={navRef} className="relative z-40">
-        <CategoryNav groups={serviceGroups} activeId={activeId} />
-      </div>
 
       {/* ============ Service groups — bento-style catalog ============ */}
       <section className="pb-20" id="services-catalog">

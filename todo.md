@@ -690,3 +690,6 @@
 
 ## Sticky Category Filter Placement (user-requested)
 - [x] Move the sticky category navigation to sit directly above the service cards (moved below the marquee and intro sections, right above the Design & Experience row); verified on desktop full-page capture, tests 24/24, checkpoint and publish
+
+## Sticky Category Filter Revert (user-requested)
+- [x] Revert the sticky category navigation to its previous position: below the banner, above the marquee strip; verified on desktop full-page capture, tests 24/24, checkpoint and publish
