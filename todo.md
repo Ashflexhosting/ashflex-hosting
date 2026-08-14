@@ -687,3 +687,6 @@
 - [x] Add a "Learn More" CTA button inside each highlight card (white navy-text pill, hover scale + arrow nudge; card wrapped in Link to /contact)
 - [x] Add sticky category navigation/tabs on the Services page (glass pill tabs: Design / Development / Marketing / Infrastructure & AI; smooth-scroll jump; IntersectionObserver active-state tracking; scroll-mt-24 section anchors)
 - [x] Verify on desktop (1280 full-page + interactive nav click to Build & Launch) and mobile, typecheck clean, tests 24/24, checkpoint and publish
+
+## Sticky Category Filter Placement (user-requested)
+- [x] Move the sticky category navigation to sit directly above the service cards (moved below the marquee and intro sections, right above the Design & Experience row); verified on desktop full-page capture, tests 24/24, checkpoint and publish
