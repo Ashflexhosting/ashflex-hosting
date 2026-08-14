@@ -1,30 +1,19 @@
-# Inquiry Form Multi-File Upload — Implementation Notes (Aug 14, 2026)
+# Current Task Notes (Aug 14, 2026)
 
-## Task
-1. Move inquiry form section ABOVE the "Not sure where to start?" CTA band on /services.
-2. Multi-file attachments (max 5 files).
-3. Max file size 20 MB (was 8 MB).
-4. Drag-and-drop zone for attachments.
+## Completed earlier today
+- Multi-file drag-drop upload + 20 MB limit + form moved above CTA: DONE, checkpoint 0e64926e published. Tests 29/29.
+- DB: contactSubmissions.attachments is json column; migration 0004_tidy_bloodstrike.sql; Client Portal detail dialog shows download links.
 
-## Status of work
-### DONE
-- Schema: drizzle/schema.ts `contactSubmissions.attachments` is now `json("attachments")` (replaces attachmentUrl/Name/Size columns). Import `json` added.
-- Migration applied via webdev_execute_sql: DROP attachmentUrl/Name/Size, ADD attachments json. Migration file written at drizzle/0004_tidy_bloodstrike.sql; journal entry 0004 added manually (drizzle-kit generate hangs interactively — avoid; use npx timeout only).
-- server/routers.ts: `attachments` input is z.array({...}).max(5) optional; each item {dataUrl,startsWith("data:"), fileName, size, type}. MAX_ATTACHMENT_BYTES = 20*1024*1024, MAX_ATTACHMENTS = 5. Loop uploads each file via storagePut into `contact-attachments/{ts}-{rand}/{filename}`, pushes {name,size,type,url}; stored array saved to `attachments` JSON column; notification lists all files.
-- Services.tsx state: attachments File[], attachmentDataUrls string[], attachmentError, dragActive, attachmentInputRef, MAX_ATTACHMENT_BYTES 20MB, MAX_ATTACHMENTS 5, ALLOWED_EXTENSIONS pdf/docx/doc/pptx/xlsx/jpg/jpeg/png/gif/webp. processFiles handles validation + multi-file. Drag handlers (handleDragOver/Leave/Drop) added. removeAttachment(index), clearAttachments() added.
+## Current request
+Add a background image to the Services page inquiry section (#services-inquiry in client/src/pages/Services.tsx, section starts around line ~583: `<section className="relative bg-navy noise-texture overflow-hidden" id="services-inquiry">`).
 
-### TODO next
-1. Fix remaining TS errors in Services.tsx:
-   - Replace single-file attachment JSX (around line 650-690: "inq-attachment" label, chip with Paperclip) with multi-file drag-drop zone: dashed bordered div with onDragOver/Leave/Drop + click handler opening attachmentInputRef; when files attached, render list of chips (icon by type, name, size KB, remove X button per chip) + a "Clear all" link; input element ref={attachmentInputRef} hidden, multiple, accept=".pdf,.doc,.docx,.pptx,.xlsx,.jpg,.jpeg,.png,.gif,.webp".
-   - In handleInquiry mutate payload: replace `attachment: {...}` with `attachments: attachments.map((f,i) => ({dataUrl: attachmentDataUrls[i], fileName: f.name, size: f.size, type: f.type}))`.
-   - In inquiryMutation onSettled: clearAttachments() instead of removeAttachment().
-   - Update UI labels: "Project briefs or reference images — PDF, Word, or images up to 20 MB (max 5 files)".
-2. Move inquiry form section (<section id="services-inquiry">) above the CTA band (section with "Not sure where to start?"). Currently order: services-catalog → CTA band → inquiry. Change to: services-catalog → inquiry → CTA band.
-3. Update todo.md section "Inquiry Form Relocation & Multi-File Upload" items to [x].
-4. Add vitest cases for multi-file attachment schema (array of valid items, >5 array rejected, item missing fields, zero size rejected). Fix existing test that references old single-attachment schema (contactSubmission.test.ts: "rejects attachments with unsupported mime types" may need update since payload now includes `type` field — update fixture to {dataUrl:"data:text/javascript;base64,...", fileName, size, type:"text/javascript"} and expect success=true with note that router drops unsupported mime data URLs).
-5. Run pnpm test (was 28/28), tsc clean, screenshot /services, checkpoint + message user (auto-publish enabled).
+## Approach
+- Generate a dark navy abstract bg image (matches brand #0F172A with subtle blue/purple glow, like process-bg_22383687.webp on Home) via generate tool; save to /home/ubuntu/webdev-static-assets/services-inquiry-bg.webp (compressed URL given).
+- Apply via absolute-positioned div with background-image inside the section, plus dark overlay (bg-navy/80 or gradient) so form glass-card text stays readable. Keep noise-texture class.
+- Then: verify screenshot /services, mark todo complete, checkpoint + message (auto-publish on).
 
-## Key context
-- Project: /home/ubuntu/ashflex-agency. Auto-publish enabled. Production: ashflexweb-pzcsotak.manus.space.
-- GitHub mirror: Ashflexhosting/ashflex-hosting auto-push via post-commit hook (only needed for repo files, not S3 assets).
-- contact.submit mutation lives in server/routers.ts contact router; Services page form at bottom of Services.tsx (id="services-inquiry").
+## Key facts
+- Project: /home/ubuntu/ashflex-agency; production ashflexweb-pzcsotak.manus.space; auto-publish enabled.
+- Existing bg asset example: Home process section uses `backgroundImage: "url(/manus-storage/process-bg_22383687.webp)"` — could reuse but user wants a new image.
+- Home hero bg: /manus-storage/ashflex-hero-background_ee4a0039.png.
+- Brand: Primary navy #0F172A (bg-navy), secondary blue #2563EB (brand-secondary), accent cyan #06B6D4 (brand-accent); pink/red accents too.

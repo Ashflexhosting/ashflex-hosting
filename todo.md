@@ -719,3 +719,6 @@
 - [x] Increased max file size from 8 MB to 20 MB (client validation "exceeds the 20 MB limit" + server MAX_ATTACHMENT_BYTES; notification lists each file with KB size)
 - [x] Added drag-and-drop zone (dashed zone with onDragOver highlight — border/tint/scale — onDragLeave, onDrop handler; click or Enter/Space opens file picker; per-file chips with remove + Clear all)
 - [x] Added 5 Vitest cases for multi-file attachment validation (valid multi-array, >5 rejected, unsupported mime passthrough documented, missing fields rejected, non-positive size rejected); migration 0004 applied (single-file columns dropped, attachments json added, journal updated); verified services screenshot; tests 29/29, checkpoint and publish
+
+## Services Inquiry Section Background Image (user-requested)
+- [x] Added a custom dark-navy background image (generated brand-colored abstract texture, services-inquiry-bg_58c1e14e.png) to the #services-inquiry section via absolute-positioned bg-cover layer with a navy/85 overlay for readability; container lifted to relative z-10; verified in full-page screenshot of /services; checkpoint and publish
