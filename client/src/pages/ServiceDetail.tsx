@@ -20,7 +20,7 @@ export default function ServiceDetail() {
   }
 
   const relatedServices = services.filter((s) => s.slug !== service.slug).slice(0, 4);
-  const popularServices = new Set(["website-design", "ecommerce-development"]);
+  const popularServices = new Set(["website-design", "ecommerce-development", "website-maintenance"]);
 
 const FEATURE_ICONS = [Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, CheckCircle];
 
