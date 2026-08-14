@@ -544,14 +544,34 @@ export default function Home() {
         <div className="container">
           <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8 font-medium">Trusted by leading brands across Nigeria & beyond</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 text-center">
-            {["PayFlow", "MedCare", "Luxury Homes", "Wanderlust", "Ankara Luxe", "Adeyemi", "Green Earth", "TechHub"].map((name, i) => (
-              <span
-                key={name}
-                className="scroll-reveal text-2xl md:text-3xl font-bold text-foreground/25 hover:text-brand-secondary/60 transition-colors duration-300"
-                style={{ fontFamily: "var(--font-heading)", transitionDelay: `${i * 50}ms` }}
+            {[
+              { name: "Shutterspeed", monogram: "S", accent: "text-blue-500/70", border: "border-blue-300/40" },
+              { name: "Kingwesl", monogram: "K", accent: "text-amber-500/70", border: "border-amber-300/40" },
+              { name: "Afnaf Auto Sales", monogram: "A", accent: "text-emerald-500/70", border: "border-emerald-300/40" },
+              { name: "Marvel Tex", monogram: "M", accent: "text-rose-500/70", border: "border-rose-300/40" },
+              { name: "Galcon Eng.", monogram: "G", accent: "text-cyan-500/70", border: "border-cyan-300/40" },
+              { name: "Neboc Hotel", monogram: "N", accent: "text-violet-500/70", border: "border-violet-300/40" },
+              { name: "Aerolead", monogram: "A", accent: "text-sky-500/70", border: "border-sky-300/40" },
+              { name: "Barmest", monogram: "B", accent: "text-orange-500/70", border: "border-orange-300/40" },
+            ].map((brand, i) => (
+              <div
+                key={brand.name}
+                className="scroll-reveal group flex flex-col items-center justify-center gap-1.5 py-3"
+                style={{ transitionDelay: `${i * 50}ms` }}
               >
-                {name}
-              </span>
+                <span
+                  className={`inline-flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-lg border ${brand.border} bg-card/60 text-sm md:text-base font-extrabold tracking-tight ${brand.accent} transition-transform duration-300 group-hover:-translate-y-0.5`}
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {brand.monogram}
+                </span>
+                <span
+                  className="text-sm md:text-base font-bold tracking-wide text-foreground/40 group-hover:text-foreground/65 transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {brand.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>

@@ -880,3 +880,6 @@
 - [x] Add a subtle drop shadow on hover to all service pricing cards — new hover-shadow-pricing class (navy + blue layered shadow, 500ms transition) added to the glass-card pricing wrapper; applies uniformly across all 15 service pages
 - [x] Add a smooth fade-in animation for the pricing card images — new img-fade-in class with img-reveal keyframes (opacity 0->1, translateY 8px->0, scale 1.04->1, 700ms ease-out) on the pricing card image, so each image reveals gracefully; lazy loading preserved
 - [x] Add the Popular Service badge to the Website Maintenance pricing card — website-maintenance added to the popularServices Set in ServiceDetail.tsx; verified on /services/website-maintenance (badge renders top-right over the illustration); badge now on three pages: Website Design, E-commerce, Website Maintenance
+
+## Trusted brands section (user-requested)
+- [x] Make the "Trusted by leading brands across Nigeria & beyond" brands look more realistic — replaced plain placeholder names with stylized logo lockups: circular monogram tiles (S/K/A/M/G/N/A/B in brand accent colors with soft tinted borders) above the real client names (Shutterspeed, Kingwesl, Afnaf Auto Sales, Marvel Tex, Galcon Eng., Neboc Hotel, Aerolead, Barmest), with subtle hover lift and color emphasis; verified live in the browser with the band fully rendered
