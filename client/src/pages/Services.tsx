@@ -554,19 +554,19 @@ export default function Services() {
       <section className="relative bg-navy noise-texture overflow-hidden" id="services-inquiry">
         {/* Background image — dark navy with subtle blue glow */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
           aria-hidden="true"
           style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
         />
         {/* Dark navy overlay keeps text readable against the image */}
-        <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
+        <div className="absolute inset-0 bg-navy/45" aria-hidden="true" />
         <div className="container relative z-10 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <p className="text-brand-secondary font-semibold text-sm uppercase tracking-[0.25em] mb-4">Have a project in mind?</p>
-            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+            <p className="text-cyan-300 font-semibold text-sm uppercase tracking-[0.25em] mb-4">Have a project in mind?</p>
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-4 text-white" style={{ fontFamily: "var(--font-heading)" }}>
               Tell us about your <span className="text-gradient">next step</span>
             </h2>
-            <p className="text-foreground/60 text-sm md:text-base">Send a quick note after browsing our services — we reply within one business day.</p>
+            <p className="text-white/75 text-sm md:text-base">Send a quick note after browsing our services — we reply within one business day.</p>
           </div>
           {inquirySubmitted ? (
             <div className="max-w-xl mx-auto glass-card rounded-2xl p-10 text-center animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-500">
