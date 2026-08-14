@@ -374,7 +374,7 @@
 - [x] Superseded by user's decision: mailto fallback wired up (see "Contact Form Mailto Wiring" block); Resend API key deferred until user provides it
 - [x] Owner notification via Manus Notification Service already in place (contact + careers)
 - [x] DB persistence for all submissions, admin reviewable in client portal
-- [ ] Deferred: Resend email delivery (API key needed from user) + delivery status + email delivery vitest + live E2E test
+- [ ] Deferred (waiting on user): Resend email delivery (API key needed from user) + delivery status + email delivery vitest + live E2E test
 
 ## User-Provided Portfolio Screenshots (user-uploaded full-page captures, 7 projects)
 - [x] Replace Kingwesl portfolio screenshots with the user's uploaded full-page capture (kingwesl.com)
@@ -823,3 +823,8 @@
 ## Mobile menu refinements
 - [x] Make the brightening gradient more subtle — softened from solid white (from-white via-white/90 via-[55%] to-[#0f172a]/92) to a semi-transparent wash (from-white/85 via-white/45 via-[40%] to-transparent) so the underlying brand image is gently visible and the navy link text stands out clearly
 - [x] Add a subtle bounce/scale tap animation to the mobile menu social icons — active:scale-110 plus a new bounce-scale keyframe (1→1.18→0.94→1.06→1 over 400ms, ease-out, gated by prefers-reduced-motion), verified class wiring; visual tap test left to the user on a real device
+
+## Mobile menu enhancements (user-requested)
+- [x] Add swipe-to-close gesture — pointerdown/move/up listeners on the menu panel register a horizontal swipe (>48px dx and dx > 1.6x dy to avoid fighting vertical scroll) in either direction and close the menu; Escape key also dismisses it; listeners are attached only while the menu is open and cleaned up on unmount; verified with simulated swipe in the browser
+- [x] Remove the 01..07 numbering — main nav rows now use a small gradient dot bullet (h-1.5 w-1.5 rounded-full bg-gradient-primary), matching the existing secondary link bullets for consistency; verified 10 bullets present, no numbers remain
+- [x] Brighten menu text and icons — main-nav labels use a deeper fixed navy (#0b1d63) so they stay crisp over the softened gradient, secondary labels lifted to text-brand/90, arrows visible at 70% opacity by default (fully opaque on hover), More divider label to /90, social icons strengthened to #1238b8 with bg-brand-secondary/15 tiles

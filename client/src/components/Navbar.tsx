@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Mail, Phone } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
@@ -52,6 +52,54 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
   }, [location]);
+
+  // Swipe-to-close gesture on the mobile menu panel (left or right swipes)
+  const swipeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const el = swipeRef.current;
+    if (!el) return;
+    let startX = 0;
+    let startY = 0;
+    let dismissed = false;
+
+    const onDown = (e: PointerEvent) => {
+      startX = e.clientX;
+      startY = e.clientY;
+      dismissed = false;
+    };
+    const onMove = (e: PointerEvent) => {
+      if (dismissed) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      // Register a clear horizontal swipe (ignore vertical scroll gestures)
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+        dismissed = true;
+        setMobileOpen(false);
+      }
+    };
+    const onUp = () => {
+      dismissed = true;
+    };
+
+    // Also support keyboard dismissal for accessibility
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileOpen]);
 
   const topLinkClass = "hover:text-white transition-colors";
   const navLinkClass = scrolled
@@ -196,27 +244,25 @@ export default function Navbar() {
             className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 via-[40%] to-transparent"
             aria-hidden="true"
           />
-          <div className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px]">
+            <div ref={swipeRef} className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px] touch-pan-y">
             {mainNav.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10 hover:pl-5"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10"
               >
-                <span className="text-[11px] font-bold tracking-widest text-brand-secondary/50 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-base font-semibold text-brand tracking-tight">
+                <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
+                <span className="text-base font-semibold text-[#0b1d63] tracking-tight">
                   {item.label}
                 </span>
-                <span className="ml-auto text-brand-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                <span className="ml-auto text-brand-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                   →
                 </span>
               </Link>
             ))}
             <div className="flex items-center gap-3 px-4 my-2">
               <span className="h-px flex-1 bg-gradient-to-r from-brand-secondary/40 to-transparent" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-secondary/70">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-secondary/90">
                 More
               </p>
               <span className="h-px flex-1 bg-gradient-to-l from-brand-secondary/40 to-transparent" />
@@ -225,11 +271,11 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10 hover:pl-5"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-                <span className="text-base font-medium text-brand/80">{item.label}</span>
-                <span className="ml-auto text-brand-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                <span className="text-base font-medium text-brand/90">{item.label}</span>
+                <span className="ml-auto text-brand-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                   →
                 </span>
               </Link>
@@ -240,7 +286,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Facebook"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Facebook size={18} />
               </a>
@@ -249,7 +295,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on X"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Twitter size={18} />
               </a>
@@ -258,7 +304,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Instagram"
-                className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Instagram size={18} />
               </a>
