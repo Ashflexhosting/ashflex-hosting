@@ -189,6 +189,19 @@
 
 .float-slow-delayed { animation: float-slow 7s ease-in-out 2.3s infinite; }
 
+/* "Hover me" tooltip — floats near the iMac, gently bobbing; hides while the mockup is hovered */
+.hover-tooltip {
+  animation: tooltip-float 3s ease-in-out infinite, tooltip-vanish 1s ease-in 4.5s forwards;
+}
+.group-\/iMac:hover .hover-tooltip { opacity: 0; transform: translateY(-6px) scale(0.95); pointer-events: none; }
+@keyframes tooltip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes tooltip-vanish {
+  to { opacity: 0; transform: translateY(-8px) scale(0.95); }
+}
+
 .skeleton-shimmer {
   background: linear-gradient(
     105deg,
@@ -213,6 +226,7 @@
   .marquee-track { animation: none; }
   .float-slow, .float-slow-delayed { animation: none; }
   .skeleton-shimmer { animation: none; }
+  .hover-tooltip { animation: none; }
 }
 } /* end components */
 

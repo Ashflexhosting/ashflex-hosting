@@ -626,3 +626,8 @@
 - [x] Add a lazy-loading blur placeholder/skeleton behind the hero image for perceived performance
 - [x] Add a "View Live Demo" button below the iMac image that smoothly scrolls to the portfolio section
 - [x] Verify all three enhancements on desktop and mobile, run tests, checkpoint and publish
+
+## Hero Tooltip & Portfolio Scroll Animation (user-requested)
+- [x] Add a subtle floating "Hover me" tooltip near the iMac image (auto-fades/dismisses on hover)
+- [x] Add smooth fade-in and slide-up animation when the Featured Portfolio section scrolls into view (including after clicking View Live Demo)
+- [x] Verify both on desktop and mobile, run tests, checkpoint and publish

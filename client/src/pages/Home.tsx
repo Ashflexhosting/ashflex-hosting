@@ -286,6 +286,14 @@ export default function Home() {
                 style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
               >
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
+                  {/* "Hover me" tooltip — floats near the top-right of the screen, fades out when the user interacts */}
+                  <div
+                    className="pointer-events-none absolute -top-2 -right-2 z-10 hidden lg:flex items-center gap-1.5 rounded-full border border-brand-accent/40 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/90 backdrop-blur shadow-lg hover-tooltip"
+                    aria-hidden="true"
+                  >
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                    Hover me
+                  </div>
                   {/* Blurred placeholder skeleton shown while the hero image loads */}
                   <div
                     className={`absolute inset-0 overflow-hidden rounded-xl bg-white/5 backdrop-blur transition-opacity duration-500 ${
@@ -566,6 +574,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
               Featured <span className="text-gradient">portfolio</span>
             </h2>
+            <div className="mt-4 h-1 w-24 rounded-full bg-gradient-brand" />
           </div>
 
           {/* list rows */}
@@ -573,7 +582,8 @@ export default function Home() {
             {filteredPortfolio.map((item, i) => (
               <div
                 key={item.id}
-                className="relative group"
+                className="scroll-reveal relative group"
+                style={{ transitionDelay: `${i * 80}ms` }}
                 onMouseEnter={() => setHoveredPortfolio(item.id)}
                 onMouseLeave={() => setHoveredPortfolio(null)}
               >
