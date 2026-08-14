@@ -835,3 +835,6 @@
 ## Mobile menu warm hover + glow pulse (user-requested)
 - [x] Add a soft warm-toned hover effect to the menu items — hover:bg-amber-500/15 with a subtle pl-5 slide for both main and secondary nav rows, amber-500/50 divider lines, and social icon tiles in amber-400/20 turning amber on hover with dark brown icon color
 - [x] Make the spotlight glow more visible and pulsing — overlay mid-stop reduced to via-white/45 so the warm beam shows through, plus a new radial warm-glow overlay (amber radial gradients at the beam and floor spots) with glow-pulse keyframes (opacity 0.55–1 over 4s, ease-in-out infinite) gated behind prefers-reduced-motion: no-preference
+
+## Menu cleanup (user-requested)
+- [ ] Remove "Case Studies" from the mobile menu main nav (keep desktop nav untouched)

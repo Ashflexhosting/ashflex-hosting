@@ -14,6 +14,9 @@ const mainNav = [
   { label: "Case Studies", href: "/case-studies" },
 ];
 
+// Mobile menu nav: same as mainNav but without Case Studies (per user request)
+const mobileNav = mainNav.filter((item) => item.href !== "/case-studies");
+
 const topBarNav = [
   { label: "Blog", href: "/blog" },
   { label: "Resources", href: "/resources" },
@@ -254,7 +257,7 @@ export default function Navbar() {
             aria-hidden="true"
           />
             <div ref={swipeRef} className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px] touch-pan-y">
-            {mainNav.map((item, i) => (
+            {mobileNav.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
