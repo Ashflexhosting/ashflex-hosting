@@ -855,3 +855,6 @@
 
 ## Pure-dark photo-card overlay (user-requested)
 - [x] Remove all light/white tones from the photo highlight cards — dropped the warm face glow, white orbs, hover halo, and floating white accents on photo cards; overlay is now a pure navy gradient with white text kept for readability; verified visually on /services
+
+## Hover-clear overlay (user-requested)
+- [x] Photo card dark overlay now eases to 60% opacity on hover (500ms ease-out) so the background photo becomes clearer when interacting; base 86–93% at rest keeps text readable

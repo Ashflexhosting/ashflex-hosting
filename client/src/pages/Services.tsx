@@ -243,9 +243,9 @@ function HighlightCard({ groupId }: { groupId: string }) {
         )}
         {/* Dark overlay — keeps the photo visible while text stays clearly readable */}
         {bg ? (
-          /* Pure navy overlay — no light or warm tones, per user request */
+          /* Pure navy overlay — no light or warm tones; eases down on hover so the photo clears */
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 group-hover:opacity-60 transition-opacity duration-500 ease-out"
             style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
             aria-hidden="true"
           />
