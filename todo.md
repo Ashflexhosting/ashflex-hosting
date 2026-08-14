@@ -681,3 +681,9 @@
 ## Services Highlight Cards Consistency (user-requested)
 - [x] Add highlight/philosophy cards to remaining rows: generalized HighlightCard with per-group content (Our Standard/code, Our Approach/growth, Our Guarantee/reliability) and distinct gradient tones; rendered automatically for any group with fewer than 4 services (Design row gets it; Build & Launch, Grow & Reach, Power & Automate already have 4-5 services so rows remain complete)
 - [x] Verify on desktop (1280 full-page capture) and mobile, typecheck clean, tests 24/24, checkpoint and publish
+
+## Services Highlight Card & Sticky Nav Enhancements (user-requested)
+- [x] Add subtle hover animation to highlight cards (new .highlight-card utility: translateY(-6px) + scale(1.015) + blue/red glow shadow, 300ms ease-out, reduced-motion guard)
+- [x] Add a "Learn More" CTA button inside each highlight card (white navy-text pill, hover scale + arrow nudge; card wrapped in Link to /contact)
+- [x] Add sticky category navigation/tabs on the Services page (glass pill tabs: Design / Development / Marketing / Infrastructure & AI; smooth-scroll jump; IntersectionObserver active-state tracking; scroll-mt-24 section anchors)
+- [x] Verify on desktop (1280 full-page + interactive nav click to Build & Launch) and mobile, typecheck clean, tests 24/24, checkpoint and publish

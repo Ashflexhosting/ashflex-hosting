@@ -135,6 +135,13 @@
   .hover-lift { transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out); }
   .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(7, 27, 90, 0.14); }
 
+  /* Highlight cards — subtle interactive hover: gentle scale-up + colored glow shadow + accent lift */
+  .highlight-card { cursor: pointer; transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out); }
+  .highlight-card:hover { transform: translateY(-6px) scale(1.015); box-shadow: 0 30px 60px rgba(7, 87, 247, 0.32), 0 10px 24px rgba(242, 5, 73, 0.14); }
+  @media (prefers-reduced-motion: reduce) {
+    .highlight-card { transition: none; }
+  }
+
   /* Portfolio project cards — richer interactive hover (lift + gradient border glow + coordinated children) */
   .portfolio-card { transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
   .portfolio-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 28px 56px rgba(7, 27, 90, 0.18), 0 6px 20px rgba(7, 27, 90, 0.08); }

@@ -5,9 +5,44 @@ import {
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug, Bot, Settings,
   ChevronRight, CheckCircle2, Shield, Headset,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { services } from "@/data/services";
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/* Sticky category navigation — glass pill tabs that track the active section while scrolling */
+function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: string }) {
+  return (
+    <div className="sticky top-[68px] md:top-[76px] z-40 bg-background/85 backdrop-blur-xl border-b border-border">
+      <div className="container flex items-center gap-2 overflow-x-auto py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {groups.map((g) => {
+          const active = g.id === activeId;
+          return (
+            <button
+              key={g.id}
+              type="button"
+              onClick={() => scrollToId(`services-${g.id}`)}
+              aria-label={`Jump to ${g.kicker}`}
+              className={`whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 ${
+                active
+                  ? "bg-gradient-primary text-white border-transparent shadow-lg shadow-brand-secondary/25"
+                  : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground"
+              }`}
+            >
+              {g.label}
+              {active && <ChevronRight size={14} className="opacity-70" />}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 const iconMap: Record<string, React.ElementType> = {
   Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
@@ -100,34 +135,47 @@ const groupHighlights: Record<string, { kicker: string; title: string; message: 
 function HighlightCard({ groupId }: { groupId: string }) {
   const h = groupHighlights[groupId] ?? groupHighlights.design;
   return (
-    <div className="bento-reveal group rounded-3xl h-full relative overflow-hidden p-7 text-white" style={{ transitionDelay: "180ms" }}>
-      {/* layered brand gradient background */}
-      <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
-      <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
-      <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
-      <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
-      {/* floating geometric accents */}
-      <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
-      <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
-      <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
-      <div className="relative z-10 flex flex-col justify-between h-full">
-        <div>
-          <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">{h.kicker}</p>
-          <h3 className="text-xl font-extrabold leading-snug mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-            {h.title}
-          </h3>
-          <p className="text-sm text-white/80 leading-relaxed mb-5">{h.message}</p>
-        </div>
-        <div className="flex items-center gap-3 pt-4 border-t border-white/25">
-          <div className="flex -space-x-2" aria-hidden="true">
-            <span className="w-7 h-7 rounded-full bg-white/35 border border-white/50" />
-            <span className="w-7 h-7 rounded-full bg-white/20 border border-white/50" />
-            <span className="w-7 h-7 rounded-full bg-white/45 border border-white/50" />
+    <WLink href="/contact">
+      <div
+        className="highlight-card bento-reveal rounded-3xl h-full relative overflow-hidden p-7 text-white"
+        style={{ transitionDelay: "180ms" }}
+        aria-label={`${h.kicker}: ${h.title}`}
+      >
+        {/* layered brand gradient background */}
+        <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
+        <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
+        <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
+        <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
+        {/* hover glow halo that brightens on hover */}
+        <div className="glow-orb absolute inset-0 rounded-3xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500" aria-hidden="true" />
+        {/* floating geometric accents */}
+        <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
+        <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
+        <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
+        <div className="relative z-10 flex flex-col justify-between h-full">
+          <div>
+            <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">{h.kicker}</p>
+            <h3 className="text-xl font-extrabold leading-snug mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              {h.title}
+            </h3>
+            <p className="text-sm text-white/80 leading-relaxed mb-5">{h.message}</p>
           </div>
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">{h.stat}</span>
+          <div className="flex items-center justify-between pt-4 border-t border-white/25">
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2" aria-hidden="true">
+                <span className="w-7 h-7 rounded-full bg-white/35 border border-white/50" />
+                <span className="w-7 h-7 rounded-full bg-white/20 border border-white/50" />
+                <span className="w-7 h-7 rounded-full bg-white/45 border border-white/50" />
+              </div>
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">{h.stat}</span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#0B3D91] text-xs font-bold uppercase tracking-[0.12em] shadow-lg shadow-black/20 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+              Learn More <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </WLink>
   );
 }
 
@@ -169,6 +217,26 @@ function ServiceCard({ service, index, accent }: { service: (typeof services)[nu
 
 export default function Services() {
   const sectionRef = useScrollReveal();
+  const navRef = useRef<HTMLDivElement>(null);
+  const [activeId, setActiveId] = useState<string>(serviceGroups[0].id);
+
+  /* Track which service section is currently in view to highlight the sticky tab */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActiveId(visible[0].target.id.replace("services-", ""));
+      },
+      { rootMargin: "-25% 0px -60% 0px" }
+    );
+    serviceGroups.forEach((g) => {
+      const el = document.getElementById(`services-${g.id}`);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
@@ -178,6 +246,11 @@ export default function Services() {
         description="Comprehensive digital solutions to help your business thrive online. From design to development, SEO to marketing — we've got you covered."
         breadcrumb={[{ label: "Services", href: "/services" }]}
       />
+
+      {/* ============ Sticky category navigation ============ */}
+      <div ref={navRef}>
+        <CategoryNav groups={serviceGroups} activeId={activeId} />
+      </div>
 
       {/* ============ Marquee strip ============ */}
       <div className="relative bg-gradient-brand border-y border-white/10 overflow-hidden py-3.5">
@@ -246,12 +319,12 @@ export default function Services() {
       </section>
 
       {/* ============ Service groups — bento-style catalog ============ */}
-      <section className="pb-20">
+      <section className="pb-20" id="services-catalog">
         <div className="container space-y-16">
           {serviceGroups.map((group) => {
             const items = services.filter((s) => group.slugIds.includes(s.id));
             return (
-              <div key={group.id}>
+              <div key={group.id} id={`services-${group.id}`} className="scroll-mt-24">
                 <div className="scroll-reveal flex items-center gap-4 mb-7">
                   <p className={`font-semibold text-sm uppercase tracking-[0.25em] ${group.accent}`}>{group.kicker}</p>
                   <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true" />
