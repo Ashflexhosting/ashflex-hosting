@@ -10,9 +10,32 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { services } from "@/data/services";
 
+/* Custom eased glide scroll — decelerating ease-out over ~700ms, offsetting the sticky nav height */
 function scrollToId(id: string) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!el) return;
+  const navBar = document.getElementById("site-header");
+  const navHeight = navBar ? navBar.offsetHeight : 76;
+  const stickyHeight = 64; // CategoryNav height
+  const targetY = el.getBoundingClientRect().top + window.scrollY - navHeight - stickyHeight - 8;
+  const startY = window.scrollY;
+  const delta = targetY - startY;
+  const duration = Math.min(900, Math.max(550, Math.abs(delta) / 1.6));
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.scrollTo(0, targetY);
+    return;
+  }
+  let raf = 0;
+  let start: number | null = null;
+  const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+  const step = (ts: number) => {
+    if (!start) start = ts;
+    const t = Math.min(1, (ts - start) / duration);
+    window.scrollTo(0, startY + delta * easeOutQuart(t));
+    if (t < 1) raf = requestAnimationFrame(step);
+  };
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(step);
 }
 
 /* Sticky category navigation — glass pill tabs that track the active section while scrolling */

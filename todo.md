@@ -693,3 +693,6 @@
 
 ## Sticky Category Filter Revert (user-requested)
 - [x] Revert the sticky category navigation to its previous position: below the banner, above the marquee strip; verified on desktop full-page capture, tests 24/24, checkpoint and publish
+
+## Smooth Scroll on Category Tab Clicks (user-requested)
+- [x] Make clicking category filter tabs glide smoothly to the selected service section (replaced scrollIntoView with custom requestAnimationFrame easeOutQuart glide, 550-900ms adaptive duration, offsetting header + sticky CategoryNav height + 8px; respects prefers-reduced-motion)
