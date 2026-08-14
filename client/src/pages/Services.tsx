@@ -243,32 +243,33 @@ function HighlightCard({ groupId }: { groupId: string }) {
         )}
         {/* Dark overlay — keeps the photo visible while text stays clearly readable */}
         {bg ? (
-          <>
-            <div
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
-              aria-hidden="true"
-            />
-            {/* Face highlight — soft radial glow over the designer's face (upper-right), brightening on hover */}
-            <div
-              className="absolute rounded-full transition-opacity duration-500 opacity-50 group-hover:opacity-100"
-              style={{ top: "-8%", right: "-12%", width: "62%", height: "58%", background: "radial-gradient(ellipse at 60% 30%, rgba(255, 245, 225, 0.28) 0%, rgba(255, 245, 225, 0.10) 45%, transparent 72%)" }}
-              aria-hidden="true"
-            />
-          </>
+          /* Pure navy overlay — no light or warm tones, per user request */
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
+            aria-hidden="true"
+          />
         ) : (
           <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
         )}
         {/* Noise texture only on non-photo cards */}
         {!isPhotoCard && <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />}
-        <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
-        <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
-        {/* hover glow halo that brightens on hover */}
-        <div className="glow-orb absolute inset-0 rounded-3xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500" aria-hidden="true" />
-        {/* floating geometric accents */}
-        <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
-        <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
-        <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
+        {!isPhotoCard && (
+          <>
+            <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
+            <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
+            {/* hover glow halo that brightens on hover */}
+            <div className="glow-orb absolute inset-0 rounded-3xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500" aria-hidden="true" />
+          </>
+        )}
+        {/* floating geometric accents — omitted on photo cards to keep a clean dark backdrop */}
+        {!isPhotoCard && (
+          <>
+            <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
+            <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
+            <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
+          </>
+        )}
         <div className="relative z-10 flex flex-col justify-between h-full">
           <div>
             <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">{h.kicker}</p>

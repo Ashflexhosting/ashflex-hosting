@@ -852,3 +852,6 @@
 ## 4th card hover refinements (user-requested)
 - [x] Remove the "Learn More" hover CTA button from the 4th (photo) highlight card — the button is now only rendered on gradient highlight cards
 - [x] Brighten the designer.s face on hover — added a soft warm radial glow positioned over the upper-right face area that brightens from 50% to full opacity over 500ms on card hover (gradient cards keep their Learn More CTA)
+
+## Pure-dark photo-card overlay (user-requested)
+- [x] Remove all light/white tones from the photo highlight cards — dropped the warm face glow, white orbs, hover halo, and floating white accents on photo cards; overlay is now a pure navy gradient with white text kept for readability; verified visually on /services
