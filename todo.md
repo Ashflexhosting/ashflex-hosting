@@ -666,3 +666,7 @@
 - [x] Verify on desktop (1280, 1366), mobile (375), run tests 24/24, checkpoint and publish
 ## About Banner Revert (user-requested)
 - [x] Restore the About page hero banner to the original PageHeader component style, keeping the rest of the new design
+## About Bento & Stats Animations (user-requested)
+- [x] Add smooth scroll-triggered staggered fade-in (slide-up) to the bento Mission/Vision cards (new bento-reveal CSS class: opacity + 44px slide + subtle scale + blur-in shadow, 750ms; registered in useScrollReveal observer)
+- [x] Verify the stats band count-up animation triggers on scroll into view (useCounter IntersectionObserver at 10% threshold with staggered delays, fallback to final value if observer misses)
+- [x] Run tests 24/24, typecheck clean, checkpoint and publish

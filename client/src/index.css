@@ -126,6 +126,9 @@
   .scroll-reveal-left.visible { opacity: 1; transform: translateX(0); }
   .scroll-reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
   .scroll-reveal-right.visible { opacity: 1; transform: translateX(0); }
+  /* Bento Mission/Vision cards — deeper slide-up reveal (opacity + 44px + subtle scale + glass blur-in) */
+  .bento-reveal { opacity: 0; transform: translateY(44px) scale(0.985); transition: opacity 750ms var(--ease-out), transform 750ms var(--ease-out), box-shadow 750ms var(--ease-out); }
+  .bento-reveal.visible { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 24px 60px rgba(7, 27, 90, 0.35); }
   .flow-line.visible { transform: scaleX(1) !important; }
   .flow-curve.visible .flow-curve-path { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s cubic-bezier(0.23, 1, 0.32, 1); }
   .flow-curve .flow-curve-path { transition: stroke-dashoffset 1.6s cubic-bezier(0.23, 1, 0.32, 1); }

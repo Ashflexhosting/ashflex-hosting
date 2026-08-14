@@ -109,8 +109,8 @@ export default function About() {
         </div>
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-12 gap-8">
-            {/* Mission — spans 7 */}
-            <div className="scroll-reveal lg:col-span-7 glass-card-dark p-8 md:p-10 rounded-3xl">
+            {/* Mission — spans 7 (staggered slide-up reveal) */}
+            <div className="bento-reveal lg:col-span-7 glass-card-dark p-8 md:p-10 rounded-3xl">
               <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6">
                 <Target className="text-white" size={28} />
               </div>
@@ -120,7 +120,7 @@ export default function About() {
               </p>
             </div>
             {/* Vision — spans 5 */}
-            <div className="scroll-reveal lg:col-span-5 glass-card-dark p-8 md:p-10 rounded-3xl" style={{ transitionDelay: "100ms" }}>
+            <div className="bento-reveal lg:col-span-5 glass-card-dark p-8 md:p-10 rounded-3xl" style={{ transitionDelay: "140ms" }}>
               <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6">
                 <Eye className="text-white" size={28} />
               </div>
