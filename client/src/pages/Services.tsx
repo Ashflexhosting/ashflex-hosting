@@ -55,6 +55,42 @@ const serviceGroups: ServiceGroup[] = [
   },
 ];
 
+/* Filler card for the Design & Experience row — brand-philosophy visual that balances the 4-column grid */
+function PhilosophyCard() {
+  return (
+    <div className="bento-reveal group rounded-3xl h-full relative overflow-hidden p-7 text-white" style={{ transitionDelay: "180ms" }}>
+      {/* layered brand gradient background */}
+      <div className="absolute inset-0 bg-gradient-primary" aria-hidden="true" />
+      <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
+      <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
+      <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full bg-brand-cyan" style={{ opacity: 0.35 }} aria-hidden="true" />
+      {/* floating geometric accents */}
+      <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
+      <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
+      <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
+      <div className="relative z-10 flex flex-col justify-between h-full">
+        <div>
+          <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">Our Promise</p>
+          <h3 className="text-xl font-extrabold leading-snug mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+            Designed to be loved. Built to perform.
+          </h3>
+          <p className="text-sm text-white/80 leading-relaxed mb-5">
+            Every project starts with your goals and ends with measurable results — beauty and performance, never one without the other.
+          </p>
+        </div>
+        <div className="flex items-center gap-3 pt-4 border-t border-white/25">
+          <div className="flex -space-x-2" aria-hidden="true">
+            <span className="w-7 h-7 rounded-full bg-white/35 border border-white/50" />
+            <span className="w-7 h-7 rounded-full bg-white/20 border border-white/50" />
+            <span className="w-7 h-7 rounded-full bg-white/45 border border-white/50" />
+          </div>
+          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">250+ projects crafted</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ServiceCard({ service, index, accent }: { service: (typeof services)[number]; index: number; accent: string }) {
   const Icon = iconMap[service.icon] || Code;
   return (
@@ -182,9 +218,10 @@ export default function Services() {
                   <span className="text-muted-foreground text-xs font-mono">{items.length} services</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {items.map((service, i) => (
+                  {items.map((service) => (
                     <ServiceCard key={service.id} service={service} index={services.indexOf(service)} accent={group.accent} />
                   ))}
+                  {group.id === "design" && <PhilosophyCard key="philosophy" />}
                 </div>
               </div>
             );

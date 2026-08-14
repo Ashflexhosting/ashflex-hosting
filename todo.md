@@ -675,3 +675,6 @@
 - [x] Redesign service cards and section layout with the modern design language: marquee strip, asymmetric intro with 4 value chips, 4 grouped service categories (Design/Development/Marketing/Infrastructure & AI) with numbered dark glass bento cards, scroll-reveal staggered animations, and dark editorial CTA with glow orbs
 - [x] Preserve the existing PageHeader banner exactly as-is
 - [x] Verify on desktop (1280) and mobile (375) full-page screenshots, typecheck clean, tests 24/24, checkpoint and publish
+## Services Design Row Filler (user-requested)
+- [x] Fill the empty 4th slot in the Design & Experience row with a complementary design-philosophy visual card (brand gradient background, noise texture, glow orbs, floating geometric accents, "Designed to be loved. Built to perform." promise, 250+ projects footer)
+- [x] Verify grid balance on desktop (3 service cards + philosophy card = 4 across), tests 24/24, checkpoint and publish
