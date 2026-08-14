@@ -644,3 +644,6 @@
 - [x] Add subtle hover effect (lift + increased shadow) to testimonial cards
 - [x] Add a small project thumbnail image next to the project name on each card
 - [x] Verify on desktop/mobile, run tests, checkpoint and publish
+
+## Testimonial Font & Style (user-requested)
+- [x] Reduce testimonial quote font size and refine the typography style, verify and checkpoint

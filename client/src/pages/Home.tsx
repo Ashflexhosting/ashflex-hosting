@@ -728,7 +728,7 @@ export default function Home() {
                       type="button"
                       onClick={scrollToProject}
                       aria-label={`View the ${t.project} project in the portfolio`}
-                      className="glass-card-dark border-0 p-9 w-full text-left rounded-3xl transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand-cyan/15 hover:border-brand-cyan/30 hover:bg-white/[0.06] active:scale-[0.985]"
+                      className="glass-card-dark border-0 p-8 md:p-9 w-full text-left rounded-3xl transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand-cyan/15 hover:border-brand-cyan/30 hover:bg-white/[0.06] active:scale-[0.985] relative overflow-hidden"
                     >
                       <CardContent className="p-0">
                         <div className="flex items-center gap-1 mb-5">
@@ -736,9 +736,9 @@ export default function Home() {
                             <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
                           ))}
                         </div>
-                        <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-7 font-medium" style={{ fontFamily: "var(--font-heading)" }}>
-                          "{t.content}"
-                        </p>
+                      <p className="text-[1.05rem] md:text-base text-white/80 leading-[1.8] mb-6 font-normal italic" style={{ fontFamily: "var(--font-body)" }}>
+                        “{t.content}”
+                      </p>
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ fontFamily: "var(--font-heading)" }}>
                             {t.name.charAt(0)}
