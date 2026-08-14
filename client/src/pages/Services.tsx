@@ -46,6 +46,14 @@ function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: s
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState<{ left: number; width: number; top: number; height: number } | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const measure = () => {
     const container = containerRef.current;
@@ -70,13 +78,13 @@ function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: s
   }, [activeId]);
 
   return (
-    <div className="sticky top-[68px] md:top-[76px] z-40 bg-background/85 backdrop-blur-xl border-b border-border">
+    <div className={`sticky top-[68px] md:top-[76px] z-40 bg-background/85 backdrop-blur-xl border-b border-border transition-shadow duration-300 md:shadow-none ${scrolled ? "shadow-lg shadow-black/15 md:shadow-none" : "shadow-none"}`}>
       <div className="container py-2 md:py-2.5">
         <div className="relative grid grid-cols-4 gap-1.5 md:flex md:flex-wrap md:items-center md:gap-2" ref={containerRef}>
           {indicator && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute rounded-full bg-gradient-primary shadow-lg shadow-brand-secondary/25 transition-all duration-300 ease-out"
+              className="pointer-events-none absolute rounded-full bg-gradient-primary shadow-lg shadow-brand-secondary/25 transition-all duration-200 ease-out"
               style={{ left: indicator.left, top: indicator.top, width: indicator.width, height: indicator.height }}
             />
           )}
@@ -92,7 +100,7 @@ function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: s
                 className={`relative inline-flex items-center justify-center gap-1 py-2 text-[11px] md:text-sm font-semibold border rounded-full transition-colors duration-300 md:whitespace-nowrap md:px-5 md:py-2.5 md:text-center ${
                   active
                     ? "text-white border-transparent z-10"
-                    : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground"
+                    : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground md:hover:-translate-y-0.5 hover:shadow-md hover:shadow-brand-secondary/10"
                 }`}
               >
                 <span className="hidden md:inline">{g.label}</span>
@@ -312,12 +320,21 @@ export default function Services() {
 
   /* Back to Top — show after scrolling past the banner (lower threshold on mobile) */
   const [showTop, setShowTop] = useState(false);
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
     const threshold = window.innerWidth < 768 ? 360 : 520;
-    const onScroll = () => setShowTop(window.scrollY > threshold);
+    const onScroll = () => {
+      setShowTop(window.scrollY > threshold);
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - doc.clientHeight;
+      setProgress(scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", () => setShowTop(window.scrollY > (window.innerWidth < 768 ? 360 : 520)));
+    window.addEventListener("resize", () => {
+      setShowTop(window.scrollY > (window.innerWidth < 768 ? 360 : 520));
+      onScroll();
+    });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -789,18 +806,45 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ============ Back to Top — floating button ============ */}
-      <button
-        type="button"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Back to top"
-        className={`fixed bottom-6 right-6 z-50 w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/30 flex items-center justify-center transition-all duration-300 hover:scale-105 ${
+      {/* ============ Back to Top — floating button with scroll progress ring ============ */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
           showTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-3 pointer-events-none"
         }`}
         style={{ bottom: "min(24px, calc(100dvh - 180px))" }}
       >
-        <ArrowUp size={18} />
-      </button>
+        <div className="relative w-12 h-12">
+          <svg viewBox="0 0 48 48" className="absolute inset-0 -rotate-90">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="rgba(148,163,184,0.25)" strokeWidth="3" />
+            <circle
+              cx="24"
+              cy="24"
+              r="22"
+              fill="none"
+              stroke="url(#progressRingGradient)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray={138.23}
+              strokeDashoffset={138.23 * (1 - progress)}
+              style={{ transition: "stroke-dashoffset 150ms ease-out" }}
+            />
+            <defs>
+              <linearGradient id="progressRingGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#2563EB" />
+                <stop offset="100%" stopColor="#06B6D4" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Back to top"
+            className="absolute inset-1.5 rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/30 flex items-center justify-center transition-transform duration-300 hover:scale-105"
+          >
+            <ArrowUp size={16} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
