@@ -919,3 +919,5 @@
 - [x] Made each marquee logo clickable, opening a placeholder link (url field, falls back to #) in a new tab with noopener noreferrer
 
 - [x] Increased the spacing between marquee logos (px-7/md:px-9) and slowed the marquee animation from 32s to 52s per loop
+
+- [x] Wired each marquee logo to its real client website URL (verified live: gyroairltd.com, galconengineering.com, karossytravels.com, nenvahealth.com.ng, ashflexconsult.com.ng, shutterspeedprojects.com) opening in a new tab
