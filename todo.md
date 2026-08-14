@@ -560,6 +560,10 @@
 - [x] Content remains scrollable — hover auto-scroll, "Scroll to view" hint, arrows, glare, and responsive phone switch all preserved
 - [x] Verified on desktop (full-page captures of /portfolio/1 and /portfolio/4), tests 24/24, checkpoint saved and auto-published
 
+## Hero 3D Tilt Effect (user-requested)
+- [ ] Add a subtle 3D tilt effect to the hero iMac image on hover (cursor-position-driven perspective rotation, ~4-6 deg max, with smooth easing back to flat)
+- [ ] Verify on desktop, keep reduced-motion preference respected, tests 24/24, checkpoint and publish (auto-publish)
+
 ## Hero Right-Side iMac Image (user-requested)
 - [x] Uploaded galcon.webp (/manus-storage/galcon-imac_8f72a11c.webp) and placed it on the right side of the homepage hero, replacing the abstract browser/metric cards stack; keeps the floating animation and soft shadow
 - [x] Verified rendering on desktop full-page capture and mobile (image hidden below lg, unchanged), tests 24/24, checkpoint saved and auto-published

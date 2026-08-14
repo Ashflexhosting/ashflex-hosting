@@ -12,6 +12,7 @@ import { services } from "@/data/services";
 import { portfolioItems } from "@/data/portfolio";
 import { faqs } from "@/data/faq";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
+import { TiltEffect } from "@/components/TiltEffect";
 import { useState } from "react";
 import {
   Accordion,
@@ -270,13 +271,19 @@ export default function Home() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" aria-hidden="true" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-white/5 rotate-12" aria-hidden="true" />
 
-              <img
-                src="/manus-storage/galcon-imac_8f72a11c.webp"
-                alt="Galcon Engineering website displayed on an iMac"
-                className="scroll-reveal-right w-full max-w-[478px] mx-auto drop-shadow-2xl"
+              <TiltEffect
+                max={5}
+                className="scroll-reveal-right w-full max-w-[478px] mx-auto"
                 style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
-                loading="eager"
-              />
+              >
+                <img
+                  src="/manus-storage/galcon-imac_8f72a11c.webp"
+                  alt="Galcon Engineering website displayed on an iMac"
+                  className="w-full drop-shadow-2xl"
+                  loading="eager"
+                  draggable={false}
+                />
+              </TiltEffect>
             </div>
           </div>
         </div>
