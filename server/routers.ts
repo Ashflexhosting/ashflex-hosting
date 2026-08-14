@@ -11,6 +11,7 @@ import {
   updateJobApplicationStatus,
 } from "./db";
 import { notifyOwner } from "./_core/notification";
+import { invokeLLM } from "./_core/llm";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
@@ -93,6 +94,37 @@ export const appRouter = router({
         });
 
         return { id, notificationSent } as const;
+      }),
+
+    // AI-powered message draft based on the visitor's selected service.
+    messageSuggest: publicProcedure
+      .input(z.object({ service: z.string().min(1).max(120).trim() }))
+      .mutation(async ({ input }) => {
+        try {
+          const res = await invokeLLM({
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You write one concise, natural first-person inquiry message (2-3 sentences, 40-90 words) that a small business owner would send to a web design agency about this service. Plain text only, no markdown, no quotation marks, no greeting or sign-off.",
+              },
+              {
+                role: "user",
+                content: `Service of interest: ${input.service}`,
+              },
+            ],
+            maxTokens: 200,
+          });
+          const raw = res.choices?.[0]?.message?.content;
+          const draft = typeof raw === "string" ? raw.trim() : "";
+          if (!draft || draft.length < 20) {
+            return { suggestion: "" } as const;
+          }
+          return { suggestion: draft.slice(0, 500) } as const;
+        } catch (error) {
+          console.error("[Contact] Message suggestion failed:", error);
+          return { suggestion: "" } as const;
+        }
       }),
 
     submissions: router({

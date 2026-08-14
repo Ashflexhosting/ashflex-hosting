@@ -701,3 +701,8 @@
 - [x] Scrollspy: category filter tabs automatically highlight the active section while scrolling (replaced IntersectionObserver with scroll/resize probe at viewport top + header + 120px; last section passed wins; falls back to first group; updates instantly on smooth-scroll glides)
 - [x] Floating "Back to Top" button appearing after scrolling past the banner (shows after 520px scroll, fades/slides in, smooth-scroll to top, fixed bottom-right z-50 gradient circle)
 - [x] Concise contact form at the bottom of the Services page (name*, email*, optional service dropdown of all 16 services, message*; stored via trpc.contact.submit + mailto fallback to info@ashflexwebdesign.com; success state with confirmation card; matches site's glass-card style)
+
+## Inquiry Form Enhancements (user-requested)
+- [x] Loading spinner on the submit button while the message is sending (lucide Loader2 animate-spin, disabled during isPending, aria-live polite)
+- [x] AI-powered auto-suggest in the message field based on the selected service (new trpc.contact.messageSuggest procedure using the built-in LLM; selects a service → "Drafting an AI message…" spinner → cyan "Use AI suggestion" pill chip → one click fills the textarea; placeholder updates to "Ask us about …") — interactively verified: drafting message for Website Design produced a full draft
+- [x] Real-time field validation (touched state on change/blur, red border + animated error text under name/email/message, email format check) and smooth success card animation (fade-in scale-up)

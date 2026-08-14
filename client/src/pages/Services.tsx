@@ -3,7 +3,7 @@ import { Link as WLink } from "wouter";
 import {
   ArrowRight, ArrowUp, Sparkles, Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug, Bot, Settings,
-  ChevronRight, CheckCircle2, Shield, Headset,
+  ChevronRight, CheckCircle2, Shield, Headset, Loader2,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -281,6 +281,49 @@ export default function Services() {
   /* Concise inquiry form at the bottom of the Services page */
   const [inquiry, setInquiry] = useState({ name: "", email: "", service: "", message: "" });
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
+  const [touched, setTouched] = useState({ name: false, email: false, message: false });
+  const [suggestion, setSuggestion] = useState("");
+  const [suggestionReady, setSuggestionReady] = useState(false);
+  const suggestionMutation = trpc.contact.messageSuggest.useMutation();
+
+  /* Real-time field validation — errors surface as the user types/blurs */
+  const validate = (field: keyof typeof inquiry, value: string) => {
+    if (field === "name") return value.trim() ? "" : "Name is required";
+    if (field === "email") {
+      if (!value.trim()) return "Email is required";
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "Please enter a valid email";
+    }
+    if (field === "message") return value.trim() ? "" : "Message is required";
+    return "";
+  };
+  const formErrors = {
+    name: touched.name ? validate("name", inquiry.name) : "",
+    email: touched.email ? validate("email", inquiry.email) : "",
+    message: touched.message ? validate("message", inquiry.message) : "",
+  };
+  const isFormValid = Object.values(formErrors).every((e) => e === "");
+
+  /* AI-powered message suggestion based on the selected service */
+  const requestSuggestion = (service: string) => {
+    if (!service || !suggestionMutation.isIdle) return;
+    suggestionMutation.mutate(
+      { service },
+      {
+        onSuccess: (data) => {
+          if (data.suggestion) {
+            setSuggestion(data.suggestion);
+            setSuggestionReady(true);
+          }
+        },
+      },
+    );
+  };
+  const useSuggestion = () => {
+    setInquiry((prev) => ({ ...prev, message: suggestion }));
+    setTouched((prev) => ({ ...prev, message: true }));
+    setSuggestionReady(false);
+    setSuggestion("");
+  };
   const inquiryMutation = trpc.contact.submit.useMutation({
     onSuccess: (_data, variables) => {
       setInquirySubmitted(true);
@@ -300,8 +343,10 @@ export default function Services() {
 
   const handleInquiry = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inquiry.name || !inquiry.email || !inquiry.message) {
-      toast.error("Please fill in all required fields");
+    /* Mark all fields touched so validation messages appear */
+    setTouched({ name: true, email: true, message: true });
+    if (!isFormValid) {
+      toast.error("Please fix the highlighted fields before sending");
       return;
     }
     inquiryMutation.mutate({
@@ -457,7 +502,7 @@ export default function Services() {
             <p className="text-foreground/60 text-sm md:text-base">Send a quick note after browsing our services — we reply within one business day.</p>
           </div>
           {inquirySubmitted ? (
-            <div className="max-w-xl mx-auto glass-card rounded-2xl p-10 text-center">
+            <div className="max-w-xl mx-auto glass-card rounded-2xl p-10 text-center animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-500">
               <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-5">
                 <CheckCircle2 size={28} className="text-white" />
               </div>
@@ -469,20 +514,42 @@ export default function Services() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="inq-name" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Name *</label>
-                  <input id="inq-name" type="text" value={inquiry.name} onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
+                  <input id="inq-name" type="text" value={inquiry.name} onChange={(e) => {
+                      setInquiry({ ...inquiry, name: e.target.value });
+                      setTouched((prev) => ({ ...prev, name: true }));
+                    }}
+                    onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
                     placeholder="Your name" required
-                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition" />
+                    className={`w-full px-4 py-3 rounded-xl bg-card border text-sm focus:outline-none focus:ring-1 transition ${
+                      formErrors.name ? "border-destructive focus:border-destructive focus:ring-destructive/40" : "border-border focus:border-brand-secondary focus:ring-brand-secondary/40"
+                    }`} />
+                  {formErrors.name ? (
+                    <p className="text-xs text-destructive mt-1.5 animate-in fade-in slide-in-from-bottom-1 duration-200">{formErrors.name}</p>
+                  ) : null}
                 </div>
                 <div>
                   <label htmlFor="inq-email" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Email *</label>
-                  <input id="inq-email" type="email" value={inquiry.email} onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
+                  <input id="inq-email" type="email" value={inquiry.email} onChange={(e) => {
+                      setInquiry({ ...inquiry, email: e.target.value });
+                      setTouched((prev) => ({ ...prev, email: true }));
+                    }}
+                    onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
                     placeholder="you@company.com" required
-                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition" />
+                    className={`w-full px-4 py-3 rounded-xl bg-card border text-sm focus:outline-none focus:ring-1 transition ${
+                      formErrors.email ? "border-destructive focus:border-destructive focus:ring-destructive/40" : "border-border focus:border-brand-secondary focus:ring-brand-secondary/40"
+                    }`} />
+                  {formErrors.email ? (
+                    <p className="text-xs text-destructive mt-1.5 animate-in fade-in slide-in-from-bottom-1 duration-200">{formErrors.email}</p>
+                  ) : null}
                 </div>
               </div>
               <div>
                 <label htmlFor="inq-service" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Service of interest</label>
-                <select id="inq-service" value={inquiry.service} onChange={(e) => setInquiry({ ...inquiry, service: e.target.value })}
+                <select id="inq-service" value={inquiry.service} onChange={(e) => {
+                    setInquiry({ ...inquiry, service: e.target.value });
+                    /* Ask the AI to draft a message for the selected service */
+                    requestSuggestion(e.target.value);
+                  }}
                   className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm text-foreground/80 focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition">
                   <option value="">Select a service (optional)</option>
                   {services.map((s) => (
@@ -491,15 +558,44 @@ export default function Services() {
                 </select>
               </div>
               <div>
-                <label htmlFor="inq-message" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Message *</label>
-                <textarea id="inq-message" rows={3} value={inquiry.message} onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
-                  placeholder="A short note about your project…" required
-                  className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition resize-none" />
+                <div className="flex items-center justify-between mb-1.5">
+                  <label htmlFor="inq-message" className="text-xs font-semibold uppercase tracking-wide text-foreground/60">Message *</label>
+                  {suggestionReady && !suggestionMutation.isPending && (
+                    <button type="button" onClick={useSuggestion}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-brand-accent bg-brand-accent/10 border border-brand-accent/30 hover:bg-brand-accent/20 transition-colors duration-200 animate-in fade-in slide-in-from-bottom-1.5 duration-300">
+                      <Sparkles size={12} />
+                      Use AI suggestion
+                    </button>
+                  )}
+                </div>
+                <textarea id="inq-message" rows={3} value={inquiry.message} onChange={(e) => {
+                    setInquiry({ ...inquiry, message: e.target.value });
+                    setTouched((prev) => ({ ...prev, message: true }));
+                  }}
+                  onBlur={() => setTouched((prev) => ({ ...prev, message: true }))}
+                  placeholder={inquiry.service ? `Ask us about ${inquiry.service}…` : "A short note about your project…"} required
+                  className={`w-full px-4 py-3 rounded-xl bg-card border text-sm focus:outline-none focus:ring-1 transition resize-none ${
+                    formErrors.message ? "border-destructive focus:border-destructive focus:ring-destructive/40" : "border-border focus:border-brand-secondary focus:ring-brand-secondary/40"
+                  }`} />
+                {formErrors.message ? (
+                  <p className="text-xs text-destructive mt-1.5 animate-in fade-in slide-in-from-bottom-1 duration-200">{formErrors.message}</p>
+                ) : suggestionMutation.isPending ? (
+                  <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-1.5"><Loader2 size={12} className="animate-spin" /> Drafting an AI message for {inquiry.service}…</p>
+                ) : null}
               </div>
               <button type="submit" disabled={inquiryMutation.isPending}
                 className="group w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 disabled:opacity-60 disabled:pointer-events-none transition-all duration-300">
-                {inquiryMutation.isPending ? "Sending…" : "Send Inquiry"}
-                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                {inquiryMutation.isPending ? (
+                  <>
+                    <Loader2 size={17} className="animate-spin" aria-hidden="true" />
+                    <span aria-live="polite">Sending…</span>
+                  </>
+                ) : (
+                  <>
+                    Send Inquiry
+                    <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
               <p className="text-center text-xs text-muted-foreground">Stored securely and emailed to info@ashflexwebdesign.com.</p>
             </form>
