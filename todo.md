@@ -664,3 +664,5 @@
 - [x] Add services marquee strip, asymmetric story section, bento Mission/Vision cards, 6-card core-values band
 - [x] Modernize team (gradient rings, accent bars, gradient roles), dark stats band, and trust section with the new design language
 - [x] Verify on desktop (1280, 1366), mobile (375), run tests 24/24, checkpoint and publish
+## About Banner Revert (user-requested)
+- [x] Restore the About page hero banner to the original PageHeader component style, keeping the rest of the new design

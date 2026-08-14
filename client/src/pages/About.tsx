@@ -1,8 +1,8 @@
 import { Link } from "wouter";
+import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCounter } from "@/hooks/useCounter";
-import { Target, Eye, Heart, Users, Award, Globe, Sparkles, ArrowRight, CheckCircle, MonitorPlay } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Target, Eye, Heart, Users, Award, Globe, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
 
 const team = [
   { name: "Uzodimma Ogbonnaya", role: "Founder & CEO", bio: "10+ years leading digital innovation across Africa and beyond.", img: "/manus-storage/team-ceo_103bb175.png", accent: "from-brand-secondary to-brand-accent" },
@@ -50,87 +50,12 @@ export default function About() {
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
-      {/* ============ HERO — editorial dark hero with kinetic type ============ */}
-      <section className="relative min-h-[640px] flex items-center bg-brand noise-texture overflow-hidden">
-        <div className="absolute inset-0" aria-hidden="true">
-          <div className="glow-orb absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand-secondary" />
-          <div className="glow-orb absolute bottom-0 right-1/4 w-[340px] h-[340px] rounded-full bg-brand-accent" style={{ opacity: 0.25 }} />
-          <div className="glow-orb absolute top-1/3 right-0 w-[280px] h-[280px] rounded-full bg-brand-cyan" style={{ opacity: 0.18 }} />
-        </div>
-
-        {/* corner label */}
-        <div className="absolute top-32 left-4 md:left-10 z-10 hidden md:flex items-center gap-3 rotate-[-90deg] origin-top-left text-white/40 text-xs uppercase tracking-[0.3em]" aria-hidden="true">
-          <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
-        </div>
-
-        <div className="container relative z-10 pt-28 pb-20 md:pt-36 md:pb-24">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Left: copy */}
-            <div className="lg:col-span-7">
-              <div className="scroll-reveal flex items-center gap-2 mb-6">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" /> About Us
-                </span>
-                <span className="text-white/40 text-xs">Est. Lagos, Nigeria</span>
-              </div>
-              <h1
-                className="scroll-reveal text-[2.1rem] sm:text-5xl md:text-6xl xl:text-[4.2rem] font-extrabold text-white leading-[1.05] tracking-tight mb-8"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                <span className="whitespace-nowrap">Designers, builders &amp;{" "}</span>
-                <br />
-                <span className="whitespace-nowrap">
-                  <span className="text-gradient">strategists</span> who love{" "}
-                </span>
-                <br />
-                <span className="whitespace-nowrap text-outline">their craft.</span>
-              </h1>
-              <p className="scroll-reveal text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-10" style={{ transitionDelay: "120ms" }}>
-                Ashflex Web Design is an independent digital studio turning ambitious businesses into brands people trust, click, and choose — across Nigeria, Africa, and the world.
-              </p>
-
-              <div className="scroll-reveal flex flex-col sm:flex-row items-start gap-4 mb-10" style={{ transitionDelay: "220ms" }}>
-                <Link href="/contact">
-                  <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
-                    Start Your Project
-                    <ArrowRight size={19} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-                <Link href="/portfolio">
-                  <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
-                    <MonitorPlay size={19} /> View Our Work
-                  </span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right: team photo collage */}
-            <div className="lg:col-span-5 hidden lg:block relative">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" aria-hidden="true" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-white/5 rotate-12" aria-hidden="true" />
-              <div
-                className="scroll-reveal-right w-full max-w-[560px] mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-2 shadow-2xl shadow-brand/40"
-                style={{ animation: "float-slow 7s ease-in-out infinite", transitionDelay: "150ms" }}
-              >
-                <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4 / 3" }}>
-                  <img
-                    src="/manus-storage/hero-team_d63c1142.webp"
-                    alt="The Ashflex team collaborating in the studio"
-                    loading="eager"
-                    draggable={false}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand/70 via-transparent to-transparent" aria-hidden="true" />
-                  <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
-                    <p className="text-white font-semibold" style={{ fontFamily: "var(--font-heading)" }}>The Studio Crew</p>
-                    <span className="text-xs text-white/70 bg-white/10 backdrop-blur rounded-full px-3 py-1">Lagos HQ</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ============ Page header banner (original style) ============ */}
+      <PageHeader
+        title="About Ashflex"
+        description="We're a team of passionate designers, developers, and strategists dedicated to building digital experiences that drive real business growth."
+        breadcrumb={[{ label: "About", href: "/about" }]}
+      />
 
       {/* ============ Marquee strip ============ */}
       <div className="relative bg-gradient-brand border-y border-white/10 overflow-hidden py-3.5">
