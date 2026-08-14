@@ -904,3 +904,8 @@
 - [x] Uploaded the 6 supplied brand logo images (gyroairltd, galconengineering, karossytravels, nenvahealth, ashflexconsult, shutterspeedprojects) as managed web assets
 - [x] Replaced the trusted-brands marquee monogram tiles with the real logo images on white pill-free tiles with consistent height (h-12/h-14) and width caps (max-w-180/210px), subtle lift on hover; verified on desktop and mobile
 - [x] Verified the marquee on desktop and mobile, ran tests (29/29 passed), checkpointed and published
+
+## Trusted Brands Marquee Refinements (user-requested)
+- [x] Added grayscale filter with smooth full-color hover transition (500ms) on marquee logos
+- [x] Increased logo size (h-16/h-20) and reduced inter-logo gap (px-2/px-3)
+- [x] Processed logo backgrounds to transparent (flood-fill removal, feathered edges) and re-pointed marquee to transparent assets; verified on desktop; 29/29 tests pass

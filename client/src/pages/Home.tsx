@@ -15,12 +15,12 @@ import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
 
 const TRUSTED_BRANDS = [
-  { name: "Gyro Air", logo: "/manus-storage/gyroairltd_c8ff1651.webp" },
-  { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_797c38d3.webp" },
-  { name: "Karossy Travels", logo: "/manus-storage/karossytravels_2536252b.webp" },
-  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_3a76bf25.webp" },
-  { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_eb283657.webp" },
-  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeedprojects_c5e4d659.webp" },
+  { name: "Gyro Air", logo: "/manus-storage/gyroairltd_69b28b2f.webp" },
+  { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_8f121225.webp" },
+  { name: "Karossy Travels", logo: "/manus-storage/karossytravels_1db5b4e3.webp" },
+  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_9843d0bf.webp" },
+  { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp" },
+  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeedprojects_d5babd68.webp" },
 ];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -555,13 +555,13 @@ export default function Home() {
         </div>
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
-            <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-6 md:px-9 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
-              <div className="inline-flex h-14 md:h-16 items-center justify-center overflow-visible rounded-xl px-4 py-2 transition-transform duration-300 hover:-translate-y-0.5">
+            <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-2 md:px-3 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
+              <div className="inline-flex items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
-                  className="h-12 md:h-14 w-auto max-w-[180px] md:max-w-[210px] object-contain drop-shadow-sm grayscale transition-all duration-500 hover:grayscale-0 hover:scale-105"
+                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-500 hover:grayscale-0 hover:scale-105"
                 />
               </div>
             </div>
