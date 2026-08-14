@@ -647,3 +647,8 @@
 
 ## Testimonial Font & Style (user-requested)
 - [x] Reduce testimonial quote font size and refine the typography style, verify and checkpoint
+
+## Testimonial Carousel & Stagger Animation (user-requested)
+- [x] Convert the testimonial section into an interactive swipe-enabled carousel with dots/autoplay
+- [x] Add smooth staggered fade-in animation to testimonial cards as the section scrolls into view
+- [x] Verify on desktop/mobile, run tests, checkpoint and publish

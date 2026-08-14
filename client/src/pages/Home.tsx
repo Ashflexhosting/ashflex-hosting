@@ -14,6 +14,7 @@ import { faqs } from "@/data/faq";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
 import React, { useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   Accordion,
   AccordionContent,
@@ -46,6 +47,181 @@ const processSteps = [
 ];
 
 /* Client feedback tied to actual portfolio projects */
+type Testimonial = {
+  projectId: number;
+  thumbnail: string;
+  name: string;
+  role: string;
+  project: string;
+  content: string;
+  rating: number;
+};
+
+/* ---------- Testimonial carousel (swipe, dots, autoplay, stagger fade-in) ---------- */
+function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [slideCount, setSlideCount] = useState(0);
+  const [inView, setInView] = useState(false);
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+
+  // IntersectionObserver: triggers the stagger fade-in once the section scrolls into view
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Autoplay: advance every 6s, pauses while hovering or dragging
+  const [playing, setPlaying] = useState(true);
+  React.useEffect(() => {
+    const api = emblaApi;
+    if (!api) return;
+    if (!playing) return;
+    const id = setInterval(() => api.scrollNext(), 6000);
+    return () => clearInterval(id);
+  }, [emblaApi, playing]);
+
+  React.useEffect(() => {
+    const api = emblaApi;
+    if (!api) return;
+    const onSelect = () => setSelectedIndex(api.selectedScrollSnap());
+    const onCount = () => setSlideCount(api.scrollSnapList().length);
+    const onDrag = () => setPlaying(false);
+    const onRelease = () => { setPlaying(true); };
+    api.on("select", onSelect);
+    api.on("reInit", () => { onSelect(); onCount(); });
+    api.on("pointerDown", onDrag);
+    api.on("pointerUp", onRelease);
+    onSelect();
+    onCount();
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onCount);
+      api.off("pointerDown", onDrag);
+      api.off("pointerUp", onRelease);
+    };
+  }, [emblaApi]);
+
+  return (
+    <div ref={sectionRef} onMouseEnter={() => setPlaying(false)} onMouseLeave={() => setPlaying(true)} className="max-w-4xl mx-auto">
+      <div ref={emblaRef} className="overflow-hidden" aria-label="Client testimonials">
+        <div className="flex touch-pan-y">
+          {testimonials.map((t, i) => (
+            <div key={i} className="min-w-0 flex-[0_0_100%] pl-0 pr-0">
+              <TestimonialCard t={t} inView={inView} index={i} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* dots */}
+      <div className="flex items-center justify-center gap-2.5 mt-8">
+        {Array.from({ length: slideCount }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to testimonial ${i + 1}`}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`h-2 rounded-full transition-all duration-300 ease-out ${
+              i === selectedIndex ? "w-8 bg-brand-cyan shadow-[0_0_12px_rgba(6,182,212,0.5)]" : "w-2 bg-white/25 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* arrows */}
+      <div className="flex items-center justify-center gap-3 mt-5">
+        <button
+          type="button"
+          aria-label="Previous testimonial"
+          onClick={() => emblaApi?.scrollPrev()}
+          className="w-10 h-10 rounded-full border border-white/20 text-white/80 flex items-center justify-center hover:bg-white/10 hover:border-brand-cyan/50 hover:text-brand-cyan transition-all duration-300 active:scale-[0.95]"
+        >
+          <ArrowLeft size={18} />
+        </button>
+        <button
+          type="button"
+          aria-label="Next testimonial"
+          onClick={() => emblaApi?.scrollNext()}
+          className="w-10 h-10 rounded-full border border-white/20 text-white/80 flex items-center justify-center hover:bg-white/10 hover:border-brand-cyan/50 hover:text-brand-cyan transition-all duration-300 active:scale-[0.95]"
+        >
+          <ArrowRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* single testimonial card with staggered fade-in */
+function TestimonialCard({ t, inView, index }: { t: Testimonial; inView: boolean; index: number }) {
+  const scrollToProject = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const target = document.getElementById(`project-${t.projectId}`);
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    target.classList.add("is-visible");
+  };
+  return (
+    <button
+      type="button"
+      onClick={scrollToProject}
+      aria-label={`View the ${t.project} project in the portfolio`}
+      className={`glass-card-dark border-0 p-8 md:p-9 w-full text-left rounded-3xl transition-all duration-500 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand-cyan/15 hover:border-brand-cyan/30 hover:bg-white/[0.06] active:scale-[0.985] relative overflow-hidden ${
+        inView ? "testimonial-fade-in opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: inView ? `${index * 90}ms` : "0ms" }}
+    >
+      <CardContent className="p-0">
+        <div className="flex items-center gap-1 mb-5">
+          {Array.from({ length: t.rating }).map((_, j) => (
+            <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
+          ))}
+        </div>
+        <p className="text-[1.05rem] md:text-base text-white/80 leading-[1.8] mb-6 font-normal italic" style={{ fontFamily: "var(--font-body)" }}>
+          “{t.content}”
+        </p>
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ fontFamily: "var(--font-heading)" }}>
+            {t.name.charAt(0)}
+          </div>
+          <div className="min-w-0">
+            <p className="text-white font-bold">{t.name}</p>
+            <p className="text-white/50 text-sm">{t.role}</p>
+            <div className="flex items-center gap-2 mt-1">
+              <img
+                src={t.thumbnail}
+                alt={`${t.project} screenshot`}
+                loading="lazy"
+                className="w-10 h-6 rounded object-cover object-top border border-white/20 shrink-0"
+              />
+              <p className="text-brand-cyan text-xs font-medium">
+                Project: {t.project}
+                <span className="ml-1.5 inline-flex items-center gap-0.5 text-brand-cyan/70">
+                  View project <ArrowRight size={10} />
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </button>
+  );
+}
+
 const testimonials = [
   {
     projectId: 12,
@@ -710,67 +886,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <Carousel className="max-w-4xl mx-auto" opts={{ loop: true }}>
-            <CarouselContent>
-              {testimonials.map((t, i) => {
-                const scrollToProject = (e: React.MouseEvent) => {
-                  e.preventDefault();
-                  const target = document.getElementById(`project-${t.projectId}`);
-                  if (!target) return;
-                  const y = target.getBoundingClientRect().top + window.scrollY - 100;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                  // give the scroll-reveal a nudge into view
-                  target.classList.add("is-visible");
-                };
-                return (
-                  <CarouselItem key={i}>
-                    <button
-                      type="button"
-                      onClick={scrollToProject}
-                      aria-label={`View the ${t.project} project in the portfolio`}
-                      className="glass-card-dark border-0 p-8 md:p-9 w-full text-left rounded-3xl transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand-cyan/15 hover:border-brand-cyan/30 hover:bg-white/[0.06] active:scale-[0.985] relative overflow-hidden"
-                    >
-                      <CardContent className="p-0">
-                        <div className="flex items-center gap-1 mb-5">
-                          {Array.from({ length: t.rating }).map((_, j) => (
-                            <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
-                          ))}
-                        </div>
-                      <p className="text-[1.05rem] md:text-base text-white/80 leading-[1.8] mb-6 font-normal italic" style={{ fontFamily: "var(--font-body)" }}>
-                        “{t.content}”
-                      </p>
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ fontFamily: "var(--font-heading)" }}>
-                            {t.name.charAt(0)}
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-white font-bold">{t.name}</p>
-                            <p className="text-white/50 text-sm">{t.role}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <img
-                                src={t.thumbnail}
-                                alt={`${t.project} screenshot`}
-                                loading="lazy"
-                                className="w-10 h-6 rounded object-cover object-top border border-white/20 shrink-0"
-                              />
-                              <p className="text-brand-cyan text-xs font-medium">
-                                Project: {t.project}
-                                <span className="ml-1.5 inline-flex items-center gap-0.5 text-brand-cyan/70">
-                                  View project <ArrowRight size={10} />
-                                </span>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </button>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <CarouselPrevious className="border-white/20 text-white hover:bg-white/10" />
-            <CarouselNext className="border-white/20 text-white hover:bg-white/10" />
-          </Carousel>
+          <TestimonialCarousel testimonials={testimonials} />
         </div>
       </section>
 

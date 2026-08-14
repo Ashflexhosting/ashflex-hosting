@@ -222,13 +222,22 @@
   height: 3px;
 }
 
+/* Testimonial card staggered fade-in on scroll (triggered by IntersectionObserver) */
+.testimonial-fade-in {
+  animation: testimonial-fade-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes testimonial-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .float-slow, .float-slow-delayed { animation: none; }
   .skeleton-shimmer { animation: none; }
   .hover-tooltip { animation: none; }
+  .testimonial-fade-in { animation: none; }
 }
-} /* end components */
 
 /* Site-wide container: 1200px — placed in @layer utilities so it overrides Tailwind's
    default .container utility (1536px at 1280px+), which otherwise wins the cascade. */
