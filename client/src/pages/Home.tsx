@@ -555,7 +555,7 @@ export default function Home() {
         </div>
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
-            <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-4 md:px-5 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
+            <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-7 md:px-9 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
               <a
                 href={brand.url || "#"}
                 target="_blank"

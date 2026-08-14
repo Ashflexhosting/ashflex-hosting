@@ -917,3 +917,5 @@
 - [x] Added subtle hover scaling animation to marquee logos (12% scale-up with spring easing, 300ms) combined with the grayscale-to-color transition
 
 - [x] Made each marquee logo clickable, opening a placeholder link (url field, falls back to #) in a new tab with noopener noreferrer
+
+- [x] Increased the spacing between marquee logos (px-7/md:px-9) and slowed the marquee animation from 32s to 52s per loop
