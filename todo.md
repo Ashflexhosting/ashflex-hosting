@@ -890,3 +890,6 @@
 
 ## Mobile menu white gradient removal (Aug 14, 2026)
 - [x] Remove the white brightening gradient overlay from the mobile menu dropdown — spotlight image now shows cleanly with only the warm glow-pulse pulse retained; menu text switched to white with subtle drop-shadow and arrows/divider to amber-300 for contrast; verified in browser DOM (0 white overlays, image present, 13 links) and 29/29 tests pass
+
+## Hero background city skyline swap
+- [x] Replace the homepage hero fixed background with the user-provided city_bg.webp (purple night skyline, stored at /manus-storage/city_bg_ad2d48f7.webp) — overlay tuned to opacity-40 so the skyline reads subtly behind the hero gradient (left navy 97% for text contrast, fading to 55% on the right where the skyline is brightest); verified rendering in screenshot

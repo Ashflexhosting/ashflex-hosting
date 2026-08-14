@@ -412,8 +412,8 @@ export default function Home() {
       {/* ============ HERO — editorial split with kinetic type ============ */}
       <section className="relative min-h-screen max-h-[900px] flex items-center bg-brand noise-texture overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-30"
-          style={{ backgroundImage: "url('/manus-storage/ashflex-hero-background_ee4a0039.png')" }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-40"
+          style={{ backgroundImage: "url('/manus-storage/city_bg_ad2d48f7.webp')" }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,27,90,0.97)_0%,rgba(7,27,90,0.82)_55%,rgba(7,27,90,0.55)_100%)]" aria-hidden="true" />
