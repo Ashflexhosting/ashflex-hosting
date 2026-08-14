@@ -788,3 +788,6 @@
 ## Revert Process Timeline (user feedback)
 - [x] Reversed "Our Process" to the boxed step cards: numbered gradient circles beside white rounded-2xl cards (hover lift), keeping the cyan eyebrow label and gradient headings from the focused redesign
 - [x] Verified /services/website-design shows the boxed steps; 29/29 tests pass; checkpoint and publish
+
+## Process Card Radius
+- [x] Set "Our Process" step card border radius to 15px on all service detail pages (inline style radius:15px), verified rendering

@@ -101,7 +101,7 @@ const PROCESS_STEPS = [
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-secondary to-brand-accent flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-secondary/25">
                       <span className="text-sm font-bold text-white">{i + 1}</span>
                     </div>
-                    <div className="flex-1 rounded-2xl border border-border/70 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-brand-secondary/30">
+                    <div className="flex-1 border border-border/70 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-brand-secondary/30" style={{ borderRadius: "15px" }}>
                       <h4 className="font-semibold text-foreground mb-1" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
                     </div>
