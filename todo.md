@@ -923,3 +923,5 @@
 - [x] Wired each marquee logo to its real client website URL (verified live: gyroairltd.com, galconengineering.com, karossytravels.com, nenvahealth.com.ng, ashflexconsult.com.ng, shutterspeedprojects.com) opening in a new tab
 
 - [x] Added a subtle focus-visible outline (2px brand-secondary, offset, rounded) to each marquee logo link for keyboard navigation
+
+- [x] Added a soft navy drop shadow (0 10px 18px, 22% opacity) to marquee logos on hover, complementing the scale animation
