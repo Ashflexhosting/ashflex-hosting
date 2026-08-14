@@ -811,3 +811,7 @@
 ## Back to Top reposition
 - [x] Moved the Back to Top button from bottom-right to bottom-left (fixed left-6) so it sits opposite the WhatsApp button and no longer blocks it
 - [x] Verified at 375px mobile — WhatsApp stays bottom-right, Back to Top not visible at top of page as expected; 29/29 tests pass; checkpoint and publish
+
+## Homepage hero mobile buttons
+- [x] Shrunk the two hero CTA buttons so they sit side by side on one line on mobile — both buttons now share an equal-width flex row (flex-1 each), with compact padding (px-3 py-3.5) and smaller text (text-xs) on mobile, scaling back to full size (sm:px-8 sm:py-4 text-base) at sm+; labels stay "Get Free Quote" / "View Portfolio" centered with icons
+- [x] Verified at 375px — both buttons on the same line, balanced widths; 29/29 tests pass; checkpoint and publish

@@ -449,16 +449,16 @@ export default function Home() {
                 High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
               </p>
 
-              <div className="hero-fade-in-d2 flex flex-col sm:flex-row items-start gap-4 mb-10">
-                <Link href="/contact">
-                  <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
+              <div className="hero-fade-in-d2 flex flex-row items-stretch gap-3 mb-10">
+                <Link href="/contact" className="flex-1">
+                  <span className="w-full justify-center group inline-flex items-center gap-2 px-3 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
                     Get Free Quote
-                    <ArrowRight size={19} className="group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
-                <Link href="/portfolio">
-                  <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
-                    <MonitorPlay size={19} /> View Portfolio
+                <Link href="/portfolio" className="flex-1">
+                  <span className="w-full justify-center group inline-flex items-center gap-2 px-3 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
+                    <MonitorPlay size={18} /> View Portfolio
                   </span>
                 </Link>
               </div>
