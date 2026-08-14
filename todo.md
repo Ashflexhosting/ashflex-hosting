@@ -848,3 +848,7 @@
 
 ## Darker photo-card overlay (user-requested)
 - [x] Darken the photo highlight card overlay to a near-solid navy gradient (0.93→0.86→0.91) so text is maximally readable; photos now visible as a subtle backdrop
+
+## 4th card hover refinements (user-requested)
+- [x] Remove the "Learn More" hover CTA button from the 4th (photo) highlight card — the button is now only rendered on gradient highlight cards
+- [x] Brighten the designer.s face on hover — added a soft warm radial glow positioned over the upper-right face area that brightens from 50% to full opacity over 500ms on card hover (gradient cards keep their Learn More CTA)

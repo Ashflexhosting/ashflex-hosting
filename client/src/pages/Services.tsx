@@ -243,11 +243,19 @@ function HighlightCard({ groupId }: { groupId: string }) {
         )}
         {/* Dark overlay — keeps the photo visible while text stays clearly readable */}
         {bg ? (
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
-            aria-hidden="true"
-          />
+          <>
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
+              aria-hidden="true"
+            />
+            {/* Face highlight — soft radial glow over the designer's face (upper-right), brightening on hover */}
+            <div
+              className="absolute rounded-full transition-opacity duration-500 opacity-50 group-hover:opacity-100"
+              style={{ top: "-8%", right: "-12%", width: "62%", height: "58%", background: "radial-gradient(ellipse at 60% 30%, rgba(255, 245, 225, 0.28) 0%, rgba(255, 245, 225, 0.10) 45%, transparent 72%)" }}
+              aria-hidden="true"
+            />
+          </>
         ) : (
           <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
         )}
@@ -278,9 +286,12 @@ function HighlightCard({ groupId }: { groupId: string }) {
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">{h.stat}</span>
             </div>
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#0B3D91] text-xs font-bold uppercase tracking-[0.12em] shadow-lg shadow-black/20 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-              Learn More <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
-            </span>
+              {/* Learn More CTA — shown on gradient cards, hidden on photo cards per user request */}
+              {!bg && (
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#0B3D91] text-xs font-bold uppercase tracking-[0.12em] shadow-lg shadow-black/20 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                  Learn More <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              )}
           </div>
         </div>
       </div>
