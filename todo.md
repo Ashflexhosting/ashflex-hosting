@@ -845,3 +845,6 @@
 ## Design & Experience cards refinement (user-requested)
 - [x] Adjust the 4th card overlay — dark navy gradient (0.82→0.60→0.78) for clear text, backgroundPosition 55% 15% to center the designer's face, plus subtle zoom-in (scale-110, 700ms ease-out) on the background at card hover
 - [x] Add a matching high-quality background to the other highlight card (development row, 4th position) — brand-designer-workspace image (Cosmonavt brand identity process photo) with the same dark overlay and hover zoom; Website Design / UI-UX / Branding service cards themselves remain photo-free so the card text doesn't clash with their icon tiles
+
+## Darker photo-card overlay (user-requested)
+- [x] Darken the photo highlight card overlay to a near-solid navy gradient (0.93→0.86→0.91) so text is maximally readable; photos now visible as a subtle backdrop

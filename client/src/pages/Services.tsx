@@ -245,7 +245,7 @@ function HighlightCard({ groupId }: { groupId: string }) {
         {bg ? (
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.82) 0%, rgba(10, 18, 64, 0.60) 55%, rgba(15, 27, 91, 0.78) 100%)" }}
+            style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.93) 0%, rgba(7, 27, 90, 0.86) 55%, rgba(7, 27, 90, 0.91) 100%)" }}
             aria-hidden="true"
           />
         ) : (
