@@ -286,37 +286,81 @@ export default function Services() {
   const [suggestionReady, setSuggestionReady] = useState(false);
   const suggestionMutation = trpc.contact.messageSuggest.useMutation();
 
-  /* Attachment — project briefs & reference images (PDF, DOCX, images up to 8 MB) */
-  const [attachment, setAttachment] = useState<File | null>(null);
+  /* Multi-file attachments — project briefs & reference images (PDF, DOCX, images up to 20 MB each, max 5 files) */
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [attachmentDataUrls, setAttachmentDataUrls] = useState<string[]>([]);
   const [attachmentError, setAttachmentError] = useState("");
-  const [attachmentDataUrl, setAttachmentDataUrl] = useState("");
-  const MAX_ATTACHMENT_BYTES = 8 * 1024 * 1024;
+  const [dragActive, setDragActive] = useState(false);
+  const attachmentInputRef = useRef<HTMLInputElement>(null);
+  const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
+  const MAX_ATTACHMENTS = 5;
   const ALLOWED_EXTENSIONS = ["pdf", "docx", "doc", "pptx", "xlsx", "jpg", "jpeg", "png", "gif", "webp"];
 
-  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const processFiles = (files: FileList | File[]) => {
     setAttachmentError("");
-    if (!file) return;
-    const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
-    if (!ALLOWED_EXTENSIONS.includes(ext)) {
-      setAttachmentError("Unsupported file type. Please attach a PDF, Word document, or an image (JPG/PNG).");
-      e.target.value = "";
+    const fileArray = Array.from(files);
+    const invalid = fileArray.find((file) => {
+      const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+      return !ALLOWED_EXTENSIONS.includes(ext);
+    });
+    if (invalid) {
+      setAttachmentError(`"${invalid.name}" is not supported. Please attach PDF, Word, PowerPoint, Excel, or image files (JPG/PNG).`);
       return;
     }
-    if (file.size > MAX_ATTACHMENT_BYTES) {
-      setAttachmentError("File is too large. Please attach a file under 8 MB.");
-      e.target.value = "";
+    const tooLarge = fileArray.find((file) => file.size > MAX_ATTACHMENT_BYTES);
+    if (tooLarge) {
+      setAttachmentError(`"${tooLarge.name}" exceeds the 20 MB limit.`);
       return;
     }
-    setAttachment(file);
-    const reader = new FileReader();
-    reader.onload = () => setAttachmentDataUrl(typeof reader.result === "string" ? reader.result : "");
-    reader.readAsDataURL(file);
+    setAttachments((prev) => {
+      const combined = [...prev, ...fileArray].slice(0, MAX_ATTACHMENTS);
+      if (prev.length + fileArray.length > MAX_ATTACHMENTS) {
+        setAttachmentError(`Only ${MAX_ATTACHMENTS} files can be attached at once. The oldest files were dropped.`);
+      }
+      /* Re-read all files to keep data URLs in sync with the file list */
+      setAttachmentDataUrls([]);
+      const readers: Promise<string>[] = combined.map(
+        (file) =>
+          new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(typeof reader.result === "string" ? reader.result : "");
+            reader.readAsDataURL(file);
+          }),
+      );
+      Promise.all(readers).then((urls) => setAttachmentDataUrls(urls));
+      if (attachmentInputRef.current) attachmentInputRef.current.value = "";
+      return combined;
+    });
   };
-  const removeAttachment = () => {
-    setAttachment(null);
-    setAttachmentDataUrl("");
+  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) processFiles(files);
+  };
+  const removeAttachment = (index: number) => {
+    setAttachments((prev) => prev.filter((_, i) => i !== index));
+    setAttachmentDataUrls((prev) => prev.filter((_, i) => i !== index));
     setAttachmentError("");
+  };
+  const clearAttachments = () => {
+    setAttachments([]);
+    setAttachmentDataUrls([]);
+    setAttachmentError("");
+  };
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(true);
+  };
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+  };
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) processFiles(e.dataTransfer.files);
   };
 
   /* Real-time field validation — errors surface as the user types/blurs */
@@ -370,8 +414,8 @@ export default function Services() {
       window.location.href = link;
     },
     onSettled: () => {
-      /* Clear the attachment after the attempt so the preview resets */
-      removeAttachment();
+      /* Clear the attachments after the attempt so the preview resets */
+      clearAttachments();
     },
     onError: (error) => {
       toast.error(error.message || "Something went wrong. Please try again.");
@@ -391,12 +435,13 @@ export default function Services() {
       email: inquiry.email,
       service: inquiry.service || undefined,
       message: inquiry.message,
-      attachment: attachment
-        ? {
-            dataUrl: attachmentDataUrl,
-            fileName: attachment.name,
-            size: attachment.size,
-          }
+      attachments: attachments.length > 0
+        ? attachments.map((file, index) => ({
+            dataUrl: attachmentDataUrls[index],
+            fileName: file.name,
+            size: file.size,
+            type: file.type,
+          }))
         : undefined,
     });
   };
@@ -505,36 +550,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ============ CTA — dark editorial band ============ */}
-      <section className="relative bg-brand noise-texture overflow-hidden border-y border-white/10">
-        <div className="absolute inset-0" aria-hidden="true">
-          <div className="glow-orb absolute top-0 left-1/4 w-[420px] h-[420px] rounded-full bg-brand-secondary" style={{ opacity: 0.28 }} />
-          <div className="glow-orb absolute bottom-0 right-1/4 w-[340px] h-[340px] rounded-full bg-brand-accent" style={{ opacity: 0.2 }} />
-        </div>
-        <div className="container relative z-10 py-20 md:py-24 text-center">
-          <p className="scroll-reveal text-white/50 font-semibold text-sm uppercase tracking-[0.25em] mb-5">Not sure where to start?</p>
-          <h2 className="scroll-reveal text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6" style={{ fontFamily: "var(--font-heading)", transitionDelay: "80ms" }}>
-            Let's pick the <span className="text-gradient">perfect solution</span> for your business
-          </h2>
-          <p className="scroll-reveal text-white/60 max-w-xl mx-auto mb-10 text-base md:text-lg" style={{ transitionDelay: "160ms" }}>
-            Schedule a free consultation and we'll recommend the right services for your goals and budget.
-          </p>
-          <div className="scroll-reveal flex flex-col sm:flex-row items-center justify-center gap-4" style={{ transitionDelay: "240ms" }}>
-            <WLink href="/contact">
-              <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
-                Get Free Consultation
-                <ArrowRight size={19} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-            </WLink>
-            <WLink href="/pricing">
-              <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
-                View Pricing
-              </span>
-            </WLink>
-          </div>
-        </div>
-      </section>
-
       {/* ============ Concise inquiry form — capture leads after browsing ============ */}
       <section className="relative bg-navy noise-texture overflow-hidden" id="services-inquiry">
         <div className="container py-16 md:py-20">
@@ -602,25 +617,44 @@ export default function Services() {
                 </select>
               </div>
               <div>
-                <label htmlFor="inq-attachment" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Project brief or reference image</label>
-                {!attachment ? (
-                  <label htmlFor="inq-attachment" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-card border border-dashed border-foreground/25 text-sm text-foreground/60 hover:border-brand-secondary/60 hover:text-brand-secondary cursor-pointer transition-colors duration-200">
-                    <Paperclip size={16} className="shrink-0" />
-                    <span>Attach a file — PDF, Word, or images (JPG/PNG), up to 8 MB</span>
-                    <input id="inq-attachment" type="file" accept=".pdf,.doc,.docx,.pptx,.xlsx,.jpg,.jpeg,.png,.gif,.webp" onChange={handleAttachmentChange} className="sr-only" tabIndex={-1} aria-label="Attach project brief or reference image" />
-                  </label>
-                ) : (
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-card border border-brand-secondary/40 animate-in fade-in slide-in-from-bottom-1.5 duration-300">
-                    {attachment.type.startsWith("image/") ? <ImageIcon size={16} className="text-brand-accent shrink-0" /> : <FileText size={16} className="text-brand-secondary shrink-0" />}
-                    <div className="min-w-0">
-                      <p className="text-sm text-foreground/85 truncate">{attachment.name}</p>
-                      <p className="text-xs text-muted-foreground">{(attachment.size / 1024).toFixed(1)} KB — brief saved with your inquiry</p>
-                    </div>
-                    <button type="button" onClick={removeAttachment} aria-label="Remove attachment" className="ml-auto p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors">
-                      <X size={15} />
+                <label className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Project briefs or reference images</label>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Drag and drop files here or click to browse"
+                  onClick={() => attachmentInputRef.current?.click()}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") attachmentInputRef.current?.click(); }}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  className={`flex items-center gap-2.5 px-4 py-3.5 rounded-xl bg-card border border-dashed text-sm cursor-pointer transition-all duration-200 ${
+                    dragActive
+                      ? "border-brand-secondary bg-brand-secondary/10 text-brand-secondary scale-[1.01]"
+                      : "border-foreground/25 text-foreground/60 hover:border-brand-secondary/60 hover:text-brand-secondary"
+                  }`}>
+                  <Paperclip size={16} className="shrink-0" />
+                  <span>Drag &amp; drop files here, or click to browse — PDF, Word, or images (JPG/PNG), up to 20 MB each</span>
+                </div>
+                <input id="inq-attachment" ref={attachmentInputRef} type="file" multiple accept=".pdf,.doc,.docx,.pptx,.xlsx,.jpg,.jpeg,.png,.gif,.webp" onChange={handleAttachmentChange} className="sr-only" tabIndex={-1} aria-label="Attach project briefs or reference images" />
+                {attachments.length > 0 ? (
+                  <div className="mt-2.5 space-y-2 animate-in fade-in slide-in-from-bottom-1.5 duration-300">
+                    {attachments.map((file, index) => (
+                      <div key={`${file.name}-${index}`} className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-card border border-brand-secondary/40">
+                        {file.type.startsWith("image/") ? <ImageIcon size={16} className="text-brand-accent shrink-0" /> : <FileText size={16} className="text-brand-secondary shrink-0" />}
+                        <div className="min-w-0">
+                          <p className="text-sm text-foreground/85 truncate">{file.name}</p>
+                          <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(1)} KB — brief saved with your inquiry</p>
+                        </div>
+                        <button type="button" onClick={() => removeAttachment(index)} aria-label={`Remove ${file.name}`} className="ml-auto p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors">
+                          <X size={15} />
+                        </button>
+                      </div>
+                    ))}
+                    <button type="button" onClick={clearAttachments} className="text-xs text-foreground/60 underline underline-offset-2 hover:text-brand-secondary transition-colors">
+                      Clear all {attachments.length} file{attachments.length > 1 ? "s" : ""}
                     </button>
                   </div>
-                )}
+                ) : null}
                 {attachmentError ? (
                   <p className="text-xs text-destructive mt-1.5 animate-in fade-in slide-in-from-bottom-1 duration-200">{attachmentError}</p>
                 ) : null}
@@ -668,6 +702,36 @@ export default function Services() {
               <p className="text-center text-xs text-muted-foreground">Stored securely and emailed to info@ashflexwebdesign.com.</p>
             </form>
           )}
+        </div>
+      </section>
+
+      {/* ============ CTA — dark editorial band ============ */}
+      <section className="relative bg-brand noise-texture overflow-hidden border-y border-white/10">
+        <div className="absolute inset-0" aria-hidden="true">
+          <div className="glow-orb absolute top-0 left-1/4 w-[420px] h-[420px] rounded-full bg-brand-secondary" style={{ opacity: 0.28 }} />
+          <div className="glow-orb absolute bottom-0 right-1/4 w-[340px] h-[340px] rounded-full bg-brand-accent" style={{ opacity: 0.2 }} />
+        </div>
+        <div className="container relative z-10 py-20 md:py-24 text-center">
+          <p className="scroll-reveal text-white/50 font-semibold text-sm uppercase tracking-[0.25em] mb-5">Not sure where to start?</p>
+          <h2 className="scroll-reveal text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6" style={{ fontFamily: "var(--font-heading)", transitionDelay: "80ms" }}>
+            Let's pick the <span className="text-gradient">perfect solution</span> for your business
+          </h2>
+          <p className="scroll-reveal text-white/60 max-w-xl mx-auto mb-10 text-base md:text-lg" style={{ transitionDelay: "160ms" }}>
+            Schedule a free consultation and we'll recommend the right services for your goals and budget.
+          </p>
+          <div className="scroll-reveal flex flex-col sm:flex-row items-center justify-center gap-4" style={{ transitionDelay: "240ms" }}>
+            <WLink href="/contact">
+              <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
+                Get Free Consultation
+                <ArrowRight size={19} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </WLink>
+            <WLink href="/pricing">
+              <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
+                View Pricing
+              </span>
+            </WLink>
+          </div>
         </div>
       </section>
 

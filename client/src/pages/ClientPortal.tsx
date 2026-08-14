@@ -212,6 +212,26 @@ function AdminSubmissions() {
                 ) : null}
                 <p className="text-sm text-muted-foreground">Received {new Date(detail.createdAt).toLocaleString()}</p>
                 <div className="rounded-xl bg-muted p-4 text-sm">{detail.message}</div>
+                {Array.isArray(detail.attachments) && detail.attachments.length > 0 ? (
+                  <div className="space-y-1.5 pt-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Attachments ({detail.attachments.length})</p>
+                    {detail.attachments.map((file: { name: string; url: string; size: number; type: string }, index: number) => (
+                      <a
+                        key={index}
+                        href={file.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-card hover:border-brand-secondary/60 transition-colors"
+                      >
+                        <Download size={13} className="text-brand-secondary shrink-0" />
+                        <span className="text-sm text-foreground/85 truncate">
+                          {(file.name.split("/").pop() ?? file.name)}
+                        </span>
+                        {file.size ? <span className="text-xs text-muted-foreground ml-auto">{Math.round(file.size / 1024)} KB</span> : null}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
                 <div className="flex flex-wrap gap-2 pt-2">
                   <Button
                     variant="outline"

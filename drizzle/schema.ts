@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, json, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -39,9 +39,7 @@ export const contactSubmissions = mysqlTable("contactSubmissions", {
   phone: varchar("phone", { length: 40 }),
   service: varchar("service", { length: 60 }),
   message: varchar("message", { length: 5000 }).notNull(),
-  attachmentUrl: varchar("attachmentUrl", { length: 600 }),
-  attachmentName: varchar("attachmentName", { length: 255 }),
-  attachmentSize: int("attachmentSize"),
+  attachments: json("attachments"),
   status: mysqlEnum("status", ["new", "read", "responded"]).default("new").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });

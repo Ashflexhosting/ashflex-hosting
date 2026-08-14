@@ -37,12 +37,16 @@ export const contactInputSchema = z.object({
     .min(1, "Message is required")
     .max(5000, "Message is too long (5000 characters maximum)")
     .trim(),
-  attachment: z
-    .object({
-      dataUrl: z.string().startsWith("data:"),
-      fileName: z.string().min(1).max(255),
-      size: z.number().int().positive(),
-    })
+  attachments: z
+    .array(
+      z.object({
+        dataUrl: z.string().startsWith("data:"),
+        fileName: z.string().min(1).max(255),
+        size: z.number().int().positive(),
+        type: z.string().min(1).max(120),
+      }),
+    )
+    .max(5, "A maximum of 5 files can be attached at once")
     .optional(),
 });
 
@@ -79,7 +83,8 @@ function parseDataUrl(dataUrl: string): { bytes: Buffer; mime: string } | null {
   }
 }
 
-const MAX_ATTACHMENT_BYTES = 8 * 1024 * 1024; // 8 MB hard cap
+const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024; // 20 MB hard cap per file
+const MAX_ATTACHMENTS = 5;
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -109,18 +114,26 @@ export const appRouter = router({
         const phone = input.phone || null;
         const service = input.service || null;
 
-        // Handle optional attachment upload to S3.
-        let attachmentUrl: string | null = null;
-        let attachmentName: string | null = null;
-        let attachmentSize: number | null = null;
-        if (input.attachment && isSupportedAttachmentDataUrl(input.attachment.dataUrl)) {
-          const parsed = parseDataUrl(input.attachment.dataUrl);
-          if (parsed && parsed.bytes.length > 0 && parsed.bytes.length <= MAX_ATTACHMENT_BYTES) {
-            const key = `contact-attachments/${Date.now()}-${Math.random().toString(36).slice(2, 8)}/${input.attachment.fileName}`;
-            const { key: savedKey, url } = await storagePut(key, parsed.bytes, parsed.mime);
-            attachmentUrl = url;
-            attachmentName = savedKey;
-            attachmentSize = parsed.bytes.length;
+        // Handle optional multi-file attachment uploads to S3.
+        interface StoredAttachment {
+          name: string;
+          size: number;
+          type: string;
+          url: string;
+        }
+        const stored: StoredAttachment[] = [];
+        if (input.attachments && Array.isArray(input.attachments)) {
+          const prefix = `contact-attachments/${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+          for (const item of input.attachments.slice(0, MAX_ATTACHMENTS)) {
+            if (!isSupportedAttachmentDataUrl(item.dataUrl)) continue;
+            const parsed = parseDataUrl(item.dataUrl);
+            if (!parsed || parsed.bytes.length === 0 || parsed.bytes.length > MAX_ATTACHMENT_BYTES) continue;
+            try {
+              const { key: savedKey, url } = await storagePut(`${prefix}/${item.fileName}`, parsed.bytes, parsed.mime);
+              stored.push({ name: savedKey, size: parsed.bytes.length, type: item.type, url });
+            } catch (error) {
+              console.error("[Contact] Attachment upload failed:", error);
+            }
           }
         }
 
@@ -131,16 +144,20 @@ export const appRouter = router({
           phone,
           service,
           message: input.message,
-          attachmentUrl,
-          attachmentName,
-          attachmentSize,
+          attachments: stored.length > 0 ? (stored as unknown as Parameters<typeof createContactSubmission>[0]["attachments"]) : null,
         });
 
         // Route the submission to the owner so it lands in info@ashflexwebdesign.com.
         // notifyOwner returns false if the upstream service is temporarily down; the
         // submission itself is still stored so no lead is lost.
         const serviceLabel = service ? ` (interested in ${service})` : "";
-        const attachmentLabel = attachmentUrl ? `\nAttachment: ${attachmentName} (${Math.round((attachmentSize ?? 0) / 1024)} KB)\nFile URL: ${attachmentUrl}` : "";
+        const attachmentLabel =
+          stored.length > 0
+            ? "\nAttachments:\n" +
+              stored
+                .map((f, i) => `${i + 1}. ${f.name} (${Math.round(f.size / 1024)} KB) — ${f.url}`)
+                .join("\n")
+            : "";
         const notificationSent = await notifyOwner({
           title: `New contact form submission from ${input.fullName}`,
           content:

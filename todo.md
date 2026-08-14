@@ -712,3 +712,10 @@
 - [x] Store attachments in S3 via storagePut (contact-attachments/{ts}-{rand}/{filename}) and save attachmentUrl/attachmentName/attachmentSize on the contact_submissions row; router rejects unsupported mime data URLs (data:<type>;base64, prefix check) and caps at 8 MB; attachment details included in the owner notification
 - [x] Show upload state with file name, size, remove (X) button, image/document icon, and inline validation errors (unsupported type / too large) with animated error text
 - [x] Added 4 Vitest cases for attachment schema validation (valid PDF data URL, unsupported mime passthrough documented, missing fields, non-positive size); schema migration generated + applied (attachmentUrl varchar(600), attachmentName varchar(255), attachmentSize int); verified services page renders; tests 28/28, checkpoint and publish
+
+## Inquiry Form Relocation & Multi-File Upload (user-requested)
+- [x] Moved the inquiry form section above the "Not sure where to start?" CTA band on the Services page (inquiry now directly follows the services catalog; CTA band closes the page)
+- [x] Support multiple simultaneous attachments (max 5; each validated + uploaded to S3 under contact-attachments/{ts}-{rand}/{filename}; attachments JSON array saved with the submission; Client Portal detail dialog shows per-file download links)
+- [x] Increased max file size from 8 MB to 20 MB (client validation "exceeds the 20 MB limit" + server MAX_ATTACHMENT_BYTES; notification lists each file with KB size)
+- [x] Added drag-and-drop zone (dashed zone with onDragOver highlight — border/tint/scale — onDragLeave, onDrop handler; click or Enter/Space opens file picker; per-file chips with remove + Clear all)
+- [x] Added 5 Vitest cases for multi-file attachment validation (valid multi-array, >5 rejected, unsupported mime passthrough documented, missing fields rejected, non-positive size rejected); migration 0004 applied (single-file columns dropped, attachments json added, journal updated); verified services screenshot; tests 29/29, checkpoint and publish
