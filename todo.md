@@ -631,3 +631,6 @@
 - [x] Add a subtle floating "Hover me" tooltip near the iMac image (auto-fades/dismisses on hover)
 - [x] Add smooth fade-in and slide-up animation when the Featured Portfolio section scrolls into view (including after clicking View Live Demo)
 - [x] Verify both on desktop and mobile, run tests, checkpoint and publish
+
+## Hero Image Size (user-requested)
+- [x] Increase the hero iMac image size and verify layout balance on desktop/laptop/mobile, run tests, checkpoint and publish

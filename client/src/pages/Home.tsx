@@ -282,7 +282,7 @@ export default function Home() {
 
               <TiltEffect
                 max={5}
-                className="scroll-reveal-right w-full max-w-[478px] mx-auto group/iMac"
+                className="scroll-reveal-right w-full max-w-[560px] mx-auto group/iMac"
                 style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
               >
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
