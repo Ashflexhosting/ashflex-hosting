@@ -893,3 +893,6 @@
 
 ## Hero background city skyline swap
 - [x] Replace the homepage hero fixed background with the user-provided city_bg.webp (purple night skyline, stored at /manus-storage/city_bg_ad2d48f7.webp) — overlay tuned to opacity-40 so the skyline reads subtly behind the hero gradient (left navy 97% for text contrast, fading to 55% on the right where the skyline is brightest); verified rendering in screenshot
+
+## Hero navy overlay removal
+- [x] Remove the navy blue gradient overlay from the hero — the city skyline now shows clearly across the full hero (image at 95% opacity); a light left-edge dark veil (62% fading to transparent) keeps the headline text legible; verified rendering in screenshot; 29/29 tests pass
