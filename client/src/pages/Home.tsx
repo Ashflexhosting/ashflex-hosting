@@ -45,35 +45,41 @@ const processSteps = [
   { step: "07", title: "Growth", desc: "Ongoing support, maintenance, and optimization to keep your site performing at its best." },
 ];
 
+/* Client feedback tied to actual portfolio projects */
 const testimonials = [
   {
-    name: "Adebayo Ogunlade",
-    role: "CEO, PayFlow Technologies",
-    content: "Ashflex transformed our online presence completely. The new website generates 3x more leads than our old one. Their attention to detail and strategic approach is unmatched.",
+    name: "Galcon Engineering (Nig) Limited",
+    role: "Construction & Engineering, Lagos",
+    project: "Galcon Engineering — Corporate Website",
+    content: "With 30+ years of engineering history to tell, we needed a corporate site that covers our services, completed projects and team. Ashflex delivered a multi-page website that presents our company history and portfolio professionally — the built-in cost calculator is a feature our clients use regularly.",
     rating: 5,
   },
   {
-    name: "Chioma Nwosu",
-    role: "Marketing Director, Lagos Luxury Homes",
-    content: "Working with Ashflex was a game-changer. They understood our brand perfectly and delivered a website that our clients absolutely love. Property inquiries doubled in the first month.",
+    name: "Shutterspeed Projects",
+    role: "Film & Media Production, Nigeria",
+    project: "Shutterspeed Projects — Official Website",
+    content: "As an integrated film and media production company, we needed a digital presence that matched the quality of our trailers. Ashflex built a dedicated site that showcases our latest titles and official trailers the way we envisioned.",
     rating: 5,
   },
   {
-    name: "Dr. Ibrahim Hassan",
-    role: "Director, MedCare Nigeria",
-    content: "The healthcare portal they built for us is exceptional. Patient bookings increased by 200%, and our staff efficiency has improved dramatically. Highly recommended!",
+    name: "Marvel Tex Attraction",
+    role: "Cooperative Savings Network, Nigeria",
+    project: "Marvel Tex Attraction — Member Platform",
+    content: "Our members needed a way to follow their savings cycles online. Ashflex built a responsive platform with a member dashboard, savings-cycle tracking and an empowerment-program page — exactly the member-facing system our cooperative asked for.",
     rating: 5,
   },
   {
-    name: "Funke Adeyemi",
-    role: "Founder, Ankara Luxe",
-    content: "Our e-commerce store went from zero to ₦50M monthly revenue in 6 months. Ashflex's expertise in conversion optimization and mobile design made all the difference.",
+    name: "B.C. First Nations Auto Finance",
+    role: "Auto Financing, Canada",
+    project: "B.C. First Nations Auto Finance — Project Website",
+    content: "We needed a clear web presence for our Canadian personal auto-financing scheme. Ashflex delivered a site that communicates our offering to prospective customers, with an easy-to-follow 'How it Works' flow.",
     rating: 5,
   },
   {
-    name: "Emeka Okonkwo",
-    role: "Principal, Adeyemi & Partners",
-    content: "Our law firm's new website positions us as the premium choice in Lagos. Consultation requests have increased by 80%, and we now rank on the first page of Google.",
+    name: "Kingwesl Interior",
+    role: "Interior Design Practice",
+    project: "Kingwesl Interior — Portfolio Website",
+    content: "We needed an online presence to represent our residential and commercial interior-design practice. Ashflex created a portfolio website that positions the firm and our design services clearly for prospective clients.",
     rating: 5,
   },
 ];
@@ -714,6 +720,7 @@ export default function Home() {
                         <div>
                           <p className="text-white font-bold">{t.name}</p>
                           <p className="text-white/50 text-sm">{t.role}</p>
+                          <p className="text-brand-cyan text-xs font-medium mt-0.5">Project: {t.project}</p>
                         </div>
                       </div>
                     </CardContent>

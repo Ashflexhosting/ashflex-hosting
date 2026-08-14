@@ -634,3 +634,7 @@
 
 ## Hero Image Size (user-requested)
 - [x] Increase the hero iMac image size and verify layout balance on desktop/laptop/mobile, run tests, checkpoint and publish
+
+## Testimonials Aligned to Portfolio (user-requested)
+- [x] Rewrite homepage testimonials to reference actual portfolio projects instead of placeholder clients
+- [x] Verify testimonial section rendering, run tests, checkpoint and publish
