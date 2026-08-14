@@ -896,3 +896,6 @@
 
 ## Hero navy overlay removal
 - [x] Remove the navy blue gradient overlay from the hero — the city skyline now shows clearly across the full hero (image at 95% opacity); a light left-edge dark veil (62% fading to transparent) keeps the headline text legible; verified rendering in screenshot; 29/29 tests pass
+
+## Hero background revert
+- [x] Reverted the hero background to the original Ashflex abstract navy image (ashflex-hero-background_ee4a0039.png at opacity-30) with the original navy gradient overlay (97%→82%→55%); verified rendering matches the pre-swap state; 29/29 tests pass

@@ -412,11 +412,11 @@ export default function Home() {
       {/* ============ HERO — editorial split with kinetic type ============ */}
       <section className="relative min-h-screen max-h-[900px] flex items-center bg-brand noise-texture overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-95"
-          style={{ backgroundImage: "url('/manus-storage/city_bg_ad2d48f7.webp')" }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-30"
+          style={{ backgroundImage: "url('/manus-storage/ashflex-hero-background_ee4a0039.png')" }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(10,14,40,0.62)_0%,rgba(10,14,40,0.28)_35%,rgba(10,14,40,0.06)_60%,transparent_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,27,90,0.97)_0%,rgba(7,27,90,0.82)_55%,rgba(7,27,90,0.55)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0" aria-hidden="true">
           <div className="glow-orb absolute -top-24 -left-24 w-[460px] h-[460px] rounded-full bg-brand-secondary" />
           <div className="glow-orb absolute bottom-0 right-1/4 w-[380px] h-[380px] rounded-full bg-brand-accent" style={{ opacity: 0.25 }} />
