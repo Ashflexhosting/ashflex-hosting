@@ -784,3 +784,7 @@
 ## Our Process Card Redesign (user feedback)
 - [x] Redesigned "Our Process" as a clean open timeline: gradient-numbered circles (01-05) with growing connector line between them, step title + description on the right without boxed cards, staggered reveal, generous py-5 rhythm
 - [x] Verified /services/website-design renders the new timeline cleanly; 29/29 tests pass; checkpoint and publish
+
+## Revert Process Timeline (user feedback)
+- [x] Reversed "Our Process" to the boxed step cards: numbered gradient circles beside white rounded-2xl cards (hover lift), keeping the cyan eyebrow label and gradient headings from the focused redesign
+- [x] Verified /services/website-design shows the boxed steps; 29/29 tests pass; checkpoint and publish
