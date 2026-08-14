@@ -780,3 +780,7 @@
 - [x] "What's Included": white rounded-2xl cards with gradient icon tiles, staggered bento-reveal, subtle hover lift/shadow/border
 - [x] "Our Process": vertical gradient connector line + numbered gradient circles, white step cards with unique descriptions, staggered reveals
 - [x] Pricing card, Related Services band, and CTA untouched; verified 3 service pages render correctly; 29/29 tests pass; checkpoint and publish
+
+## Our Process Card Redesign (user feedback)
+- [x] Redesigned "Our Process" as a clean open timeline: gradient-numbered circles (01-05) with growing connector line between them, step title + description on the right without boxed cards, staggered reveal, generous py-5 rhythm
+- [x] Verified /services/website-design renders the new timeline cleanly; 29/29 tests pass; checkpoint and publish

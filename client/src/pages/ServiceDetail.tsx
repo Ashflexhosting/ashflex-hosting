@@ -92,18 +92,22 @@ const PROCESS_STEPS = [
               </div>
 
               {/* Our Process */}
-              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+              <p className="inline-flex items-center gap-2 mb-6 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
                 <span className="inline-block w-8 h-px bg-brand-accent" /> Our Process
               </p>
-              <div className="relative space-y-5 mb-4">
-                <span className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-brand-secondary/50 via-brand-accent/30 to-transparent pointer-events-none" aria-hidden="true" />
+              <div className="mb-4">
                 {PROCESS_STEPS.map((step, i) => (
-                  <div key={i} className="bento-reveal relative flex items-start gap-5" style={{ transitionDelay: `${i * 60}ms` }}>
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-brand-secondary to-brand-accent flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-secondary/25">
-                      <span className="text-sm font-bold text-white">{i + 1}</span>
+                  <div key={i} className="bento-reveal flex items-start gap-5 py-5" style={{ transitionDelay: `${i * 60}ms` }}>
+                    <div className="flex flex-col items-center flex-shrink-0" aria-hidden="true">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-brand-secondary to-brand-accent text-sm font-bold text-white shadow-md shadow-brand-secondary/25">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {i < PROCESS_STEPS.length - 1 && (
+                        <span className="w-px grow bg-gradient-to-b from-brand-accent/40 to-transparent mt-2" />
+                      )}
                     </div>
-                    <div className="flex-1 rounded-2xl border border-border/70 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-brand-secondary/30">
-                      <h4 className="font-semibold text-foreground mb-1" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h4>
+                    <div className="pt-1.5">
+                      <h4 className="font-semibold text-foreground mb-1.5" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
                     </div>
                   </div>
