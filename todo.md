@@ -696,3 +696,8 @@
 
 ## Smooth Scroll on Category Tab Clicks (user-requested)
 - [x] Make clicking category filter tabs glide smoothly to the selected service section (replaced scrollIntoView with custom requestAnimationFrame easeOutQuart glide, 550-900ms adaptive duration, offsetting header + sticky CategoryNav height + 8px; respects prefers-reduced-motion)
+
+## Services Page Enhancements (user-requested)
+- [x] Scrollspy: category filter tabs automatically highlight the active section while scrolling (replaced IntersectionObserver with scroll/resize probe at viewport top + header + 120px; last section passed wins; falls back to first group; updates instantly on smooth-scroll glides)
+- [x] Floating "Back to Top" button appearing after scrolling past the banner (shows after 520px scroll, fades/slides in, smooth-scroll to top, fixed bottom-right z-50 gradient circle)
+- [x] Concise contact form at the bottom of the Services page (name*, email*, optional service dropdown of all 16 services, message*; stored via trpc.contact.submit + mailto fallback to info@ashflexwebdesign.com; success state with confirmation card; matches site's glass-card style)

@@ -1,14 +1,17 @@
 import { Link } from "wouter";
 import { Link as WLink } from "wouter";
 import {
-  ArrowRight, Sparkles, Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
+  ArrowRight, ArrowUp, Sparkles, Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug, Bot, Settings,
   ChevronRight, CheckCircle2, Shield, Headset,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { services } from "@/data/services";
+import { trpc } from "@/lib/trpc";
+import { buildMailtoLink } from "@/lib/mailto";
 
 /* Custom eased glide scroll — decelerating ease-out over ~700ms, offsetting the sticky nav height */
 function scrollToId(id: string) {
@@ -243,23 +246,71 @@ export default function Services() {
   const navRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<string>(serviceGroups[0].id);
 
-  /* Track which service section is currently in view to highlight the sticky tab */
+  /* Scrollspy — highlight the tab whose section is nearest to the top of the viewport while scrolling.
+     When the page is at/near the top or below all sections, fall back to the first group. */
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActiveId(visible[0].target.id.replace("services-", ""));
-      },
-      { rootMargin: "-25% 0px -60% 0px" }
-    );
-    serviceGroups.forEach((g) => {
-      const el = document.getElementById(`services-${g.id}`);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    const findActive = () => {
+      const viewportTop = window.scrollY;
+      const navH = document.getElementById("site-header")?.offsetHeight ?? 76;
+      const probe = viewportTop + navH + 120;
+      let candidate = serviceGroups[0].id;
+      for (const g of serviceGroups) {
+        const el = document.getElementById(`services-${g.id}`);
+        if (el && el.offsetTop <= probe) candidate = g.id;
+      }
+      setActiveId(candidate);
+    };
+    findActive();
+    window.addEventListener("scroll", findActive, { passive: true });
+    window.addEventListener("resize", findActive);
+    return () => {
+      window.removeEventListener("scroll", findActive);
+      window.removeEventListener("resize", findActive);
+    };
   }, []);
+
+  /* Back to Top — show after scrolling past the banner */
+  const [showTop, setShowTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 520);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Concise inquiry form at the bottom of the Services page */
+  const [inquiry, setInquiry] = useState({ name: "", email: "", service: "", message: "" });
+  const [inquirySubmitted, setInquirySubmitted] = useState(false);
+  const inquiryMutation = trpc.contact.submit.useMutation({
+    onSuccess: (_data, variables) => {
+      setInquirySubmitted(true);
+      toast.success("Message recorded! Opening your email app to send it to our inbox…");
+      const link = buildMailtoLink({
+        fullName: variables.fullName,
+        email: variables.email,
+        context: variables.service || undefined,
+        message: variables.message,
+      });
+      window.location.href = link;
+    },
+    onError: (error) => {
+      toast.error(error.message || "Something went wrong. Please try again.");
+    },
+  });
+
+  const handleInquiry = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inquiry.name || !inquiry.email || !inquiry.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+    inquiryMutation.mutate({
+      fullName: inquiry.name,
+      email: inquiry.email,
+      service: inquiry.service || undefined,
+      message: inquiry.message,
+    });
+  };
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
@@ -394,6 +445,79 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      {/* ============ Concise inquiry form — capture leads after browsing ============ */}
+      <section className="relative bg-navy noise-texture overflow-hidden" id="services-inquiry">
+        <div className="container py-16 md:py-20">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <p className="text-brand-secondary font-semibold text-sm uppercase tracking-[0.25em] mb-4">Have a project in mind?</p>
+            <h2 className="text-2xl md:text-4xl font-bold leading-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
+              Tell us about your <span className="text-gradient">next step</span>
+            </h2>
+            <p className="text-foreground/60 text-sm md:text-base">Send a quick note after browsing our services — we reply within one business day.</p>
+          </div>
+          {inquirySubmitted ? (
+            <div className="max-w-xl mx-auto glass-card rounded-2xl p-10 text-center">
+              <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-5">
+                <CheckCircle2 size={28} className="text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-heading)" }}>Thanks for reaching out!</h3>
+              <p className="text-foreground/65 text-sm">Your message has been recorded and we'll reply shortly at {inquiry.email || "your email"}.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleInquiry} className="max-w-xl mx-auto glass-card rounded-2xl p-6 md:p-8 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="inq-name" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Name *</label>
+                  <input id="inq-name" type="text" value={inquiry.name} onChange={(e) => setInquiry({ ...inquiry, name: e.target.value })}
+                    placeholder="Your name" required
+                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition" />
+                </div>
+                <div>
+                  <label htmlFor="inq-email" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Email *</label>
+                  <input id="inq-email" type="email" value={inquiry.email} onChange={(e) => setInquiry({ ...inquiry, email: e.target.value })}
+                    placeholder="you@company.com" required
+                    className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="inq-service" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Service of interest</label>
+                <select id="inq-service" value={inquiry.service} onChange={(e) => setInquiry({ ...inquiry, service: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm text-foreground/80 focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition">
+                  <option value="">Select a service (optional)</option>
+                  {services.map((s) => (
+                    <option key={s.id} value={s.title}>{s.title}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="inq-message" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Message *</label>
+                <textarea id="inq-message" rows={3} value={inquiry.message} onChange={(e) => setInquiry({ ...inquiry, message: e.target.value })}
+                  placeholder="A short note about your project…" required
+                  className="w-full px-4 py-3 rounded-xl bg-card border border-border text-sm focus:outline-none focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary/40 transition resize-none" />
+              </div>
+              <button type="submit" disabled={inquiryMutation.isPending}
+                className="group w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 disabled:opacity-60 disabled:pointer-events-none transition-all duration-300">
+                {inquiryMutation.isPending ? "Sending…" : "Send Inquiry"}
+                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-center text-xs text-muted-foreground">Stored securely and emailed to info@ashflexwebdesign.com.</p>
+            </form>
+          )}
+        </div>
+      </section>
+
+      {/* ============ Back to Top — floating button ============ */}
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className={`fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/30 flex items-center justify-center transition-all duration-300 hover:scale-105 ${
+          showTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-3 pointer-events-none"
+        }`}
+      >
+        <ArrowUp size={18} />
+      </button>
     </div>
   );
 }
