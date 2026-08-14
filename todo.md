@@ -770,3 +770,7 @@
 - [x] Kept the PageHeader banner untouched (identical title/description/breadcrumb)
 - [x] Kept the pricing card untouched (only solidified white backdrop for contrast on the dark section)
 - [x] Verified /services/website-design, hosting-domain, seo-services, google-ads render correctly with new design; 29/29 tests pass; checkpoint and publish
+
+## Service Detail Redesign Revert (user-requested)
+- [x] Reverted ServiceDetail.tsx to the pre-redesign design via git checkout of commit 02ba69d (light intro with numbered steps, light related services band, original CTA)
+- [x] Verified /services/website-design renders with the original light design incl. illustration-topped pricing card; 29/29 tests pass; checkpoint and publish
