@@ -731,3 +731,7 @@
 ## Homepage Hero Fixed Background Parallax (user-requested)
 - [x] Applied bg-fixed to the homepage hero background image layer (ashflex-hero-background_ee4a0039.png, unchanged opacity-30 and gradient overlay) for visual consistency with the Services inquiry section
 - [x] Verified desktop screenshot of homepage hero renders unchanged with fixed attachment; checkpoint and publish
+
+## Homepage Hero Fade-In on Load (user-requested)
+- [x] Added hero-fade-in CSS keyframes (800ms opacity+translateY with staggered delay variants d1-d5, prefers-reduced-motion guard) and applied them: h1 fades in on load, subline 120ms, CTAs 240ms, stats 360ms, iMac 480ms (then loops float-slow from 1.2s), Live Demo button 600ms; replaced scroll-reveal classes on hero elements so the entrance is not blocked by the intersection observer
+- [x] Verified desktop screenshot of hero renders fully; tests pass; checkpoint and publish

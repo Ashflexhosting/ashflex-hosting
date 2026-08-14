@@ -120,6 +120,25 @@
   .text-gradient { background: linear-gradient(135deg, #0757F7, #F20549); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .bg-gradient-primary { background: linear-gradient(135deg, #0757F7, #F20549); }
   .bg-gradient-brand { background: linear-gradient(135deg, #071B5A, #123DAD); }
+  /* Hero load-in: subtle fade + slide-up on first paint (opacity/transform only) */
+  @keyframes hero-fade-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-fade-in {
+    animation: hero-fade-in 800ms var(--ease-out) both;
+  }
+  .hero-fade-in-d1 { animation: hero-fade-in 800ms var(--ease-out) 120ms both; }
+  .hero-fade-in-d2 { animation: hero-fade-in 800ms var(--ease-out) 240ms both; }
+  .hero-fade-in-d3 { animation: hero-fade-in 800ms var(--ease-out) 360ms both; }
+  .hero-fade-in-d4 { animation: hero-fade-in 900ms var(--ease-out) 480ms both; }
+  .hero-fade-in-d5 { animation: hero-fade-in 900ms var(--ease-out) 600ms both; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade-in, .hero-fade-in-d1, .hero-fade-in-d2, .hero-fade-in-d3, .hero-fade-in-d4, .hero-fade-in-d5 {
+      animation: none;
+    }
+  }
+
   .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
   .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
   .scroll-reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }

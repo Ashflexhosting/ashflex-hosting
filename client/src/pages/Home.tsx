@@ -422,7 +422,7 @@ export default function Home() {
             {/* Left: copy */}
             <div className="lg:col-span-7">
               <h1
-                className="scroll-reveal text-[1.9rem] sm:text-5xl md:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
+                className="hero-fade-in text-[1.9rem] sm:text-5xl md:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 <span className="whitespace-nowrap">
@@ -445,11 +445,11 @@ export default function Home() {
                 <span className="whitespace-nowrap text-outline">customers.</span>
               </h1>
 
-              <p className="scroll-reveal text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8" style={{ transitionDelay: "120ms" }}>
+              <p className="hero-fade-in-d1 text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8">
                 High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
               </p>
 
-              <div className="scroll-reveal flex flex-col sm:flex-row items-start gap-4 mb-10" style={{ transitionDelay: "220ms" }}>
+              <div className="hero-fade-in-d2 flex flex-col sm:flex-row items-start gap-4 mb-10">
                 <Link href="/contact">
                   <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
                     Get Free Quote
@@ -464,7 +464,7 @@ export default function Home() {
               </div>
 
               {/* stats band */}
-              <div className="scroll-reveal grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-w-2xl" style={{ transitionDelay: "320ms" }}>
+              <div className="hero-fade-in-d3 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-w-2xl">
                 <CounterStat value={250} suffix="+" label="Projects Delivered" />
                 <CounterStat value={98} suffix="%" label="Client Satisfaction" delay="100ms" />
                 <CounterStat value={10} suffix="+" label="Years Experience" delay="200ms" />
@@ -479,8 +479,8 @@ export default function Home() {
 
               <TiltEffect
                 max={5}
-                className="scroll-reveal-right w-full max-w-[560px] mx-auto group/iMac"
-                style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
+                className="hero-fade-in-d4 w-full max-w-[560px] mx-auto group/iMac"
+                style={{ animation: "float-slow 6s ease-in-out 1.2s infinite" }}
               >
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
                   {/* "Hover me" tooltip — floats near the top-right of the screen, fades out when the user interacts */}
@@ -519,8 +519,7 @@ export default function Home() {
               {/* View Live Demo CTA */}
               <button
                 onClick={scrollToPortfolio}
-                className="scroll-reveal-right mt-6 mx-auto flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-300 hover:bg-brand-accent/15 hover:border-brand-accent/70 hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] active:scale-[0.97]"
-                style={{ animationDelay: "300ms" }}
+                className="hero-fade-in-d5 mt-6 mx-auto flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-300 hover:bg-brand-accent/15 hover:border-brand-accent/70 hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] active:scale-[0.97]"
               >
                 <MonitorPlay size={16} className="text-brand-accent" /> View Live Demo
               </button>
