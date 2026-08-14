@@ -291,7 +291,18 @@ const PROCESS_STEPS = [
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedServices.map((s, i) => (
               <Link key={s.slug} href={`/services/${s.slug}`}>
-                <div className="glass-card border-0 p-6 hover-lift">
+                <div className="glass-card border-0 p-6 hover-lift overflow-hidden">
+                  {servicePricingImages[s.slug] && (
+                    <div className="relative -m-6 mb-4 overflow-hidden rounded-t-2xl">
+                      <img
+                        src={servicePricingImages[s.slug]}
+                        alt={`${s.title} illustration`}
+                        className="w-full h-32 object-cover transition-transform duration-700 ease-out hover:scale-110 will-change-transform"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    </div>
+                  )}
                   <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>{s.title}</h3>
                   <p className="text-sm text-muted-foreground mb-3">{s.description}</p>
                   <span className="text-brand-secondary text-sm font-medium">Learn More →</span>

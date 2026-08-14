@@ -864,4 +864,7 @@
 
 ## Pricing card image consistency (user-requested)
 - [x] Add a subtle zoom-in hover effect to the pricing card images — ServiceDetail.tsx wrapper now uses group-hover:scale-110 (700ms ease-out), applying uniformly to all service pricing images including the new e-commerce photo
-- [x] Audited pricing card images on all 15 service pages — dark-tech illustration style consistent across 13 pages; fixed the broken AI Automation image by regenerating a matching dark-navy neural-network illustration (replaced failed svc-ai-automation_36c51dfd.png with svc-ai-automation_v2); website-maintenance uses the user-provided bright illustration and e-commerce the user-provided photo (intentional overrides); zoom hover uniform sitewide
+- [x] Audited pricing card images on all 15 service pages — dark-tech illustration style consistent across 13 pages; fixed the broken AI Automation image by regenerating a matching dark-navy neural-network illustration (replaced failed svc-ai-automation_36c51dfd.png with svc-ai-automation_v2); website-maintenance uses the user-provided bright illustration and e-commerce the user-provided photo (intentional overrides); zoom hover uniform sitewide; regenerated AI Automation illustration (3.2MB) confirmed rendering live on /services/ai-automation
+
+## Related Services card images (user-requested)
+- [x] Update the Related Services cards on service detail pages to carry their corresponding service images — each card now shows the related service's own pricing image (h-32, object-cover, rounded-t-2xl with a subtle bottom fade, plus the same 10% zoom-in on hover as the pricing card), with the Learn More link intact; verified on /services/ecommerce-development and /services/website-design
