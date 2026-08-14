@@ -620,3 +620,9 @@
 - [x] Verified on /portfolio/1 and /portfolio/4, tests 24/24, checkpoint saved and auto-published
 
 - [x] Generate an improved hero iMac mockup image (similar to current, better quality) and replace current hero asset
+
+## Hero Image Interactivity Enhancements (user-requested)
+- [x] Add subtle hover scale-up and glow effect to the hero iMac image
+- [x] Add a lazy-loading blur placeholder/skeleton behind the hero image for perceived performance
+- [x] Add a "View Live Demo" button below the iMac image that smoothly scrolls to the portfolio section
+- [x] Verify all three enhancements on desktop and mobile, run tests, checkpoint and publish

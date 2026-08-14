@@ -188,7 +188,16 @@ const heroMockups = [
 export default function Home() {
   const sectionRef = useScrollReveal();
   const [hoveredPortfolio, setHoveredPortfolio] = useState<number | null>(null);
+  const [heroImgLoaded, setHeroImgLoaded] = useState(false);
   const filteredPortfolio = portfolioItems.slice(0, 6);
+
+  const scrollToPortfolio = () => {
+    const target = document.getElementById("featured-portfolio");
+    if (target) {
+      const y = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
@@ -273,17 +282,43 @@ export default function Home() {
 
               <TiltEffect
                 max={5}
-                className="scroll-reveal-right w-full max-w-[478px] mx-auto"
+                className="scroll-reveal-right w-full max-w-[478px] mx-auto group/iMac"
                 style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
               >
-                <img
-                  src="/manus-storage/galcon-imac-hero-v2-clean_817f7b2b.webp"
-                  alt="Galcon Engineering website displayed on an iMac"
-                  className="w-full drop-shadow-2xl"
-                  loading="eager"
-                  draggable={false}
-                />
+                <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
+                  {/* Blurred placeholder skeleton shown while the hero image loads */}
+                  <div
+                    className={`absolute inset-0 overflow-hidden rounded-xl bg-white/5 backdrop-blur transition-opacity duration-500 ${
+                      heroImgLoaded ? "pointer-events-none opacity-0" : "opacity-100"
+                    }`}
+                    aria-hidden={!heroImgLoaded ? "true" : undefined}
+                  >
+                    <div className="absolute inset-0 skeleton-shimmer" />
+                    <div className="absolute inset-2 rounded-lg blur-xl bg-white/10" />
+                  </div>
+                  <img
+                    src="/manus-storage/galcon-imac-hero-v2-clean_817f7b2b.webp"
+                    alt="Galcon Engineering website displayed on an iMac"
+                    loading="eager"
+                    draggable={false}
+                    className={`absolute inset-0 h-full w-full object-contain drop-shadow-2xl transition-all duration-500 ease-out ${
+                      heroImgLoaded
+                        ? "opacity-100 blur-0"
+                        : "pointer-events-none opacity-0 blur-md"
+                    } group-hover/iMac:scale-[1.04] group-hover/iMac:drop-shadow-[0_10px_40px_rgba(37,99,235,0.55)]`}
+                    onLoad={() => setHeroImgLoaded(true)}
+                  />
+                </div>
               </TiltEffect>
+
+              {/* View Live Demo CTA */}
+              <button
+                onClick={scrollToPortfolio}
+                className="scroll-reveal-right mt-6 mx-auto flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-300 hover:bg-brand-accent/15 hover:border-brand-accent/70 hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] active:scale-[0.97]"
+                style={{ animationDelay: "300ms" }}
+              >
+                <MonitorPlay size={16} className="text-brand-accent" /> View Live Demo
+              </button>
             </div>
           </div>
         </div>
@@ -524,7 +559,7 @@ export default function Home() {
       </section>
 
       {/* ============ PORTFOLIO — numbered list with image peek ============ */}
-      <section className="py-28 bg-muted/30 relative">
+      <section id="featured-portfolio" className="py-28 bg-muted/30 relative scroll-mt-20">
         <div className="container">
           <div className="mb-10">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Our Work</p>
