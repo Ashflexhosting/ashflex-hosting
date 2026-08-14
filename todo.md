@@ -751,3 +751,10 @@
 ## Cost Calculator API Integration Extra (user-requested)
 - [x] Re-added API Integration as a toggle button (+₦500,000) in the cost calculator, styled like the other toggles
 - [x] Verified estimate math (₦500,000 added on toggle), page renders correctly, 29/29 tests pass, checkpoint and publish
+
+## Restore API Integrations & Calculator Enhancements (user-requested)
+- [x] Restored to Pricing.tsx: Professional features list, Starter/Business excluded lists, and the API Integrations comparison table row
+- [x] Restored "→ API Integration" step in process strings of CaseStudies.tsx and CaseStudyDetail.tsx
+- [x] Added HelpCircle tooltip to the API Integration label explaining it covers connecting to payment gateways, CRM, booking, shipping, and custom third-party APIs (setup + basic testing)
+- [x] Added a Breakdown list under the estimate total: base website cost (pages + design), then only-selected extras (E-commerce +₦200k, SEO advanced/complete +₦75k/₦150k, API Integration +₦500k, maintenance +₦300k/yr), plus a "no extras selected" note for standard configs
+- [x] Verified calculator breakdown + pricing page + case study process strings render correctly; 29/29 tests pass; checkpoint and publish
