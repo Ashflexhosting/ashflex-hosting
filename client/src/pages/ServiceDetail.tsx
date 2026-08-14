@@ -20,6 +20,7 @@ export default function ServiceDetail() {
   }
 
   const relatedServices = services.filter((s) => s.slug !== service.slug).slice(0, 4);
+  const popularServices = new Set(["website-design", "ecommerce-development"]);
 
 const FEATURE_ICONS = [Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, CheckCircle];
 
@@ -111,16 +112,21 @@ const PROCESS_STEPS = [
             </div>
 
             <div className="lg:col-span-1">
-              <div className="glass-card border-0 p-6 sticky top-24">
+              <div className="glass-card border-0 p-6 sticky top-24 hover-shadow-pricing transition-shadow duration-500">
                 {servicePricingImages[service.slug] && (
                   <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl group">
                     <img
                       src={servicePricingImages[service.slug]}
                       alt={`${service.title} illustration`}
-                      className="w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform"
+                      className="w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform img-fade-in"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                    {popularServices.has(service.slug) && (
+                      <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-primary text-white text-[11px] font-semibold uppercase tracking-wide shadow-md shadow-brand-secondary/30">
+                        <Star size={11} className="fill-current" /> Popular Service
+                      </span>
+                    )}
                   </div>
                 )}
                 <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-heading)" }}>Pricing</h3>

@@ -874,3 +874,8 @@
 
 ## Web design page image swap (user-requested)
 - [x] Replace the Website Design page pricing card image (and its Related Services card, which reuses the same servicePricingImages entry) with the user-provided laptop-and-phone mockup photo (uploaded to /manus-storage/...mockup-1_ed3b5364.webp); verified on /services/website-design; zoom hover and fade carry over automatically
+
+## Pricing card enhancements (user-requested)
+- [x] Add a small stylish 'Popular Service' badge to the top-right corner of the Website Design and E-commerce pricing cards — gradient blue-to-pink pill with filled Star icon, applied via popularServices Set (website-design, ecommerce-development) in ServiceDetail.tsx; verified both pages render the badge and other pages do not
+- [x] Add a subtle drop shadow on hover to all service pricing cards — new hover-shadow-pricing class (navy + blue layered shadow, 500ms transition) added to the glass-card pricing wrapper; applies uniformly across all 15 service pages
+- [x] Add a smooth fade-in animation for the pricing card images — new img-fade-in class with img-reveal keyframes (opacity 0->1, translateY 8px->0, scale 1.04->1, 700ms ease-out) on the pricing card image, so each image reveals gracefully; lazy loading preserved
