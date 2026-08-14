@@ -774,3 +774,9 @@
 ## Service Detail Redesign Revert (user-requested)
 - [x] Reverted ServiceDetail.tsx to the pre-redesign design via git checkout of commit 02ba69d (light intro with numbered steps, light related services band, original CTA)
 - [x] Verified /services/website-design renders with the original light design incl. illustration-topped pricing card; 29/29 tests pass; checkpoint and publish
+
+## Service Detail Focused Redesign (sections only)
+- [x] "Our Approach": cyan eyebrow label with dash rule, gradient (blue-to-aqua) heading, same intro copy
+- [x] "What's Included": white rounded-2xl cards with gradient icon tiles, staggered bento-reveal, subtle hover lift/shadow/border
+- [x] "Our Process": vertical gradient connector line + numbered gradient circles, white step cards with unique descriptions, staggered reveals
+- [x] Pricing card, Related Services band, and CTA untouched; verified 3 service pages render correctly; 29/29 tests pass; checkpoint and publish

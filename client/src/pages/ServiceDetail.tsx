@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { ArrowRight, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
@@ -21,6 +21,31 @@ export default function ServiceDetail() {
 
   const relatedServices = services.filter((s) => s.slug !== service.slug).slice(0, 4);
 
+const FEATURE_ICONS = [Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, CheckCircle];
+
+const PROCESS_STEPS = [
+  {
+    title: "Discovery & Research",
+    body: "We dig into your business, audience, and goals to build a foundation that shapes every design decision.",
+  },
+  {
+    title: "Planning & Strategy",
+    body: "A clear roadmap — site structure, user journeys, and deliverables — agreed before a single pixel is drawn.",
+  },
+  {
+    title: "Design & Development",
+    body: "Your design comes to life with clean, fast, SEO-ready code and an iterative review loop with you at the centre.",
+  },
+  {
+    title: "Testing & Optimization",
+    body: "Cross-device, cross-browser testing plus performance tuning so every visitor gets a flawless experience.",
+  },
+  {
+    title: "Launch & Support",
+    body: "A careful, monitored launch followed by ongoing support — because your site is only as strong as the team behind it.",
+  },
+];
+
   return (
     <div ref={sectionRef}>
       <PageHeader
@@ -33,33 +58,53 @@ export default function ServiceDetail() {
         <div className="container max-w-4xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
+              {/* Our Approach */}
+              <p className="inline-flex items-center gap-2 mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> Our Approach
+              </p>
               <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-                {service.title} Solutions
+                <span className="bg-gradient-to-r from-brand-secondary to-brand-accent bg-clip-text text-transparent">{service.title} Solutions</span>
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-12">
                 At Ashflex Web Design, we deliver comprehensive {service.title.toLowerCase()} solutions tailored to your business needs. Our team combines creative excellence with technical expertise to produce results that drive real growth.
               </p>
 
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>What's Included</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                {service.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle size={20} className="text-brand-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground/80">{feature}</span>
-                  </div>
-                ))}
+              {/* What's Included */}
+              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> What's Included
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
+                {service.features.map((feature, i) => {
+                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
+                  return (
+                    <div
+                      key={i}
+                      className="bento-reveal group flex items-start gap-4 rounded-2xl border border-border/70 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-brand-secondary/30"
+                      style={{ transitionDelay: `${i * 60}ms` }}
+                    >
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-brand-secondary to-brand-accent flex-shrink-0">
+                        <Icon size={19} className="text-white" />
+                      </span>
+                      <span className="block text-[15px] font-medium text-foreground/85 leading-snug pt-1">{feature}</span>
+                    </div>
+                  );
+                })}
               </div>
 
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Process</h3>
-              <div className="space-y-6 mb-10">
-                {["Discovery & Research", "Planning & Strategy", "Design & Development", "Testing & Optimization", "Launch & Support"].map((step, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-brand-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm font-bold text-brand-secondary">{i + 1}</span>
+              {/* Our Process */}
+              <p className="inline-flex items-center gap-2 mb-5 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <span className="inline-block w-8 h-px bg-brand-accent" /> Our Process
+              </p>
+              <div className="relative space-y-5 mb-4">
+                <span className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-brand-secondary/50 via-brand-accent/30 to-transparent pointer-events-none" aria-hidden="true" />
+                {PROCESS_STEPS.map((step, i) => (
+                  <div key={i} className="bento-reveal relative flex items-start gap-5" style={{ transitionDelay: `${i * 60}ms` }}>
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-brand-secondary to-brand-accent flex items-center justify-center flex-shrink-0 shadow-md shadow-brand-secondary/25">
+                      <span className="text-sm font-bold text-white">{i + 1}</span>
                     </div>
-                    <div>
-                      <h4 className="font-semibold">{step}</h4>
-                      <p className="text-sm text-muted-foreground">Thorough execution of each phase ensures quality results.</p>
+                    <div className="flex-1 rounded-2xl border border-border/70 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-brand-secondary/30">
+                      <h4 className="font-semibold text-foreground mb-1" style={{ fontFamily: "var(--font-heading)" }}>{step.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
                     </div>
                   </div>
                 ))}
