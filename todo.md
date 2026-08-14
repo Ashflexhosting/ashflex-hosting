@@ -903,4 +903,4 @@
 ## Trusted Brands Logo Swap (user-requested)
 - [x] Uploaded the 6 supplied brand logo images (gyroairltd, galconengineering, karossytravels, nenvahealth, ashflexconsult, shutterspeedprojects) as managed web assets
 - [x] Replaced the trusted-brands marquee monogram tiles with the real logo images on white pill-free tiles with consistent height (h-12/h-14) and width caps (max-w-180/210px), subtle lift on hover; verified on desktop and mobile
-- [ ] Verify the marquee on desktop and mobile, run tests, checkpoint and publish (tests 29/29 passed)
+- [x] Verified the marquee on desktop and mobile, ran tests (29/29 passed), checkpointed and published
