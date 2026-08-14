@@ -401,7 +401,7 @@ export default function Home() {
       {/* ============ HERO — editorial split with kinetic type ============ */}
       <section className="relative min-h-screen max-h-[900px] flex items-center bg-brand noise-texture overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-30"
           style={{ backgroundImage: "url('/manus-storage/ashflex-hero-background_ee4a0039.png')" }}
           aria-hidden="true"
         />

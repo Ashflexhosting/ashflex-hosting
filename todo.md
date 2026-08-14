@@ -727,3 +727,7 @@
 - [x] Make the inquiry section background image fixed (bg-fixed attachment) so it stays in place while scrolling (parallax feel)
 - [x] Make the inquiry header/sub-header light: h2 text-white, sub-header cyan-300, body text-white/75; also reduced overlay from 65% to 45% so the fixed texture shows through better
 - [x] Verified in live browser at #services-inquiry: dark textured background with fixed attachment renders, light headings confirmed; checkpoint and publish
+
+## Homepage Hero Fixed Background Parallax (user-requested)
+- [x] Applied bg-fixed to the homepage hero background image layer (ashflex-hero-background_ee4a0039.png, unchanged opacity-30 and gradient overlay) for visual consistency with the Services inquiry section
+- [x] Verified desktop screenshot of homepage hero renders unchanged with fixed attachment; checkpoint and publish
