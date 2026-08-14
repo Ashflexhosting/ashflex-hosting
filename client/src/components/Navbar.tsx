@@ -241,7 +241,16 @@ export default function Navbar() {
           />
           {/* Brightening overlay: keeps the spotlight glow visible while a soft white haze keeps text crisp */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 via-[45%] to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/45 via-[45%] to-transparent"
+            aria-hidden="true"
+          />
+          {/* Pulsing warm glow overlay that follows the spotlight's center */}
+          <div
+            className="absolute inset-0 animate-[glow-pulse_4s_ease-in-out_infinite] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 50% at 50% 22%, rgba(255, 213, 153, 0.35), rgba(255, 183, 100, 0.14) 45%, transparent 75%), radial-gradient(ellipse 45% 35% at 50% 92%, rgba(255, 200, 120, 0.30), transparent 70%)",
+            }}
             aria-hidden="true"
           />
             <div ref={swipeRef} className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px] touch-pan-y">
@@ -249,7 +258,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
                 <span className="text-base font-semibold text-[#0a1240] tracking-tight">
@@ -261,17 +270,17 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex items-center gap-3 px-4 my-2">
-              <span className="h-px flex-1 bg-gradient-to-r from-brand-secondary/40 to-transparent" />
+              <span className="h-px flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-secondary/90">
                 More
               </p>
-              <span className="h-px flex-1 bg-gradient-to-l from-brand-secondary/40 to-transparent" />
+              <span className="h-px flex-1 bg-gradient-to-l from-amber-500/50 to-transparent" />
             </div>
             {topBarNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
                 <span className="text-base font-medium text-brand/90">{item.label}</span>
@@ -286,7 +295,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Facebook"
-                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Facebook size={18} />
               </a>
@@ -295,7 +304,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on X"
-                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Twitter size={18} />
               </a>
@@ -304,7 +313,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Instagram"
-                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Instagram size={18} />
               </a>
