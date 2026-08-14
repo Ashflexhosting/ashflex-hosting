@@ -216,7 +216,7 @@ export const servicePricingImages: Record<string, string> = {
   "website-design": "/manus-storage/svc-website-design_7b919611.png",
   "website-development": "/manus-storage/svc-website-development_ad41e9fa.png",
   "wordpress-development": "/manus-storage/svc-wordpress_44332d74.png",
-  "ecommerce-development": "/manus-storage/svc-ecommerce_82727d0e.png",
+  "ecommerce-development": "/manus-storage/friends-shopping-shoes-online-5PAKNV1_df16bf19.webp",
   "ui-ux-design": "/manus-storage/svc-uiux_5fb91aae.png",
   "branding-logo-design": "/manus-storage/svc-branding_ff4a0f7c.png",
   "seo-services": "/manus-storage/svc-seo_44fd11d1.png",

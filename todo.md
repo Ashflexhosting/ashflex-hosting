@@ -858,3 +858,6 @@
 
 ## Hover-clear overlay (user-requested)
 - [x] Photo card dark overlay now eases to 60% opacity on hover (500ms ease-out) so the background photo becomes clearer when interacting; base 86–93% at rest keeps text readable
+
+## E-commerce page image swap (user-requested)
+- [x] Replace the image above the pricing card on the E-commerce Development service page with the user-provided friends-shopping-shoes-online-5PAKNV1.webp (uploaded to /manus-storage/friends-shopping-shoes-online-5PAKNV1_df16bf19.webp); verified on /services/ecommerce-development
