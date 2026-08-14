@@ -13,6 +13,17 @@ import { portfolioItems } from "@/data/portfolio";
 import { faqs } from "@/data/faq";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
+
+const TRUSTED_BRANDS = [
+  { name: "Shutterspeed", monogram: "S", accent: "text-blue-600", border: "border-blue-400/50" },
+  { name: "Kingwesl", monogram: "K", accent: "text-amber-600", border: "border-amber-400/50" },
+  { name: "Afnaf Auto Sales", monogram: "A", accent: "text-emerald-600", border: "border-emerald-400/50" },
+  { name: "Marvel Tex", monogram: "M", accent: "text-rose-600", border: "border-rose-400/50" },
+  { name: "Galcon Eng.", monogram: "G", accent: "text-cyan-600", border: "border-cyan-400/50" },
+  { name: "Neboc Hotel", monogram: "N", accent: "text-violet-600", border: "border-violet-400/50" },
+  { name: "Aerolead", monogram: "A", accent: "text-sky-600", border: "border-sky-400/50" },
+  { name: "Barmest", monogram: "B", accent: "text-orange-600", border: "border-orange-400/50" },
+];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import {
@@ -539,41 +550,28 @@ export default function Home() {
         />
       </section>
 
-      {/* ============ TRUSTED BY — oversized outline band ============ */}
-      <section className="py-14 bg-muted/40 relative">
+      {/* ============ TRUSTED BY — marquee band ============ */}
+      <section className="py-14 relative overflow-hidden" style={{ background: "#D8D8D8" }}>
         <div className="container">
           <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8 font-medium">Trusted by leading brands across Nigeria & beyond</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 text-center">
-            {[
-              { name: "Shutterspeed", monogram: "S", accent: "text-blue-500/70", border: "border-blue-300/40" },
-              { name: "Kingwesl", monogram: "K", accent: "text-amber-500/70", border: "border-amber-300/40" },
-              { name: "Afnaf Auto Sales", monogram: "A", accent: "text-emerald-500/70", border: "border-emerald-300/40" },
-              { name: "Marvel Tex", monogram: "M", accent: "text-rose-500/70", border: "border-rose-300/40" },
-              { name: "Galcon Eng.", monogram: "G", accent: "text-cyan-500/70", border: "border-cyan-300/40" },
-              { name: "Neboc Hotel", monogram: "N", accent: "text-violet-500/70", border: "border-violet-300/40" },
-              { name: "Aerolead", monogram: "A", accent: "text-sky-500/70", border: "border-sky-300/40" },
-              { name: "Barmest", monogram: "B", accent: "text-orange-500/70", border: "border-orange-300/40" },
-            ].map((brand, i) => (
-              <div
-                key={brand.name}
-                className="scroll-reveal group flex flex-col items-center justify-center gap-1.5 py-3"
-                style={{ transitionDelay: `${i * 50}ms` }}
+        </div>
+        <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
+          {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
+            <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-6 md:px-9 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
+              <span
+                className={`inline-flex h-8 w-8 md:h-9 md:w-9 items-center justify-center rounded-lg border ${brand.border} bg-white/70 text-sm md:text-base font-extrabold tracking-tight ${brand.accent} transition-transform duration-300 hover:-translate-y-0.5`}
+                style={{ fontFamily: "var(--font-heading)" }}
               >
-                <span
-                  className={`inline-flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-lg border ${brand.border} bg-card/60 text-sm md:text-base font-extrabold tracking-tight ${brand.accent} transition-transform duration-300 group-hover:-translate-y-0.5`}
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {brand.monogram}
-                </span>
-                <span
-                  className="text-sm md:text-base font-bold tracking-wide text-foreground/40 group-hover:text-foreground/65 transition-colors duration-300"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {brand.name}
-                </span>
-              </div>
-            ))}
-          </div>
+                {brand.monogram}
+              </span>
+              <span
+                className="ml-2.5 text-sm md:text-base font-bold tracking-wide text-foreground/50 transition-colors duration-300"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {brand.name}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 

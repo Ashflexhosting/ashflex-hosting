@@ -883,3 +883,7 @@
 
 ## Trusted brands section (user-requested)
 - [x] Make the "Trusted by leading brands across Nigeria & beyond" brands look more realistic — replaced plain placeholder names with stylized logo lockups: circular monogram tiles (S/K/A/M/G/N/A/B in brand accent colors with soft tinted borders) above the real client names (Shutterspeed, Kingwesl, Afnaf Auto Sales, Marvel Tex, Galcon Eng., Neboc Hotel, Aerolead, Barmest), with subtle hover lift and color emphasis; verified live in the browser with the band fully rendered
+
+## Trusted brands section restyle (user-requested)
+- [x] Change the trusted brands section background colour to #D8D8D8
+- [x] Replace the static two-row brand grid with a continuous horizontal marquee (duplicate the brand set, seamless infinite scroll, pause on hover, prefers-reduced-motion guard)
