@@ -837,4 +837,4 @@
 - [x] Make the spotlight glow more visible and pulsing — overlay mid-stop reduced to via-white/45 so the warm beam shows through, plus a new radial warm-glow overlay (amber radial gradients at the beam and floor spots) with glow-pulse keyframes (opacity 0.55–1 over 4s, ease-in-out infinite) gated behind prefers-reduced-motion: no-preference
 
 ## Menu cleanup (user-requested)
-- [ ] Remove "Case Studies" from the mobile menu main nav (keep desktop nav untouched)
+- [x] Remove "Case Studies" from the mobile menu main nav — initially via a mobileNav filter; then removed from the shared mainNav per follow-up request, so desktop and mobile both drop it; routes kept intact since the page is still reachable internally

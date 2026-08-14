@@ -11,11 +11,10 @@ const mainNav = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Industries", href: "/industries" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Case Studies", href: "/case-studies" },
 ];
 
-// Mobile menu nav: same as mainNav but without Case Studies (per user request)
-const mobileNav = mainNav.filter((item) => item.href !== "/case-studies");
+// Mobile menu nav: mirrors mainNav (kept as a separate list for easy future divergence)
+const mobileNav = mainNav;
 
 const topBarNav = [
   { label: "Blog", href: "/blog" },
