@@ -559,7 +559,7 @@ export default function Services() {
           style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
         />
         {/* Dark navy overlay keeps text readable against the image */}
-        <div className="absolute inset-0 bg-navy/85" aria-hidden="true" />
+        <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
         <div className="container relative z-10 py-16 md:py-20">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-[0.25em] mb-4">Have a project in mind?</p>
