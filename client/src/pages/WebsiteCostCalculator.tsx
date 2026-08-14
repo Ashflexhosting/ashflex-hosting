@@ -12,6 +12,7 @@ export default function WebsiteCostCalculator() {
   const [ecommerce, setEcommerce] = useState(false);
   const [seo, setSeo] = useState("basic");
   const [maintenance, setMaintenance] = useState(false);
+  const [apiIntegration, setApiIntegration] = useState(false);
 
   let baseCost = pages * 15000;
   if (design === "premium") baseCost *= 1.5;
@@ -20,6 +21,7 @@ export default function WebsiteCostCalculator() {
   if (seo === "advanced") baseCost += 75000;
   if (seo === "complete") baseCost += 150000;
   if (maintenance) baseCost += 25000 * 12;
+  if (apiIntegration) baseCost += 500000;
 
   const formatted = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(baseCost);
 
@@ -98,6 +100,18 @@ export default function WebsiteCostCalculator() {
                     </div>
                   </div>
 
+
+                  <div>
+                    <label className="text-sm font-semibold mb-3 block">API Integration</label>
+                    <button
+                      onClick={() => setApiIntegration(!apiIntegration)}
+                      className={`px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
+                        apiIntegration ? "border-brand-secondary bg-brand-secondary/5 text-brand-secondary" : "border-border hover:border-brand-secondary/30"
+                      }`}
+                    >
+                      {apiIntegration ? "Yes (+₦500,000)" : "No"}
+                    </button>
+                  </div>
 
                   <div>
                     <label className="text-sm font-semibold mb-3 block">Annual Maintenance</label>

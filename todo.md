@@ -747,3 +747,7 @@
 - [x] Removed "→ API Integration" step from process strings in CaseStudies.tsx and CaseStudyDetail.tsx
 - [x] Removed the API Integrations slider, its state, and cost math (₦50,000/integration) from the cost calculator
 - [x] Verified pricing/case-studies/calculator pages render cleanly; 29/29 tests pass; checkpoint and publish
+
+## Cost Calculator API Integration Extra (user-requested)
+- [x] Re-added API Integration as a toggle button (+₦500,000) in the cost calculator, styled like the other toggles
+- [x] Verified estimate math (₦500,000 added on toggle), page renders correctly, 29/29 tests pass, checkpoint and publish
