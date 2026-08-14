@@ -868,3 +868,6 @@
 
 ## Related Services card images (user-requested)
 - [x] Update the Related Services cards on service detail pages to carry their corresponding service images — each card now shows the related service's own pricing image (h-32, object-cover, rounded-t-2xl with a subtle bottom fade, plus the same 10% zoom-in on hover as the pricing card), with the Learn More link intact; verified on /services/ecommerce-development and /services/website-design
+
+## Web development page image swap (user-requested)
+- [x] Replace the Website Development page pricing card image (and its Related Services card, which reuses the same servicePricingImages entry) with the user-provided coding-at-night photo (uploaded to /manus-storage/..._t20_drBbzA_89629c97.webp); verified on /services/website-development; zoom hover and fade carry over automatically
