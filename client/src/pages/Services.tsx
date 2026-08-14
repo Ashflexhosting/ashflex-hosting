@@ -56,27 +56,67 @@ const serviceGroups: ServiceGroup[] = [
 ];
 
 /* Filler card for the Design & Experience row — brand-philosophy visual that balances the 4-column grid */
-function PhilosophyCard() {
+/* Category highlight cards — brand-gradient visuals that close every 4-column group row consistently.
+   Each card carries a theme message and a standout stat, echoing the original "Our Promise" card. */
+const groupHighlights: Record<string, { kicker: string; title: string; message: string; stat: string; bg: string; orbA: string; orbB: string }> = {
+  design: {
+    kicker: "Our Promise",
+    title: "Designed to be loved. Built to perform.",
+    message: "Every project starts with your goals and ends with measurable results — beauty and performance, never one without the other.",
+    stat: "250+ projects crafted",
+    bg: "linear-gradient(135deg, #0757F7, #F20549)",
+    orbA: "rgba(255,255,255,0.18)",
+    orbB: "#33C9D4",
+  },
+  development: {
+    kicker: "Our Standard",
+    title: "Code that ships fast and scales further.",
+    message: "Clean architecture, tested releases, and performance budgets baked into every build — so your site grows with your business.",
+    stat: "99.9% uptime target",
+    bg: "linear-gradient(135deg, #071B5A, #0757F7)",
+    orbA: "rgba(255,255,255,0.15)",
+    orbB: "#F20549",
+  },
+  marketing: {
+    kicker: "Our Approach",
+    title: "Growth you can measure, not just promise.",
+    message: "Every campaign is tied to clear KPIs — rankings, leads, and revenue — with transparent reporting on what works.",
+    stat: "4.5★ average client rating",
+    bg: "linear-gradient(135deg, #F20549, #9B1C8C)",
+    orbA: "rgba(255,255,255,0.15)",
+    orbB: "#33C9D4",
+  },
+  infrastructure: {
+    kicker: "Our Guarantee",
+    title: "Always on. Always protected. Always faster.",
+    message: "Round-the-clock monitoring, backups, and AI-powered automation keep your business running while you focus on it.",
+    stat: "24/7 support available",
+    bg: "linear-gradient(135deg, #0B3D91, #33C9D4)",
+    orbA: "rgba(255,255,255,0.15)",
+    orbB: "#F20549",
+  },
+};
+
+function HighlightCard({ groupId }: { groupId: string }) {
+  const h = groupHighlights[groupId] ?? groupHighlights.design;
   return (
     <div className="bento-reveal group rounded-3xl h-full relative overflow-hidden p-7 text-white" style={{ transitionDelay: "180ms" }}>
       {/* layered brand gradient background */}
-      <div className="absolute inset-0 bg-gradient-primary" aria-hidden="true" />
+      <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
       <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
       <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
-      <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full bg-brand-cyan" style={{ opacity: 0.35 }} aria-hidden="true" />
+      <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
       {/* floating geometric accents */}
       <div className="float-slow absolute top-7 right-7 w-8 h-8 rounded-full border border-white/60" aria-hidden="true" />
       <div className="float-slow-delayed absolute top-20 right-16 w-3 h-3 rounded-full bg-white/80" aria-hidden="true" />
       <div className="float-slow absolute bottom-10 left-8 w-5 h-5 rounded-md border border-white/50 rotate-45" aria-hidden="true" />
       <div className="relative z-10 flex flex-col justify-between h-full">
         <div>
-          <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">Our Promise</p>
+          <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/75 mb-4">{h.kicker}</p>
           <h3 className="text-xl font-extrabold leading-snug mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-            Designed to be loved. Built to perform.
+            {h.title}
           </h3>
-          <p className="text-sm text-white/80 leading-relaxed mb-5">
-            Every project starts with your goals and ends with measurable results — beauty and performance, never one without the other.
-          </p>
+          <p className="text-sm text-white/80 leading-relaxed mb-5">{h.message}</p>
         </div>
         <div className="flex items-center gap-3 pt-4 border-t border-white/25">
           <div className="flex -space-x-2" aria-hidden="true">
@@ -84,7 +124,7 @@ function PhilosophyCard() {
             <span className="w-7 h-7 rounded-full bg-white/20 border border-white/50" />
             <span className="w-7 h-7 rounded-full bg-white/45 border border-white/50" />
           </div>
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">250+ projects crafted</span>
+          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/90">{h.stat}</span>
         </div>
       </div>
     </div>
@@ -221,7 +261,7 @@ export default function Services() {
                   {items.map((service) => (
                     <ServiceCard key={service.id} service={service} index={services.indexOf(service)} accent={group.accent} />
                   ))}
-                  {group.id === "design" && <PhilosophyCard key="philosophy" />}
+                  {items.length < 4 && <HighlightCard key={`highlight-${group.id}`} groupId={group.id} />}
                 </div>
               </div>
             );

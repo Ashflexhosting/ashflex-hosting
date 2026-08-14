@@ -678,3 +678,6 @@
 ## Services Design Row Filler (user-requested)
 - [x] Fill the empty 4th slot in the Design & Experience row with a complementary design-philosophy visual card (brand gradient background, noise texture, glow orbs, floating geometric accents, "Designed to be loved. Built to perform." promise, 250+ projects footer)
 - [x] Verify grid balance on desktop (3 service cards + philosophy card = 4 across), tests 24/24, checkpoint and publish
+## Services Highlight Cards Consistency (user-requested)
+- [x] Add highlight/philosophy cards to remaining rows: generalized HighlightCard with per-group content (Our Standard/code, Our Approach/growth, Our Guarantee/reliability) and distinct gradient tones; rendered automatically for any group with fewer than 4 services (Design row gets it; Build & Launch, Grow & Reach, Power & Automate already have 4-5 services so rows remain complete)
+- [x] Verify on desktop (1280 full-page capture) and mobile, typecheck clean, tests 24/24, checkpoint and publish
