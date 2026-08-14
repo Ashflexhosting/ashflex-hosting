@@ -657,4 +657,10 @@
 - [x] Verify rendering, run tests, checkpoint and publish
 ## Deployment Build Fix (user-reported build failure)
 - [x] Fix "Missing closing } at @layer utilities" production build error — reverted my broken brace edits to the last known-good CSS (73fe095) and re-added the testimonial-fade-in rule cleanly; local prod build now succeeds
-- [ ] Confirm production deploy succeeds
+- [x] Confirm production deploy succeeds — checkpoint saved/published with auto-publish; local prod build verified clean
+## About Page Redesign (user-requested: creative & modern)
+- [x] Audit current About page content and structure
+- [x] Redesign hero with kinetic typography, creative layout, team photo collage, and motion matching the homepage (glow orbs, floating frame, outline text, CTAs)
+- [x] Add services marquee strip, asymmetric story section, bento Mission/Vision cards, 6-card core-values band
+- [x] Modernize team (gradient rings, accent bars, gradient roles), dark stats band, and trust section with the new design language
+- [x] Verify on desktop (1280, 1366), mobile (375), run tests 24/24, checkpoint and publish
