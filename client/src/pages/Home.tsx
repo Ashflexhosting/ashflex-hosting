@@ -4,7 +4,7 @@ import {
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug,
   Bot, Settings, ChevronRight, Star, ArrowRight, CheckCircle,
   MessageSquare, Users, Layers, Shield, Rocket, BarChart3, Headphones,
-  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft,
+  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft, StarHalf,
 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCounter } from "@/hooks/useCounter";
@@ -186,10 +186,15 @@ function TestimonialCard({ t, inView, index }: { t: Testimonial; inView: boolean
       style={{ transitionDelay: inView ? `${index * 90}ms` : "0ms" }}
     >
       <CardContent className="p-0">
-        <div className="flex items-center gap-1 mb-5">
-          {Array.from({ length: t.rating }).map((_, j) => (
-            <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
-          ))}
+        <div className="flex items-center gap-2 mb-5">
+          <div className="flex items-center gap-1" aria-label={`Rated ${t.rating.toFixed(1)} out of 5 stars`}>
+            {Array.from({ length: 5 }).map((_, j) => {
+              if (j < Math.floor(t.rating)) return <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />;
+              if (j < t.rating) return <StarHalf key={j} size={20} fill="#FBBF24" className="text-yellow-400" />;
+              return <Star key={j} size={20} className="text-white/25" />;
+            })}
+          </div>
+          <span className="text-yellow-300/90 text-sm font-semibold">{t.rating.toFixed(1)}</span>
         </div>
         <p className="text-[1.05rem] md:text-base text-white/80 leading-[1.8] mb-6 font-normal italic" style={{ fontFamily: "var(--font-body)" }}>
           “{t.content}”
@@ -230,7 +235,7 @@ const testimonials = [
     role: "Construction & Engineering, Lagos",
     project: "Galcon Engineering — Corporate Website",
     content: "With 30+ years of engineering history to tell, we needed a corporate site that covers our services, completed projects and team. Ashflex delivered a multi-page website that presents our company history and portfolio professionally — the built-in cost calculator is a feature our clients use regularly.",
-    rating: 5,
+    rating: 4.5,
   },
   {
     projectId: 1,
@@ -239,7 +244,7 @@ const testimonials = [
     role: "Film & Media Production, Nigeria",
     project: "Shutterspeed Projects — Official Website",
     content: "As an integrated film and media production company, we needed a digital presence that matched the quality of our trailers. Ashflex built a dedicated site that showcases our latest titles and official trailers the way we envisioned.",
-    rating: 5,
+    rating: 4.5,
   },
   {
     projectId: 11,
@@ -248,7 +253,7 @@ const testimonials = [
     role: "Cooperative Savings Network, Nigeria",
     project: "Marvel Tex Attraction — Member Platform",
     content: "Our members needed a way to follow their savings cycles online. Ashflex built a responsive platform with a member dashboard, savings-cycle tracking and an empowerment-program page — exactly the member-facing system our cooperative asked for.",
-    rating: 5,
+    rating: 4.5,
   },
   {
     projectId: 3,
@@ -257,7 +262,7 @@ const testimonials = [
     role: "Auto Financing, Canada",
     project: "B.C. First Nations Auto Finance — Project Website",
     content: "We needed a clear web presence for our Canadian personal auto-financing scheme. Ashflex delivered a site that communicates our offering to prospective customers, with an easy-to-follow 'How it Works' flow.",
-    rating: 5,
+    rating: 4.5,
   },
   {
     projectId: 2,
@@ -266,7 +271,7 @@ const testimonials = [
     role: "Interior Design Practice",
     project: "Kingwesl Interior — Portfolio Website",
     content: "We needed an online presence to represent our residential and commercial interior-design practice. Ashflex created a portfolio website that positions the firm and our design services clearly for prospective clients.",
-    rating: 5,
+    rating: 4.5,
   },
 ];
 
