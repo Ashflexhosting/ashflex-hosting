@@ -41,23 +41,57 @@ function scrollToId(id: string) {
   raf = requestAnimationFrame(step);
 }
 
-/* Sticky category navigation — glass pill tabs that track the active section while scrolling */
+/* Sticky category navigation — glass pill tabs with a sliding active indicator */
 function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: string }) {
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState<{ left: number; width: number; top: number; height: number } | null>(null);
+
+  const measure = () => {
+    const container = containerRef.current;
+    const idx = tabRefs.current.findIndex((_, i) => groups[i]?.id === activeId);
+    const tab = tabRefs.current[idx];
+    if (!container || !tab) return;
+    const cRect = container.getBoundingClientRect();
+    const tRect = tab.getBoundingClientRect();
+    setIndicator({
+      left: tRect.left - cRect.left,
+      width: tRect.width,
+      top: tRect.top - cRect.top,
+      height: tRect.height,
+    });
+  };
+
+  useEffect(() => {
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeId]);
+
   return (
     <div className="sticky top-[68px] md:top-[76px] z-40 bg-background/85 backdrop-blur-xl border-b border-border">
       <div className="container py-2 md:py-2.5">
-        <div className="grid grid-cols-4 gap-1.5 md:flex md:flex-wrap md:items-center md:gap-2">
-          {groups.map((g) => {
+        <div className="relative grid grid-cols-4 gap-1.5 md:flex md:flex-wrap md:items-center md:gap-2" ref={containerRef}>
+          {indicator && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute rounded-full bg-gradient-primary shadow-lg shadow-brand-secondary/25 transition-all duration-300 ease-out"
+              style={{ left: indicator.left, top: indicator.top, width: indicator.width, height: indicator.height }}
+            />
+          )}
+          {groups.map((g, i) => {
             const active = g.id === activeId;
             return (
               <button
                 key={g.id}
+                ref={(el) => { tabRefs.current[i] = el; }}
                 type="button"
                 onClick={() => scrollToId(`services-${g.id}`)}
                 aria-label={`Jump to ${g.kicker}`}
-                className={`inline-flex items-center justify-center gap-1 py-2 text-[11px] md:text-sm font-semibold border rounded-full transition-all duration-300 md:whitespace-nowrap md:px-5 md:py-2.5 md:text-center ${
+                className={`relative inline-flex items-center justify-center gap-1 py-2 text-[11px] md:text-sm font-semibold border rounded-full transition-colors duration-300 md:whitespace-nowrap md:px-5 md:py-2.5 md:text-center ${
                   active
-                    ? "bg-gradient-primary text-white border-transparent shadow-lg shadow-brand-secondary/25"
+                    ? "text-white border-transparent z-10"
                     : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground"
                 }`}
               >
@@ -276,13 +310,18 @@ export default function Services() {
     };
   }, []);
 
-  /* Back to Top — show after scrolling past the banner */
+  /* Back to Top — show after scrolling past the banner (lower threshold on mobile) */
   const [showTop, setShowTop] = useState(false);
   useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 520);
+    const threshold = window.innerWidth < 768 ? 360 : 520;
+    const onScroll = () => setShowTop(window.scrollY > threshold);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", () => setShowTop(window.scrollY > (window.innerWidth < 768 ? 360 : 520)));
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   /* Concise inquiry form at the bottom of the Services page */
@@ -755,9 +794,10 @@ export default function Services() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/30 flex items-center justify-center transition-all duration-300 hover:scale-105 ${
+        className={`fixed bottom-6 right-6 z-50 w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/30 flex items-center justify-center transition-all duration-300 hover:scale-105 ${
           showTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-3 pointer-events-none"
         }`}
+        style={{ bottom: "min(24px, calc(100dvh - 180px))" }}
       >
         <ArrowUp size={18} />
       </button>

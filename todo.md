@@ -795,3 +795,9 @@
 ## Services Category Filter Mobile Visibility
 - [x] Fixed the sticky category filter for mobile: all 4 tabs now display in an equal-width 4-column grid with compact mobile labels (Design/Develop/Market/Infra & AI, 11px); desktop keeps the original pill tabs with full labels; scrollspy still active
 - [x] Verified at 375px — all four tabs fully visible with no horizontal overflow; 29/29 tests pass; checkpoint and publish
+
+## Services Filter Enhancements (mobile sticky, sliding indicator, back-to-top)
+- [x] Category filter stays sticky under the mobile header while scrolling (sticky top-[68px] pins it directly below the 68px mobile header; verified at 375px — tab row remains pinned at top across sections)
+- [x] Added a smooth sliding active-tab indicator: an absolute gradient pill (bg-gradient-primary + shadow) positioned via measured tab refs and animated with transition-all duration-300 ease-out; active tabs keep transparent bg/z-10 so the pill slides between them on every scrollspy/scrollToId switch; resize-safe measurement
+- [x] Mobile "Back to Top" floating button now appears earlier on small screens (threshold lowered from 520px to 360px for width <768px, responsive resize listener); button slightly larger on desktop (md:w-12 md:h-12) and bottom offset clamped to avoid colliding with the WhatsApp button on short viewports
+- [x] Verified at 375px — filter pinned, Design pill shows sliding gradient indicator; tests pass; checkpoint and publish
