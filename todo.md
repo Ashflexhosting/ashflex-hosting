@@ -638,3 +638,9 @@
 ## Testimonials Aligned to Portfolio (user-requested)
 - [x] Rewrite homepage testimonials to reference actual portfolio projects instead of placeholder clients
 - [x] Verify testimonial section rendering, run tests, checkpoint and publish
+
+## Testimonial Card Enhancements (user-requested)
+- [x] Make each testimonial card clickable to smoothly scroll to its corresponding portfolio project
+- [x] Add subtle hover effect (lift + increased shadow) to testimonial cards
+- [x] Add a small project thumbnail image next to the project name on each card
+- [x] Verify on desktop/mobile, run tests, checkpoint and publish

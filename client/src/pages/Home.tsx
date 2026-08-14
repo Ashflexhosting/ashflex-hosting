@@ -13,7 +13,7 @@ import { portfolioItems } from "@/data/portfolio";
 import { faqs } from "@/data/faq";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -48,6 +48,8 @@ const processSteps = [
 /* Client feedback tied to actual portfolio projects */
 const testimonials = [
   {
+    projectId: 12,
+    thumbnail: "/manus-storage/galcon-home_06339665.webp",
     name: "Galcon Engineering (Nig) Limited",
     role: "Construction & Engineering, Lagos",
     project: "Galcon Engineering — Corporate Website",
@@ -55,6 +57,8 @@ const testimonials = [
     rating: 5,
   },
   {
+    projectId: 1,
+    thumbnail: "/manus-storage/shutterspeed-fullpage-hd_ed10ade0.webp",
     name: "Shutterspeed Projects",
     role: "Film & Media Production, Nigeria",
     project: "Shutterspeed Projects — Official Website",
@@ -62,6 +66,8 @@ const testimonials = [
     rating: 5,
   },
   {
+    projectId: 11,
+    thumbnail: "/manus-storage/marveltex-fullpage-hd_117c152d.webp",
     name: "Marvel Tex Attraction",
     role: "Cooperative Savings Network, Nigeria",
     project: "Marvel Tex Attraction — Member Platform",
@@ -69,6 +75,8 @@ const testimonials = [
     rating: 5,
   },
   {
+    projectId: 3,
+    thumbnail: "/manus-storage/bcfna-fullpage-hd_6551ddb7.webp",
     name: "B.C. First Nations Auto Finance",
     role: "Auto Financing, Canada",
     project: "B.C. First Nations Auto Finance — Project Website",
@@ -76,6 +84,8 @@ const testimonials = [
     rating: 5,
   },
   {
+    projectId: 2,
+    thumbnail: "/manus-storage/kingwesl-fullpage_032116a9.jpg",
     name: "Kingwesl Interior",
     role: "Interior Design Practice",
     project: "Kingwesl Interior — Portfolio Website",
@@ -588,6 +598,7 @@ export default function Home() {
             {filteredPortfolio.map((item, i) => (
               <div
                 key={item.id}
+                id={`project-${item.id}`}
                 className="scroll-reveal relative group"
                 style={{ transitionDelay: `${i * 80}ms` }}
                 onMouseEnter={() => setHoveredPortfolio(item.id)}
@@ -701,32 +712,61 @@ export default function Home() {
 
           <Carousel className="max-w-4xl mx-auto" opts={{ loop: true }}>
             <CarouselContent>
-              {testimonials.map((t, i) => (
-                <CarouselItem key={i}>
-                  <div className="glass-card-dark border-0 p-9">
-                    <CardContent className="p-0">
-                      <div className="flex items-center gap-1 mb-5">
-                        {Array.from({ length: t.rating }).map((_, j) => (
-                          <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
-                        ))}
-                      </div>
-                      <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-7 font-medium" style={{ fontFamily: "var(--font-heading)" }}>
-                        "{t.content}"
-                      </p>
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg" style={{ fontFamily: "var(--font-heading)" }}>
-                          {t.name.charAt(0)}
+              {testimonials.map((t, i) => {
+                const scrollToProject = (e: React.MouseEvent) => {
+                  e.preventDefault();
+                  const target = document.getElementById(`project-${t.projectId}`);
+                  if (!target) return;
+                  const y = target.getBoundingClientRect().top + window.scrollY - 100;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                  // give the scroll-reveal a nudge into view
+                  target.classList.add("is-visible");
+                };
+                return (
+                  <CarouselItem key={i}>
+                    <button
+                      type="button"
+                      onClick={scrollToProject}
+                      aria-label={`View the ${t.project} project in the portfolio`}
+                      className="glass-card-dark border-0 p-9 w-full text-left rounded-3xl transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-brand-cyan/15 hover:border-brand-cyan/30 hover:bg-white/[0.06] active:scale-[0.985]"
+                    >
+                      <CardContent className="p-0">
+                        <div className="flex items-center gap-1 mb-5">
+                          {Array.from({ length: t.rating }).map((_, j) => (
+                            <Star key={j} size={20} fill="#FBBF24" className="text-yellow-400" />
+                          ))}
                         </div>
-                        <div>
-                          <p className="text-white font-bold">{t.name}</p>
-                          <p className="text-white/50 text-sm">{t.role}</p>
-                          <p className="text-brand-cyan text-xs font-medium mt-0.5">Project: {t.project}</p>
+                        <p className="text-xl md:text-2xl text-white/85 leading-relaxed mb-7 font-medium" style={{ fontFamily: "var(--font-heading)" }}>
+                          "{t.content}"
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ fontFamily: "var(--font-heading)" }}>
+                            {t.name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-white font-bold">{t.name}</p>
+                            <p className="text-white/50 text-sm">{t.role}</p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <img
+                                src={t.thumbnail}
+                                alt={`${t.project} screenshot`}
+                                loading="lazy"
+                                className="w-10 h-6 rounded object-cover object-top border border-white/20 shrink-0"
+                              />
+                              <p className="text-brand-cyan text-xs font-medium">
+                                Project: {t.project}
+                                <span className="ml-1.5 inline-flex items-center gap-0.5 text-brand-cyan/70">
+                                  View project <ArrowRight size={10} />
+                                </span>
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </div>
-                </CarouselItem>
-              ))}
+                      </CardContent>
+                    </button>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
             <CarouselPrevious className="border-white/20 text-white hover:bg-white/10" />
             <CarouselNext className="border-white/20 text-white hover:bg-white/10" />
