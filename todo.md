@@ -791,3 +791,7 @@
 
 ## Process Card Radius
 - [x] Set "Our Process" step card border radius to 15px on all service detail pages (inline style radius:15px), verified rendering
+
+## Services Category Filter Mobile Visibility
+- [x] Fixed the sticky category filter for mobile: all 4 tabs now display in an equal-width 4-column grid with compact mobile labels (Design/Develop/Market/Infra & AI, 11px); desktop keeps the original pill tabs with full labels; scrollspy still active
+- [x] Verified at 375px — all four tabs fully visible with no horizontal overflow; 29/29 tests pass; checkpoint and publish

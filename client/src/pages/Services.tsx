@@ -45,26 +45,29 @@ function scrollToId(id: string) {
 function CategoryNav({ groups, activeId }: { groups: ServiceGroup[]; activeId: string }) {
   return (
     <div className="sticky top-[68px] md:top-[76px] z-40 bg-background/85 backdrop-blur-xl border-b border-border">
-      <div className="container flex items-center gap-2 overflow-x-auto py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {groups.map((g) => {
-          const active = g.id === activeId;
-          return (
-            <button
-              key={g.id}
-              type="button"
-              onClick={() => scrollToId(`services-${g.id}`)}
-              aria-label={`Jump to ${g.kicker}`}
-              className={`whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 ${
-                active
-                  ? "bg-gradient-primary text-white border-transparent shadow-lg shadow-brand-secondary/25"
-                  : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground"
-              }`}
-            >
-              {g.label}
-              {active && <ChevronRight size={14} className="opacity-70" />}
-            </button>
-          );
-        })}
+      <div className="container py-2 md:py-2.5">
+        <div className="grid grid-cols-4 gap-1.5 md:flex md:flex-wrap md:items-center md:gap-2">
+          {groups.map((g) => {
+            const active = g.id === activeId;
+            return (
+              <button
+                key={g.id}
+                type="button"
+                onClick={() => scrollToId(`services-${g.id}`)}
+                aria-label={`Jump to ${g.kicker}`}
+                className={`inline-flex items-center justify-center gap-1 py-2 text-[11px] md:text-sm font-semibold border rounded-full transition-all duration-300 md:whitespace-nowrap md:px-5 md:py-2.5 md:text-center ${
+                  active
+                    ? "bg-gradient-primary text-white border-transparent shadow-lg shadow-brand-secondary/25"
+                    : "bg-card text-foreground/70 border-border hover:border-brand-secondary/50 hover:text-foreground"
+                }`}
+              >
+                <span className="hidden md:inline">{g.label}</span>
+                <span className="inline md:hidden text-center leading-tight px-1">{g.mobileLabel ?? g.label}</span>
+                {active && <ChevronRight size={12} className="opacity-70 md:block hidden" />}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -80,15 +83,16 @@ const iconMap: Record<string, React.ElementType> = {
 type ServiceGroup = {
   id: string;
   label: string;
+  mobileLabel?: string;
   kicker: string;
   slugIds: string[];
   accent: string;
 };
 
 const serviceGroups: ServiceGroup[] = [
-  {
-    id: "design",
+    { id: "design",
     label: "Design",
+    mobileLabel: "Design",
     kicker: "Design & Experience",
     slugIds: ["website-design", "ui-ux-design", "branding-logo-design"],
     accent: "text-brand-accent",
@@ -96,6 +100,7 @@ const serviceGroups: ServiceGroup[] = [
   {
     id: "development",
     label: "Development",
+    mobileLabel: "Develop",
     kicker: "Build & Launch",
     slugIds: ["website-development", "wordpress-development", "ecommerce-development", "custom-business-systems"],
     accent: "text-brand-secondary",
@@ -103,6 +108,7 @@ const serviceGroups: ServiceGroup[] = [
   {
     id: "marketing",
     label: "Marketing",
+    mobileLabel: "Market",
     kicker: "Grow & Reach",
     slugIds: ["seo-services", "google-ads", "social-media-marketing", "content-writing"],
     accent: "text-brand-accent",
@@ -110,6 +116,7 @@ const serviceGroups: ServiceGroup[] = [
   {
     id: "infrastructure",
     label: "Infrastructure & AI",
+    mobileLabel: "Infra & AI",
     kicker: "Power & Automate",
     slugIds: ["website-maintenance", "speed-optimization", "hosting-domain", "ai-automation"],
     accent: "text-brand-cyan",
