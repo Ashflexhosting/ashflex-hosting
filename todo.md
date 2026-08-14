@@ -560,6 +560,10 @@
 - [x] Content remains scrollable — hover auto-scroll, "Scroll to view" hint, arrows, glare, and responsive phone switch all preserved
 - [x] Verified on desktop (full-page captures of /portfolio/1 and /portfolio/4), tests 24/24, checkpoint saved and auto-published
 
+## Hero Right-Side iMac Image (user-requested)
+- [x] Uploaded galcon.webp (/manus-storage/galcon-imac_8f72a11c.webp) and placed it on the right side of the homepage hero, replacing the abstract browser/metric cards stack; keeps the floating animation and soft shadow
+- [x] Verified rendering on desktop full-page capture and mobile (image hidden below lg, unchanged), tests 24/24, checkpoint saved and auto-published
+
 ## Slower Hover Auto-Scroll (user-requested)
 - [x] Reduced the hover auto-scroll speed from 60px/s to 38px/s (a ~37% slower, smoother pass) across all scrollable frames (desktop iMac, portfolio cards, Our Work peek, galleries, lightbox)
 - [x] Tests 24/24; checkpoint saved and auto-published

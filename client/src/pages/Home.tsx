@@ -265,58 +265,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: floating mockup cards — bounded stack sized to fit laptop viewports */}
+            {/* Right: client project showcase on an iMac mockup */}
             <div className="lg:col-span-5 hidden lg:block relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" aria-hidden="true" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] rounded-full border border-white/5 rotate-12" aria-hidden="true" />
 
-              {/* browser card */}
-              <div className="absolute top-2 left-0 scroll-reveal-right w-60 glass-card-dark border-white/15 p-0 overflow-hidden" style={{ transitionDelay: "150ms" }}>
-                <div className="flex items-center gap-1.5 px-3 py-2.5 border-b border-white/10">
-                  <span className="h-2 w-2 rounded-full bg-brand-accent/80" />
-                  <span className="h-2 w-2 rounded-full bg-brand-cyan/80" />
-                  <span className="h-2 w-2 rounded-full bg-brand-secondary/80" />
-                  <span className="ml-2 text-[10px] text-white/40 truncate">ashflexwebdesign.com</span>
-                </div>
-                <div className="p-4">
-                  <div className="h-1.5 w-20 rounded bg-gradient-primary mb-2.5" />
-                  <div className="h-2 w-full rounded bg-white/10 mb-1.5" />
-                  <div className="h-2 w-4/5 rounded bg-white/10 mb-3" />
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-secondary/30 to-brand-cyan/20 border border-white/10" />
-                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-accent/25 to-brand-secondary/20 border border-white/10" />
-                    <div className="h-10 rounded-lg bg-gradient-to-br from-brand-cyan/25 to-brand-accent/15 border border-white/10" />
-                  </div>
-                </div>
-              </div>
-
-              {/* metric cards */}
-              {heroMockups.map((m, i) => (
-                <div
-                  key={m.title}
-                  className={`absolute glass-card-dark border-white/15 px-4 py-3 scroll-reveal-right ${m.cls}`}
-                  style={{
-                    top: m.top,
-                    left: m.left,
-                    transitionDelay: `${(i + 2) * 130}ms`,
-                    animation: `${i % 2 === 0 ? "float-slow" : "float-slow-delayed"}`,
-                  }}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`h-2 w-2 rounded-full ${m.accent}`} />
-                    <span className="text-white/55 text-[11px] uppercase tracking-wider">{m.title}</span>
-                  </div>
-                  <div className="mt-1 text-xl font-extrabold text-white" style={{ fontFamily: "var(--font-heading)" }}>{m.value}</div>
-                </div>
-              ))}
-
-              {/* phone card — hidden on shorter laptop viewports */}
-              <div className="absolute top-[270px] right-2 w-24 glass-card-dark border-white/15 p-2.5 scroll-reveal-right rotate-3 hidden xl:block" style={{ transitionDelay: "600ms" }} aria-hidden="true">
-                <div className="h-1.5 w-8 rounded bg-gradient-primary mb-2 mx-auto" />
-                <div className="h-1 w-full rounded bg-white/10 mb-1.5" />
-                <div className="h-1 w-4/5 rounded bg-white/10 mb-2.5" />
-                <div className="h-12 rounded-lg bg-gradient-to-br from-brand-secondary/35 to-brand-cyan/25 border border-white/10" />
-              </div>
+              <img
+                src="/manus-storage/galcon-imac_8f72a11c.webp"
+                alt="Galcon Engineering website displayed on an iMac"
+                className="scroll-reveal-right w-full max-w-[478px] mx-auto drop-shadow-2xl"
+                style={{ animation: "float-slow 6s ease-in-out infinite", transitionDelay: "150ms" }}
+                loading="eager"
+              />
             </div>
           </div>
         </div>
