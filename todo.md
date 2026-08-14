@@ -915,3 +915,5 @@
 - [x] Replaced the Shutterspeed Projects marquee logo with the newly supplied image (transparent-processed), verified in marquee; 29/29 tests pass
 
 - [x] Added subtle hover scaling animation to marquee logos (12% scale-up with spring easing, 300ms) combined with the grayscale-to-color transition
+
+- [x] Made each marquee logo clickable, opening a placeholder link (url field, falls back to #) in a new tab with noopener noreferrer

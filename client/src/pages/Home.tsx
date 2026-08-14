@@ -15,12 +15,12 @@ import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
 
 const TRUSTED_BRANDS = [
-  { name: "Gyro Air", logo: "/manus-storage/gyroairltd_69b28b2f.webp" },
-  { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_8f121225.webp" },
-  { name: "Karossy Travels", logo: "/manus-storage/karossytravels_1db5b4e3.webp" },
-  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_9843d0bf.webp" },
-  { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp" },
-  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeed-new_a06e0a02.webp" },
+  { name: "Gyro Air", logo: "/manus-storage/gyroairltd_69b28b2f.webp", url: "" },
+  { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_8f121225.webp", url: "" },
+  { name: "Karossy Travels", logo: "/manus-storage/karossytravels_1db5b4e3.webp", url: "" },
+  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_9843d0bf.webp", url: "" },
+  { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp", url: "" },
+  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeed-new_a06e0a02.webp", url: "" },
 ];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -556,14 +556,20 @@ export default function Home() {
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
             <div key={`${brand.name}-${i}`} className="inline-flex items-center shrink-0 whitespace-nowrap px-4 md:px-5 group-hover:[animation-play-state:paused]" style={{ pointerEvents: "auto" }}>
-              <div className="inline-flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5">
+              <a
+                href={brand.url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${brand.name}`}
+                className="inline-flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5"
+              >
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
                   className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-[1.12]"
                 />
-              </div>
+              </a>
             </div>
           ))}
         </div>
