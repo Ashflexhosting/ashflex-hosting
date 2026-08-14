@@ -911,3 +911,5 @@
 - [x] Processed logo backgrounds to transparent (flood-fill removal, feathered edges) and re-pointed marquee to transparent assets; verified on desktop; 29/29 tests pass
 
 - [x] Slightly increased the spacing between the marquee logos (px-4 md:px-5), verified on desktop; 29/29 tests pass
+
+- [x] Replaced the Shutterspeed Projects marquee logo with the newly supplied image (transparent-processed), verified in marquee; 29/29 tests pass

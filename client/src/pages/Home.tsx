@@ -20,7 +20,7 @@ const TRUSTED_BRANDS = [
   { name: "Karossy Travels", logo: "/manus-storage/karossytravels_1db5b4e3.webp" },
   { name: "Nenva Health", logo: "/manus-storage/nenvahealth_9843d0bf.webp" },
   { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp" },
-  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeedprojects_d5babd68.webp" },
+  { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeed-new_a06e0a02.webp" },
 ];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
