@@ -12,6 +12,7 @@ import {
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
+import { storagePut } from "./storage";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
@@ -36,7 +37,49 @@ export const contactInputSchema = z.object({
     .min(1, "Message is required")
     .max(5000, "Message is too long (5000 characters maximum)")
     .trim(),
+  attachment: z
+    .object({
+      dataUrl: z.string().startsWith("data:"),
+      fileName: z.string().min(1).max(255),
+      size: z.number().int().positive(),
+    })
+    .optional(),
 });
+
+/** Allowed file types for inquiry attachments (briefs and reference images). */
+const ALLOWED_ATTACHMENT_TYPES = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+];
+
+/** Validate an attachment data URL's mime type at runtime. */
+const SUPPORTED_ATTACHMENT_PREFIXES = ALLOWED_ATTACHMENT_TYPES.map((t) => `data:${t};base64,`);
+
+function isSupportedAttachmentDataUrl(dataUrl: string): boolean {
+  return SUPPORTED_ATTACHMENT_PREFIXES.some((prefix) => dataUrl.startsWith(prefix));
+}
+
+/** Decode a data URL to a base64 string without the prefix, or null if malformed. */
+function parseDataUrl(dataUrl: string): { bytes: Buffer; mime: string } | null {
+  const match = dataUrl.match(/^data:([a-z0-9+\-./]+);base64,([A-Za-z0-9+/=]+)$/);
+  if (!match) return null;
+  const [, mime, base64] = match;
+  if (!ALLOWED_ATTACHMENT_TYPES.includes(mime)) return null;
+  try {
+    return { bytes: Buffer.from(base64, "base64"), mime };
+  } catch {
+    return null;
+  }
+}
+
+const MAX_ATTACHMENT_BYTES = 8 * 1024 * 1024; // 8 MB hard cap
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -66,6 +109,21 @@ export const appRouter = router({
         const phone = input.phone || null;
         const service = input.service || null;
 
+        // Handle optional attachment upload to S3.
+        let attachmentUrl: string | null = null;
+        let attachmentName: string | null = null;
+        let attachmentSize: number | null = null;
+        if (input.attachment && isSupportedAttachmentDataUrl(input.attachment.dataUrl)) {
+          const parsed = parseDataUrl(input.attachment.dataUrl);
+          if (parsed && parsed.bytes.length > 0 && parsed.bytes.length <= MAX_ATTACHMENT_BYTES) {
+            const key = `contact-attachments/${Date.now()}-${Math.random().toString(36).slice(2, 8)}/${input.attachment.fileName}`;
+            const { key: savedKey, url } = await storagePut(key, parsed.bytes, parsed.mime);
+            attachmentUrl = url;
+            attachmentName = savedKey;
+            attachmentSize = parsed.bytes.length;
+          }
+        }
+
         // Persist the submission so no lead is lost.
         const { id } = await createContactSubmission({
           fullName: input.fullName,
@@ -73,12 +131,16 @@ export const appRouter = router({
           phone,
           service,
           message: input.message,
+          attachmentUrl,
+          attachmentName,
+          attachmentSize,
         });
 
         // Route the submission to the owner so it lands in info@ashflexwebdesign.com.
         // notifyOwner returns false if the upstream service is temporarily down; the
         // submission itself is still stored so no lead is lost.
         const serviceLabel = service ? ` (interested in ${service})` : "";
+        const attachmentLabel = attachmentUrl ? `\nAttachment: ${attachmentName} (${Math.round((attachmentSize ?? 0) / 1024)} KB)\nFile URL: ${attachmentUrl}` : "";
         const notificationSent = await notifyOwner({
           title: `New contact form submission from ${input.fullName}`,
           content:
@@ -87,7 +149,8 @@ export const appRouter = router({
             `Email: ${input.email}\n` +
             (phone ? `Phone: ${phone}\n` : "") +
             (service ? `Service: ${service}\n` : "") +
-            `Message: ${input.message}`,
+            `Message: ${input.message}` +
+            attachmentLabel,
         }).catch((error) => {
           console.error("[Contact] Owner notification failed:", error);
           return false;

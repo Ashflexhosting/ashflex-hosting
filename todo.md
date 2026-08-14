@@ -706,3 +706,9 @@
 - [x] Loading spinner on the submit button while the message is sending (lucide Loader2 animate-spin, disabled during isPending, aria-live polite)
 - [x] AI-powered auto-suggest in the message field based on the selected service (new trpc.contact.messageSuggest procedure using the built-in LLM; selects a service → "Drafting an AI message…" spinner → cyan "Use AI suggestion" pill chip → one click fills the textarea; placeholder updates to "Ask us about …") — interactively verified: drafting message for Website Design produced a full draft
 - [x] Real-time field validation (touched state on change/blur, red border + animated error text under name/email/message, email format check) and smooth success card animation (fade-in scale-up)
+
+## Inquiry Form File Upload (user-requested)
+- [x] Add file upload field to the Services inquiry form (paperclip drop-zone label under service selector; accepts PDF, DOC/DOCX, PPTX, XLSX, JPG, PNG, GIF, WEBP via file input with .accept filter)
+- [x] Store attachments in S3 via storagePut (contact-attachments/{ts}-{rand}/{filename}) and save attachmentUrl/attachmentName/attachmentSize on the contact_submissions row; router rejects unsupported mime data URLs (data:<type>;base64, prefix check) and caps at 8 MB; attachment details included in the owner notification
+- [x] Show upload state with file name, size, remove (X) button, image/document icon, and inline validation errors (unsupported type / too large) with animated error text
+- [x] Added 4 Vitest cases for attachment schema validation (valid PDF data URL, unsupported mime passthrough documented, missing fields, non-positive size); schema migration generated + applied (attachmentUrl varchar(600), attachmentName varchar(255), attachmentSize int); verified services page renders; tests 28/28, checkpoint and publish

@@ -3,7 +3,7 @@ import { Link as WLink } from "wouter";
 import {
   ArrowRight, ArrowUp, Sparkles, Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug, Bot, Settings,
-  ChevronRight, CheckCircle2, Shield, Headset, Loader2,
+  ChevronRight, CheckCircle2, Shield, Headset, Loader2, Paperclip, X, ImageIcon,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -286,6 +286,39 @@ export default function Services() {
   const [suggestionReady, setSuggestionReady] = useState(false);
   const suggestionMutation = trpc.contact.messageSuggest.useMutation();
 
+  /* Attachment — project briefs & reference images (PDF, DOCX, images up to 8 MB) */
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [attachmentError, setAttachmentError] = useState("");
+  const [attachmentDataUrl, setAttachmentDataUrl] = useState("");
+  const MAX_ATTACHMENT_BYTES = 8 * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ["pdf", "docx", "doc", "pptx", "xlsx", "jpg", "jpeg", "png", "gif", "webp"];
+
+  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setAttachmentError("");
+    if (!file) return;
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      setAttachmentError("Unsupported file type. Please attach a PDF, Word document, or an image (JPG/PNG).");
+      e.target.value = "";
+      return;
+    }
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      setAttachmentError("File is too large. Please attach a file under 8 MB.");
+      e.target.value = "";
+      return;
+    }
+    setAttachment(file);
+    const reader = new FileReader();
+    reader.onload = () => setAttachmentDataUrl(typeof reader.result === "string" ? reader.result : "");
+    reader.readAsDataURL(file);
+  };
+  const removeAttachment = () => {
+    setAttachment(null);
+    setAttachmentDataUrl("");
+    setAttachmentError("");
+  };
+
   /* Real-time field validation — errors surface as the user types/blurs */
   const validate = (field: keyof typeof inquiry, value: string) => {
     if (field === "name") return value.trim() ? "" : "Name is required";
@@ -336,6 +369,10 @@ export default function Services() {
       });
       window.location.href = link;
     },
+    onSettled: () => {
+      /* Clear the attachment after the attempt so the preview resets */
+      removeAttachment();
+    },
     onError: (error) => {
       toast.error(error.message || "Something went wrong. Please try again.");
     },
@@ -354,6 +391,13 @@ export default function Services() {
       email: inquiry.email,
       service: inquiry.service || undefined,
       message: inquiry.message,
+      attachment: attachment
+        ? {
+            dataUrl: attachmentDataUrl,
+            fileName: attachment.name,
+            size: attachment.size,
+          }
+        : undefined,
     });
   };
 
@@ -556,6 +600,30 @@ export default function Services() {
                     <option key={s.id} value={s.title}>{s.title}</option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <label htmlFor="inq-attachment" className="text-xs font-semibold uppercase tracking-wide text-foreground/60 mb-1.5 block">Project brief or reference image</label>
+                {!attachment ? (
+                  <label htmlFor="inq-attachment" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-card border border-dashed border-foreground/25 text-sm text-foreground/60 hover:border-brand-secondary/60 hover:text-brand-secondary cursor-pointer transition-colors duration-200">
+                    <Paperclip size={16} className="shrink-0" />
+                    <span>Attach a file — PDF, Word, or images (JPG/PNG), up to 8 MB</span>
+                    <input id="inq-attachment" type="file" accept=".pdf,.doc,.docx,.pptx,.xlsx,.jpg,.jpeg,.png,.gif,.webp" onChange={handleAttachmentChange} className="sr-only" tabIndex={-1} aria-label="Attach project brief or reference image" />
+                  </label>
+                ) : (
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-card border border-brand-secondary/40 animate-in fade-in slide-in-from-bottom-1.5 duration-300">
+                    {attachment.type.startsWith("image/") ? <ImageIcon size={16} className="text-brand-accent shrink-0" /> : <FileText size={16} className="text-brand-secondary shrink-0" />}
+                    <div className="min-w-0">
+                      <p className="text-sm text-foreground/85 truncate">{attachment.name}</p>
+                      <p className="text-xs text-muted-foreground">{(attachment.size / 1024).toFixed(1)} KB — brief saved with your inquiry</p>
+                    </div>
+                    <button type="button" onClick={removeAttachment} aria-label="Remove attachment" className="ml-auto p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors">
+                      <X size={15} />
+                    </button>
+                  </div>
+                )}
+                {attachmentError ? (
+                  <p className="text-xs text-destructive mt-1.5 animate-in fade-in slide-in-from-bottom-1 duration-200">{attachmentError}</p>
+                ) : null}
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1.5">
