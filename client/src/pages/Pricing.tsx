@@ -183,11 +183,18 @@ export default function Pricing() {
           <p className="text-white/70 max-w-xl mx-auto mb-8">
             Every business is unique. Get a tailored quote based on your specific requirements and budget.
           </p>
-          <Link href="/contact">
-            <span className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-brand bg-white rounded-xl hover:shadow-xl transition-all duration-300">
-              Get Custom Quote <ArrowRight size={20} />
-            </span>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/contact">
+              <span className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-brand bg-white rounded-xl hover:shadow-xl transition-all duration-300">
+                Get Custom Quote <ArrowRight size={20} />
+              </span>
+            </Link>
+            <Link href="/resources/website-cost-calculator">
+              <span className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white border-2 border-white/40 rounded-xl hover:border-white hover:bg-white/10 transition-all duration-300">
+                Try the Cost Calculator <ArrowRight size={20} />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

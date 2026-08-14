@@ -758,3 +758,9 @@
 - [x] Added HelpCircle tooltip to the API Integration label explaining it covers connecting to payment gateways, CRM, booking, shipping, and custom third-party APIs (setup + basic testing)
 - [x] Added a Breakdown list under the estimate total: base website cost (pages + design), then only-selected extras (E-commerce +₦200k, SEO advanced/complete +₦75k/₦150k, API Integration +₦500k, maintenance +₦300k/yr), plus a "no extras selected" note for standard configs
 - [x] Verified calculator breakdown + pricing page + case study process strings render correctly; 29/29 tests pass; checkpoint and publish
+
+## Pricing/CALCULATOR Enhancements Round 2 (user-requested)
+- [x] Added "Try the Cost Calculator" outlined CTA button beside "Get Custom Quote" in the Pricing "Need a Custom Solution?" band
+- [x] Added HelpCircle tooltips to E-commerce (store setup + payment gateway), SEO Package (basic/advanced +N75k/complete +N150k coverage), and Annual Maintenance (updates, patches, backups, fixes, monitoring); also added the Complete SEO option to the package grid
+- [x] Added "Download Breakdown (PDF)" button: client-side generation of a formatted text estimate (header, date, pages/design base cost, selected extras, total, contact info) downloaded as ashflex-estimate-YYYY-MM-DD.pdf; no new dependencies
+- [x] Verified calculator + pricing page render correctly with tooltips and PDF button; 29/29 tests pass; checkpoint and publish

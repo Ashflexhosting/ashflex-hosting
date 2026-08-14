@@ -2,7 +2,7 @@ import { useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Calculator, CheckCircle, HelpCircle } from "lucide-react";
+import { ArrowRight, Calculator, CheckCircle, Download, HelpCircle } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -10,6 +10,47 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Link } from "wouter";
+
+function downloadEstimatePdf(
+  pages: number,
+  design: string,
+  baseCostLabel: string,
+  formatted: string,
+  extras: { ecommerce: boolean; seo: string; apiIntegration: boolean; maintenance: boolean }
+) {
+  const { ecommerce, seo, apiIntegration, maintenance } = extras;
+  const now = new Date();
+  const lines: string[] = [];
+  const push = (t: string) => lines.push(t);
+  push("ASHFLEX WEB DESIGN — WEBSITE COST ESTIMATE");
+  push("==========================================");
+  push("");
+  push(`Generated: ${now.toLocaleString("en-GB", { dateStyle: "full", timeStyle: "short" })}`);
+  push("");
+  push(`Website: ${pages} page${pages !== 1 ? "s" : ""} · ${design} design`);
+  push(`Base cost: ${baseCostLabel}`);
+  if (ecommerce) push("E-commerce store: +N200,000");
+  if (seo !== "none" && seo !== "basic") push(`SEO — ${seo}: +${seo === "advanced" ? "N75,000" : "N150,000"}`);
+  if (apiIntegration) push("API Integration: +N500,000");
+  if (maintenance) push("Annual maintenance: +N300,000/yr");
+  push("");
+  push(`ESTIMATED TOTAL: ${formatted}`);
+  push("");
+  push("This is an estimate. Final pricing may vary based on");
+  push("specific requirements.");
+  push("");
+  push("Contact: info@ashflexwebdesign.com · 08023138892");
+  push("www.ashflexwebdesign.com");
+  const blob = new Blob([lines.join("\n")], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `ashflex-estimate-${now.toISOString().slice(0, 10)}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 export default function WebsiteCostCalculator() {
   const sectionRef = useScrollReveal();
@@ -19,6 +60,11 @@ export default function WebsiteCostCalculator() {
   const [seo, setSeo] = useState("basic");
   const [maintenance, setMaintenance] = useState(false);
   const [apiIntegration, setApiIntegration] = useState(false);
+
+  const baseCostLabel = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(
+    design === "premium" ? pages * 15000 * 1.5 : design === "custom" ? pages * 15000 * 2 : pages * 15000
+  );
+  const extrasState = { ecommerce, seo, apiIntegration, maintenance };
 
   let baseCost = pages * 15000;
   if (design === "premium") baseCost *= 1.5;
@@ -78,7 +124,19 @@ export default function WebsiteCostCalculator() {
                   </div>
 
                   <div>
-                    <label className="text-sm font-semibold mb-3 block">E-commerce Store</label>
+                    <label className="text-sm font-semibold mb-3 flex items-center gap-1.5">
+                      E-commerce Store
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <HelpCircle size={14} className="text-muted-foreground cursor-help" aria-label="What does the E-commerce extra cover?" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            <p>Full online store setup — product catalog, shopping cart, checkout, and payment gateway configuration.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
                     <button
                       onClick={() => setEcommerce(!ecommerce)}
                       className={`px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
@@ -90,9 +148,21 @@ export default function WebsiteCostCalculator() {
                   </div>
 
                   <div>
-                    <label className="text-sm font-semibold mb-3 block">SEO Package</label>
+                    <label className="text-sm font-semibold mb-3 flex items-center gap-1.5">
+                      SEO Package
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <HelpCircle size={14} className="text-muted-foreground cursor-help" aria-label="What does each SEO package cover?" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            <p>Basic: on-page SEO setup. Advanced (+₦75,000): keyword research + content optimization. Complete (+₦150,000): full technical SEO, site structure & analytics setup.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
                     <div className="grid grid-cols-3 gap-3">
-                      {[{ v: "none", l: "None" }, { v: "basic", l: "Basic" }, { v: "advanced", l: "Advanced" }].map((opt) => (
+                      {[{ v: "none", l: "None" }, { v: "basic", l: "Basic" }, { v: "advanced", l: "Advanced" }, { v: "complete", l: "Complete" }].map((opt) => (
                         <button
                           key={opt.v}
                           onClick={() => setSeo(opt.v)}
@@ -132,7 +202,19 @@ export default function WebsiteCostCalculator() {
                   </div>
 
                   <div>
-                    <label className="text-sm font-semibold mb-3 block">Annual Maintenance</label>
+                    <label className="text-sm font-semibold mb-3 flex items-center gap-1.5">
+                      Annual Maintenance
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <HelpCircle size={14} className="text-muted-foreground cursor-help" aria-label="What does Annual Maintenance cover?" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            <p>Year-round support (₦300,000/yr) — updates, security patches, backups, bug fixes, uptime monitoring, and small content changes.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </label>
                     <button
                       onClick={() => setMaintenance(!maintenance)}
                       className={`px-5 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
@@ -189,6 +271,12 @@ export default function WebsiteCostCalculator() {
                   <p className="text-sm text-white/50 mb-6">
                     This is an estimate. Final pricing may vary based on specific requirements.
                   </p>
+                  <button
+                    onClick={() => downloadEstimatePdf(pages, design, baseCostLabel, formatted, extrasState)}
+                    className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl bg-white/10 border border-white/30 text-white text-sm font-semibold hover:bg-white/20 transition-all duration-200 mb-3"
+                  >
+                    <Download size={16} /> Download Breakdown (PDF)
+                  </button>
                   <Link href="/contact">
                     <span className="block w-full text-center px-6 py-3 rounded-xl bg-white text-brand text-sm font-semibold hover:shadow-lg transition-all duration-200">
                       Get Exact Quote
