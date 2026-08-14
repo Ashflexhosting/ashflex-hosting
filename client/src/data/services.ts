@@ -213,7 +213,7 @@ export function getServiceBySlug(slug: string) {
 
 /** Themed images for each service pricing card (generated, brand-consistent). */
 export const servicePricingImages: Record<string, string> = {
-  "website-design": "/manus-storage/svc-website-design_7b919611.png",
+  "website-design": "/manus-storage/young-man-working-on-his-macbook-pro-laptop-and-iphone-6-mockup-1_ed3b5364.webp",
   "website-development": "/manus-storage/computer-programming-web-development-coding-app-development-application-development-science-computer_t20_drBbzA_89629c97.webp",
   "wordpress-development": "/manus-storage/svc-wordpress_44332d74.png",
   "ecommerce-development": "/manus-storage/friends-shopping-shoes-online-5PAKNV1_df16bf19.webp",

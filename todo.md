@@ -871,3 +871,6 @@
 
 ## Web development page image swap (user-requested)
 - [x] Replace the Website Development page pricing card image (and its Related Services card, which reuses the same servicePricingImages entry) with the user-provided coding-at-night photo (uploaded to /manus-storage/..._t20_drBbzA_89629c97.webp); verified on /services/website-development; zoom hover and fade carry over automatically
+
+## Web design page image swap (user-requested)
+- [x] Replace the Website Design page pricing card image (and its Related Services card, which reuses the same servicePricingImages entry) with the user-provided laptop-and-phone mockup photo (uploaded to /manus-storage/...mockup-1_ed3b5364.webp); verified on /services/website-design; zoom hover and fade carry over automatically
