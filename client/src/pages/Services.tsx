@@ -209,6 +209,7 @@ const groupHighlights: Record<string, { kicker: string; title: string; message: 
 
 function HighlightCard({ groupId }: { groupId: string }) {
   const h = groupHighlights[groupId] ?? groupHighlights.design;
+  const isDesign = groupId === "design";
   return (
     <WLink href="/contact">
       <div
@@ -216,9 +217,24 @@ function HighlightCard({ groupId }: { groupId: string }) {
         style={{ transitionDelay: "180ms" }}
         aria-label={`${h.kicker}: ${h.title}`}
       >
-        {/* layered brand gradient background */}
-        <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
-        <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
+        {/* Designer photo background for the Design & Experience highlight card, with a transparent overlay */}
+        {isDesign ? (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/manus-storage/designer_3d478783.webp')" }}
+            aria-hidden="true"
+          />
+        ) : (
+          <div className="absolute inset-0" style={{ background: h.bg }} aria-hidden="true" />
+        )}
+        {/* Overlay — kept highly transparent on the design card so the photo stays clearly visible */}
+        {isDesign ? (
+          <div className="absolute inset-0 bg-navy/20" style={{ background: "linear-gradient(160deg, rgba(7, 27, 90, 0.55) 0%, rgba(7, 27, 90, 0.18) 45%, rgba(7, 27, 90, 0.30) 100%)" }} aria-hidden="true" />
+        ) : (
+          <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />
+        )}
+        {/* Noise texture only on non-photo cards */}
+        {!isDesign && <div className="absolute inset-0 opacity-25 noise-texture" aria-hidden="true" />}
         <div className="glow-orb absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-white" style={{ opacity: 0.18 }} aria-hidden="true" />
         <div className="glow-orb absolute -top-14 -left-14 w-40 h-40 rounded-full" style={{ opacity: 0.35, background: h.orbB }} aria-hidden="true" />
         {/* hover glow halo that brightens on hover */}
