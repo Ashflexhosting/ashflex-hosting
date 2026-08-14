@@ -233,15 +233,15 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="lg:hidden relative overflow-hidden border-t border-white/15 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-300">
-          {/* Image background */}
+          {/* Image background: warm spotlight effect (user-provided) */}
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
+            style={{ backgroundImage: "url('/manus-storage/focus-spotlight-effect_ce3ba633.jpg')" }}
             aria-hidden="true"
           />
-          {/* Left brightening gradient: bright white on the left fading to deep navy on the right */}
+          {/* Brightening overlay: keeps the spotlight glow visible while a soft white haze keeps text crisp */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 via-[40%] to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 via-[45%] to-transparent"
             aria-hidden="true"
           />
             <div ref={swipeRef} className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px] touch-pan-y">
@@ -252,7 +252,7 @@ export default function Navbar() {
                 className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-brand-secondary/10"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
-                <span className="text-base font-semibold text-[#0b1d63] tracking-tight">
+                <span className="text-base font-semibold text-[#0a1240] tracking-tight">
                   {item.label}
                 </span>
                 <span className="ml-auto text-brand-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
@@ -286,7 +286,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Facebook"
-                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Facebook size={18} />
               </a>
@@ -295,7 +295,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on X"
-                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Twitter size={18} />
               </a>
@@ -304,7 +304,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Ashflex on Instagram"
-                className="p-2.5 rounded-full bg-brand-secondary/15 text-[#1238b8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                className="p-2.5 rounded-full bg-brand-secondary/20 text-[#0f33a8] hover:bg-brand-secondary hover:text-white transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
               >
                 <Instagram size={18} />
               </a>
