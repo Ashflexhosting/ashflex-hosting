@@ -12,7 +12,7 @@ const caseStudies = [
     industry: "Finance",
     image: "/manus-storage/shutterspeed-fullpage-hd_ed10ade0.webp",
     clientGoal: "Attract investors and enterprise clients with a professional digital presence.",
-    process: "Discovery → Strategy → Custom React Platform → API Integration → Testing → Launch",
+    process: "Discovery → Strategy → Custom React Platform → Testing → Launch",
     beforeAfter: "From zero online presence to a professional platform generating qualified leads daily.",
     results: "150% increase in qualified leads, 40% reduction in bounce rate, top 3 Google rankings.",
     roi: "₦500K investment generated ₦5M+ in new client revenue within 3 months.",

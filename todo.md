@@ -741,3 +741,9 @@
 - [x] Removed from navbar services dropdown (desktop + mobile); /services/api-integration now falls through to the existing "Service Not Found" page with a Back to Services link (route kept generic via params)
 - [x] Updated homepage "Explore all 16 services" → "Explore all 15 services"; pricing/case study/cost calculator mentions of "API integrations" retained as feature line items of delivered projects, not offered services (server map.ts comment untouched)
 - [x] Verified Services page renders the 15-service catalog in 4 groups and removed-slug page shows Service Not Found; 29/29 tests pass; checkpoint and publish
+
+## Remove "API integrations" Feature Line Items (user-requested)
+- [x] Removed from Pricing.tsx: Starter excluded list, Business excluded list, Professional features, and the feature comparison table row
+- [x] Removed "→ API Integration" step from process strings in CaseStudies.tsx and CaseStudyDetail.tsx
+- [x] Removed the API Integrations slider, its state, and cost math (₦50,000/integration) from the cost calculator
+- [x] Verified pricing/case-studies/calculator pages render cleanly; 29/29 tests pass; checkpoint and publish

@@ -11,7 +11,6 @@ export default function WebsiteCostCalculator() {
   const [design, setDesign] = useState("standard");
   const [ecommerce, setEcommerce] = useState(false);
   const [seo, setSeo] = useState("basic");
-  const [integrations, setIntegrations] = useState(0);
   const [maintenance, setMaintenance] = useState(false);
 
   let baseCost = pages * 15000;
@@ -20,7 +19,6 @@ export default function WebsiteCostCalculator() {
   if (ecommerce) baseCost += 200000;
   if (seo === "advanced") baseCost += 75000;
   if (seo === "complete") baseCost += 150000;
-  baseCost += integrations * 50000;
   if (maintenance) baseCost += 25000 * 12;
 
   const formatted = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(baseCost);
@@ -100,18 +98,6 @@ export default function WebsiteCostCalculator() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="text-sm font-semibold mb-3 block">API Integrations: {integrations}</label>
-                    <input
-                      type="range"
-                      min="0"
-                      max="10"
-                      value={integrations}
-                      onChange={(e) => setIntegrations(Number(e.target.value))}
-                      className="w-full accent-brand-secondary"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">Each integration: ₦50,000</p>
-                  </div>
 
                   <div>
                     <label className="text-sm font-semibold mb-3 block">Annual Maintenance</label>
