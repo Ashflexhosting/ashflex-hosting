@@ -939,3 +939,5 @@
 - [x] Removed the hover drop shadow from marquee logos (scale, lift, grayscale-to-color, and focus outline remain)
 
 - [x] Changed the trusted-brands marquee heading to "Trusted by emerging brands across Nigeria & beyond" (user visual edit)
+
+- [x] Trimmed the transparent padding around the Eight Radiance logo so it renders at the same visual height as neighboring marquee logos
