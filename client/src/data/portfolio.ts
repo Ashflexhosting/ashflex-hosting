@@ -115,8 +115,8 @@ export const portfolioItems: PortfolioItem[] = [
     website: "https://eightradiance.org/",
     screenshots: [
       "/manus-storage/eightradiance-hd-hero2_ee73a38d.webp",
-      "/manus-storage/eightradiance-hd-mid2_494342b2.webp",
-      "/manus-storage/eightradiance-hd-bottom2_761d2419.webp",
+      "/manus-storage/eightradiance-about-user_0ab6402d.webp",
+      "/manus-storage/eightradiance-programs-user_241135c1.webp",
     ],
     screenshotCaptions: ["Homepage", "About the organisation", "Programs section"],
   },
