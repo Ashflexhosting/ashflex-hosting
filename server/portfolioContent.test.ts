@@ -20,6 +20,7 @@ describe("verified portfolio content", () => {
       "Afnaf Auto Sales",
       "Marvel Tex Attraction",
       "Galcon Engineering (Nig) Limited",
+      "Karossy Travels & Tours Limited",
       "Neboc Hotel & Suites",
     ]);
   });
@@ -45,7 +46,7 @@ describe("portfolio filters", () => {
       "Travel",
       "Hospitality",
     ]);
-    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application"]);
+    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application", "Travel Booking"]);
   });
 
   it("returns projects that match the selected industry and service together", () => {

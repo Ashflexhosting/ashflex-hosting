@@ -989,3 +989,6 @@
 
 ## Hover auto-scroll speed (Aug 15)
 - [x] Double hover auto-scroll speed for scrollable screenshots: HOVER_SCROLL_SPEED 38 -> 76 px/s (ScrollableScreenshot.tsx, used on portfolio detail frames and Our Work peeks)
+
+## Karossy Travels & Tours portfolio addition (Aug 15)
+- [x] Add Karossy Travels & Tours (karossytravels.com) portfolio entry (id 13, Travel) with user-provided Homepage/About/Pilgrimage screenshots, upscaled to 1520px (karossytravels.com) portfolio entry with user-provided screenshots: Homepage (380px, needs 4x upscale to 1520), About Us (760px, 2x to 1520), Pilgrimage page (1099px, ~1.4x to 1520)
