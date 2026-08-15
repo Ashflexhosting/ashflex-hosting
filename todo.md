@@ -974,3 +974,9 @@
 - [x] Re-capture eightradiance.org at 1520px with the fixed navbar un-pinned so it no longer overlaps content mid-page
 - [x] Recrop three distinct section screenshots (Homepage / About the organisation / Programs section) and wire into id=5
 - [x] Verify hero crop shows exactly one navbar band; no overlap artifacts
+
+## 8 Radiance user-provided screenshots (Aug 15)
+- [x] Replace About the organisation + Programs section screenshots with user uploads; wired under matching captions
+
+## 8 Radiance hero swap (Aug 15)
+- [x] Replace 8 Radiance hero image and Homepage gallery screenshot with user's 3797px full-page upload (JPEG, webp limit exceeded at 16383px height)

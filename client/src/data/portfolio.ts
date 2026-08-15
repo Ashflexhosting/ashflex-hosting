@@ -106,7 +106,7 @@ export const portfolioItems: PortfolioItem[] = [
     id: 5,
     title: "8 Radiance Empowerment",
     category: "NGOs",
-    image: "/manus-storage/eightradiance-hd_48ef0f95.webp",
+    image: "/manus-storage/eightradiance-home-user_475067c3.jpg",
     challenge: "8 Radiance Empowerment needed an advocacy-focused online presence for its US non-profit work supporting Africans.",
     solution: "Ashflex designed a dedicated website that presents the organization and its advocacy mission online.",
     technologies: ["Website Design"],
@@ -114,7 +114,7 @@ export const portfolioItems: PortfolioItem[] = [
     client: "8 Radiance Empowerment",
     website: "https://eightradiance.org/",
     screenshots: [
-      "/manus-storage/eightradiance-hd-hero2_ee73a38d.webp",
+      "/manus-storage/eightradiance-home-user_475067c3.jpg",
       "/manus-storage/eightradiance-about-user_0ab6402d.webp",
       "/manus-storage/eightradiance-programs-user_241135c1.webp",
     ],
