@@ -925,3 +925,5 @@
 - [x] Added a subtle focus-visible outline (2px brand-secondary, offset, rounded) to each marquee logo link for keyboard navigation
 
 - [x] Added a soft navy drop shadow (0 10px 18px, 22% opacity) to marquee logos on hover, complementing the scale animation
+
+- [x] Replaced the Gyro Air marquee logo with the new colorful globe logo (already transparent), link preserved
