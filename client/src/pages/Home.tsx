@@ -21,6 +21,7 @@ const TRUSTED_BRANDS = [
   { name: "Nenva Health", logo: "/manus-storage/nenva-new_916dc9d5.webp", url: "https://nenvahealth.com.ng" },
   { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp", url: "https://ashflexconsult.com.ng" },
   { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeed-new2_3a1463e3.webp", url: "https://shutterspeedprojects.com" },
+  { name: "Eight Radiance", logo: "/manus-storage/8radiance-new_ec19f26c.webp", url: "https://eightradiance.org" },
 ];
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
