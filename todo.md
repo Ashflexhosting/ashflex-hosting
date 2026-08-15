@@ -960,7 +960,7 @@
 - [x] Fix any discovered image scaling / layout bugs (shrink bug fixed earlier; no others found)
 
 ## GitHub Sync of Bug Fixes (user-requested)
-- [ ] Push latest bug fixes to GitHub main and merge into master
+- [x] Push latest bug fixes to GitHub main and merge into master (4164c7f pushed to main and mirrored to master; CI + pages deploy verified)
 
 ## HD Screenshot & Data Audit (Aug 15)
 - [x] Identify low-resolution portfolio screenshots (kingwesl 351px, neboc 380px, marveltex/samsara/eightradiance 760px, galcon 893px native vs ~680px render)
@@ -968,4 +968,9 @@
 - [x] Upload 8 HD full-page captures + 18 distinct section crops to webdev storage
 - [x] Wire new HD URLs into portfolio.ts (hero images + distinct gallery screenshots per caption, replacing duplicated same-URL triples)
 - [x] Verify all 12 portfolio detail pages visually for remaining layout issues
-- [ ] Push fixes to GitHub (main + master mirror) and save checkpoint
+- [x] Push fixes to GitHub (main + master mirror) and save checkpoint
+
+## 8 Radiance menu overlap fix (user report, Aug 15)
+- [x] Re-capture eightradiance.org at 1520px with the fixed navbar un-pinned so it no longer overlaps content mid-page
+- [x] Recrop three distinct section screenshots (Homepage / About the organisation / Programs section) and wire into id=5
+- [x] Verify hero crop shows exactly one navbar band; no overlap artifacts

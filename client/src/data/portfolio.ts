@@ -114,9 +114,9 @@ export const portfolioItems: PortfolioItem[] = [
     client: "8 Radiance Empowerment",
     website: "https://eightradiance.org/",
     screenshots: [
-      "/manus-storage/eightradiance-hd-hero_aedc0d28.webp",
-      "/manus-storage/eightradiance-hd-mid_f2375d7e.webp",
-      "/manus-storage/eightradiance-hd-bottom_526cb68c.webp",
+      "/manus-storage/eightradiance-hd-hero2_ee73a38d.webp",
+      "/manus-storage/eightradiance-hd-mid2_494342b2.webp",
+      "/manus-storage/eightradiance-hd-bottom2_761d2419.webp",
     ],
     screenshotCaptions: ["Homepage", "About the organisation", "Programs section"],
   },
