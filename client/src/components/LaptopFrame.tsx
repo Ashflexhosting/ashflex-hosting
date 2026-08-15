@@ -213,7 +213,7 @@ export default function LaptopFrame({ children, className = "", scrollerRef }: L
   );
 
   return (
-    <div className={`w-full ${className}`}>
+    <div data-device-frame="" className={`w-full ${className}`}>
       {/* Desktop: iMac frame */}
       <div className="hidden md:block">
         <ImacFrame>{screen}</ImacFrame>

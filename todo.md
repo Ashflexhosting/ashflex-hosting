@@ -952,3 +952,4 @@
 - [x] Increased the hero mockup image size from max-w-[560px] to max-w-[660px]
 
 - [x] Enlarged the hero mockup to max-w-[900px] so it fills the right side of the hero section
+- [x] Fix the portfolio detail page image shrinking on hover/highlight (scoped the global button :active scale so device frames are exempt)
