@@ -954,3 +954,18 @@
 - [x] Enlarged the hero mockup to max-w-[900px] so it fills the right side of the hero section
 - [x] Fix the portfolio detail page image shrinking on hover/highlight (scoped the global button :active scale so device frames are exempt)
 - [x] Shrink bug persists after first attempted fix: reproduce on live detail page, find the true cause, and fix it properly
+
+## Portfolio Detail Pages Audit (user-requested)
+- [x] Audit all portfolio detail pages for image scaling or layout bugs (all 12 verified, no remaining bugs)
+- [x] Fix any discovered image scaling / layout bugs (shrink bug fixed earlier; no others found)
+
+## GitHub Sync of Bug Fixes (user-requested)
+- [ ] Push latest bug fixes to GitHub main and merge into master
+
+## HD Screenshot & Data Audit (Aug 15)
+- [x] Identify low-resolution portfolio screenshots (kingwesl 351px, neboc 380px, marveltex/samsara/eightradiance 760px, galcon 893px native vs ~680px render)
+- [x] Re-capture true 1520px HD screenshots for all 7 blurry projects via Playwright
+- [x] Upload 8 HD full-page captures + 18 distinct section crops to webdev storage
+- [x] Wire new HD URLs into portfolio.ts (hero images + distinct gallery screenshots per caption, replacing duplicated same-URL triples)
+- [x] Verify all 12 portfolio detail pages visually for remaining layout issues
+- [ ] Push fixes to GitHub (main + master mirror) and save checkpoint
