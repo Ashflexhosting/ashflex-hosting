@@ -1010,5 +1010,9 @@
 - [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
 
 ## View more not revealing bug (Aug 15, user report)
-- [ ] Fix: nothing shows after clicking "View more" on the portfolio page
-- [ ] Verify with real browser interaction, run tests, checkpoint, and sync to GitHub main + master
+- [x] Fix: nothing shows after clicking "View more" on the portfolio page (scroll-reveal observer now watches dynamically added cards via MutationObserver)
+- [x] Verify with real browser interaction, run tests, checkpoint, and sync to GitHub main + master
+
+## Portfolio card modern creative redesign (Aug 15, user request)
+- [ ] Redesign portfolio cards (Portfolio.tsx) to look modern and creative while preserving scroll-on-hover screenshots, hover overview, and View more / Show less
+- [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master

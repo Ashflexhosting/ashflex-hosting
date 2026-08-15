@@ -181,13 +181,15 @@
     .highlight-card { transition: none; }
   }
 
-  /* Portfolio project cards — richer interactive hover (lift + gradient border glow + coordinated children) */
+  /* Portfolio project cards — modern creative: lift + gradient border glow + tilted image peek + overlay + coordinated children */
   .portfolio-card { transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
-  .portfolio-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 28px 56px rgba(7, 27, 90, 0.18), 0 6px 20px rgba(7, 27, 90, 0.08); }
-  .portfolio-card .portfolio-border { transition: background 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
-  .portfolio-card:hover .portfolio-border { background: linear-gradient(135deg, #F20549, #0757F7, #33C9D4); box-shadow: 0 8px 24px rgba(7, 87, 247, 0.25); }
+  .portfolio-card:hover { transform: translateY(-10px) scale(1.015); box-shadow: 0 30px 60px rgba(7, 27, 90, 0.22), 0 8px 24px rgba(242, 5, 73, 0.10); }
+  .portfolio-card .portfolio-border { transition: background 260ms var(--ease-out), box-shadow 260ms var(--ease-out), transform 260ms var(--ease-out); transform: rotate(-1.2deg); }
+  .portfolio-card:hover .portfolio-border { background: linear-gradient(135deg, #F20549, #0757F7, #33C9D4); box-shadow: 0 10px 28px rgba(7, 87, 247, 0.30); transform: rotate(0deg); }
   .portfolio-card .portfolio-image { transition: transform 260ms var(--ease-out); }
   .portfolio-card:hover .portfolio-image { transform: none; }
+  .portfolio-card .portfolio-overlay { opacity: 0; transition: opacity 280ms var(--ease-out); }
+  .portfolio-card:hover .portfolio-overlay { opacity: 1; }
   .portfolio-card .portfolio-arrow { transition: transform 180ms var(--ease-out), color 180ms var(--ease-out); }
   .portfolio-card:hover .portfolio-arrow { transform: translateX(4px); color: #F20549; }
   .portfolio-card .portfolio-live { transition: background 180ms var(--ease-out), color 180ms var(--ease-out), transform 180ms var(--ease-out); }
