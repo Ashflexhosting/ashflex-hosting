@@ -927,3 +927,5 @@
 - [x] Added a soft navy drop shadow (0 10px 18px, 22% opacity) to marquee logos on hover, complementing the scale animation
 
 - [x] Replaced the Gyro Air marquee logo with the new colorful globe logo (already transparent), link preserved
+
+- [x] Replaced the Shutterspeed Projects marquee logo with the new colorful camera-aperture logo (transparent, 59.8%), link preserved
