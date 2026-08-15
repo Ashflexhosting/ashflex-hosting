@@ -929,3 +929,5 @@
 - [x] Replaced the Gyro Air marquee logo with the new colorful globe logo (already transparent), link preserved
 
 - [x] Replaced the Shutterspeed Projects marquee logo with the new colorful camera-aperture logo (transparent, 59.8%), link preserved
+
+- [x] Replaced the Nenva Health marquee logo with the new design (transparent, 72.1%), link preserved

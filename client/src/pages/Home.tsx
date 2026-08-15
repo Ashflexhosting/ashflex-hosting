@@ -18,7 +18,7 @@ const TRUSTED_BRANDS = [
   { name: "Gyro Air", logo: "/manus-storage/gyroair-new_79657a35.webp", url: "https://gyroairltd.com" },
   { name: "Galcon Engineering", logo: "/manus-storage/galconengineering_8f121225.webp", url: "https://galconengineering.com" },
   { name: "Karossy Travels", logo: "/manus-storage/karossytravels_1db5b4e3.webp", url: "https://karossytravels.com" },
-  { name: "Nenva Health", logo: "/manus-storage/nenvahealth_9843d0bf.webp", url: "https://nenvahealth.com.ng" },
+  { name: "Nenva Health", logo: "/manus-storage/nenva-new_916dc9d5.webp", url: "https://nenvahealth.com.ng" },
   { name: "Ashflex Resources", logo: "/manus-storage/ashflexconsult_0189701c.webp", url: "https://ashflexconsult.com.ng" },
   { name: "Shutterspeed Projects", logo: "/manus-storage/shutterspeed-new2_3a1463e3.webp", url: "https://shutterspeedprojects.com" },
 ];
