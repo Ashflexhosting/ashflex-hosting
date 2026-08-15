@@ -953,3 +953,4 @@
 
 - [x] Enlarged the hero mockup to max-w-[900px] so it fills the right side of the hero section
 - [x] Fix the portfolio detail page image shrinking on hover/highlight (scoped the global button :active scale so device frames are exempt)
+- [x] Shrink bug persists after first attempted fix: reproduce on live detail page, find the true cause, and fix it properly

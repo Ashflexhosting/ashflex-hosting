@@ -77,11 +77,9 @@ export default function ScrollableScreenshot({
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Force the browser to start fetching immediately by re-setting src
-              const keep = img.src;
+              // Promote the image to eager loading without touching src,
+              // so the frame never collapses from an IMG reload cycle.
               img.loading = "eager";
-              img.src = "";
-              img.src = keep;
               observer?.disconnect();
             }
           });
@@ -100,19 +98,30 @@ export default function ScrollableScreenshot({
     if (!m) return [null, null] as [string | null, string | null];
     return [resolveHeight(m[2]), resolveHeight(m[1])];
   })();
+  // Persist the resolved height so it is re-applied whenever the container
+  // element is re-mounted or re-rendered, guarding against height collapse.
+  const resolvedHeightRef = useRef("auto");
+  const applyHeight = (el: HTMLDivElement | null) => {
+    if (!el) return;
+    el.style.height = resolvedHeightRef.current;
+  };
   const responsiveContainerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (!mobileHeight || !desktopHeight) return;
-    const el = responsiveContainerRef.current;
-    if (!el) return;
     const mq = window.matchMedia("(min-width: 768px)");
     const apply = () => {
-      el.style.height = mq.matches ? desktopHeight : mobileHeight;
+      resolvedHeightRef.current = mq.matches ? desktopHeight : mobileHeight;
+      applyHeight(responsiveContainerRef.current);
     };
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
   }, [mobileHeight, desktopHeight]);
+  useEffect(() => {
+    if (mobileHeight || desktopHeight) return;
+    resolvedHeightRef.current = resolvedHeight;
+    applyHeight(responsiveContainerRef.current);
+  }, [mobileHeight, desktopHeight, resolvedHeight]);
 
   // Auto-scroll the capture vertically while the frame is hovered, so
   // visitors can preview the full page screenshot without manual scrolling.
@@ -182,12 +191,12 @@ export default function ScrollableScreenshot({
   return (
     <div
       className={`relative w-full overflow-hidden bg-brand ${rounded ? "rounded-[0.9rem]" : ""} ${className}`}
-      style={{ height: responsiveContainerRef.current ? undefined : resolvedHeight }}
       ref={(el) => {
         responsiveContainerRef.current = el;
-        if (!el) return;
-        if (mobileHeight && desktopHeight) return; // listener manages height
-        el.style.height = resolvedHeight;
+        // Always apply the resolved height when the element mounts or is
+        // re-rendered — the absolute scroller inside has no height of its
+        // own, so a missing container height collapses the whole frame.
+        applyHeight(el);
       }}
     >
       {/* Hovering anywhere over the frame auto-scrolls the capture */}
