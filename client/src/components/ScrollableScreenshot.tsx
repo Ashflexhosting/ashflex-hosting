@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Pixels per second the capture scrolls while hovered */
-const HOVER_SCROLL_SPEED = 38;
+/** Pixels per second the capture scrolls while hovered (x2 per user request, Aug 15) */
+const HOVER_SCROLL_SPEED = 76;
 
 const heightMap: Record<string, string> = {
   "h-56": "14rem",

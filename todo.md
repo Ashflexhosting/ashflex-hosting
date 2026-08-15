@@ -986,3 +986,6 @@
 
 ## Sam & Sara card image (Aug 15)
 - [x] Replace Sam & Sara portfolio page card image with the user's homepage screenshot (same as detail hero)
+
+## Hover auto-scroll speed (Aug 15)
+- [x] Double hover auto-scroll speed for scrollable screenshots: HOVER_SCROLL_SPEED 38 -> 76 px/s (ScrollableScreenshot.tsx, used on portfolio detail frames and Our Work peeks)
