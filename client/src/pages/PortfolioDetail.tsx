@@ -18,6 +18,8 @@ export default function PortfolioDetail() {
   const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const currentIndex = project ? portfolioItems.findIndex((p) => p.id === project.id) : -1;
+  const nextProject = currentIndex >= -1 && portfolioItems.length ? portfolioItems[(currentIndex + 1) % portfolioItems.length] : undefined;
   const shots = gallery.map((src, n) => ({ src, caption: captions[n] || "Screenshot" }));
 
   const captionFor = (index: number) => captions[index] || "Screenshot";
@@ -176,6 +178,28 @@ export default function PortfolioDetail() {
                 ))}
               </div>
           </div>
+
+          {/* Next Project navigation */}
+          {nextProject && (
+            <Link
+              href={`/portfolio/${nextProject.id}`}
+              className="scroll-reveal mt-16 block group"
+              aria-label={`Go to the next project: ${nextProject.title}`}
+            >
+              <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 transition-all duration-300 group-hover:border-brand-secondary/40 group-hover:shadow-xl group-hover:shadow-brand-secondary/10">
+                <div className="min-w-0">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Next Project</span>
+                  <h3 className="mt-1 truncate text-lg font-semibold group-hover:text-brand-secondary transition-colors" style={{ fontFamily: "var(--font-heading)" }}>
+                    {nextProject.title}
+                  </h3>
+                  <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">{nextProject.overview}</p>
+                </div>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-white shadow-lg shadow-brand-secondary/25 transition-transform duration-300 group-hover:translate-x-1.5">
+                  <ArrowRight size={20} aria-hidden="true" />
+                </span>
+              </div>
+            </Link>
+          )}
         </div>
       </section>
 

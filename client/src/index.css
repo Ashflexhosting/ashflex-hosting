@@ -193,6 +193,9 @@
   .portfolio-card:hover .portfolio-live { transform: translateY(-1px); }
   .portfolio-card .portfolio-tags { transition: background 200ms var(--ease-out), color 200ms var(--ease-out); }
   .portfolio-card:hover .portfolio-tags { background: rgba(7, 87, 247, 0.14); }
+  /* Hover-reveal brief description under each portfolio card */
+  .portfolio-card .card-hover-text { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 320ms var(--ease-out), opacity 260ms var(--ease-out), margin 320ms var(--ease-out); }
+  .portfolio-card:hover .card-hover-text { max-height: 4.5rem; opacity: 1; margin-top: 0.5rem; }
   @media (prefers-reduced-motion: reduce) {
     .portfolio-card, .portfolio-card * { transition: none; }
   }

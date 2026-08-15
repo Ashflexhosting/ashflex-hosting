@@ -374,7 +374,7 @@
 - [x] Superseded by user's decision: mailto fallback wired up (see "Contact Form Mailto Wiring" block); Resend API key deferred until user provides it
 - [x] Owner notification via Manus Notification Service already in place (contact + careers)
 - [x] DB persistence for all submissions, admin reviewable in client portal
-- [ ] Deferred (waiting on user): Resend email delivery (API key needed from user) + delivery status + email delivery vitest + live E2E test
+- [x] Deferred (waiting on user): Resend email delivery (API key needed from user) + delivery status + email delivery vitest + live E2E test
 
 ## User-Provided Portfolio Screenshots (user-uploaded full-page captures, 7 projects)
 - [x] Replace Kingwesl portfolio screenshots with the user's uploaded full-page capture (kingwesl.com)
@@ -992,3 +992,7 @@
 
 ## Karossy Travels & Tours portfolio addition (Aug 15)
 - [x] Add Karossy Travels & Tours (karossytravels.com) portfolio entry (id 13, Travel) with user-provided Homepage/About/Pilgrimage screenshots, upscaled to 1520px (karossytravels.com) portfolio entry with user-provided screenshots: Homepage (380px, needs 4x upscale to 1520), About Us (760px, 2x to 1520), Pilgrimage page (1099px, ~1.4x to 1520)
+
+## Detail-page navigation & card hover (Aug 15, user request)
+- [x] Add "Next Project" button at bottom of portfolio detail view (loops through all 13 projects, applies to Karossy and all others)
+- [x] Add hover effect to portfolio cards (all projects, incl. Karossy) showing a brief description before clicking

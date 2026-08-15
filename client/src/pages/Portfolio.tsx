@@ -116,7 +116,12 @@ export default function Portfolio() {
                           ))}
                         </div>
                         <h3 className="mb-2 text-lg font-semibold" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
-                        <p className="line-clamp-2 text-sm text-muted-foreground">{item.challenge}</p>
+                        <p className="relative line-clamp-2 text-sm text-muted-foreground transition-all duration-300" aria-hidden="false">
+                          {item.challenge}
+                        </p>
+                        <p className="line-clamp-3 text-sm text-brand-secondary/90 mt-0 max-h-0 overflow-hidden opacity-0 transition-all duration-300 card-hover-text">
+                          {item.overview}
+                        </p>
                         <div className="mt-3 flex items-center justify-between gap-2">
                           <span className="flex items-center gap-2 text-sm font-medium text-brand-secondary">
                             View Details <ArrowRight size={14} className="portfolio-arrow text-brand-secondary" aria-hidden="true" />
