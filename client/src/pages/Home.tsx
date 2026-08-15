@@ -568,7 +568,7 @@ export default function Home() {
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
-                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-[1.12] origin-center"
+                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:grayscale-0 hover:scale-[1.12] origin-center"
                 />
               </a>
             </div>
