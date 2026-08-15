@@ -124,7 +124,7 @@ export const portfolioItems: PortfolioItem[] = [
     id: 6,
     title: "Sam & Sara",
     category: "E-commerce",
-    image: "/manus-storage/samsara-hd_7d3de3cd.webp",
+    image: "/manus-storage/samsara-home-user_a7093449.webp",
     challenge: "Sam & Sara needed a professional online presence for its Nigerian clothing and uniform-making factory.",
     solution: "Ashflex created a website to showcase the company and its uniform-making services for corporate organizations.",
     technologies: ["Website Design"],

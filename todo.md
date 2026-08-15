@@ -983,3 +983,6 @@
 
 ## Sam & Sara user-provided screenshots (Aug 15)
 - [x] Replace Sam & Sara gallery: Homepage, About Us, School Uniforms (Product) with user uploads (upscaled to 1520px wide); captions updated to match pages
+
+## Sam & Sara card image (Aug 15)
+- [x] Replace Sam & Sara portfolio page card image with the user's homepage screenshot (same as detail hero)
