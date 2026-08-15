@@ -943,3 +943,5 @@
 - [x] Trimmed the transparent padding around the Eight Radiance logo so it renders at the same visual height as neighboring marquee logos
 
 - [x] Smoothed the marquee logo hover scaling with a 500ms cubic-bezier(0.23,1,0.32,1) ease-out transition for a more natural spring feel
+
+- [x] Slowed the trusted-brands marquee scroll from 52s to 70s per loop for better readability (hover pause unchanged)
