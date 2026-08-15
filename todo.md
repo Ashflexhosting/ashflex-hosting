@@ -1002,5 +1002,9 @@
 - [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
 
 ## Portfolio View more reveal (Aug 15, user request)
-- [ ] Add a "View more" line after the 4th row (12 cards at 3-per-row grid) on the portfolio listing page that reveals the remaining projects
+- [x] Add a "View more" line after the 4th row (12 cards at 3-per-row grid) on the portfolio listing page that reveals the remaining projects
+- [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
+
+## Portfolio Show less collapse (Aug 15, user request)
+- [ ] Add a "Show less" button that appears after expanding the portfolio view, collapsing back to the initial 12 projects
 - [ ] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master

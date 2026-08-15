@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { ArrowRight, SlidersHorizontal, ExternalLink, ChevronDown } from "lucide-react";
+import { ArrowRight, SlidersHorizontal, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioIndustries, portfolioItems } from "@/data/portfolio";
@@ -170,9 +170,26 @@ export default function Portfolio() {
               </div>
             )}
             {showAll && filtered.length > INITIAL_VISIBLE && (
-              <p className="mt-8 text-center text-sm text-muted-foreground">
-                Showing all {filtered.length} project{filtered.length === 1 ? "" : "s"}
-              </p>
+              <div className="mt-12 flex flex-col items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAll(false)}
+                  aria-label="Show less projects"
+                  className="group inline-flex items-center gap-2 text-base font-semibold text-brand-secondary transition-all duration-200 hover:gap-3 hover:text-brand-accent active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-secondary/40 bg-white transition-all duration-300 group-hover:border-brand-accent/60 group-hover:bg-brand-accent group-hover:text-white">
+                    <ChevronUp size={18} className="transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
+                  </span>
+                  Show less
+                  <span className="ml-1 rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-semibold text-brand-secondary transition-colors duration-300 group-hover:bg-brand-accent/10 group-hover:text-brand-accent">
+                    Back to first {INITIAL_VISIBLE}
+                  </span>
+                </button>
+                <p className="text-sm text-muted-foreground">
+                  Showing all {filtered.length} project{filtered.length === 1 ? "" : "s"}
+                </p>
+              </div>
             )}
             </>
           ) : (
