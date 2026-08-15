@@ -1014,5 +1014,9 @@
 - [x] Verify with real browser interaction, run tests, checkpoint, and sync to GitHub main + master
 
 ## Portfolio card modern creative redesign (Aug 15, user request)
-- [ ] Redesign portfolio cards (Portfolio.tsx) to look modern and creative while preserving scroll-on-hover screenshots, hover overview, and View more / Show less
+- [x] Redesign portfolio cards (Portfolio.tsx) to look modern and creative: oversized outlined index numbers, gradient mesh glow, tilted screenshot frames that straighten on hover, navy hover overlay with quick action, aqua hover titles, gradient Live site pills (scroll-on-hover, hover overview, View more / Show less preserved)
+- [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+
+## Portfolio card alternate style (Aug 15, user dislikes previous style)
+- [ ] Replace the tilted-frame/oversized-number card style with a different modern style (sleek minimal: clean image-first cards, subtle bottom gradient border, clean hover lift, keep all behaviors)
 - [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master
