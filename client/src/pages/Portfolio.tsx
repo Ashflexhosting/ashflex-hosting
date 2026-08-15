@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { ArrowRight, SlidersHorizontal, ExternalLink } from "lucide-react";
+import { ArrowRight, SlidersHorizontal, ExternalLink, ChevronDown } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { portfolioIndustries, portfolioItems } from "@/data/portfolio";
@@ -18,6 +18,8 @@ export default function Portfolio() {
   const sectionRef = useScrollReveal();
   const [, navigate] = useLocation();
   const [activeIndustry, setActiveIndustry] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_VISIBLE = 12;
   const filtered = activeIndustry === "All" ? portfolioItems : portfolioItems.filter((item) => item.category === activeIndustry);
   const hasActiveFilter = activeIndustry !== "All";
 
@@ -79,8 +81,11 @@ export default function Portfolio() {
           </div>
 
           {filtered.length > 0 ? (
+            <>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filtered.map((item, index) => (
+              {filtered
+                .slice(0, showAll ? filtered.length : INITIAL_VISIBLE)
+                .map((item, index) => (
                 <div key={item.id} className="scroll-reveal" style={{ transitionDelay: `${index * 50}ms` }}>
                   <div
                     role="article"
@@ -142,6 +147,34 @@ export default function Portfolio() {
                 </div>
               ))}
             </div>
+            {!showAll && filtered.length > INITIAL_VISIBLE && (
+              <div className="mt-12 flex flex-col items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAll(true)}
+                  aria-label="View more projects"
+                  className="group inline-flex items-center gap-2 text-base font-semibold text-brand-secondary transition-all duration-200 hover:gap-3 hover:text-brand-accent active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  View more
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-secondary/40 bg-white transition-all duration-300 group-hover:border-brand-accent/60 group-hover:bg-brand-accent group-hover:text-white">
+                    <ChevronDown size={18} className="transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+                  </span>
+                  <span className="ml-1 rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-semibold text-brand-secondary transition-colors duration-300 group-hover:bg-brand-accent/10 group-hover:text-brand-accent">
+                    {filtered.length - INITIAL_VISIBLE} more project{filtered.length - INITIAL_VISIBLE === 1 ? "" : "s"}
+                  </span>
+                </button>
+                <p className="text-sm text-muted-foreground">
+                  Showing {INITIAL_VISIBLE} of {filtered.length} projects
+                </p>
+              </div>
+            )}
+            {showAll && filtered.length > INITIAL_VISIBLE && (
+              <p className="mt-8 text-center text-sm text-muted-foreground">
+                Showing all {filtered.length} project{filtered.length === 1 ? "" : "s"}
+              </p>
+            )}
+            </>
           ) : (
             <div className="rounded-3xl border border-dashed border-brand-secondary/30 bg-brand-secondary/5 px-6 py-16 text-center">
               <h2 className="text-xl font-semibold text-foreground" style={{ fontFamily: "var(--font-heading)" }}>

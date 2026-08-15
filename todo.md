@@ -1000,3 +1000,7 @@
 ## Two-way portfolio browsing (Aug 15, user request)
 - [x] Add "Previous Project" navigation card alongside the "Next Project" card on all portfolio detail pages (wraparound: first project links back to project 13)
 - [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
+
+## Portfolio View more reveal (Aug 15, user request)
+- [ ] Add a "View more" line after the 4th row (12 cards at 3-per-row grid) on the portfolio listing page that reveals the remaining projects
+- [ ] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
