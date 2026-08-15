@@ -996,3 +996,7 @@
 ## Detail-page navigation & card hover (Aug 15, user request)
 - [x] Add "Next Project" button at bottom of portfolio detail view (loops through all 13 projects, applies to Karossy and all others)
 - [x] Add hover effect to portfolio cards (all projects, incl. Karossy) showing a brief description before clicking
+
+## Two-way portfolio browsing (Aug 15, user request)
+- [x] Add "Previous Project" navigation card alongside the "Next Project" card on all portfolio detail pages (wraparound: first project links back to project 13)
+- [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
