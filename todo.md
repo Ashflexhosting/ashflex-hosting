@@ -1006,5 +1006,9 @@
 - [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
 
 ## Portfolio Show less collapse (Aug 15, user request)
-- [ ] Add a "Show less" button that appears after expanding the portfolio view, collapsing back to the initial 12 projects
-- [ ] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
+- [x] Add a "Show less" button that appears after expanding the portfolio view, collapsing back to the initial 12 projects
+- [x] Verify with screenshots and tests, checkpoint, and sync to GitHub main + master
+
+## View more not revealing bug (Aug 15, user report)
+- [ ] Fix: nothing shows after clicking "View more" on the portfolio page
+- [ ] Verify with real browser interaction, run tests, checkpoint, and sync to GitHub main + master
