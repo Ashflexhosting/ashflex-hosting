@@ -980,3 +980,6 @@
 
 ## 8 Radiance hero swap (Aug 15)
 - [x] Replace 8 Radiance hero image and Homepage gallery screenshot with user's 3797px full-page upload (JPEG, webp limit exceeded at 16383px height)
+
+## Sam & Sara user-provided screenshots (Aug 15)
+- [x] Replace Sam & Sara gallery: Homepage, About Us, School Uniforms (Product) with user uploads (upscaled to 1520px wide); captions updated to match pages

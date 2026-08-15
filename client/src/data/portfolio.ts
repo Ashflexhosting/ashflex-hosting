@@ -132,11 +132,11 @@ export const portfolioItems: PortfolioItem[] = [
     client: "Sam & Sara",
     website: "https://samandsara.com/",
     screenshots: [
-      "/manus-storage/samsara-hd-hero_4ee31dc9.webp",
-      "/manus-storage/samsara-hd-mid_2a1780f2.webp",
-      "/manus-storage/samsara-hd-bottom_0ecb9549.webp",
+      "/manus-storage/samsara-home-user_a7093449.webp",
+      "/manus-storage/samsara-about-user_2416a9d3.webp",
+      "/manus-storage/samsara-uniforms-user_45f09415.webp",
     ],
-    screenshotCaptions: ["Homepage", "Featured collections", "Products page"],
+    screenshotCaptions: ["Homepage", "About Us", "School Uniforms (Product page)"],
   },
   {
     id: 7,
