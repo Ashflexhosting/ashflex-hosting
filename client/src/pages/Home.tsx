@@ -489,7 +489,7 @@ export default function Home() {
 
               <TiltEffect
                 max={5}
-                className="hero-fade-in-d4 w-full max-w-[660px] mx-auto group/iMac"
+                className="hero-fade-in-d4 w-full max-w-[900px] mx-auto group/iMac"
                 style={{ animation: "float-slow 6s ease-in-out 1.2s infinite" }}
               >
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>

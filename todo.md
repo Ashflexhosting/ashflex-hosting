@@ -950,3 +950,5 @@
 
 - [x] Linked the hero "View Live Demo" button directly to https://galconengineering.com (anchor in a new tab, w-fit pill styling)
 - [x] Increased the hero mockup image size from max-w-[560px] to max-w-[660px]
+
+- [x] Enlarged the hero mockup to max-w-[900px] so it fills the right side of the hero section
