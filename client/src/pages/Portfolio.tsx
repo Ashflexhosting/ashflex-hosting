@@ -99,11 +99,8 @@ export default function Portfolio() {
                       }
                     }}
                   >
-                    <Card className="group relative glass-card portfolio-card h-full overflow-hidden rounded-2xl border border-slate-200/70 bg-white">
-                      {/* slim accent bar under the header edge */}
-                      <div className="portfolio-accent pointer-events-none absolute inset-x-5 top-0 z-10 h-[3px] rounded-b bg-gradient-to-r from-brand-secondary via-brand-accent to-brand-cyan" aria-hidden="true" />
-                      {/* clean image preview */}
-                      <div className="portfolio-border relative mx-5 mt-5 overflow-hidden rounded-xl border border-slate-200/70 bg-slate-100">
+                    <Card className="glass-card portfolio-card h-full overflow-hidden border-0" tabIndex={0}>
+                      <div className="portfolio-border bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]">
                         <ScrollableScreenshot
                           src={item.image}
                           alt={`Scroll through the ${item.title} website capture`}
@@ -111,33 +108,26 @@ export default function Portfolio() {
                           className="portfolio-image"
                           rounded={false}
                         />
-                        {/* hover overlay with quick actions */}
-                        <div className="portfolio-overlay absolute inset-0 flex items-end justify-between bg-gradient-to-t from-[#071B5A]/85 via-[#071B5A]/25 to-transparent p-4 opacity-0 transition-opacity duration-300">
-                          <span className="rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold text-[#071B5A] shadow-lg">View case study</span>
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-brand-accent shadow-lg" aria-hidden="true">
-                            <ArrowRight size={16} />
-                          </span>
-                        </div>
                       </div>
                       <CardContent className="p-5">
-                        <div className="mb-2.5 flex flex-wrap items-center gap-2">
-                          <span className="portfolio-tags inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span className="portfolio-tags rounded-full bg-brand-secondary/10 px-3 py-1 text-xs font-medium text-brand-secondary">
                             {item.category}
                           </span>
                           {item.technologies.map((service) => (
-                            <span key={service} className="portfolio-tags rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                            <span key={service} className="portfolio-tags rounded-full bg-brand-cyan/10 px-3 py-1 text-xs font-medium text-brand-cyan">
                               {service}
                             </span>
                           ))}
                         </div>
-                        <h3 className="mb-1.5 text-lg font-semibold text-slate-900 transition-colors duration-300 group-hover:text-brand-accent" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
-                        <p className="relative line-clamp-2 text-sm text-slate-500 transition-all duration-300" aria-hidden="false">
+                        <h3 className="mb-2 text-lg font-semibold" style={{ fontFamily: "var(--font-heading)" }}>{item.title}</h3>
+                        <p className="relative line-clamp-2 text-sm text-muted-foreground transition-all duration-300" aria-hidden="false">
                           {item.challenge}
                         </p>
                         <p className="line-clamp-3 text-sm text-brand-secondary/90 mt-0 max-h-0 overflow-hidden opacity-0 transition-all duration-300 card-hover-text">
                           {item.overview}
                         </p>
-                        <div className="mt-3.5 flex items-center justify-between gap-2 border-t border-slate-100 pt-3.5">
+                        <div className="mt-3 flex items-center justify-between gap-2">
                           <span className="flex items-center gap-2 text-sm font-medium text-brand-secondary">
                             View Details <ArrowRight size={14} className="portfolio-arrow text-brand-secondary" aria-hidden="true" />
                           </span>
@@ -146,7 +136,7 @@ export default function Portfolio() {
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="portfolio-live inline-flex shrink-0 items-center gap-1.5 rounded-full border border-brand-secondary/30 px-3.5 py-1.5 text-xs font-semibold text-brand-secondary hover:border-brand-secondary hover:bg-brand-secondary hover:text-white"
+                            className="portfolio-live inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-secondary/10 px-3 py-1.5 text-xs font-semibold text-brand-secondary hover:bg-brand-secondary hover:text-white"
                           >
                             Live site <ExternalLink size={12} aria-hidden="true" />
                           </a>

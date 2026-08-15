@@ -1018,5 +1018,9 @@
 - [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
 
 ## Portfolio card alternate style (Aug 15, user dislikes previous style)
-- [ ] Replace the tilted-frame/oversized-number card style with a different modern style (sleek minimal: clean image-first cards, subtle bottom gradient border, clean hover lift, keep all behaviors)
+- [x] Replace the tilted-frame/oversized-number card style with a sleek minimal style: clean white cards with soft borders, slim gradient accent bar spreading on hover, inset screenshot frames, dark category pills, restrained hover lift with soft navy shadow, navy overlay action, outlined Live site buttons (all behaviors kept)
+- [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+
+## Revert to original portfolio card design (Aug 15, user request)
+- [ ] Revert portfolio cards to the pre-redesign style (checkpoint de1c50df) while keeping the View more MutationObserver fix; remove both redesign variants
 - [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master

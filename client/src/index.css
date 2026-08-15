@@ -181,17 +181,13 @@
     .highlight-card { transition: none; }
   }
 
-  /* Portfolio project cards — sleek minimal: restrained lift + soft shadow + accent bar spread + clean overlay */
-  .portfolio-card { transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out), border-color 240ms var(--ease-out); }
-  .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(7, 27, 90, 0.12), 0 4px 12px rgba(7, 27, 90, 0.06); border-color: rgba(7, 87, 247, 0.35); }
-  .portfolio-card .portfolio-accent { transform: scaleX(0.35); transform-origin: left; opacity: 0.55; transition: transform 260ms var(--ease-out), opacity 260ms var(--ease-out); }
-  .portfolio-card:hover .portfolio-accent { transform: scaleX(1); opacity: 1; }
-  .portfolio-card .portfolio-border { transition: border-color 240ms var(--ease-out); }
-  .portfolio-card:hover .portfolio-border { border-color: rgba(7, 87, 247, 0.25); }
-  .portfolio-card .portfolio-image { transition: transform 240ms var(--ease-out); }
+  /* Portfolio project cards — richer interactive hover (lift + gradient border glow + coordinated children) */
+  .portfolio-card { transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
+  .portfolio-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 28px 56px rgba(7, 27, 90, 0.18), 0 6px 20px rgba(7, 27, 90, 0.08); }
+  .portfolio-card .portfolio-border { transition: background 260ms var(--ease-out), box-shadow 260ms var(--ease-out); }
+  .portfolio-card:hover .portfolio-border { background: linear-gradient(135deg, #F20549, #0757F7, #33C9D4); box-shadow: 0 8px 24px rgba(7, 87, 247, 0.25); }
+  .portfolio-card .portfolio-image { transition: transform 260ms var(--ease-out); }
   .portfolio-card:hover .portfolio-image { transform: none; }
-  .portfolio-card .portfolio-overlay { opacity: 0; transition: opacity 280ms var(--ease-out); }
-  .portfolio-card:hover .portfolio-overlay { opacity: 1; }
   .portfolio-card .portfolio-arrow { transition: transform 180ms var(--ease-out), color 180ms var(--ease-out); }
   .portfolio-card:hover .portfolio-arrow { transform: translateX(4px); color: #F20549; }
   .portfolio-card .portfolio-live { transition: background 180ms var(--ease-out), color 180ms var(--ease-out), transform 180ms var(--ease-out); }
