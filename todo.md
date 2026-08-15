@@ -937,3 +937,5 @@
 - [x] Enlarged the marquee logo hover drop shadow (0 18px 32px at 38% opacity, up from 0 10px 18px at 22%)
 
 - [x] Removed the hover drop shadow from marquee logos (scale, lift, grayscale-to-color, and focus outline remain)
+
+- [x] Changed the trusted-brands marquee heading to "Trusted by emerging brands across Nigeria & beyond" (user visual edit)

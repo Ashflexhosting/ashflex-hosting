@@ -551,7 +551,7 @@ export default function Home() {
       {/* ============ TRUSTED BY — marquee band ============ */}
       <section className="py-14 relative overflow-hidden" style={{ background: "#D8D8D8" }}>
         <div className="container">
-          <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8 font-medium">Trusted by leading brands across Nigeria & beyond</p>
+          <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8 font-medium">Trusted by emerging brands across Nigeria & beyond</p>
         </div>
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
