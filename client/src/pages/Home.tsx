@@ -562,13 +562,13 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${brand.name}`}
-                className="inline-flex items-center justify-center rounded-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
+                className="inline-flex items-center justify-center rounded-md px-4 py-3 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
               >
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
-                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-[1.12]"
+                  className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-300 hover:grayscale-0 hover:scale-[1.12] origin-center"
                 />
               </a>
             </div>
