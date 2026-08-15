@@ -947,3 +947,6 @@
 - [x] Slowed the trusted-brands marquee scroll from 52s to 70s per loop for better readability (hover pause unchanged)
 
 - [x] Replaced the homepage hero device mockup with the provided Galcon multi-device portfolio image (iMac + tablet + phone, transparent background, 2048x1536 webp at /manus-storage/hero-galcon_f653d112.webp); tilt effect, fade-in, skeleton placeholder, hover scale, and View Live Demo button preserved
+
+- [x] Linked the hero "View Live Demo" button directly to https://galconengineering.com (anchor in a new tab, w-fit pill styling)
+- [x] Increased the hero mockup image size from max-w-[560px] to max-w-[660px]

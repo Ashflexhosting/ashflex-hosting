@@ -489,7 +489,7 @@ export default function Home() {
 
               <TiltEffect
                 max={5}
-                className="hero-fade-in-d4 w-full max-w-[560px] mx-auto group/iMac"
+                className="hero-fade-in-d4 w-full max-w-[660px] mx-auto group/iMac"
                 style={{ animation: "float-slow 6s ease-in-out 1.2s infinite" }}
               >
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
@@ -527,12 +527,14 @@ export default function Home() {
               </TiltEffect>
 
               {/* View Live Demo CTA */}
-              <button
-                onClick={scrollToPortfolio}
-                className="hero-fade-in-d5 mt-6 mx-auto flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-300 hover:bg-brand-accent/15 hover:border-brand-accent/70 hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] active:scale-[0.97]"
+              <a
+href="https://galconengineering.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-fade-in-d5 mt-6 mx-auto w-fit flex items-center gap-2 rounded-full border border-brand-accent/40 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur transition-all duration-300 hover:bg-brand-accent/15 hover:border-brand-accent/70 hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] active:scale-[0.97]"
               >
                 <MonitorPlay size={16} className="text-brand-accent" /> View Live Demo
-              </button>
+              </a>
             </div>
           </div>
         </div>
