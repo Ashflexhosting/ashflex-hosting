@@ -931,3 +931,5 @@
 - [x] Replaced the Shutterspeed Projects marquee logo with the new colorful camera-aperture logo (transparent, 59.8%), link preserved
 
 - [x] Replaced the Nenva Health marquee logo with the new design (transparent, 72.1%), link preserved
+
+- [x] Replaced the Karossy Travels and Galcon Engineering marquee logos with the new supplied designs (both transparent, 62.5%/46.9%), links preserved
