@@ -945,3 +945,5 @@
 - [x] Smoothed the marquee logo hover scaling with a 500ms cubic-bezier(0.23,1,0.32,1) ease-out transition for a more natural spring feel
 
 - [x] Slowed the trusted-brands marquee scroll from 52s to 70s per loop for better readability (hover pause unchanged)
+
+- [x] Replaced the homepage hero device mockup with the provided Galcon multi-device portfolio image (iMac + tablet + phone, transparent background, 2048x1536 webp at /manus-storage/hero-galcon_f653d112.webp); tilt effect, fade-in, skeleton placeholder, hover scale, and View Live Demo button preserved

@@ -512,8 +512,8 @@ export default function Home() {
                     <div className="absolute inset-2 rounded-lg blur-xl bg-white/10" />
                   </div>
                   <img
-                    src="/manus-storage/galcon-imac-hero-v2-clean_817f7b2b.webp"
-                    alt="Galcon Engineering website displayed on an iMac"
+                    src="/manus-storage/hero-galcon_f653d112.webp"
+                    alt="Galcon Engineering website showcased across desktop, tablet, and mobile devices"
                     loading="eager"
                     draggable={false}
                     className={`absolute inset-0 h-full w-full object-contain drop-shadow-2xl transition-all duration-500 ease-out ${
