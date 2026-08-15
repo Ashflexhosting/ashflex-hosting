@@ -933,3 +933,5 @@
 - [x] Replaced the Nenva Health marquee logo with the new design (transparent, 72.1%), link preserved
 
 - [x] Replaced the Karossy Travels and Galcon Engineering marquee logos with the new supplied designs (both transparent, 62.5%/46.9%), links preserved
+
+- [x] Enlarged the marquee logo hover drop shadow (0 18px 32px at 38% opacity, up from 0 10px 18px at 22%)
