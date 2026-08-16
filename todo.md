@@ -1034,11 +1034,29 @@
 - [x] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
 
 ## Smooth section fade-in on scroll (Aug 16, user request)
-- [ ] Ensure a smooth fade-in animation (opacity + subtle slide-up) triggers for page sections as the user scrolls down, covering the main pages (Home, About, Services, Portfolio, Pricing, Industries, Contact, Careers)
-- [ ] Verify visually, run tests, checkpoint, and sync to GitHub main + master
+- [x] Ensure a smooth fade-in animation (opacity + subtle slide-up + slight scale-up + blur-to-clear focus) triggers for page sections as the user scrolls down; eased durations (720ms/820ms) applied to all reveal classes with prefers-reduced-motion support; all pages already wired via useScrollReveal with staggered delays
+- [x] Verify visually (/, /about, /services, /portfolio, /pricing all render correctly), run tests, checkpoint, and sync to GitHub main + master
 
 ## State note (fade-in feature, Aug 16)
 - CSS enhanced: scroll-reveal / scroll-reveal-left / scroll-reveal-right / bento-reveal now include a subtle scale(0.992/0.98), 2px blur-in, longer softer durations (720ms/820ms), will-change, and a prefers-reduced-motion: reduce override forcing opacity:1.
 - All main pages (Home/About/Services/Portfolio/Pricing/Industries/Contact/Careers) already wrap content in useScrollReveal root + every section carries scroll-reveal classes; remaining pages (ServiceDetail/PortfolioDetail/CaseStudies etc.) also use the hook. No structural changes needed.
 - Screenshots of /, /about, /services, /portfolio, /pricing all render correctly (no stuck hidden elements).
 - Remaining: checkpoint, push main + push main:master, mark todo complete, deliver with manus-webdev:// version.
+
+## Calculator vs pricing alignment (Aug 16, user request)
+- [ ] Compare the Pricing page plan structure/features/prices with the cost calculator and list mismatches
+- [ ] Fix the calculator so its plan structure, options, and prices match the pricing concept
+- [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+
+### Mismatches found (calculator vs pricing concept)
+1. Pricing plans are tiered (Starter ₦150,000 / Business ₦350,000 / Professional ₦750,000 / Enterprise ₦1,500,000+), but the calculator computes ad-hoc: pages × ₦15,000 × design multiplier — e.g. 5 pages standard = ₦75,000, which undercuts the Starter tier (₦150,000 incl. design, SEO basic, SSL, analytics, 1-month support).
+2. E-commerce: pricing Business tier says "E-commerce Ready (Up to 50 products)" included at ₦350,000, calculator charges +₦200,000 flat.
+3. SEO: Starter includes Basic SEO; calculator charges +₦75,000 advanced / +₦150,000 complete (consistent with Professional "Complete SEO Package" inclusion).
+4. API Integration: Professional includes it (₦750,000 tier); calculator charges +₦500,000 — consistent with the earlier user-approved calculator extra.
+5. Maintenance: pricing page says hosting from ₦30,000/yr; calculator charges ₦300,000/yr (was approved earlier as Annual maintenance price).
+6. Plan structure: calculator should present the 4 tiers as selectable starting points that pre-fill options, so outputs land on the tier concept.
+
+### Alignment approach (plan)
+- Make calculator tier-driven: select plan first (Starter/Business/Professional/Enterprise) which pre-fills pages, design level, SEO, and included features, plus adjustable extras (E-commerce expansion, Advanced/Complete SEO, API Integration, Annual Maintenance) with the exact amounts already in the calculator.
+- Base estimates must be consistent with tier prices: Starter ₦150,000; Business ₦350,000; Professional ₦750,000; Enterprise "₦1,500,000+".
+- Keep existing tooltips, breakdown card, PDF download, contact CTA.
