@@ -1086,5 +1086,11 @@
 - [x] Increase touch target area of renewal tooltip icons on mobile (min-h-11 min-w-11 -m-2 wrapper = 44px+ target with 14px visual icon, both Pricing and hosting pages)
 
 ## Creative modern comparison table redesign (Aug 16)
-- [ ] Redesign the Feature Comparison table on the Pricing page to look creative and modern (modern cards/gradient accents, hover states, sticky Business highlight column), keeping all feature data and the renewal tooltip
+- [x] Redesign the Feature Comparison table on the Pricing page: gradient brand header row with the Business column highlighted (accent gradient + star badge), numbered feature rows with soft glass cards, row hover tint, rounded 3xl container with soft shadow, decorative blur orbs behind the section; all feature data and the renewal tooltip preserved
+- [x] Verify visually (full-page /pricing screenshot), run tests (29/29), checkpoint (2c31643e, auto-published), and sync to GitHub main + master
+
+## Hosting comparison table modernization (Aug 16)
+- [ ] Apply the same modern glass-card styling and gradient header row to the hosting comparison table on the Hosting & Domain page (numbered rows, glass rows, hover tint, rounded container)
+- [ ] Make the Business column sticky on horizontal scroll (mobile) with proper z-index and box-shadow edge
+- [ ] Add a subtle pulse animation to the Business star badge (Pricing + hosting tables)
 - [ ] Verify visually, run tests, checkpoint, and sync to GitHub main + master

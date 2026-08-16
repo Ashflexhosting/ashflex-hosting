@@ -172,11 +172,11 @@ export default function Pricing() {
             <table className="w-full min-w-[760px] border-separate border-spacing-0">
               <thead>
                 <tr className="bg-gradient-brand text-white">
-                  <th className="text-left py-5 px-5 font-semibold text-sm uppercase tracking-wider text-white/90">Feature</th>
+                  <th className="sticky left-0 z-10 py-5 px-5 font-semibold text-sm uppercase tracking-wider text-white/90 bg-gradient-brand shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]">Feature</th>
                   <th className="text-center py-5 px-4 font-semibold text-sm">Starter</th>
-                  <th className="relative text-center py-5 px-4 font-semibold text-sm text-white bg-gradient-accent ring-2 ring-brand-accent/70 ring-inset">
+                  <th className="relative sticky left-[120px] z-20 text-center py-5 px-4 font-semibold text-sm text-white bg-gradient-accent ring-2 ring-brand-accent/70 ring-inset shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]">
                     <span className="inline-flex items-center gap-1">
-                      <Star size={13} fill="white" className="text-white" /> Business
+                      <Star size={13} fill="white" className="text-white badge-pulse" /> Business
                     </span>
                   </th>
                   <th className="text-center py-5 px-4 font-semibold text-sm">Professional</th>
@@ -189,7 +189,7 @@ export default function Pricing() {
                     key={row.name}
                     className="compare-row bg-white/70 backdrop-blur transition-colors duration-200 hover:bg-brand-secondary/5"
                   >
-                    <td className="py-3.5 px-5 text-sm font-medium text-foreground/85 first:rounded-l-2xl">
+                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-foreground/85 first:rounded-l-2xl bg-white/70 backdrop-blur shadow-[4px_0_12px_-4px_rgba(15,23,42,0.18)]">
                       <div className="flex items-center gap-2.5">
                         <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-gradient-brand/10 text-brand-secondary text-[10px] font-bold">
                           {String(i + 1).padStart(2, "0")}
@@ -199,7 +199,7 @@ export default function Pricing() {
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                     </td>
                     <td className="py-3.5 px-4 text-center bg-white/40">{renderValue(row.starter)}</td>
-                    <td className="py-3.5 px-4 text-center bg-gradient-accent/10 ring-x-2 ring-brand-accent/40">{renderValue(row.business)}</td>
+                    <td className="sticky left-[120px] z-10 py-3.5 px-4 text-center bg-gradient-accent/10 ring-x-2 ring-brand-accent/40">{renderValue(row.business)}</td>
                     <td className="py-3.5 px-4 text-center bg-white/40">{renderValue(row.professional)}</td>
                     <td className="py-3.5 px-4 text-center bg-white/40 last:rounded-r-2xl">{renderValue(row.enterprise)}</td>
                   </tr>

@@ -255,24 +255,33 @@ const PROCESS_STEPS = [
               ))}
             </div>
             {/* Spec comparison table */}
-            <div className="mt-16 scroll-reveal overflow-x-auto">
-              <table className="w-full min-w-[640px] text-sm">
+            <div className="mt-16 scroll-reveal overflow-x-auto rounded-3xl shadow-2xl shadow-brand/8 ring-1 ring-border">
+              <table className="w-full min-w-[640px] text-sm border-separate border-spacing-0">
                 <thead>
-                  <tr className="text-left">
-                    <th className="py-3 pr-4 font-semibold text-muted-foreground">Feature</th>
-                    {hostingTiers.map((tier) => (
+                  <tr className="bg-gradient-brand text-white">
+                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider text-white/90 bg-gradient-brand shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]">Feature</th>
+                    {hostingTiers.map((tier, ti) => (
                       <th
                         key={tier.name}
-                        className={`py-3 px-4 font-bold ${tier.highlighted ? "text-brand-secondary" : ""}`}
+                        className={`py-4 px-4 text-center font-semibold text-sm ${
+                          tier.highlighted
+                            ? "relative sticky left-[120px] z-20 bg-gradient-accent text-white ring-2 ring-brand-accent/70 ring-inset shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]"
+                            : "bg-transparent"
+                        } ${ti === 0 ? "first:rounded-tl-2xl" : ""} ${ti === hostingTiers.length - 1 ? "last:rounded-tr-2xl" : ""}`}
                         style={{ fontFamily: "var(--font-heading)" }}
                       >
-                        {tier.name}
-                        {tier.highlighted && <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wide bg-gradient-primary text-white rounded-full px-2 py-0.5 align-middle">Popular</span>}
+                        {tier.highlighted ? (
+                          <span className="inline-flex items-center gap-1">
+                            <Star size={13} fill="white" className="text-white badge-pulse" /> {tier.name}
+                          </span>
+                        ) : (
+                          tier.name
+                        )}
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="border-t border-border/50">
+                <tbody>
                   {[
                     { label: "Price (per year)", values: hostingTiers.map((t) => t.price), isPrice: true },
                     { label: "Storage", values: hostingTiers.map((t) => t.storage) },
@@ -288,17 +297,33 @@ const PROCESS_STEPS = [
                     { label: "Priority support", values: [false, true, true] },
                     { label: "24/7 priority support", values: [false, false, true] },
                     { label: "Multiple websites", values: ["1", "Up to 5", "Unlimited"] },
-                  ].map((row) => (
-                    <tr key={row.label} className="border-t border-border/30">
-                      <td className="py-3 pr-4 text-muted-foreground">{row.label}</td>
+                  ].map((row, ri) => (
+                    <tr key={row.label} className="compare-row bg-white/70 backdrop-blur transition-colors duration-200 hover:bg-brand-secondary/5">
+                      <td className="sticky left-0 z-10 py-3.5 px-5 text-muted-foreground first:rounded-l-2xl bg-white/70 backdrop-blur shadow-[4px_0_12px_-4px_rgba(15,23,42,0.18)]">
+                        <div className="flex items-center gap-2.5">
+                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-gradient-brand/10 text-brand-secondary text-[10px] font-bold">
+                            {String(ri + 1).padStart(2, "0")}
+                          </span>
+                          {row.label}
+                        </div>
+                      </td>
                       {row.values.map((v, i) => (
-                        <td key={i} className={`py-3 px-4 ${row.isPrice ? "font-bold text-brand-secondary" : ""}`}>
-                          {v === true ? (
-                            <CheckCircle size={16} className="text-brand-success" aria-label="Included" />
+                        <td
+                          key={i}
+                          className={`py-3.5 px-4 text-center ${
+                            hostingTiers[i]?.highlighted
+                              ? "sticky left-[120px] z-10 bg-gradient-accent/10 ring-x-2 ring-brand-accent/40"
+                              : "bg-white/40"
+                          } ${i === hostingTiers.length - 1 ? "last:rounded-r-2xl" : ""}`}
+                        >
+                          {row.isPrice ? (
+                            <span className="font-bold text-brand-secondary">{String(v)}</span>
+                          ) : v === true ? (
+                            <CheckCircle size={16} className="mx-auto text-brand-success" aria-label="Included" />
                           ) : v === false ? (
-                            <span className="inline-block w-4 h-px bg-muted-foreground/40" aria-label="Not included" />
+                            <span className="inline-block w-4 h-px bg-muted-foreground/40 mx-auto" aria-label="Not included" />
                           ) : (
-                            <span className="text-foreground/85">{v}</span>
+                            <span className="text-foreground/85">{String(v)}</span>
                           )}
                         </td>
                       ))}
