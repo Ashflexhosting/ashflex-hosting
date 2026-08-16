@@ -1030,5 +1030,15 @@
 - [x] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
 
 ## About page desktop alignment (Aug 16, user request)
-- [ ] Apply the same desktop-only right-side top padding alignment (lg:pt-14 xl:pt-16) to two-column sections on the About page where the right content sits beside a section header
-- [ ] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
+- [x] Apply the same desktop-only right-side top padding alignment (lg:pt-14 xl:pt-16) to the About page "Our Story" section (right-side content now aligns with the left heading; other sections use centered headers or equal-height bento cards and needed no offset)
+- [x] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
+
+## Smooth section fade-in on scroll (Aug 16, user request)
+- [ ] Ensure a smooth fade-in animation (opacity + subtle slide-up) triggers for page sections as the user scrolls down, covering the main pages (Home, About, Services, Portfolio, Pricing, Industries, Contact, Careers)
+- [ ] Verify visually, run tests, checkpoint, and sync to GitHub main + master
+
+## State note (fade-in feature, Aug 16)
+- CSS enhanced: scroll-reveal / scroll-reveal-left / scroll-reveal-right / bento-reveal now include a subtle scale(0.992/0.98), 2px blur-in, longer softer durations (720ms/820ms), will-change, and a prefers-reduced-motion: reduce override forcing opacity:1.
+- All main pages (Home/About/Services/Portfolio/Pricing/Industries/Contact/Careers) already wrap content in useScrollReveal root + every section carries scroll-reveal classes; remaining pages (ServiceDetail/PortfolioDetail/CaseStudies etc.) also use the hook. No structural changes needed.
+- Screenshots of /, /about, /services, /portfolio, /pricing all render correctly (no stuck hidden elements).
+- Remaining: checkpoint, push main + push main:master, mark todo complete, deliver with manus-webdev:// version.
