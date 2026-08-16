@@ -53,10 +53,12 @@ export default function Footer() {
                 <Mail size={16} className="shrink-0" />
                 <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.email}</a>
               </div>
+              <div className="hidden md:block h-4 w-px bg-white/20" />
               <div className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0" />
                 <a href={siteContact.phoneHref} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.phoneDisplay}</a>
               </div>
+              <div className="hidden md:block h-4 w-px bg-white/20" />
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="shrink-0" />
                 <span className="whitespace-nowrap">Lagos, Nigeria</span>
