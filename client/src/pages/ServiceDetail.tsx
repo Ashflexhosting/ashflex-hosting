@@ -261,14 +261,14 @@ const PROCESS_STEPS = [
               <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b-2 border-border">
-                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
-                    {hostingTiers.map((tier, ti) => (
+                    <th className="sticky left-0 z-10 w-[170px] py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
+                    {hostingTiers.map((tier) => (
                       <th
                         key={tier.name}
                         className={`py-4 px-4 text-center font-semibold text-sm ${
                           tier.highlighted
-                            ? "relative sticky left-[120px] z-20 text-brand-secondary"
-                            : ""
+                            ? "md:sticky right-0 z-20 w-[190px] bg-background"
+                            : "w-[190px]"
                         }`}
                         style={{ fontFamily: "var(--font-heading)" }}
                       >
@@ -302,7 +302,7 @@ const PROCESS_STEPS = [
                     { label: "Setup timeline", values: ["1–2 days", "Same day", "Same day"] },
                   ].map((row) => (
                     <tr key={row.label} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
-                      <td className="sticky left-0 z-10 py-3.5 px-5 text-white/85 bg-brand">
+                      <td className="sticky left-0 z-10 w-[170px] py-3.5 px-5 text-white/85 bg-brand">
                         {row.label}
                       </td>
                       {row.values.map((v, i) => (
@@ -310,8 +310,8 @@ const PROCESS_STEPS = [
                           key={i}
                           className={`py-3.5 px-4 text-center ${
                             hostingTiers[i]?.highlighted
-                              ? "sticky left-[120px] z-10 bg-brand-secondary/[0.04]"
-                              : ""
+                              ? "md:sticky right-0 z-10 w-[190px] bg-brand-secondary/[0.04]"
+                              : "w-[190px]"
                           }`}
                         >
                           {row.isPrice ? (
@@ -320,11 +320,11 @@ const PROCESS_STEPS = [
                             <CheckCircle size={16} className="mx-auto text-brand-success" aria-label="Included" />
                           ) : v === false ? (
                             <span className="inline-block w-4 h-px bg-muted-foreground/40 mx-auto" aria-label="Not included" />
-                          ) : (
-                            <span className="text-foreground/85">{String(v)}</span>
-                          )}
-                        </td>
-                      ))}
+                          )                               : (
+                              <span className="text-foreground/85">{String(v)}</span>
+                              )}
+                            </td>
+                          ))}
                     </tr>
                   ))}
                 </tbody>

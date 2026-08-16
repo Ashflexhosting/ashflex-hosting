@@ -1123,4 +1123,9 @@
 ## CTA buttons still not working (Aug 16 round 2)
 - [x] Diagnosed: the decorative section backdrop (absolute inset-0 bg-muted/30) was sitting on top of the CTA row and intercepting clicks; root cause found via elementFromPoint stacking check
 - [x] Fixed by adding pointer-events-none to the decorative backdrop; verified all 4 CTA buttons now sit on top of the stack and clicks navigate to the pre-filled contact form in the real browser
-- [ ] Checkpoint, sync to GitHub main + master
+- [x] Checkpointed and synced to GitHub main + master
+
+## Horizontal scroll overlap fix (Aug 16)
+- [ ] Diagnose why the Professional column overlaps the Starter column during horizontal scroll on the Pricing comparison table
+- [ ] Fix the sticky column positioning so columns no longer overlap while scrolling (Pricing + Hosting tables)
+- [ ] Verify on small viewport, run tests, checkpoint, sync to GitHub main + master
