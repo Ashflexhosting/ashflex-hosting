@@ -42,6 +42,7 @@ export default function Contact() {
     ? serviceOptionMap[rawService] || (rawService === "pricing" ? "other" : rawService)
     : "";
   const prefilledMessage = searchParams.get("message") || "";
+  const [fieldHighlight, setFieldHighlight] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -72,6 +73,11 @@ export default function Contact() {
       toast.error(error.message || "Something went wrong. Please try again or reach us by phone.");
     },
   });
+
+  // Draw attention to the pre-filled fields with a brief highlight pulse on load
+  if (prefilledMessage && typeof window !== "undefined" && !fieldHighlight) {
+    setFieldHighlight(true);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -251,7 +257,10 @@ export default function Contact() {
                           onChange={(e) => setForm({ ...form, message: e.target.value })}
                           placeholder="Tell us about your project, goals, and budget..."
                           rows={5}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-brand-secondary/50 focus:border-brand-secondary transition-all resize-none"
+                          className={`w-full px-4 py-3 rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-brand-secondary/50 focus:border-brand-secondary transition-all resize-none ${
+                            fieldHighlight ? "prefill-highlight" : "border-border"
+                          }`}
+                          onAnimationEnd={() => setFieldHighlight(false)}
                           required
                         />
                       </div>

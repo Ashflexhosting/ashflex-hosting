@@ -1108,3 +1108,9 @@
 - [x] Pre-fill the contact form with the selected plan/service via URL params (service dropdown + message) on all Get Started and Get a Quote buttons
 - [x] Add a "What Happens Next?" 4-step process strip (Discovery Call, Design & Approval, Build & Testing, Launch & Support) below the Pricing comparison table
 - [x] Service pricing card "Get a Quote" buttons now pre-fill the contact form with the service name and starting price
+
+## Conversion polish round 2 (Aug 16)
+- [x] Comparison table Feature label column now dark navy (#071B5A) with light text on both the Pricing and Hosting & Domain tables
+- [x] Pre-filled contact message field gets a subtle amber ring + glow highlight pulse on load (prefill-highlight animation, gated by prefers-reduced-motion)
+- [x] WhatsApp floating button pre-fills the chat message with the selected plan or service name (falls back to generic message)
+- [x] Added an "Estimated Cost & Timeline" summary bar above the pricing comparison table that updates dynamically as the user hovers any plan card

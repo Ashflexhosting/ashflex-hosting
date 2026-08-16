@@ -261,7 +261,7 @@ const PROCESS_STEPS = [
               <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b-2 border-border">
-                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-background">Feature</th>
+                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
                     {hostingTiers.map((tier, ti) => (
                       <th
                         key={tier.name}
@@ -302,7 +302,7 @@ const PROCESS_STEPS = [
                     { label: "Setup timeline", values: ["1–2 days", "Same day", "Same day"] },
                   ].map((row) => (
                     <tr key={row.label} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
-                      <td className="sticky left-0 z-10 py-3.5 px-5 text-muted-foreground bg-background">
+                      <td className="sticky left-0 z-10 py-3.5 px-5 text-white/85 bg-brand">
                         {row.label}
                       </td>
                       {row.values.map((v, i) => (

@@ -327,3 +327,25 @@
   .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 }
 
+
+/* Pre-filled form field highlight: amber ring + glow pulse draws the eye to pre-filled content */
+@media (prefers-reduced-motion: no-preference) {
+  .prefill-highlight {
+    border-color: transparent;
+    animation: prefill-highlight 2.6s cubic-bezier(0.23, 1, 0.32, 1) 0.4s both;
+  }
+  @keyframes prefill-highlight {
+    0% {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+    40% {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+    }
+    100% {
+      border-color: var(--border);
+      box-shadow: 0 0 0 3px transparent;
+    }
+  }
+}

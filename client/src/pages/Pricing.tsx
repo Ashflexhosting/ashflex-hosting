@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, X, Star, Info } from "lucide-react";
+import { ArrowRight, CheckCircle, X, Star, Info, Clock } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -68,6 +69,82 @@ function renderValue(value: any) {
 
 const hostingRenewalRates = "Year 2 onward: Starter ₦60,000 · Professional ₦85,000 · Business ₦120,000 per year";
 
+const timelineByPlan: Record<string, string> = {
+  Starter: "about 1 week",
+  Business: "about 2 weeks",
+  Professional: "3–4 weeks",
+  Enterprise: "custom timeline (discussed in consultation)",
+};
+
+const renewalByPlan: Record<string, string> = {
+  Starter: "60,000",
+  Business: "85,000",
+  Professional: "120,000",
+  Enterprise: "custom",
+};
+
+function EstimatedSummary() {
+  const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onEnter = (e: Event) => {
+      const el = e.target as HTMLElement;
+      const card = el.closest<HTMLDivElement>("[data-plan-name]");
+      if (card) setHoveredPlan(card.getAttribute("data-plan-name"));
+    };
+    const onLeave = () => setHoveredPlan(null);
+
+    const cards = document.querySelectorAll<HTMLDivElement>("[data-plan-name]");
+    cards.forEach((c) => {
+      c.addEventListener("mouseenter", onEnter);
+      c.addEventListener("mouseleave", onLeave);
+      c.addEventListener("focusin", onEnter);
+      c.addEventListener("focusout", onLeave);
+    });
+    return () => {
+      cards.forEach((c) => {
+        c.removeEventListener("mouseenter", onEnter);
+        c.removeEventListener("mouseleave", onLeave);
+        c.removeEventListener("focusin", onEnter);
+        c.removeEventListener("focusout", onLeave);
+      });
+    };
+  }, []);
+
+  const plan = hoveredPlan ? plans.find((p) => p.name === hoveredPlan) ?? null : null;
+
+  return (
+    <div className="max-w-2xl mx-auto mb-8 scroll-reveal">
+      <div className="rounded-2xl border border-brand-secondary/20 bg-white shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md hover:shadow-brand-secondary/10">
+        <div className="flex items-center justify-center gap-2 bg-brand-secondary/5 px-4 py-2 border-b border-brand-secondary/10">
+          <Clock size={14} className="text-brand-secondary" />
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-secondary">
+            Estimated Cost & Timeline
+          </span>
+        </div>
+        <div className="px-6 py-4 text-center min-h-[56px] flex flex-col items-center justify-center transition-colors duration-300">
+          {plan ? (
+            <p className="text-sm text-foreground/90">
+              <span className="font-bold text-brand-secondary" style={{ fontFamily: "var(--font-heading)" }}>
+                {plan.name} plan
+              </span>
+              {" "}— <span className="font-semibold">{plan.price}</span> one-time · delivery in{" "}
+              <span className="font-semibold">
+                {timelineByPlan[plan.name] ?? "a few weeks"}
+              </span>
+              {" "}· renewal hosting from ₦{renewalByPlan[plan.name] ?? "0"}/yr
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Hover over any plan card above to see its estimated cost and delivery timeline.
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GetStartedButton({ popular, planName }: { popular: boolean; planName: string }) {
   const label = planName === "Enterprise" ? "Get a Quote" : "Get Started";
   const href = `/contact?service=${encodeURIComponent("pricing")}&message=${encodeURIComponent(`I'd like to get started with the ${planName} plan (${plans.find((p) => p.name === planName)?.price ?? ""}). Please share the next steps.`)}`;
@@ -114,7 +191,7 @@ export default function Pricing() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.map((plan, i) => (
-              <div key={plan.name} className="scroll-reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={plan.name} data-plan-name={plan.name} className="scroll-reveal" style={{ transitionDelay: `${i * 60}ms` }}>
                 <Card className={`h-full border-0 p-6 ${plan.popular ? "bg-gradient-brand text-white shadow-2xl shadow-brand-secondary/20 lg:-mt-4 lg:pb-8" : "glass-card"}`}>
                   <CardContent className="p-0">
                     {plan.popular && (
@@ -179,18 +256,22 @@ export default function Pricing() {
         <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-brand-accent/8 rounded-full blur-[120px]" />
 
         <div className="container">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
               Feature Comparison
             </h2>
             <p className="text-muted-foreground">Compare all features across our pricing plans</p>
           </div>
 
+          {/* Dynamic Estimated cost & timeline summary */}
+          <EstimatedSummary />
+
+
           <div className="overflow-x-auto">
             <table className="w-full min-w-[700px]">
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="sticky left-0 z-10 bg-background text-left py-4 px-4 font-semibold">Feature</th>
+                  <th className="sticky left-0 z-10 bg-brand text-white text-left py-4 px-4 font-semibold">Feature</th>
                   <th className="text-center py-4 px-4 font-semibold">Starter</th>
                   <th className="relative sticky left-[120px] z-20 text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
                   <th className="text-center py-4 px-4 font-semibold">Professional</th>
@@ -200,7 +281,7 @@ export default function Pricing() {
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="sticky left-0 z-10 bg-background py-3 px-4 text-sm font-medium">
+                    <td className="sticky left-0 z-10 bg-brand text-white/85 py-3 px-4 text-sm font-medium">
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                     </td>
@@ -212,7 +293,7 @@ export default function Pricing() {
                 ))}
                 {/* Get Started CTA row */}
                 <tr className="border-b-2 border-border">
-                  <td className="sticky left-0 z-10 bg-background py-4 px-4 font-semibold text-sm">Get Started</td>
+                  <td className="sticky left-0 z-10 bg-brand text-white py-4 px-4 font-semibold text-sm">Get Started</td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Starter" />
                   </td>
