@@ -1022,5 +1022,9 @@
 - [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
 
 ## Revert to original portfolio card design (Aug 15, user request)
-- [ ] Revert portfolio cards to the pre-redesign style (checkpoint de1c50df) while keeping the View more MutationObserver fix; remove both redesign variants
-- [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+- [x] Revert portfolio cards to the pre-redesign style (gradient-bordered frames, hover glow, blue/cyan tags) while keeping the View more MutationObserver fix; redesign variants removed
+- [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+
+## What We Do right-side alignment (Aug 16, user request)
+- [ ] Increase the top padding of the right-side content in the "What We Do" section on the Services page (desktop only) so it aligns with the left header text
+- [ ] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master

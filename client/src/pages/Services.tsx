@@ -599,7 +599,7 @@ export default function Services() {
                 From pixel-perfect design to scalable development, growth marketing to 24/7 infrastructure — we deliver end-to-end digital services with a single accountable team.
               </p>
             </div>
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 lg:pt-14 xl:pt-16">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="scroll-reveal flex items-start gap-3.5 glass-card p-5 rounded-2xl" style={{ transitionDelay: "60ms" }}>
                   <Shield size={22} className="text-brand-secondary mt-0.5 shrink-0" />
