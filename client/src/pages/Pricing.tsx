@@ -169,9 +169,9 @@ export default function Pricing() {
             <table className="w-full min-w-[700px]">
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="text-left py-4 px-4 font-semibold">Feature</th>
+                  <th className="sticky left-0 z-10 bg-background text-left py-4 px-4 font-semibold">Feature</th>
                   <th className="text-center py-4 px-4 font-semibold">Starter</th>
-                  <th className="text-center py-4 px-4 font-semibold text-brand-secondary">Business</th>
+                  <th className="relative sticky left-[120px] z-20 text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
                   <th className="text-center py-4 px-4 font-semibold">Professional</th>
                   <th className="text-center py-4 px-4 font-semibold">Enterprise</th>
                 </tr>
@@ -179,12 +179,12 @@ export default function Pricing() {
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="py-3 px-4 text-sm font-medium">
+                    <td className="sticky left-0 z-10 bg-background py-3 px-4 text-sm font-medium">
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                     </td>
                     <td className="py-3 px-4 text-center">{renderValue(row.starter)}</td>
-                    <td className="py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
+                    <td className="sticky left-[120px] z-10 py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
                     <td className="py-3 px-4 text-center">{renderValue(row.professional)}</td>
                     <td className="py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
                   </tr>

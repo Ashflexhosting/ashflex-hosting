@@ -1098,4 +1098,4 @@
 ## Pricing table revert + hosting table restyle (Aug 16)
 - [x] Revert the Pricing page Feature Comparison table to the old styling (only Pricing page; renewal tooltip kept)
 - [x] Hosting & Domain table: removed numbered feature tags, rows now use thin horizontal lines instead of glass cards; sticky Business column kept
-- [ ] Verify, run tests, checkpoint, and sync to GitHub main + master
+- [x] Verify, run tests, checkpoint, and sync to GitHub main + master
