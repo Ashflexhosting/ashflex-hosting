@@ -70,8 +70,9 @@ const hostingRenewalRates = "Year 2 onward: Starter ₦60,000 · Professional �
 
 function GetStartedButton({ popular, planName }: { popular: boolean; planName: string }) {
   const label = planName === "Enterprise" ? "Get a Quote" : "Get Started";
+  const href = `/contact?service=${encodeURIComponent("pricing")}&message=${encodeURIComponent(`I'd like to get started with the ${planName} plan (${plans.find((p) => p.name === planName)?.price ?? ""}). Please share the next steps.`)}`;
   return (
-    <Link href="/contact">
+    <Link href={href}>
       <span
         className={`inline-block w-full max-w-[140px] text-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
           popular
@@ -151,7 +152,9 @@ export default function Pricing() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact">
+                    <Link
+                      href={`/contact?service=${encodeURIComponent("pricing")}&message=${encodeURIComponent(`I'd like to get started with the ${plan.name} plan (${plan.price}). Please share the next steps.`)}`}
+                    >
                       <span className={`block w-full text-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
                         plan.popular
                           ? "bg-white text-brand text-sm hover:shadow-lg"
@@ -225,6 +228,48 @@ export default function Pricing() {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* What happens next */}
+          <div className="mt-12 scroll-reveal">
+            <h3 className="text-center text-2xl font-bold mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+              What Happens Next?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  step: "01",
+                  title: "Discovery Call",
+                  desc: "We discuss your goals, brand, and requirements in a free consultation to align on scope.",
+                },
+                {
+                  step: "02",
+                  title: "Design & Approval",
+                  desc: "You review and approve the design direction before a single line of code is written.",
+                },
+                {
+                  step: "03",
+                  title: "Build & Testing",
+                  desc: "We develop your site, optimize performance and SEO, and test across all devices.",
+                },
+                {
+                  step: "04",
+                  title: "Launch & Support",
+                  desc: "Your site goes live with hosting, domain, and your included support period activated.",
+                },
+              ].map((item, i) => (
+                <div key={item.step} className="relative p-6 rounded-2xl border border-border/60 bg-white/60 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-secondary/10" style={{ transitionDelay: `${i * 50}ms` }}>
+                  <span className="text-3xl font-bold text-brand-accent/40" style={{ fontFamily: "var(--font-heading)" }}>
+                    {item.step}
+                  </span>
+                  <h4 className="font-semibold text-foreground mt-2 mb-2">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  {i < 3 && (
+                    <ArrowRight size={16} className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 text-brand-accent z-10" />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

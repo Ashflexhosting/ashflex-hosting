@@ -25,7 +25,30 @@ const contactFaqs = [
 export default function Contact() {
   const sectionRef = useScrollReveal();
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const rawService = searchParams.get("service") || "";
+  // Map page/source slugs to the contact form's service select options
+  const serviceOptionMap: Record<string, string> = {
+    "website-design": "web-design",
+    "website-development": "development",
+    "wordpress-development": "wordpress",
+    "ecommerce-development": "ecommerce",
+    "seo-services": "seo",
+    "branding-logo-design": "branding",
+    "social-media-marketing": "marketing",
+    "website-maintenance": "maintenance",
+  };
+  const prefilledService = rawService
+    ? serviceOptionMap[rawService] || (rawService === "pricing" ? "other" : rawService)
+    : "";
+  const prefilledMessage = searchParams.get("message") || "";
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: prefilledService,
+    message: prefilledMessage,
+  });
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: (_data, variables) => {

@@ -143,7 +143,9 @@ const PROCESS_STEPS = [
                   ))}
                 </ul>
 
-                <Link href="/contact">
+                <Link
+                  href={`/contact?service=${encodeURIComponent(service.slug)}&message=${encodeURIComponent(`I'm interested in ${service.title} (${service.price} starting price). Please share the next steps.`)}`}
+                >
                   <span className="block w-full text-center px-6 py-3 rounded-xl bg-gradient-primary text-white text-sm font-semibold hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
                     Get a Quote
                   </span>

@@ -1103,3 +1103,8 @@
 ## Comparison table CTAs (Aug 16)
 - [x] Add an "Estimated timeline" row to both the Pricing (1 wk / 2 wks / 3–4 wks / Custom) and Hosting & Domain (1–2 days / Same day / Same day) comparison tables
 - [x] Add a "Get Started" CTA button at the bottom of each pricing column in the comparison table ("Get a Quote" for Enterprise, Business highlighted in aqua)
+
+## Conversion follow-ups (Aug 16)
+- [x] Pre-fill the contact form with the selected plan/service via URL params (service dropdown + message) on all Get Started and Get a Quote buttons
+- [x] Add a "What Happens Next?" 4-step process strip (Discovery Call, Design & Approval, Build & Testing, Launch & Support) below the Pricing comparison table
+- [x] Service pricing card "Get a Quote" buttons now pre-fill the contact form with the service name and starting price
