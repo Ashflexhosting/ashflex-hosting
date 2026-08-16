@@ -1070,6 +1070,12 @@
 - [x] Verify (screenshot), checkpoint (1f0b4f9b, auto-published), and sync to GitHub main + master
 
 ## Hosting renewal price update (Aug 16)
-- [ ] Update hosting tier prices to ₦60,000 / ₦85,000 / ₦120,000 per year (Starter / Professional / Business) in data/services.ts and the ServiceDetail hosting section banner note
-- [ ] Check other references to the old ₦30,000 host price (WhatsApp CTAs, comparison table, pricing copy) and update consistently
-- [ ] Verify, checkpoint, and sync to GitHub main + master
+- [x] Update hosting tier prices to ₦60,000 / ₦85,000 / ₦120,000 per year (Starter / Professional / Business) in data/services.ts and the ServiceDetail hosting section banner note
+- [x] Check other references to the old ₦30,000 host price and update consistently (banner "from ₦60,000/year", hosting service listing "From ₦60,000/yr", FAQ hosting answer with first-year-free note and new tiers)
+- [x] Verify (screenshot), checkpoint (5ef9e583, auto-published), and sync to GitHub main + master
+
+## Hosting tier enhancements (Aug 16)
+- [ ] Explain to the user where the hosting tiers comparison table lives (ServiceDetail hosting-domain section, below the tier cards)
+- [ ] WhatsApp buttons on hosting tiers auto-include the selected plan name + renewal rate in the pre-filled message
+- [ ] Subtle hover animation on the hosting pricing tier cards (lift + shadow + gradient border accent)
+- [ ] Tooltip icon next to the free hosting feature line showing the exact renewal cost on hover

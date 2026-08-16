@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { ArrowRight, CheckCircle, Star, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, Gift } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, Gift, Info } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
@@ -176,7 +176,7 @@ const PROCESS_STEPS = [
               {hostingTiers.map((tier) => (
                 <div
                   key={tier.name}
-                  className={`glass-card border-0 p-8 flex flex-col ${tier.highlighted ? "relative md:-mt-4 ring-2 ring-brand-secondary" : ""}`}
+                  className={`glass-card border-0 p-8 flex flex-col hosting-tier-card ${tier.highlighted ? "relative md:-mt-4 ring-2 ring-brand-secondary" : ""}`}
                 >
                   {tier.highlighted && (
                     <span className="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-primary text-white text-xs font-bold uppercase tracking-wide">
@@ -213,15 +213,31 @@ const PROCESS_STEPS = [
                     ))}
                   </div>
                   <ul className="space-y-2 mb-8 flex-1">
-                    {tier.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-foreground/75">
-                        <CheckCircle size={15} className="text-brand-success flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
+                    {tier.features.map((f) => {
+                      if (f.startsWith("Free SSL") || f.startsWith("Free Wildcard")) {
+                        return (
+                          <li key={f} className="flex items-center gap-2 text-sm text-foreground/75 group relative">
+                            <CheckCircle size={15} className="text-brand-success flex-shrink-0" />
+                            <span>{f}</span>
+                            <span className="ml-auto flex items-center">
+                              <Info size={14} className="text-muted-foreground cursor-help" aria-label="Renewal cost details" />
+                              <span className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 hidden w-56 rounded-lg bg-popover px-3 py-2 text-xs text-popover-foreground shadow-lg ring-1 ring-border group-hover:block">
+                                <span className="font-semibold">Renewal after free year 1:</span> {tier.price}/year
+                              </span>
+                            </span>
+                          </li>
+                        );
+                      }
+                      return (
+                        <li key={f} className="flex items-center gap-2 text-sm text-foreground/75">
+                          <CheckCircle size={15} className="text-brand-success flex-shrink-0" />
+                          {f}
+                        </li>
+                      );
+                    })}
                   </ul>
                   <a
-                    href={`https://wa.me/2348023138892?text=${encodeURIComponent(`Hello Ashflex Web Design! I'd like to enquire about the ${tier.name} hosting package (${tier.price}/year). Please share the next steps.`)}`}
+                    href={`https://wa.me/2348023138892?text=${encodeURIComponent(`Hello Ashflex Web Design! I'd like to enquire about the ${tier.name} Hosting & Domain package. I understand the first year of hosting + domain is free with a website plan, and the renewal rate from year 2 onward is ${tier.price}/year. Please share the next steps.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`block w-full text-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
