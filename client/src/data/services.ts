@@ -114,7 +114,7 @@ export const services = [
     description: "Reliable hosting solutions with SSL, daily backups, and 99.9% uptime — choose from Starter, Professional, or Business tiers.",
     icon: "Server",
     features: ["Shared Hosting", "VPS Hosting", "Domain Registration", "SSL Certificates"],
-    price: "From ₦30,000/yr",
+    price: "From ₦60,000/yr",
   },
   {
     id: "ai-automation",
@@ -152,8 +152,8 @@ export interface HostingTier {
 export const hostingTiers: HostingTier[] = [
   {
     name: "Starter",
-    price: "₦30,000/yr",
-    pricePerYear: 30000,
+    price: "₦60,000/yr",
+    pricePerYear: 60000,
     tagline: "Perfect for personal sites and small landing pages.",
     storage: "2 GB SSD",
     bandwidth: "50 GB/mo",
@@ -169,8 +169,8 @@ export const hostingTiers: HostingTier[] = [
   },
   {
     name: "Professional",
-    price: "₦60,000/yr",
-    pricePerYear: 60000,
+    price: "₦85,000/yr",
+    pricePerYear: 85000,
     tagline: "Ideal for growing businesses and professional sites.",
     storage: "10 GB SSD",
     bandwidth: "Unmetered",

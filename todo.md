@@ -1066,5 +1066,10 @@
 - [x] Verify (pricing + calculator screenshots), checkpoint (f73e68b7, auto-published), and sync to GitHub main + master
 
 ## Hosting renewal clarity (Aug 16)
-- [ ] Find the Hosting & Domain pricing section (services or pricing page) and add "first year free with all website plans" plus renewal cost note
+- [x] Find the Hosting & Domain pricing section (ServiceDetail.tsx hosting-domain section) and add "first year free with all website plans" plus renewal cost note (green gift banner: prices are renewal rates from year 2 onward, from ₦30,000/yr; footer note updated)
+- [x] Verify (screenshot), checkpoint (1f0b4f9b, auto-published), and sync to GitHub main + master
+
+## Hosting renewal price update (Aug 16)
+- [ ] Update hosting tier prices to ₦60,000 / ₦85,000 / ₦120,000 per year (Starter / Professional / Business) in data/services.ts and the ServiceDetail hosting section banner note
+- [ ] Check other references to the old ₦30,000 host price (WhatsApp CTAs, comparison table, pricing copy) and update consistently
 - [ ] Verify, checkpoint, and sync to GitHub main + master

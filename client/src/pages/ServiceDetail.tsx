@@ -168,7 +168,7 @@ const PROCESS_STEPS = [
                 <p className="text-sm text-foreground/80">
                   <Gift size={16} className="mr-2 inline-block -mt-0.5 text-brand-success" />
                   <span className="font-semibold">Every website plan includes 1 year of free hosting + domain (.com / .com.ng / .ng).</span>{" "}
-                  The prices below are renewal rates from year 2 onward — starting from just ₦30,000/year.
+                  The prices below are renewal rates from year 2 onward — starting from just ₦60,000/year.
                 </p>
               </div>
             </div>

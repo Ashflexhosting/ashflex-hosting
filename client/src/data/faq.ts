@@ -25,7 +25,7 @@ export const faqs = [
   },
   {
     question: "Do you provide hosting services?",
-    answer: "Yes, we offer reliable hosting solutions with 99.9% uptime guarantee, SSL certificates, daily backups, and CDN. Hosting packages come in three tiers: Starter at ₦30,000/year, Professional at ₦60,000/year, and Business at ₦120,000/year, each with dedicated storage, email, and bandwidth allowances.",
+    answer: "Yes, we offer reliable hosting solutions with 99.9% uptime guarantee, SSL certificates, daily backups, and CDN. The first year of hosting + domain (.com / .com.ng / .ng) is free with every website plan, and renewal from year 2 onward comes in three tiers: Starter at ₦60,000/year, Professional at ₦85,000/year, and Business at ₦120,000/year, each with dedicated storage, email, and bandwidth allowances.",
   },
   {
     question: "Can I update the website myself?",
