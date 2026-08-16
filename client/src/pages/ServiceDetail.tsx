@@ -255,24 +255,24 @@ const PROCESS_STEPS = [
               ))}
             </div>
             {/* Spec comparison table */}
-            <div className="mt-16 scroll-reveal overflow-x-auto rounded-3xl shadow-2xl shadow-brand/8 ring-1 ring-border">
-              <table className="w-full min-w-[640px] text-sm border-separate border-spacing-0">
+            <div className="mt-16 scroll-reveal overflow-x-auto">
+              <table className="w-full min-w-[640px] text-sm">
                 <thead>
-                  <tr className="bg-gradient-brand text-white">
-                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider text-white/90 bg-gradient-brand shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]">Feature</th>
+                  <tr className="border-b-2 border-border">
+                    <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-background">Feature</th>
                     {hostingTiers.map((tier, ti) => (
                       <th
                         key={tier.name}
                         className={`py-4 px-4 text-center font-semibold text-sm ${
                           tier.highlighted
-                            ? "relative sticky left-[120px] z-20 bg-gradient-accent text-white ring-2 ring-brand-accent/70 ring-inset shadow-[4px_0_12px_-4px_rgba(15,23,42,0.25)]"
-                            : "bg-transparent"
-                        } ${ti === 0 ? "first:rounded-tl-2xl" : ""} ${ti === hostingTiers.length - 1 ? "last:rounded-tr-2xl" : ""}`}
+                            ? "relative sticky left-[120px] z-20 text-brand-secondary"
+                            : ""
+                        }`}
                         style={{ fontFamily: "var(--font-heading)" }}
                       >
                         {tier.highlighted ? (
                           <span className="inline-flex items-center gap-1">
-                            <Star size={13} fill="white" className="text-white badge-pulse" /> {tier.name}
+                            <Star size={13} fill="currentColor" className="text-brand-accent badge-pulse" /> {tier.name}
                           </span>
                         ) : (
                           tier.name
@@ -297,24 +297,19 @@ const PROCESS_STEPS = [
                     { label: "Priority support", values: [false, true, true] },
                     { label: "24/7 priority support", values: [false, false, true] },
                     { label: "Multiple websites", values: ["1", "Up to 5", "Unlimited"] },
-                  ].map((row, ri) => (
-                    <tr key={row.label} className="compare-row bg-white/70 backdrop-blur transition-colors duration-200 hover:bg-brand-secondary/5">
-                      <td className="sticky left-0 z-10 py-3.5 px-5 text-muted-foreground first:rounded-l-2xl bg-white/70 backdrop-blur shadow-[4px_0_12px_-4px_rgba(15,23,42,0.18)]">
-                        <div className="flex items-center gap-2.5">
-                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-gradient-brand/10 text-brand-secondary text-[10px] font-bold">
-                            {String(ri + 1).padStart(2, "0")}
-                          </span>
-                          {row.label}
-                        </div>
+                  ].map((row) => (
+                    <tr key={row.label} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
+                      <td className="sticky left-0 z-10 py-3.5 px-5 text-muted-foreground bg-background">
+                        {row.label}
                       </td>
                       {row.values.map((v, i) => (
                         <td
                           key={i}
                           className={`py-3.5 px-4 text-center ${
                             hostingTiers[i]?.highlighted
-                              ? "sticky left-[120px] z-10 bg-gradient-accent/10 ring-x-2 ring-brand-accent/40"
-                              : "bg-white/40"
-                          } ${i === hostingTiers.length - 1 ? "last:rounded-r-2xl" : ""}`}
+                              ? "sticky left-[120px] z-10 bg-brand-secondary/[0.04]"
+                              : ""
+                          }`}
                         >
                           {row.isPrice ? (
                             <span className="font-bold text-brand-secondary">{String(v)}</span>

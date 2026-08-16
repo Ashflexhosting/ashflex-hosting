@@ -1090,7 +1090,12 @@
 - [x] Verify visually (full-page /pricing screenshot), run tests (29/29), checkpoint (2c31643e, auto-published), and sync to GitHub main + master
 
 ## Hosting comparison table modernization (Aug 16)
-- [ ] Apply the same modern glass-card styling and gradient header row to the hosting comparison table on the Hosting & Domain page (numbered rows, glass rows, hover tint, rounded container)
-- [ ] Make the Business column sticky on horizontal scroll (mobile) with proper z-index and box-shadow edge
-- [ ] Add a subtle pulse animation to the Business star badge (Pricing + hosting tables)
-- [ ] Verify visually, run tests, checkpoint, and sync to GitHub main + master
+- [x] Apply the same modern glass-card styling and gradient header row to the hosting comparison table on the Hosting & Domain page (numbered rows, glass rows, hover tint, rounded container, gradient-accent highlighted Professional column)
+- [x] Make the highlighted Business/Professional column sticky on horizontal scroll (mobile) in both tables (feature column sticky left-0, highlighted column sticky left-[120px]), with z-index layering and soft shadow edge
+- [x] Add a subtle pulse animation to the Business/Professional star badge (Pricing + hosting tables; badge-pulse CSS with prefers-reduced-motion guard)
+- [x] Verify visually (full-page /pricing + /services/hosting-domain screenshots), run tests (29/29), checkpoint (96f27681, auto-published), and sync to GitHub main + master
+
+## Pricing table revert + hosting table restyle (Aug 16)
+- [x] Revert the Pricing page Feature Comparison table to the old styling (only Pricing page; renewal tooltip kept)
+- [x] Hosting & Domain table: removed numbered feature tags, rows now use thin horizontal lines instead of glass cards; sticky Business column kept
+- [ ] Verify, run tests, checkpoint, and sync to GitHub main + master
