@@ -1075,7 +1075,12 @@
 - [x] Verify (screenshot), checkpoint (5ef9e583, auto-published), and sync to GitHub main + master
 
 ## Hosting tier enhancements (Aug 16)
-- [ ] Explain to the user where the hosting tiers comparison table lives (ServiceDetail hosting-domain section, below the tier cards)
-- [ ] WhatsApp buttons on hosting tiers auto-include the selected plan name + renewal rate in the pre-filled message
-- [ ] Subtle hover animation on the hosting pricing tier cards (lift + shadow + gradient border accent)
-- [ ] Tooltip icon next to the free hosting feature line showing the exact renewal cost on hover
+- [x] Explain to the user where the hosting tiers comparison table lives (ServiceDetail hosting-domain section, below the tier cards)
+- [x] WhatsApp buttons on hosting tiers auto-include the selected plan name + renewal rate in the pre-filled message (mentions free first year and year-2 renewal rate)
+- [x] Subtle hover animation on the hosting pricing tier cards (hosting-tier-card class: translateY(-6px) lift + soft navy shadow + blue ring)
+- [x] Tooltip icon next to the free hosting feature line showing the exact renewal cost on hover (Info icon, group-hover popover with tier.price)
+
+## Hosting follow-ups (Aug 16)
+- [ ] Add the renewal tooltip pattern to the free hosting line on the Pricing page (all tiers)
+- [ ] Add a short FAQ section below the hosting comparison table addressing common domain renewal questions
+- [ ] Increase touch target area of renewal tooltip icons on mobile (min 44px target)

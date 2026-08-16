@@ -4,6 +4,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -220,7 +221,9 @@ const PROCESS_STEPS = [
                             <CheckCircle size={15} className="text-brand-success flex-shrink-0" />
                             <span>{f}</span>
                             <span className="ml-auto flex items-center">
-                              <Info size={14} className="text-muted-foreground cursor-help" aria-label="Renewal cost details" />
+                              <span className="flex items-center justify-center min-h-11 min-w-11 -m-2 cursor-help">
+                                <Info size={14} className="text-muted-foreground" aria-label="Renewal cost details" />
+                              </span>
                               <span className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 hidden w-56 rounded-lg bg-popover px-3 py-2 text-xs text-popover-foreground shadow-lg ring-1 ring-border group-hover:block">
                                 <span className="font-semibold">Renewal after free year 1:</span> {tier.price}/year
                               </span>
@@ -307,6 +310,41 @@ const PROCESS_STEPS = [
               <p className="text-center text-sm text-muted-foreground mt-8">
                 Renewal rates shown apply from year 2 onward, since the first year of hosting and domain is free with all of our website plans. All packages include domain registration support and free setup. Custom VPS and dedicated hosting also available on request.
               </p>
+
+              {/* Domain renewal FAQ */}
+              <div className="scroll-reveal mt-12">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 text-center" style={{ fontFamily: "var(--font-heading)" }}>
+                  Common Questions About Domain & Hosting Renewals
+                </h3>
+                <div className="max-w-3xl mx-auto space-y-3">
+                  <Accordion type="single" collapsible>
+                    <AccordionItem value="renewal-1" className="border-border/50 bg-white/60 rounded-xl px-5">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline">What happens after my free first year ends?</AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground">
+                        Nothing changes on your site. Around the end of year 1 we contact you with renewal options — Starter ₦60,000/yr, Professional ₦85,000/yr, or Business ₦120,000/yr. Your hosting, email, and domain keep running uninterrupted while you decide.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="renewal-2" className="border-border/50 bg-white/60 rounded-xl px-5">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline">Do renewal rates change over time?</AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground">
+                        Rates are set for each renewal year and any change is always communicated in advance. Domain renewal prices follow registrar costs (set by ICANN and the .ng registry), so they can move slightly over time; hosting renewals are locked to your current tier unless you choose to upgrade.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="renewal-3" className="border-border/50 bg-white/60 rounded-xl px-5">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline">Are .com.ng and .ng domains renewed at the same price?</AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground">
+                        Both are included in your tier's renewal rate. .com.ng domains are generally cheaper at the registry level, while .ng domains carry a slightly higher registry fee — whichever extension you choose, the price is already bundled in your plan with no surprise add-ons.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="renewal-4" className="border-border/50 bg-white/60 rounded-xl px-5">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline">Can I transfer my domain to another provider later?</AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground">
+                        Yes — your domain is registered in your name, and we can provide your EPP/transfer code at any time. We make the process simple and keep your site live throughout the transfer if you're moving hosting as well.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </div>
           </div>
         </section>
       )}

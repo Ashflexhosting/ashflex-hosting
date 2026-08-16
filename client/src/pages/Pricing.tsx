@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, X, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, X, Star, Info } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -45,7 +45,7 @@ const plans = [
 
 const comparisonFeatures = [
   { name: "Pages", starter: "5", business: "10", professional: "Unlimited", enterprise: "Unlimited" },
-  { name: "Free Hosting + Domain (.com / .com.ng / .ng) — 1 Year", starter: true, business: true, professional: true, enterprise: true },
+  { name: "Free Hosting + Domain (.com / .com.ng / .ng) — 1 Year", starter: true, business: true, professional: true, enterprise: true, hasRenewalTooltip: true },
   { name: "Responsive Design", starter: true, business: true, professional: true, enterprise: true },
   { name: "SEO Setup", starter: "Basic", business: "Advanced", professional: "Complete", enterprise: "Complete" },
   { name: "E-commerce", starter: false, business: "Up to 50", professional: "Unlimited", enterprise: "Unlimited" },
@@ -63,6 +63,21 @@ function renderValue(value: any) {
   if (value === true) return <CheckCircle size={18} className="text-brand-success mx-auto" />;
   if (value === false) return <X size={18} className="text-muted-foreground/30 mx-auto" />;
   return <span className="text-sm">{value}</span>;
+}
+
+const hostingRenewalRates = "Year 2 onward: Starter ₦60,000 · Professional ₦85,000 · Business ₦120,000 per year";
+
+function RenewalTooltip() {
+  return (
+    <span className="ml-1.5 inline-flex items-center relative group">
+      <span className="flex items-center justify-center min-h-11 min-w-11 -m-2 cursor-help">
+        <Info size={14} className="text-muted-foreground" aria-label="Renewal cost details" />
+      </span>
+      <span className="pointer-events-none absolute left-1/2 bottom-full z-20 mb-2 hidden w-64 -translate-x-1/2 rounded-lg bg-popover px-3 py-2 text-xs text-popover-foreground shadow-lg ring-1 ring-border group-hover:block">
+        <span className="font-semibold">Renewal after free year 1:</span> {hostingRenewalRates}
+      </span>
+    </span>
+  );
 }
 
 export default function Pricing() {
@@ -159,7 +174,10 @@ export default function Pricing() {
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="py-3 px-4 text-sm font-medium">{row.name}</td>
+                    <td className="py-3 px-4 text-sm font-medium">
+                      {row.name}
+                      {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
+                    </td>
                     <td className="py-3 px-4 text-center">{renderValue(row.starter)}</td>
                     <td className="py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
                     <td className="py-3 px-4 text-center">{renderValue(row.professional)}</td>
