@@ -48,22 +48,6 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
             </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-white/60 text-sm">
-              <div className="flex items-center gap-2">
-                <Mail size={16} className="shrink-0" />
-                <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.email}</a>
-              </div>
-              <div className="hidden md:block h-4 w-px bg-white/20" />
-              <div className="flex items-center gap-2">
-                <Phone size={16} className="shrink-0" />
-                <a href={siteContact.phoneHref} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.phoneDisplay}</a>
-              </div>
-              <div className="hidden md:block h-4 w-px bg-white/20" />
-              <div className="flex items-center gap-2">
-                <MapPin size={16} className="shrink-0" />
-                <span className="whitespace-nowrap">Lagos, Nigeria</span>
-              </div>
-            </div>
           </div>
 
           <div>
@@ -118,7 +102,25 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Full-width contact bar */}
+        <div className="mt-12 mb-6 rounded-2xl bg-white/5 border border-white/10 px-6 py-5 flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+          <div className="flex items-center gap-2 text-white/80 text-sm">
+            <Mail size={16} className="shrink-0 text-brand-accent" />
+            <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.email}</a>
+          </div>
+          <div className="hidden md:block h-5 w-px bg-white/20" />
+          <div className="flex items-center gap-2 text-white/80 text-sm">
+            <Phone size={16} className="shrink-0 text-brand-accent" />
+            <a href={siteContact.phoneHref} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.phoneDisplay}</a>
+          </div>
+          <div className="hidden md:block h-5 w-px bg-white/20" />
+          <div className="flex items-center gap-2 text-white/80 text-sm">
+            <MapPin size={16} className="shrink-0 text-brand-accent" />
+            <span className="whitespace-nowrap">Lagos, Nigeria</span>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
             &copy; {new Date().getFullYear()} Ashflex Web Design. All rights reserved.
           </p>
