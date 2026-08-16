@@ -58,7 +58,7 @@ const comparisonFeatures = [
   { name: "Monthly Reports", starter: false, business: false, professional: true, enterprise: true },
   { name: "Dedicated Manager", starter: false, business: false, professional: false, enterprise: true },
   { name: "SLA Guarantee", starter: false, business: false, professional: false, enterprise: true },
-  { name: "Estimated Timeline", starter: "1 week", business: "2 weeks", professional: "3–4 weeks", enterprise: "Custom" },
+  { name: "Estimated Timeline", starter: "1 week", business: "2 weeks", professional: "3–4 weeks", enterprise: "Custom", hasTimelineTooltip: true },
 ];
 
 function renderValue(value: any) {
@@ -149,17 +149,43 @@ function GetStartedButton({ popular, planName }: { popular: boolean; planName: s
   const label = planName === "Enterprise" ? "Get a Quote" : "Get Started";
   const href = `/contact?service=${encodeURIComponent("pricing")}&message=${encodeURIComponent(`I'd like to get started with the ${planName} plan (${plans.find((p) => p.name === planName)?.price ?? ""}). Please share the next steps.`)}`;
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      className="inline-block pointer-events-auto"
+      title={label}
+      style={{ touchAction: "manipulation" }}
+    >
       <span
-        className={`inline-block w-full max-w-[140px] text-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
+        className={`inline-flex items-center justify-center gap-1.5 w-full max-w-[160px] text-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
           popular
-            ? "bg-gradient-accent text-white shadow-md shadow-brand-accent/30 hover:shadow-lg hover:shadow-brand-accent/40"
-            : "border border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white"
+            ? "bg-gradient-accent text-white shadow-md shadow-brand-accent/30 hover:shadow-lg hover:shadow-brand-accent/40 hover:-translate-y-0.5"
+            : "border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white hover:-translate-y-0.5"
         }`}
       >
         {label}
+        <ArrowRight size={14} />
       </span>
     </Link>
+  );
+}
+
+function TimelineTooltip() {
+  return (
+    <span className="ml-1.5 inline-flex items-center relative group">
+      <span className="flex items-center justify-center min-h-11 min-w-11 -m-2 cursor-help">
+        <Info size={15} className="text-white/90" aria-label="Delivery timeline details" />
+      </span>
+      <span className="pointer-events-none absolute left-1/2 bottom-full z-50 mb-2 hidden w-80 -translate-x-1/2 rounded-lg bg-brand px-3.5 py-3 text-xs text-white shadow-xl ring-1 ring-white/20 group-hover:block group-focus-within:block">
+        <span className="font-semibold text-brand-cyan">What affects delivery speed:</span>
+        <ul className="mt-1.5 space-y-1 leading-relaxed list-disc pl-3.5">
+          <li>How quickly content &amp; brand assets are provided</li>
+          <li>Design revisions and approval turnaround</li>
+          <li>Scope of pages, features &amp; integrations</li>
+          <li>Third-party tools (payments, booking systems)</li>
+          <li>Confirmation of project deposit</li>
+        </ul>
+      </span>
+    </span>
   );
 }
 
@@ -167,10 +193,10 @@ function RenewalTooltip() {
   return (
     <span className="ml-1.5 inline-flex items-center relative group">
       <span className="flex items-center justify-center min-h-11 min-w-11 -m-2 cursor-help">
-        <Info size={14} className="text-muted-foreground" aria-label="Renewal cost details" />
+        <Info size={15} className="text-white/90" aria-label="Renewal cost details" />
       </span>
-      <span className="pointer-events-none absolute left-1/2 bottom-full z-20 mb-2 hidden w-64 -translate-x-1/2 rounded-lg bg-popover px-3 py-2 text-xs text-popover-foreground shadow-lg ring-1 ring-border group-hover:block">
-        <span className="font-semibold">Renewal after free year 1:</span> {hostingRenewalRates}
+      <span className="pointer-events-none absolute left-1/2 bottom-full z-50 mb-2 hidden w-72 -translate-x-1/2 rounded-lg bg-brand px-3.5 py-2.5 text-xs text-white shadow-xl ring-1 ring-white/20 group-hover:block group-focus-within:block">
+        <span className="font-semibold text-brand-cyan">Renewal after free year 1:</span> {hostingRenewalRates}
       </span>
     </span>
   );
@@ -284,6 +310,7 @@ export default function Pricing() {
                     <td className="sticky left-0 z-10 bg-brand text-white/85 py-3 px-4 text-sm font-medium">
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
+                      {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
                     </td>
                     <td className="py-3 px-4 text-center">{renderValue(row.starter)}</td>
                     <td className="sticky left-[120px] z-10 py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>

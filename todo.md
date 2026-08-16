@@ -1114,3 +1114,8 @@
 - [x] Pre-filled contact message field gets a subtle amber ring + glow highlight pulse on load (prefill-highlight animation, gated by prefers-reduced-motion)
 - [x] WhatsApp floating button pre-fills the chat message with the selected plan or service name (falls back to generic message)
 - [x] Added an "Estimated Cost & Timeline" summary bar above the pricing comparison table that updates dynamically as the user hovers any plan card
+
+## Tooltip & CTA fixes (Aug 16)
+- [ ] Make the renewal tooltip visible against the new dark Feature column background
+- [ ] Fix non-working "Get Started" CTA buttons in the Pricing comparison table
+- [ ] Add an informative tooltip to the "Estimated timeline" row explaining factors that affect delivery speed
