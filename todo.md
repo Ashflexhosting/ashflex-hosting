@@ -1126,6 +1126,10 @@
 - [x] Checkpointed and synced to GitHub main + master
 
 ## Horizontal scroll overlap fix (Aug 16)
-- [ ] Diagnose why the Professional column overlaps the Starter column during horizontal scroll on the Pricing comparison table
-- [ ] Fix the sticky column positioning so columns no longer overlap while scrolling (Pricing + Hosting tables)
-- [ ] Verify on small viewport, run tests, checkpoint, sync to GitHub main + master
+- [x] Diagnosed: the highlighted Business column pinned with left offsets wider than available viewport always spilled over the sliding Starter/Professional columns
+- [x] Fixed: restored original tier order (Starter, Professional, Business last), Feature pinned left-0 only, Business sticky right-0 on md+ viewports only — phones scroll cleanly with no overlap (both Pricing + Hosting tables)
+- [x] Verified at 375px mobile viewport (both tables, scroll sweep at 340px container showed no overlap), TypeScript + 29/29 tests pass, checkpointed and synced to GitHub main + master
+
+## Table width + footer contact line (Aug 16)
+- [x] Expanded Pricing comparison table: Feature 140→170px, tier columns 250/244→280/270px, min-w 700→1280px so columns hold full width
+- [x] Footer contact details now on one horizontal row: email, phone, and location side by side with gap-x-6 (wraps gracefully on very narrow screens)

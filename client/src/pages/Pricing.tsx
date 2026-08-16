@@ -294,43 +294,43 @@ export default function Pricing() {
 
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px]">
+            <table className="w-full min-w-[1280px]">
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="sticky left-0 z-10 w-[140px] bg-brand text-white text-left py-4 px-4 font-semibold">Feature</th>
-                  <th className="w-[250px] text-center py-4 px-4 font-semibold">Starter</th>
-                  <th className="w-[250px] text-center py-4 px-4 font-semibold">Professional</th>
-                  <th className="md:sticky right-0 z-20 w-[244px] text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
-                  <th className="w-[250px] text-center py-4 px-4 font-semibold">Enterprise</th>
+                  <th className="sticky left-0 z-10 w-[170px] bg-brand text-white text-left py-4 px-4 font-semibold">Feature</th>
+                  <th className="w-[280px] text-center py-4 px-4 font-semibold">Starter</th>
+                  <th className="w-[280px] text-center py-4 px-4 font-semibold">Professional</th>
+                  <th className="md:sticky right-0 z-20 w-[270px] text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
+                  <th className="w-[280px] text-center py-4 px-4 font-semibold">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="sticky left-0 z-10 w-[140px] bg-brand text-white/85 py-3 px-4 text-sm font-medium">
+                    <td className="sticky left-0 z-10 w-[170px] bg-brand text-white/85 py-3 px-4 text-sm font-medium">
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                       {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
                     </td>
-                    <td className="w-[250px] py-3 px-4 text-center">{renderValue(row.starter)}</td>
-                    <td className="w-[250px] py-3 px-4 text-center">{renderValue(row.professional)}</td>
-                    <td className="md:sticky right-0 z-10 w-[244px] py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
-                    <td className="w-[250px] py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
+                    <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.starter)}</td>
+                    <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.professional)}</td>
+                    <td className="md:sticky right-0 z-10 w-[270px] py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
+                    <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
                   </tr>
                 ))}
                 {/* Get Started CTA row */}
                 <tr className="border-b-2 border-border">
-                  <td className="sticky left-0 z-10 w-[140px] bg-brand text-white py-4 px-4 font-semibold text-sm">Get Started</td>
-                  <td className="w-[250px] py-4 px-4 text-center">
+                  <td className="sticky left-0 z-10 w-[170px] bg-brand text-white py-4 px-4 font-semibold text-sm">Get Started</td>
+                  <td className="w-[280px] py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Starter" />
                   </td>
-                  <td className="w-[250px] py-4 px-4 text-center">
+                  <td className="w-[280px] py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Professional" />
                   </td>
-                  <td className="md:sticky right-0 z-10 w-[244px] py-4 px-4 text-center bg-brand-secondary/5">
+                  <td className="md:sticky right-0 z-10 w-[270px] py-4 px-4 text-center bg-brand-secondary/5">
                     <GetStartedButton popular={true} planName="Business" />
                   </td>
-                  <td className="w-[250px] py-4 px-4 text-center">
+                  <td className="w-[280px] py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Enterprise" />
                   </td>
                 </tr>

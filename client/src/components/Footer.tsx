@@ -48,18 +48,18 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-white/60 text-sm">
-                <Mail size={16} />
-                <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors">{siteContact.email}</a>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-white/60 text-sm">
+              <div className="flex items-center gap-2">
+                <Mail size={16} className="shrink-0" />
+                <a href={`mailto:${siteContact.email}`} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.email}</a>
               </div>
-              <div className="flex items-center gap-2 text-white/60 text-sm">
-                <Phone size={16} />
-                <a href={siteContact.phoneHref} className="hover:text-white transition-colors">{siteContact.phoneDisplay}</a>
+              <div className="flex items-center gap-2">
+                <Phone size={16} className="shrink-0" />
+                <a href={siteContact.phoneHref} className="hover:text-white transition-colors whitespace-nowrap">{siteContact.phoneDisplay}</a>
               </div>
-              <div className="flex items-center gap-2 text-white/60 text-sm">
-                <MapPin size={16} />
-                <span>Lagos, Nigeria</span>
+              <div className="flex items-center gap-2">
+                <MapPin size={16} className="shrink-0" />
+                <span className="whitespace-nowrap">Lagos, Nigeria</span>
               </div>
             </div>
           </div>
