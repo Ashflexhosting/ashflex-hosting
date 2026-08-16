@@ -1062,5 +1062,9 @@
 - Keep existing tooltips, breakdown card, PDF download, contact CTA.
 
 ## Free hosting + domain note (Aug 16)
-- [ ] Add "All plans include 1 year free Hosting + Domain (.com / .com.ng / .ng)" to the Pricing page plans and calculator inclusions
+- [x] Add "All plans include 1 year free Hosting + Domain (.com / .com.ng / .ng)" to the Pricing page plans (all 4 tiers + comparison table row) and calculator inclusions (all 4 plans + PDF breakdown)
+- [x] Verify (pricing + calculator screenshots), checkpoint (f73e68b7, auto-published), and sync to GitHub main + master
+
+## Hosting renewal clarity (Aug 16)
+- [ ] Find the Hosting & Domain pricing section (services or pricing page) and add "first year free with all website plans" plus renewal cost note
 - [ ] Verify, checkpoint, and sync to GitHub main + master

@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { ArrowRight, CheckCircle, Star, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Paintbrush, Code2, Rocket, ShieldCheck, LifeBuoy, Gift } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getServiceBySlug, hostingTierImages, hostingTiers, servicePricingImages, services } from "@/data/services";
@@ -164,6 +164,13 @@ const PROCESS_STEPS = [
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Choose the package that fits your site. Every tier includes SSL, 99.9% uptime, and easy upgrades as you grow.
               </p>
+              <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-brand-success/30 bg-brand-success/5 px-6 py-4 text-center">
+                <p className="text-sm text-foreground/80">
+                  <Gift size={16} className="mr-2 inline-block -mt-0.5 text-brand-success" />
+                  <span className="font-semibold">Every website plan includes 1 year of free hosting + domain (.com / .com.ng / .ng).</span>{" "}
+                  The prices below are renewal rates from year 2 onward — starting from just ₦30,000/year.
+                </p>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {hostingTiers.map((tier) => (
@@ -281,9 +288,9 @@ const PROCESS_STEPS = [
                 </tbody>
               </table>
             </div>
-            <p className="text-center text-sm text-muted-foreground mt-8">
-              All packages include domain registration support and free setup. Custom VPS and dedicated hosting also available on request.
-            </p>
+              <p className="text-center text-sm text-muted-foreground mt-8">
+                Renewal rates shown apply from year 2 onward, since the first year of hosting and domain is free with all of our website plans. All packages include domain registration support and free setup. Custom VPS and dedicated hosting also available on request.
+              </p>
           </div>
         </section>
       )}
