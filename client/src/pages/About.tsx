@@ -86,7 +86,7 @@ export default function About() {
                 <div className="mt-6 h-1 w-24 grain-line" />
               </div>
             </div>
-            <div className="lg:col-span-8 space-y-6">
+            <div className="lg:col-span-8 lg:pt-14 xl:pt-16 space-y-6">
               <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed">
                 Founded in Lagos, Nigeria, Ashflex Web Design has grown from a small freelance operation into one of Africa's leading digital agencies. What started as a passion for creating beautiful, functional websites has evolved into a comprehensive digital solutions provider serving businesses across Nigeria, Africa, and internationally.
               </p>

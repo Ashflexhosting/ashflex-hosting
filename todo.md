@@ -1026,5 +1026,9 @@
 - [x] Verify visually and via tests, checkpoint, and sync to GitHub main + master
 
 ## What We Do right-side alignment (Aug 16, user request)
-- [ ] Increase the top padding of the right-side content in the "What We Do" section on the Services page (desktop only) so it aligns with the left header text
+- [x] Increase the top padding of the right-side card grid in the "What We Do" section on the Services page (desktop only, lg:pt-14 xl:pt-16) so it aligns with the left header text
+- [x] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
+
+## About page desktop alignment (Aug 16, user request)
+- [ ] Apply the same desktop-only right-side top padding alignment (lg:pt-14 xl:pt-16) to two-column sections on the About page where the right content sits beside a section header
 - [ ] Verify visually (desktop) and via tests, checkpoint, and sync to GitHub main + master
