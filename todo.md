@@ -1044,9 +1044,9 @@
 - Remaining: checkpoint, push main + push main:master, mark todo complete, deliver with manus-webdev:// version.
 
 ## Calculator vs pricing alignment (Aug 16, user request)
-- [ ] Compare the Pricing page plan structure/features/prices with the cost calculator and list mismatches
-- [ ] Fix the calculator so its plan structure, options, and prices match the pricing concept
-- [ ] Verify visually and via tests, checkpoint, and sync to GitHub main + master
+- [x] Compare the Pricing page plan structure/features/prices with the cost calculator and list mismatches (ad-hoc per-page formula undercutting tiers; missing tier-driven structure)
+- [x] Fix the calculator so its plan structure, options, and prices match the pricing concept: tier selector (Starter ₦150,000 / Business ₦350,000 / Professional ₦750,000 / Enterprise ₦1,500,000+), included-features panel, extras only where not already included (E-commerce +₦200,000, SEO +₦75,000/+₦150,000, API +₦500,000, maintenance ₦300,000/yr), green included lines in breakdown, PDF lists plan + extras, verified all four plan totals in browser
+- [x] Verify visually and via tests, checkpoint (2c5ff602, auto-published), and sync to GitHub main + master
 
 ### Mismatches found (calculator vs pricing concept)
 1. Pricing plans are tiered (Starter ₦150,000 / Business ₦350,000 / Professional ₦750,000 / Enterprise ₦1,500,000+), but the calculator computes ad-hoc: pages × ₦15,000 × design multiplier — e.g. 5 pages standard = ₦75,000, which undercuts the Starter tier (₦150,000 incl. design, SEO basic, SSL, analytics, 1-month support).
@@ -1060,3 +1060,7 @@
 - Make calculator tier-driven: select plan first (Starter/Business/Professional/Enterprise) which pre-fills pages, design level, SEO, and included features, plus adjustable extras (E-commerce expansion, Advanced/Complete SEO, API Integration, Annual Maintenance) with the exact amounts already in the calculator.
 - Base estimates must be consistent with tier prices: Starter ₦150,000; Business ₦350,000; Professional ₦750,000; Enterprise "₦1,500,000+".
 - Keep existing tooltips, breakdown card, PDF download, contact CTA.
+
+## Free hosting + domain note (Aug 16)
+- [ ] Add "All plans include 1 year free Hosting + Domain (.com / .com.ng / .ng)" to the Pricing page plans and calculator inclusions
+- [ ] Verify, checkpoint, and sync to GitHub main + master

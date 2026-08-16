@@ -44,6 +44,7 @@ const PLANS: Plan[] = [
       "SSL Certificate",
       "1 Month Free Support",
       "Google Analytics Setup",
+      "1 Year Free Hosting + Domain (.com / .com.ng / .ng)",
     ],
     extraOptions: ["E-commerce Store", "Advanced SEO", "Complete SEO", "API Integrations"],
     pagesLabel: "5 pages",
@@ -68,6 +69,7 @@ const PLANS: Plan[] = [
       "Analytics Dashboard",
       "Performance Optimization",
       "Social Media Integration",
+      "1 Year Free Hosting + Domain (.com / .com.ng / .ng)",
     ],
     extraOptions: ["Full E-commerce Store", "Complete SEO", "API Integrations"],
     pagesLabel: "10 pages",
@@ -93,6 +95,7 @@ const PLANS: Plan[] = [
       "Training Sessions",
       "Monthly Performance Reports",
       "Content Strategy",
+      "1 Year Free Hosting + Domain (.com / .com.ng / .ng)",
     ],
     extraOptions: ["Annual Maintenance"],
     pagesLabel: "Unlimited pages",
@@ -118,6 +121,7 @@ const PLANS: Plan[] = [
       "SLA Guarantee",
       "Scalability Planning",
       "White-label Solutions",
+      "1 Year Free Hosting + Domain (.com / .com.ng / .ng)",
     ],
     extraOptions: [],
     pagesLabel: "Unlimited",
@@ -157,7 +161,7 @@ function downloadEstimatePdf(
   push(`Generated: ${now.toLocaleString("en-GB", { dateStyle: "full", timeStyle: "short" })}`);
   push("");
   push(`Selected plan: ${plan.name} — ${plan.priceLabel} ${plan.id === "enterprise" ? "(starting)" : "one-time"}`);
-  push(`Includes: ${plan.pagesLabel}, ${plan.seoLabel}`);
+  push(`Includes: ${plan.pagesLabel}, ${plan.seoLabel}, 1 Year Free Hosting + Domain (.com / .com.ng / .ng)`);
   if (plan.ecommerceIncluded) push("Includes: E-commerce ready");
   if (plan.apiIncluded) push("Includes: API integrations");
   push("");
