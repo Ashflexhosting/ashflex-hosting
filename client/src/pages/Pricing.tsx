@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, X, Star, Info } from "lucide-react";
+import { ArrowRight, CheckCircle, X, Star, Info, ListChecks } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -151,37 +151,57 @@ export default function Pricing() {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
+      <section className="py-20 relative overflow-hidden">
+        {/* Creative backdrop */}
+        <div className="absolute inset-0 bg-muted/30" />
+        <div className="absolute -top-24 left-1/4 w-96 h-96 bg-brand-secondary/8 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 right-1/4 w-96 h-96 bg-brand-accent/8 rounded-full blur-[120px]" />
+
+        <div className="container relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
-              Feature Comparison
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-gradient-brand text-white rounded-full mb-4">
+              <ListChecks size={13} /> Side-by-side
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              Feature <span className="bg-gradient-brand bg-clip-text text-transparent">Comparison</span>
             </h2>
-            <p className="text-muted-foreground">Compare all features across our pricing plans</p>
+            <p className="text-muted-foreground">Everything you get, plan by plan</p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px]">
+          <div className="overflow-x-auto rounded-3xl shadow-2xl shadow-brand/8 ring-1 ring-border">
+            <table className="w-full min-w-[760px] border-separate border-spacing-0">
               <thead>
-                <tr className="border-b-2 border-border">
-                  <th className="text-left py-4 px-4 font-semibold">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold">Starter</th>
-                  <th className="text-center py-4 px-4 font-semibold text-brand-secondary">Business</th>
-                  <th className="text-center py-4 px-4 font-semibold">Professional</th>
-                  <th className="text-center py-4 px-4 font-semibold">Enterprise</th>
+                <tr className="bg-gradient-brand text-white">
+                  <th className="text-left py-5 px-5 font-semibold text-sm uppercase tracking-wider text-white/90">Feature</th>
+                  <th className="text-center py-5 px-4 font-semibold text-sm">Starter</th>
+                  <th className="relative text-center py-5 px-4 font-semibold text-sm text-white bg-gradient-accent ring-2 ring-brand-accent/70 ring-inset">
+                    <span className="inline-flex items-center gap-1">
+                      <Star size={13} fill="white" className="text-white" /> Business
+                    </span>
+                  </th>
+                  <th className="text-center py-5 px-4 font-semibold text-sm">Professional</th>
+                  <th className="text-center py-5 px-4 font-semibold text-sm">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
-                  <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="py-3 px-4 text-sm font-medium">
-                      {row.name}
+                  <tr
+                    key={row.name}
+                    className="compare-row bg-white/70 backdrop-blur transition-colors duration-200 hover:bg-brand-secondary/5"
+                  >
+                    <td className="py-3.5 px-5 text-sm font-medium text-foreground/85 first:rounded-l-2xl">
+                      <div className="flex items-center gap-2.5">
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-gradient-brand/10 text-brand-secondary text-[10px] font-bold">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        {row.name}
+                      </div>
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                     </td>
-                    <td className="py-3 px-4 text-center">{renderValue(row.starter)}</td>
-                    <td className="py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
-                    <td className="py-3 px-4 text-center">{renderValue(row.professional)}</td>
-                    <td className="py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
+                    <td className="py-3.5 px-4 text-center bg-white/40">{renderValue(row.starter)}</td>
+                    <td className="py-3.5 px-4 text-center bg-gradient-accent/10 ring-x-2 ring-brand-accent/40">{renderValue(row.business)}</td>
+                    <td className="py-3.5 px-4 text-center bg-white/40">{renderValue(row.professional)}</td>
+                    <td className="py-3.5 px-4 text-center bg-white/40 last:rounded-r-2xl">{renderValue(row.enterprise)}</td>
                   </tr>
                 ))}
               </tbody>

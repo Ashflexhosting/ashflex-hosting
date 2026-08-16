@@ -1081,6 +1081,10 @@
 - [x] Tooltip icon next to the free hosting feature line showing the exact renewal cost on hover (Info icon, group-hover popover with tier.price)
 
 ## Hosting follow-ups (Aug 16)
-- [ ] Add the renewal tooltip pattern to the free hosting line on the Pricing page (all tiers)
-- [ ] Add a short FAQ section below the hosting comparison table addressing common domain renewal questions
-- [ ] Increase touch target area of renewal tooltip icons on mobile (min 44px target)
+- [x] Add the renewal tooltip pattern to the free hosting line on the Pricing page (comparison table row: RenewalTooltip component showing year-2 rates per tier)
+- [x] Add a short FAQ section below the hosting comparison table addressing common domain renewal questions (4-item Accordion: free year ending, rate changes, .com.ng vs .ng, domain transfer/EPP)
+- [x] Increase touch target area of renewal tooltip icons on mobile (min-h-11 min-w-11 -m-2 wrapper = 44px+ target with 14px visual icon, both Pricing and hosting pages)
+
+## Creative modern comparison table redesign (Aug 16)
+- [ ] Redesign the Feature Comparison table on the Pricing page to look creative and modern (modern cards/gradient accents, hover states, sticky Business highlight column), keeping all feature data and the renewal tooltip
+- [ ] Verify visually, run tests, checkpoint, and sync to GitHub main + master
