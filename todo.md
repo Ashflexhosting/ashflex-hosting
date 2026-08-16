@@ -1116,6 +1116,11 @@
 - [x] Added an "Estimated Cost & Timeline" summary bar above the pricing comparison table that updates dynamically as the user hovers any plan card
 
 ## Tooltip & CTA fixes (Aug 16)
-- [ ] Make the renewal tooltip visible against the new dark Feature column background
-- [ ] Fix non-working "Get Started" CTA buttons in the Pricing comparison table
-- [ ] Add an informative tooltip to the "Estimated timeline" row explaining factors that affect delivery speed
+- [x] Make the renewal tooltip visible against the new dark Feature column background (white icon, dark navy popover, z-50, focusable)
+- [x] Fix non-working "Get Started" CTA buttons in the Pricing comparison table (explicit pointer-events/touch-action, 2px border, hover lift with arrow icon; clicks verified to navigate with pre-filled contact form)
+- [x] Added informative tooltip to the "Estimated timeline" row: content readiness, revision turnaround, scope & integrations, third-party tools, and deposit confirmation
+
+## CTA buttons still not working (Aug 16 round 2)
+- [x] Diagnosed: the decorative section backdrop (absolute inset-0 bg-muted/30) was sitting on top of the CTA row and intercepting clicks; root cause found via elementFromPoint stacking check
+- [x] Fixed by adding pointer-events-none to the decorative backdrop; verified all 4 CTA buttons now sit on top of the stack and clicks navigate to the pre-filled contact form in the real browser
+- [ ] Checkpoint, sync to GitHub main + master
