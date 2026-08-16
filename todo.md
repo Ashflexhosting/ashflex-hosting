@@ -1099,3 +1099,7 @@
 - [x] Revert the Pricing page Feature Comparison table to the old styling (only Pricing page; renewal tooltip kept)
 - [x] Hosting & Domain table: removed numbered feature tags, rows now use thin horizontal lines instead of glass cards; sticky Business column kept
 - [x] Verify, run tests, checkpoint, and sync to GitHub main + master
+
+## Comparison table CTAs (Aug 16)
+- [x] Add an "Estimated timeline" row to both the Pricing (1 wk / 2 wks / 3–4 wks / Custom) and Hosting & Domain (1–2 days / Same day / Same day) comparison tables
+- [x] Add a "Get Started" CTA button at the bottom of each pricing column in the comparison table ("Get a Quote" for Enterprise, Business highlighted in aqua)

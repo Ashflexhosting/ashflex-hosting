@@ -297,6 +297,7 @@ const PROCESS_STEPS = [
                     { label: "Priority support", values: [false, true, true] },
                     { label: "24/7 priority support", values: [false, false, true] },
                     { label: "Multiple websites", values: ["1", "Up to 5", "Unlimited"] },
+                    { label: "Setup timeline", values: ["1–2 days", "Same day", "Same day"] },
                   ].map((row) => (
                     <tr key={row.label} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
                       <td className="sticky left-0 z-10 py-3.5 px-5 text-muted-foreground bg-background">

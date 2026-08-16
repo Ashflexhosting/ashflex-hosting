@@ -57,6 +57,7 @@ const comparisonFeatures = [
   { name: "Monthly Reports", starter: false, business: false, professional: true, enterprise: true },
   { name: "Dedicated Manager", starter: false, business: false, professional: false, enterprise: true },
   { name: "SLA Guarantee", starter: false, business: false, professional: false, enterprise: true },
+  { name: "Estimated Timeline", starter: "1 week", business: "2 weeks", professional: "3–4 weeks", enterprise: "Custom" },
 ];
 
 function renderValue(value: any) {
@@ -66,6 +67,23 @@ function renderValue(value: any) {
 }
 
 const hostingRenewalRates = "Year 2 onward: Starter ₦60,000 · Professional ₦85,000 · Business ₦120,000 per year";
+
+function GetStartedButton({ popular, planName }: { popular: boolean; planName: string }) {
+  const label = planName === "Enterprise" ? "Get a Quote" : "Get Started";
+  return (
+    <Link href="/contact">
+      <span
+        className={`inline-block w-full max-w-[140px] text-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
+          popular
+            ? "bg-gradient-accent text-white shadow-md shadow-brand-accent/30 hover:shadow-lg hover:shadow-brand-accent/40"
+            : "border border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white"
+        }`}
+      >
+        {label}
+      </span>
+    </Link>
+  );
+}
 
 function RenewalTooltip() {
   return (
@@ -189,6 +207,22 @@ export default function Pricing() {
                     <td className="py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
                   </tr>
                 ))}
+                {/* Get Started CTA row */}
+                <tr className="border-b-2 border-border">
+                  <td className="sticky left-0 z-10 bg-background py-4 px-4 font-semibold text-sm">Get Started</td>
+                  <td className="py-4 px-4 text-center">
+                    <GetStartedButton popular={false} planName="Starter" />
+                  </td>
+                  <td className="sticky left-[120px] z-10 py-4 px-4 text-center bg-brand-secondary/5">
+                    <GetStartedButton popular={true} planName="Business" />
+                  </td>
+                  <td className="py-4 px-4 text-center">
+                    <GetStartedButton popular={false} planName="Professional" />
+                  </td>
+                  <td className="py-4 px-4 text-center">
+                    <GetStartedButton popular={false} planName="Enterprise" />
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
