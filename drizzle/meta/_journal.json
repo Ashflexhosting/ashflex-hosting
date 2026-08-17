@@ -36,6 +36,13 @@
       "when": 1786704305996,
       "tag": "0004_tidy_bloodstrike",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1786998990118,
+      "tag": "0005_blushing_starbolt",
+      "breakpoints": true
     }
   ]
 }

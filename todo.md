@@ -1133,3 +1133,17 @@
 ## Table width + footer contact line (Aug 16)
 - [x] Expanded Pricing comparison table: Feature 140→170px, tier columns 250/244→280/270px, min-w 700→1280px so columns hold full width
 - [x] Footer contact details now on one horizontal row: email, phone, and location side by side with gap-x-6 (wraps gracefully on very narrow screens)
+
+## Newsletter form functional (Aug 17)
+
+- [ ] Add a `newsletter` table (email, source, timestamps) to the schema
+- [ ] tRPC procedure: public `newsletter.subscribe` with email validation + duplicate handling + rate limiting
+- [ ] Footer newsletter form: real submit with loading spinner, success state, disables repeat prompts
+- [ ] Vitest tests for the subscribe procedure
+- [ ] Checkpoint, sync to GitHub main + master
+
+## Sticky comparison table skill
+
+- [ ] Initialize skill via init_skill.py
+- [ ] Write SKILL.md + reusable reference template with the proven pattern
+- [ ] Validate and deliver skill

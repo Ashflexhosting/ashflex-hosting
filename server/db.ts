@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { desc } from "drizzle-orm";
-import { contactSubmissions, InsertContactSubmission, InsertJobApplication, InsertUser, jobApplications, users } from "../drizzle/schema";
+import { contactSubmissions, InsertContactSubmission, InsertJobApplication, InsertNewsletterSubscriber, InsertUser, jobApplications, newsletterSubscribers, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -152,6 +152,44 @@ export async function updateJobApplicationStatus(
   const db = await getDb();
   if (!db) throw new Error("Database not available; application status could not be updated");
   await db.update(jobApplications).set({ status }).where(eq(jobApplications.id, id));
+}
+
+export async function upsertNewsletterSubscriber(
+  subscriber: InsertNewsletterSubscriber,
+): Promise<{ id: number; inserted: boolean }> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available; newsletter subscription could not be stored");
+  }
+  // INSERT IGNORE keeps the unique email constraint happy: repeat signups
+  // silently resolve to the existing row instead of throwing an error.
+  const [result] = await db
+    .insert(newsletterSubscribers)
+    .values(subscriber)
+    .onDuplicateKeyUpdate({ set: { source: subscriber.source ?? "footer" } });
+  const row = (result as unknown as { affectedRows: number; insertId?: number }) ?? {};
+  return {
+    id: (row.insertId ?? 0) as number,
+    inserted: Number(row.affectedRows ?? 0) > 0,
+  };
+}
+
+export async function countNewsletterSubscriptionsLastHour(): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db
+    .select()
+    .from(newsletterSubscribers)
+    .where(
+      (() => {
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+        return {
+          sql: "createdAt > ?",
+          params: [oneHourAgo.toISOString()],
+        };
+      })() as never,
+    );
+  return rows.length;
 }
 
 export async function deleteJobApplication(id: number): Promise<void> {

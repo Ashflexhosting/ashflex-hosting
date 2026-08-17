@@ -9,6 +9,7 @@ import {
   listJobApplications,
   updateContactSubmissionStatus,
   updateJobApplicationStatus,
+  upsertNewsletterSubscriber,
 } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { invokeLLM } from "./_core/llm";
@@ -303,6 +304,40 @@ export const appRouter = router({
           return { success: true } as const;
         }),
     }),
+  }),
+
+  newsletter: router({
+    subscribe: publicProcedure
+      .input(
+        z.object({
+          email: z
+            .string()
+            .min(1, "Email is required")
+            .email("Please provide a valid email address")
+            .max(320, "Email is too long")
+            .trim(),
+          source: z.string().max(60).optional().default("footer"),
+        }),
+      )
+      .mutation(async ({ input }) => {
+        // Duplicate signups always succeed so repeat visitors never see an error.
+        const { id, inserted } = await upsertNewsletterSubscriber({
+          email: input.email,
+          source: input.source ?? "footer",
+        });
+
+        if (inserted) {
+          // Notify the site owner about the new subscriber so the lead is not lost.
+          await notifyOwner({
+            title: `New newsletter subscriber: ${input.email}`,
+            content: `A new visitor subscribed to the Ashflex newsletter via the footer form.\nEmail: ${input.email}`,
+          }).catch((error) => {
+            console.error("[Newsletter] Owner notification failed:", error);
+          });
+        }
+
+        return { id, inserted } as const;
+      }),
   }),
 });
 export type AppRouter = typeof appRouter;

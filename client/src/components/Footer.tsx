@@ -1,9 +1,78 @@
+import { useState } from "react";
 import { Link } from "wouter";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle2, Loader2 } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
+import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 import { siteContact } from "@shared/siteContact";
 import { brandLogoUrl } from "@shared/brand";
+
+const SUBSCRIBED_LOCALSTORAGE_KEY = "ashflex-newsletter-subscribed";
+
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [initiallySubscribed] = useState(
+    () => localStorage.getItem(SUBSCRIBED_LOCALSTORAGE_KEY) === "1",
+  );
+  const subscribeMutation = trpc.newsletter.subscribe.useMutation();
+
+  if (initiallySubscribed) {
+    return (
+      <div className="flex items-center gap-2 text-brand-accent text-sm font-medium">
+        <CheckCircle2 size={16} />
+        <span>You&rsquo;re subscribed to the Ashflex newsletter.</span>
+      </div>
+    );
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+    if (!trimmed) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+    try {
+      await subscribeMutation.mutateAsync({ email: trimmed, source: "footer" });
+      localStorage.setItem(SUBSCRIBED_LOCALSTORAGE_KEY, "1");
+      toast.success("Subscribed! You'll hear from us soon.");
+      setEmail("");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
+
+  const isLoading = subscribeMutation.isPending;
+
+  return (
+    <form className="space-y-3" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your email address"
+        disabled={isLoading}
+        aria-label="Email address for newsletter"
+        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors disabled:opacity-60"
+      />
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full px-4 py-3 rounded-xl bg-gradient-primary text-white text-sm font-semibold hover:shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98]"
+      >
+        {isLoading ? (
+          <span className="inline-flex items-center justify-center gap-2">
+            <Loader2 size={15} className="animate-spin" />
+            Subscribing&hellip;
+          </span>
+        ) : (
+          "Subscribe"
+        )}
+      </button>
+    </form>
+  );
+}
 
 export default function Footer() {
   return (
@@ -86,19 +155,7 @@ export default function Footer() {
             <p className="text-white/60 text-sm mb-4">
               Subscribe for web design tips, industry insights, and exclusive offers.
             </p>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors"
-              />
-              <button
-                type="submit"
-                className="w-full px-4 py-3 rounded-xl bg-gradient-primary text-white text-sm font-semibold hover:shadow-lg hover:shadow-brand-accent/20 transition-all duration-200"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 
