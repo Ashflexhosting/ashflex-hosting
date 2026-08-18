@@ -1176,3 +1176,8 @@
 
 - [x] Generate an Ashflex-themed agency website design and composite it into the iMac mockup screen: captured the Ashflex newsletter page, quad-warped it onto the iMac screen geometry with bezel clearing and reflection overlay (/manus-storage/ashflex-imac-screen_a42903ad.png)
 - [x] Uploaded asset and integrated into welcome section (Home.tsx), verified on homepage, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## iMac mockup screen: show Ashflex homepage (Aug 18)
+
+- [x] Capture the Ashflex homepage (1513x993 headless Chromium) and composite it onto the iMac screen (same warp geometry, bezel clear, reflection) — /manus-storage/ashflex-imac-screen_97d232b0.png
+- [x] Uploaded asset, updated Home.tsx, verified on homepage (39/39 tests pass); checkpointed and auto-published with GitHub sync
