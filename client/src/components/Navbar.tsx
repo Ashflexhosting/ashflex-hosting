@@ -51,7 +51,11 @@ export default function Navbar() {
   const { theme, toggleTheme, switchable } = useTheme();
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -123,9 +127,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5"
+          ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 dark:bg-[#0A1633]/85"
           : "bg-transparent"
       }`}
     >
@@ -274,13 +278,13 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu — full-screen slide-in with blurred backdrop */}
+        {/* Mobile Menu — full-screen slide-in with blurred backdrop */}
       <AnimatePresence>
         {mobileOpen && (
           <>
             {/* Blurred dimmed backdrop */}
             <motion.div
-              className="lg:hidden fixed inset-0 z-40 bg-[#071B5A]/40 backdrop-blur-md"
+              className="lg:hidden fixed inset-0 z-[55] bg-[#071B5A]/40 backdrop-blur-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -290,7 +294,7 @@ export default function Navbar() {
             />
             {/* Slide-in panel */}
             <motion.div
-              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-50 overflow-hidden shadow-2xl"
+              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-[65] overflow-hidden shadow-2xl"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

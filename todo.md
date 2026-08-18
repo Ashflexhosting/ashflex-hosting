@@ -1415,3 +1415,20 @@
 - [x] Enhanced mobile menu: full-screen slide-in from right (spring physics), blurred dimmed backdrop, staggered menu item fade-ins, close X button, body scroll lock
 - [x] Implemented dark mode toggle in navbar (desktop + mobile): sun/moon icon with rotate animation, enabled via ThemeProvider switchable, persists in localStorage, applies site-wide
 - [x] Verified navbar renders on desktop (375x812 and 1280) with toggle; 39/39 tests pass
+
+## Bug fixes (user report)
+- [x] Dark mode toggle not working: diagnose ThemeProvider switchable propagation and .dark CSS coverage; ensure toggle actually switches site appearance
+- [x] Cannot access the menu when scrolled: navbar may be hidden behind hero content or menu panel z-index/overflow issues when body is locked; diagnose and fix
+- [ ] Verify both fixes visually (mobile + desktop), run tests, checkpoint and publish
+
+### Fix state notes
+Dark mode: added full `.dark { ... }` token block to client/src/index.css (matching :root vars) so the ThemeContext .dark toggle now visibly switches theme. ThemeProvider in App.tsx already has switchable=true; Navbar toggle buttons (desktop + mobile) wired to toggleTheme.
+Mobile menu: raised navbar to z-[60], backdrop z-[55], slide-in panel z-[65] (above WhatsAppButton z-40, StickyCTA z-30, hero fixed bg). Hero bg-fixed remains (desktop-only `hidden lg:block`? no — hero uses bg-fixed on mobile too; user did not report hero issue, kept as-is).
+Remaining: verify dark mode works in browser + mobile menu opens after scroll; tests; checkpoint.
+
+### Verification notes (browser test)
+- Toggle click WORKS: aria-label switched from "Switch to dark mode" to "Switch to light mode", Moon icon now visible in navbar (screenshot confirms), .dark class applied (dark:bg-[#0A1633]/85 visible on scrolled navbar).
+- Dark tokens are now active: sections using semantic tokens (e.g., "Trusted by" light gray section and Welcome section backgrounds) flipped to dark — visible in scrolled screenshot (top bands now dark navy).
+- Site sections with hardcoded brand colors (hero #071B5A) keep dark look regardless; light-mode sections (bg-[#D8D8D8], #E8E9EC gray sections) still show light bg — acceptable since many sections are brand-dark by design.
+- Remaining check: mobile menu opens when scrolled (375px viewport). Then run tests + checkpoint.
+- Stats on live page verified 248+/96%/9+/14+ (confirmed final).
