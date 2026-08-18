@@ -63,7 +63,7 @@ export default function IndustryDetail() {
               <div className="space-y-4">
                 {[
                   `Deep understanding of the ${industry.title.toLowerCase()} industry landscape`,
-                  "Proven track record with 246+ projects across multiple industries",
+                  "Proven track record with 244+ projects across multiple industries",
                   "Custom solutions built specifically for your sector",
                   "Dedicated team with industry-specific expertise",
                   "Compliance-ready solutions meeting industry standards",

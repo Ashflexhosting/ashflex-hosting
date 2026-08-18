@@ -502,10 +502,10 @@ export default function Home() {
 
               {/* stats band */}
               <div className="hero-fade-in-d3 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-w-2xl">
-                <CounterStat value={246} suffix="+" label="Projects Delivered" />
-                <CounterStat value={94} suffix="%" label="Client Satisfaction" delay="100ms" />
-                <CounterStat value={10} suffix="+" label="Years Experience" delay="200ms" />
-                <CounterStat value={15} suffix="+" label="Countries Served" delay="300ms" />
+                <CounterStat value={244} suffix="+" label="Projects Delivered" />
+                <CounterStat value={91} suffix="%" label="Client Satisfaction" delay="100ms" />
+                <CounterStat value={9} suffix="+" label="Years Experience" delay="200ms" />
+                <CounterStat value={14} suffix="+" label="Countries Served" delay="300ms" />
               </div>
             </div>
 
@@ -629,14 +629,14 @@ href="https://galconengineering.com"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-primary text-white"><Rocket size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">246+<br />Projects Delivered</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">244+<br />Projects Delivered</span>
                 </div>
                 <div
                   className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#0757F7] text-white"><Star size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">94%<br />Client Satisfaction</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">91%<br />Client Satisfaction</span>
                 </div>
 
                 <TiltEffect max={6}>
