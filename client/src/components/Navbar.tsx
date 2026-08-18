@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2 } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
+import { motion } from "framer-motion";
 import { brandLogoUrl } from "@shared/brand";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
@@ -332,6 +333,7 @@ export default function Navbar() {
 }
 
 function TopBarNewsletter() {
+  const [subscribed, setSubscribed] = useState(false);
   const subscribeMutation = trpc.newsletter.subscribe.useMutation({
     onSuccess: () => {
       toast.success("You're on the list!", {
@@ -342,6 +344,8 @@ function TopBarNewsletter() {
       } catch {
         // Storage may be unavailable; ignore.
       }
+      setSubscribed(true);
+      setTimeout(() => setSubscribed(false), 5000);
     },
     onError: () => {
       toast.error("Couldn't subscribe right now", {
@@ -350,6 +354,21 @@ function TopBarNewsletter() {
     },
   });
   const [email, setEmail] = useState("");
+
+  if (subscribed) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 6 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+        className="hidden xl:flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1.5"
+        aria-live="polite"
+      >
+        <CheckCircle2 size={13} className="text-brand-cyan shrink-0" />
+        <span className="text-[11px] font-semibold text-white/90">You&rsquo;re on the list</span>
+      </motion.div>
+    );
+  }
 
   return (
     <form

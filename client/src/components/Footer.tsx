@@ -7,22 +7,29 @@ import { trpc } from "@/lib/trpc";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 import { siteContact } from "@shared/siteContact";
 import { brandLogoUrl } from "@shared/brand";
+import { motion } from "framer-motion";
 
 const SUBSCRIBED_LOCALSTORAGE_KEY = "ashflex-newsletter-subscribed";
 
 function NewsletterForm() {
   const [email, setEmail] = useState("");
+  const [justSubscribed, setJustSubscribed] = useState(false);
   const [initiallySubscribed] = useState(
     () => localStorage.getItem(SUBSCRIBED_LOCALSTORAGE_KEY) === "1",
   );
   const subscribeMutation = trpc.newsletter.subscribe.useMutation();
 
-  if (initiallySubscribed) {
+  if (initiallySubscribed || justSubscribed) {
     return (
-      <div className="flex items-center gap-2 text-brand-accent text-sm font-medium">
+      <motion.div
+        initial={justSubscribed ? { opacity: 0, scale: 0.92, y: 8 } : undefined}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+        className="flex items-center gap-2 text-brand-accent text-sm font-medium"
+      >
         <CheckCircle2 size={16} />
         <span>You&rsquo;re subscribed to the Ashflex newsletter.</span>
-      </div>
+      </motion.div>
     );
   }
 
@@ -36,6 +43,7 @@ function NewsletterForm() {
     try {
       await subscribeMutation.mutateAsync({ email: trimmed, source: "footer" });
       localStorage.setItem(SUBSCRIBED_LOCALSTORAGE_KEY, "1");
+      setJustSubscribed(true);
       toast.success("Subscribed! You'll hear from us soon.");
       setEmail("");
     } catch {

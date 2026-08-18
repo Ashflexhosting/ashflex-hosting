@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { AnimatePresence, motion } from "framer-motion";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,9 +123,24 @@ export default function Newsletter() {
               from the Ashflex team — no fluff, no spam, just value.
             </p>
 
+            <div className="glass-card bg-white/10 border border-white/20 rounded-2xl p-6 lg:p-8 overflow-hidden min-h-[320px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
             {submitted ? (
-              <div className="glass-card bg-white/10 border border-white/20 rounded-2xl p-8 text-center">
-                <CheckCircle2 size={40} className="text-brand-accent mx-auto mb-3" />
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+                className="text-center w-full"
+              >
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+                >
+                  <CheckCircle2 size={40} className="text-brand-accent mx-auto mb-3" />
+                </motion.div>
                 <h3 className="text-xl font-semibold text-white mb-2">You're on the list!</h3>
                 <p className="text-white/70 text-sm mb-5">
                   Check your inbox for a welcome note. In the meantime, explore our portfolio
@@ -140,11 +156,16 @@ export default function Newsletter() {
                     <Link href="/services">Explore Services</Link>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ) : (
-              <form
+              <motion.form
+                key="form"
+                initial={{ opacity: 0, scale: 0.95, y: -12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 8 }}
+                transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
                 onSubmit={handleSubmit}
-                className="glass-card bg-white/10 border border-white/20 rounded-2xl p-6 lg:p-8 text-left"
+                className="text-left w-full"
                 aria-label="Newsletter signup"
               >
                 <label htmlFor="newsletter-email" className="block text-sm font-medium text-white/90 mb-2">
@@ -180,8 +201,10 @@ export default function Newsletter() {
                 <p className="text-white/50 text-xs mt-3">
                   Free forever. Unsubscribe anytime with one click. We respect your inbox.
                 </p>
-              </form>
+              </motion.form>
             )}
+            </AnimatePresence>
+          </div>
           </div>
         </div>
       </section>

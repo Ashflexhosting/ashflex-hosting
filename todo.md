@@ -1155,4 +1155,9 @@
 - [x] /newsletter landing page with hero signup band, benefits grid, what-to-expect section; fixed double-render bug (page had nested Navbar/Footer duplicating the global layout — removed; now renders single footer/nav)
 - [x] Subscription form in the top utility bar (desktop)
 - [x] Vitest coverage for newsletter admin list + deleteSubscriber (admin gating) — 39/39 tests pass
-- [ ] Checkpoint, sync to GitHub main + master
+- [x] Checkpointed (33decde) and synced to GitHub main + master (remote master updated to latest)
+
+## Success feedback animation (Aug 18)
+
+- [x] Animate the subscribe success feedback: framer-motion fade + scale/slide transition with animated checkmark — top bar (shows "You're on the list" pill for 5s), footer form, and /newsletter hero card (form and success card swap with AnimatePresence mode="wait", min-h-[320px] card prevents layout jump)
+- [x] Verified renders clean (homepage + /newsletter), 39/39 tests pass; checkpointed and auto-published with GitHub sync
