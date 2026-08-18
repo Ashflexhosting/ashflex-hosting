@@ -1249,3 +1249,7 @@
 ## Mission/Vision section background correction (Aug 18)
 - [x] Corrected Mission/Vision section: restored the dark navy background with fixed image texture and 60% overlay while keeping the cards in the light glass-card style for a high-contrast, professional look
 - [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published
+
+## Glass-reflection glare on light cards (Aug 18)
+- [x] Added a glass-reflection glare sweep (.glass-glare utility in index.css: translateX sweep from -100% to 100% over 1s ease-in-out, triggered by .group\/glare:hover and :focus-within) to the Mission, Vision, and Core Values cards; fallback used because this project's Tailwind 4 config does not emit translate-x-* arbitrary utilities
+- [x] Verified the glare divs render with correct initial transform (computed matrix confirms translateX(-100%)), CSS rule is generated and hover/focus-within selectors present; layout clean on desktop; all 39 tests pass; checkpointed and auto-published

@@ -235,8 +235,10 @@ export default function About() {
         <div className="container relative z-10 py-20 md:py-24">
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Mission — spans 7 (staggered slide-up reveal) */}
-            <div className="bento-reveal lg:col-span-7 glass-card p-8 md:p-10 rounded-3xl border-0 shadow-lg hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
+            <div className="bento-reveal lg:col-span-7 glass-card group/glare relative overflow-hidden p-8 md:p-10 rounded-3xl border-0 shadow-lg hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300">
+              {/* Subtle glass reflection glare sweep */}
+              <div className="glass-glare" aria-hidden="true" />
+              <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
                 <Target className="text-white" size={28} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Mission</h3>
@@ -245,8 +247,10 @@ export default function About() {
               </p>
             </div>
             {/* Vision — spans 5 */}
-            <div className="bento-reveal lg:col-span-5 glass-card p-8 md:p-10 rounded-3xl border-0 shadow-lg hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300" style={{ transitionDelay: "140ms" }}>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
+            <div className="bento-reveal lg:col-span-5 glass-card group/glare relative overflow-hidden p-8 md:p-10 rounded-3xl border-0 shadow-lg hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300" style={{ transitionDelay: "140ms" }}>
+              {/* Subtle glass reflection glare sweep */}
+              <div className="glass-glare" aria-hidden="true" />
+              <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
                 <Eye className="text-white" size={28} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Vision</h3>
@@ -261,8 +265,10 @@ export default function About() {
             <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-8">What guides everything we do — Core Values</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {coreValues.map((v, i) => (
-                <div key={i} className="scroll-reveal group/value glass-card p-5 rounded-2xl text-center border-0 hover:-translate-y-1.5 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-brand/10" style={{ transitionDelay: `${i * 60}ms` }}>
-                  <div className="w-11 h-11 rounded-xl bg-brand/5 border border-brand/10 flex items-center justify-center mx-auto mb-3 group-hover/value:bg-brand-cyan/10 group-hover/value:border-brand-cyan/30 transition-colors">
+                <div key={i} className="scroll-reveal group/value glass-card group/glare relative overflow-hidden p-5 rounded-2xl text-center border-0 hover:-translate-y-1.5 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-brand/10" style={{ transitionDelay: `${i * 60}ms` }}>
+                  {/* Subtle glass reflection glare sweep */}
+                  <div className="glass-glare" aria-hidden="true" />
+                  <div className="relative z-10 w-11 h-11 rounded-xl bg-brand/5 border border-brand/10 flex items-center justify-center mx-auto mb-3 group-hover/value:bg-brand-cyan/10 group-hover/value:border-brand-cyan/30 transition-colors">
                     <v.icon size={20} className="text-brand-cyan group-hover/value:scale-110 transition-transform" />
                   </div>
                   <h4 className="text-foreground font-semibold text-sm mb-1" style={{ fontFamily: "var(--font-heading)" }}>{v.title}</h4>
