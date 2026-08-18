@@ -1268,3 +1268,10 @@
 - [x] Updated all project counts and satisfaction figures across Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services (highlight stat + Proven results card), IndustryDetail, and usePageMeta description
 - [x] Updated site to 242+ projects, 89% satisfaction, 8+ years experience, 13+ countries (second user visual edit): Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
 - [x] Verified zero remaining 244+/91%/9+/14+ mentions in client/src; homepage hero and About section show 242+/89%/8+/13+; 39/39 tests pass; checkpointed and auto-published
+
+## Centralize site stats (Aug 18)
+- [ ] Extract the four site stats (238+ projects, 85% satisfaction, 6+ years, 11+ countries) into a single shared constant and have all pages read from it to prevent recurring out-of-sync edits
+
+## Stat sync 242+/89% → 240+/87% → 238+/85% (Aug 18, per user visual edit of homepage hero)
+- [x] Synced all site stats to 238+ projects, 85% satisfaction, 6+ years experience, 11+ countries: Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
+- [x] Verified zero remaining 240+/87%/7+/12+ mentions in client/src; homepage hero shows 238+/85%/6+/11+; 39/39 tests pass; checkpointed and auto-published
