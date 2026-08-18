@@ -1490,3 +1490,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added typing-dot animation: three staggered dots (typing-rise keyframes, 150ms delay each) beside response-time text; gated by prefers-reduced-motion
 - [x] Added brand-name hover labels: navy pill tooltip with arrow beneath each logo on hover (opacity-0->100 + slide), marquee pauses on hover, focus-visible outline kept
 - [x] Verified badge with typing dots on desktop; 39/39 tests pass
+
+## Footer brochure PDF (user request)
+- [x] Create a one-page brochure PDF (Typst, Poppins/Inter fonts, brand navy/blue/red/aqua) covering hero stats, 15 services with prices, website plans, Why Ashflex, How We Work, and contact band
+- [x] Upload the PDF to webdev storage and add a "Download Our Brochure (PDF)" button in the footer
+- [x] Verify rendering and download URL (HTTP 200 application/pdf), run tests (39/39 pass), checkpoint and publish

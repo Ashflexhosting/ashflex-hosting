@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Mail, Phone, MapPin, CheckCircle2, Loader2 } from "lucide-react";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Twitter, Instagram, FileDown } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
@@ -130,6 +130,14 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
             </div>
+            <a
+              href="/manus-storage/ashflex-brochure_cffef549.pdf"
+              download="Ashflex-Web-Design-Brochure.pdf"
+              className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-brand-accent hover:text-brand hover:border-brand-accent active:scale-[0.98]"
+            >
+              <FileDown size={15} />
+              Download Our Brochure (PDF)
+            </a>
           </div>
 
           <div>
