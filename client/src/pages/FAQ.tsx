@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { MessageCircleQuestion, Search, ArrowRight, Phone } from "lucide-react";
 import {
@@ -33,6 +33,21 @@ export default function FAQ() {
   // Attach the IntersectionObserver that makes .scroll-reveal sections visible
   const revealRoot = useScrollReveal();
 
+  // FAQ JSON-LD structured data for Google rich results (FAQPage schema)
+  const faqJsonLd = useMemo(
+    () =>
+      JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }),
+    []
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return faqs.filter((f) => {
@@ -52,8 +67,36 @@ export default function FAQ() {
     return Array.from(map.entries());
   }, [filtered]);
 
+  // Anchor deep-links: /faq#hosting-domains opens the matching category and scrolls to it
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "").toLowerCase().trim();
+    if (!hash) return;
+    const category = faqCategories.find((c) => c.toLowerCase() === hash.replace(/-/g, " & "));
+    if (!category) return;
+    setActiveCategory(category);
+    // Wait for the re-render and scroll-reveal paint, then scroll to the group
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const el = document.getElementById(`faq-${category}`);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 120);
+    });
+  }, []);
+
+  // When the user searches, expand all matching items so answers are visible immediately
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  useEffect(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      setExpandedItems([]);
+      return;
+    }
+    setExpandedItems(filtered.map((f) => f.id));
+  }, [query, filtered]);
+
   return (
     <div ref={revealRoot} className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-brand">
         <div className="absolute inset-0 overflow-hidden">
@@ -86,6 +129,11 @@ export default function FAQ() {
                 aria-label="Search frequently asked questions"
                 className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors"
               />
+              {query.trim() && (
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-brand-accent">
+                  {filtered.length} {filtered.length === 1 ? "result" : "results"}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -118,7 +166,9 @@ export default function FAQ() {
         <div className="container">
           {grouped.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg mb-6">No questions match your search.</p>
+              <p className="text-muted-foreground text-lg mb-6">
+                {query.trim() ? "No questions match your search." : "No questions found in this category."}
+              </p>
               <button
                 onClick={() => {
                   setQuery("");
@@ -132,7 +182,7 @@ export default function FAQ() {
           )}
           <div className="space-y-14">
             {grouped.map(([category, items]) => (
-              <div key={category} className="scroll-reveal">
+              <div key={category} id={`faq-${category}`} className="scroll-reveal scroll-mt-28">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary text-white text-base font-bold">
                     {categoryIcons[category]}
@@ -144,11 +194,15 @@ export default function FAQ() {
                     {items.length}
                   </Badge>
                 </div>
-                <Accordion type="single" collapsible className="space-y-3">
+                <Accordion
+                  type="multiple"
+                  className="space-y-3"
+                  value={expandedItems.length > 0 ? items.map((f) => f.id).filter((k) => expandedItems.includes(k)) : undefined}
+                >
                   {items.map((faq, i) => (
                     <AccordionItem
-                      key={`${category}-${i}`}
-                      value={`${category}-${i}`}
+                      key={faq.id}
+                      value={faq.id}
                       className="glass-card border-0 px-6"
                     >
                       <AccordionTrigger className="text-base font-semibold hover:no-underline text-left">

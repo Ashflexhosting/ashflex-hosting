@@ -1505,3 +1505,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## FAQ Accordion Bug Fix (user-reported)
 - [x] Fix FAQ accordion content not showing: FAQ.tsx used .scroll-reveal sections without calling useScrollReveal() and attaching its root ref, so all FAQ groups stayed at opacity 0; wired the observer root ref to the page wrapper and confirmed answers expand visibly with smooth animation
 - [x] Verify accordion expand/collapse in the browser, run full test suite (43/43 pass), checkpoint and publish
+
+## FAQ Experience Enhancements (user-requested)
+- [x] Add a link from the Pricing page's hosting renewal tooltip directly to the Hosting & Domains section on /faq via /faq#hosting-domains deep link (tooltip now clickable, cyan "See all hosting renewal FAQs →" link below a divider)
+- [x] Implement FAQ search result count display and auto-expand matching accordion items: count badge in search input, multiple-value Accordion driven by filtered faq ids, empty-state messaging, per-category anchors (id="faq-{category}"), and hash deep-link support that selects the category and scrolls on load
+- [x] Add FAQ JSON-LD structured data (FAQPage with all 20 questions) to /faq for Google rich results; added stable id field to each FaqItem used as AccordionItem value
+- [x] Verify in browser (search, auto-expand, deep link, JSON-LD present), run full test suite (43/43 pass), checkpoint and publish

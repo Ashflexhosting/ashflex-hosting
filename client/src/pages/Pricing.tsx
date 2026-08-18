@@ -195,8 +195,18 @@ function RenewalTooltip() {
       <span className="flex items-center justify-center min-h-11 min-w-11 -m-2 cursor-help">
         <Info size={15} className="text-white/90" aria-label="Renewal cost details" />
       </span>
-      <span className="pointer-events-none absolute left-1/2 bottom-full z-50 mb-2 hidden w-72 -translate-x-1/2 rounded-lg bg-brand px-3.5 py-2.5 text-xs text-white shadow-xl ring-1 ring-white/20 group-hover:block group-focus-within:block">
+      <span className="absolute left-1/2 bottom-full z-50 mb-2 hidden w-72 -translate-x-1/2 rounded-lg bg-brand px-3.5 py-2.5 text-xs text-white shadow-xl ring-1 ring-white/20 group-hover:block group-focus-within:block">
         <span className="font-semibold text-brand-cyan">Renewal after free year 1:</span> {hostingRenewalRates}
+        <span className="mt-2 block border-t border-white/15 pt-2">
+          <Link
+            href="/faq#hosting-domains"
+            className="inline-flex items-center gap-1 font-semibold text-brand-cyan hover:text-white transition-colors duration-200"
+            onClick={() => window.location.hash = "#hosting-domains"}
+          >
+            See all hosting renewal FAQs
+            <ArrowRight size={11} className="shrink-0" aria-hidden="true" />
+          </Link>
+        </span>
       </span>
     </span>
   );
