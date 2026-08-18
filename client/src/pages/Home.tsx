@@ -578,25 +578,59 @@ href="https://galconengineering.com"
         </div>
       </section>
 
-      {/* ============ WELCOME — editorial intro matching reference layout ============ */}
-      <section className="py-24 md:py-28 bg-[#E8E9EC] relative overflow-hidden">
+      {/* ============ WELCOME — modern creative intro ============ */}
+      <section id="welcome" className="py-24 md:py-32 bg-[#E8E9EC] relative overflow-hidden">
+        {/* Decorative glow orbs */}
+        <div className="absolute inset-0" aria-hidden="true">
+          <div className="glow-orb absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand-secondary" style={{ opacity: 0.10 }} />
+          <div className="glow-orb absolute -bottom-32 right-0 w-[480px] h-[480px] rounded-full bg-[#F20549]" style={{ opacity: 0.08 }} />
+        </div>
+
         <div className="container relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left: device mockup, tagline, chat CTA */}
-            <div className="lg:col-span-4 scroll-reveal">
+          {/* Eyebrow with animated badge */}
+          <div className="flex flex-wrap items-center gap-4 mb-10 scroll-reveal">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur border border-white px-5 py-2 text-sm font-bold uppercase tracking-[0.25em] text-gradient shadow-sm">
+              <Sparkles size={15} />
+              Welcome to
+            </span>
+            <span className="block h-px flex-1 min-w-16 bg-gradient-to-r from-[#0757F7]/50 to-transparent" aria-hidden="true" />
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+            {/* Left: tilt image with floating stat badges, tagline, chat CTA */}
+            <div className="lg:col-span-5 scroll-reveal-left">
               <div className="relative max-w-sm mx-auto lg:max-w-none">
-                <img
-                  src="/manus-storage/ashflex-welcome-showcase_e45e0955.png"
-                  alt="Ashflex designer working on a website project"
-                  loading="lazy"
-                  className="w-full drop-shadow-2xl"
-                />
+                {/* Floating stat badges */}
+                <div
+                  className="absolute -top-5 -right-4 md:-right-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow"
+                  aria-hidden="true"
+                >
+                  <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-primary text-white"><Rocket size={17} /></span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">248+<br />Projects</span>
+                </div>
+                <div
+                  className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed"
+                  aria-hidden="true"
+                >
+                  <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#0757F7] text-white"><Star size={17} /></span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">96%<br />Satisfaction</span>
+                </div>
+
+                <TiltEffect max={6}>
+                  <img
+                    src="/manus-storage/ashflex-welcome-showcase_e45e0955.png"
+                    alt="Ashflex designer working on a website project"
+                    loading="lazy"
+                    className="w-full rounded-3xl shadow-2xl shadow-[#1B2A6B]/25 ring-1 ring-white/60"
+                  />
+                </TiltEffect>
               </div>
-              <div className="text-center mt-10">
-                <h3 className="text-2xl md:text-3xl text-[#1B2A6B] leading-snug" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+
+              <div className="text-center mt-12">
+                <h3 className="text-2xl md:text-[2rem] text-[#1B2A6B] leading-snug font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
                   Take control of your
                   <br />
-                  online business.
+                  <span className="text-gradient">online business.</span>
                 </h3>
                 <a
                   href="https://wa.me/2348023138892"
@@ -610,37 +644,45 @@ href="https://galconengineering.com"
               </div>
             </div>
 
-            {/* Right: editorial copy */}
-            <div className="lg:col-span-8 scroll-reveal" style={{ transitionDelay: "100ms" }}>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#555] mb-4">Welcome to</p>
-              <h2 className="text-4xl md:text-[3.4rem] leading-tight text-[#1a1a1a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                Ashflex Website Design
+            {/* Right: modern editorial copy */}
+            <div className="lg:col-span-7 scroll-reveal-right" style={{ transitionDelay: "120ms" }}>
+              <h2 className="text-4xl md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+                Ashflex{" "}
+                <span className="text-gradient">Website Design</span>
               </h2>
+
               <div className="flex items-center gap-4 mb-8" aria-hidden="true">
-                <svg viewBox="0 0 36 36" className="h-7 w-7 text-[#1B2A6B]/70 shrink-0" fill="currentColor">
+                <svg viewBox="0 0 36 36" className="h-7 w-7 text-[#0757F7] shrink-0" fill="currentColor">
                   <path d="M18 3 L21.5 12.5 L32 11 L26 17 L32 25 L21.5 23.5 L18 33 L14.5 23.5 L4 25 L10 17 L4 11 L14.5 12.5 Z" />
                 </svg>
-                <span className="block h-px flex-1 bg-[#1a1a1a]/40" />
+                <span className="block h-px flex-1 bg-gradient-to-r from-[#0757F7]/60 via-[#F20549]/40 to-transparent" />
               </div>
 
               <p className="text-lg md:text-xl text-[#1a1a1a] leading-relaxed mb-8">
                 Having a website{" "}
-                <strong className="text-[#B31026] font-extrabold">gives your business a professional look</strong>, and
-                customers can reach out to you anytime, anywhere.
+                <strong className="relative text-[#B31026] font-extrabold after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
+                  gives your business a professional look
+                </strong> , and customers can reach out to you anytime, anywhere.
               </p>
 
               <p className="text-base md:text-lg text-[#222] leading-relaxed mb-8">
                 We are a Web Design Agency that specializes in the professional creation of Beautiful, High-quality, Cost-effective{" "}
-                <em className="font-semibold not-italic">websites, mobile applications, graphic design, and digital marketing solutions</em>{" "}
-                for individuals, businesses, and institutions.
+                <span className="inline-flex flex-wrap gap-2 mt-2">
+                  {["websites", "mobile applications", "graphic design", "digital marketing"].map((chip) => (
+                    <span key={chip} className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                      {chip}
+                    </span>
+                  ))}
+                  <span className="text-[#222]">for individuals, businesses, and institutions.</span>
+                </span>
               </p>
 
-              <p className="text-lg md:text-2xl text-[#1B2A6B] font-extrabold leading-snug" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-                We want to create{" "}
-                <span className="text-[#B31026]">Wonderful Websites</span>{" "}
+              <p className="text-lg md:text-2xl font-extrabold leading-snug" style={{ fontFamily: "var(--font-heading)" }}>
+                <span className="text-[#1B2A6B]">We want to create</span>{" "}
+                <span className="text-gradient">Wonderful Websites</span>{" "}
                 <span className="text-[#1a1a1a]">and</span>{" "}
-                <span className="text-[#B31026]">Digital Services</span>{" "}
-                <span className="text-[#1a1a1a]">that your customers will love to be part of and use</span>; that&rsquo;s what your brand and audience deserve. Our goal is to deliver a level of service that exceeds our customers&rsquo; expectations.
+                <span className="text-gradient">Digital Services</span>{" "}
+                <span className="text-[#1a1a1a]">that your customers will love to be part of and use</span> ; that&rsquo;s what your brand and audience deserve. Our goal is to deliver a level of service that exceeds our customers&rsquo; expectations.
               </p>
             </div>
           </div>

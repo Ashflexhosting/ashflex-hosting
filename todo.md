@@ -1186,3 +1186,8 @@
 
 - [x] Replace the iMac mockup in the welcome section with a real AI-generated image: designer workspace with laptop + tablet showing navy/aqua/red website UI (4:3 photoreal, /manus-storage/ashflex-welcome-showcase_e45e0955.png)
 - [x] Integrated in Home.tsx, verified visually, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome section modern redesign (Aug 18)
+
+- [x] Redesign the welcome section into a modern, creative layout: gradient-clip eyebrow badge, floating 3D-tilt image with stat badges (248+ Projects / 96% Satisfaction, float-slow), rounded-3xl image with ring + shadow, gradient headline (text-gradient), gradient underline rule, gradient-underline highlight, service keyword chips with hover lift, glow orbs, staggered scroll-reveal
+- [x] Verified on desktop + mobile, 39/39 tests pass; checkpointed and auto-published with GitHub sync
