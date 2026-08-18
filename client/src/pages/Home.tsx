@@ -648,7 +648,7 @@ href="https://galconengineering.com"
             <div className="lg:col-span-7 scroll-reveal-right" style={{ transitionDelay: "120ms" }}>
               <h2 className="text-4xl md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] mb-8" style={{ fontFamily: "var(--font-heading)" }}>
                 Ashflex{" "}
-                <span className="text-gradient">Website Design</span>
+                <span className="text-gradient">Web Design</span>
               </h2>
 
               <div className="flex items-center gap-4 mb-8" aria-hidden="true">
@@ -658,32 +658,33 @@ href="https://galconengineering.com"
                 <span className="block h-px flex-1 bg-gradient-to-r from-[#0757F7]/60 via-[#F20549]/40 to-transparent" />
               </div>
 
-              <p className="text-lg md:text-xl text-[#1a1a1a] leading-relaxed mb-8">
-                Having a website{" "}
-                <strong className="relative text-[#B31026] font-extrabold after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
-                  gives your business a professional look
-                </strong> , and customers can reach out to you anytime, anywhere.
+              <p className="text-xl md:text-2xl font-extrabold leading-snug text-[#1a1a1a] mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+                Your Business Deserves{" "}
+                <span className="relative text-[#B31026] after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
+                  More Than Just a Website
+                </span> . It Deserves a{" "}
+                <span className="text-gradient">Digital Presence That Works</span> .
+              </p>
+
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6">
+                We combine creative design, smart technology and strategic thinking to design professional, modern and high-performing websites that help businesses build credibility, attract the right customers and turn online visitors into real opportunities.
+              </p>
+
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6">
+                Whether you are launching a new business, upgrading an outdated website or taking your brand online, we create digital experiences designed around your goals.
               </p>
 
               <p className="text-base md:text-lg text-[#222] leading-relaxed mb-8">
-                We are a Web Design Agency that specializes in the professional creation of Beautiful, High-quality, Cost-effective{" "}
-                <span className="inline-flex flex-wrap gap-2 mt-2">
-                  {["websites", "mobile applications", "graphic design", "digital marketing"].map((chip) => (
-                    <span key={chip} className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
-                      {chip}
-                    </span>
-                  ))}
-                  <span className="text-[#222]">for individuals, businesses, and institutions.</span>
-                </span>
+                From corporate websites and business portals to e-commerce platforms and custom web applications, we build solutions that work for your business and your customers.
               </p>
 
-              <p className="text-lg md:text-2xl font-extrabold leading-snug" style={{ fontFamily: "var(--font-heading)" }}>
-                <span className="text-[#1B2A6B]">We want to create</span>{" "}
-                <span className="text-gradient">Wonderful Websites</span>{" "}
-                <span className="text-[#1a1a1a]">and</span>{" "}
-                <span className="text-gradient">Digital Services</span>{" "}
-                <span className="text-[#1a1a1a]">that your customers will love to be part of and use</span> ; that&rsquo;s what your brand and audience deserve. Our goal is to deliver a level of service that exceeds our customers&rsquo; expectations.
-              </p>
+              <div className="flex flex-wrap gap-2">
+                {["Website Design", "Web Applications", "Graphic Design", "Digital Marketing"].map((chip) => (
+                  <span key={chip} className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                    {chip}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

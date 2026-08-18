@@ -1191,3 +1191,9 @@
 
 - [x] Redesign the welcome section into a modern, creative layout: gradient-clip eyebrow badge, floating 3D-tilt image with stat badges (248+ Projects / 96% Satisfaction, float-slow), rounded-3xl image with ring + shadow, gradient headline (text-gradient), gradient underline rule, gradient-underline highlight, service keyword chips with hover lift, glow orbs, staggered scroll-reveal
 - [x] Verified on desktop + mobile, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome section: replace content with WELCOMETO.docx (Aug 18)
+
+- [x] Extract text from /home/ubuntu/upload/WELCOMETO.docx (headline + 3 paragraphs + services strip)
+- [x] Update welcome section copy in Home.tsx: "Ashflex Web Design" headline, "More Than Just a Website" gradient-underline lead, 3 body paragraphs, services chips (Website Design, Web Applications, Graphic Design, Digital Marketing); design preserved
+- [x] Verified visually desktop + mobile, 39/39 tests pass; checkpointed and auto-published with GitHub sync
