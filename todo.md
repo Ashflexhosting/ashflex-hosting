@@ -1241,3 +1241,7 @@
 - [x] Refined Mission/Vision background readability: increased section overlay opacity to 60%, darkened card backgrounds to bg-navy/80, and boosted text contrast to white/85 font-medium for crystal-clear readability against the fixed texture
 - [x] Added interactive hover effects to Core Values cards: 1.5px lift, aqua border glow (shadow-brand-cyan/10), and icon scale-up (110%) with background highlight (bg-brand-cyan/10)
 - [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published
+
+## Mission/Vision cards match Our Team section (Aug 18)
+- [x] Updated Mission/Vision and Core Values cards to match the Our Team section styling: switched to a light bg-muted/30 section background and used the light glass-card component (rgba(255,255,255,0.74)) with dark text (text-foreground) for perfect consistency
+- [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published
