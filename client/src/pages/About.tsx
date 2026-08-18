@@ -1,6 +1,8 @@
 import { Link } from "wouter";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import { Target, Eye, Heart, Users, Award, Globe, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
 
@@ -45,8 +47,33 @@ function CounterStat({ value, suffix, label, delay }: { value: number; suffix: s
   );
 }
 
+const milestones = [
+  {
+    year: "2016",
+    label: "Founded in Lagos",
+    anecdote: "Ashflex began as a one-person freelance operation out of a small Lagos apartment — one laptop, big dreams, and a passion for making Nigerian businesses look world-class online.",
+  },
+  {
+    year: "50+",
+    label: "Clients by year 3",
+    anecdote: "Word of mouth did the heavy lifting. By 2019, more than 50 local shops, clinics, and startups trusted us with their first real digital presence.",
+  },
+  {
+    year: "250+",
+    label: "Projects delivered",
+    anecdote: "A decade of shipping has taken us from five-page websites to full-scale web applications, e-commerce platforms, and AI-powered tools across four continents.",
+  },
+  {
+    year: "15+",
+    label: "Countries served",
+    anecdote: "Clients now reach us from London to Toronto, Dubai to Nairobi — proving that great design, done right in Lagos, resonates everywhere.",
+  },
+];
+
 export default function About() {
   const sectionRef = useScrollReveal();
+  const prefersReducedMotion = useReducedMotion();
+  const [activeMilestone, setActiveMilestone] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
@@ -107,29 +134,54 @@ export default function About() {
                 </p>
               </div>
 
-              {/* Milestone chips */}
+              {/* Interactive milestone chips */}
               <div className="scroll-reveal mt-9 flex flex-wrap gap-3" style={{ transitionDelay: "300ms" }}>
-                {[
-                  { year: "2016", label: "Founded in Lagos" },
-                  { year: "50+", label: "Clients by year 3" },
-                  { year: "250+", label: "Projects delivered" },
-                  { year: "15+", label: "Countries served" },
-                ].map((m, i) => (
-                  <div
-                    key={m.year}
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/5 border border-white/12 backdrop-blur-sm hover:border-brand-accent/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
-                    style={{ transitionDelay: `${320 + i * 60}ms` }}
-                  >
-                    <span className="text-brand-accent font-extrabold text-sm" style={{ fontFamily: "var(--font-heading)" }}>{m.year}</span>
-                    <span className="text-white/55 text-xs font-medium">{m.label}</span>
+                {milestones.map((m, i) => (
+                  <div key={m.year} className="relative" style={{ transitionDelay: `${320 + i * 60}ms` }}>
+                    <button
+                      type="button"
+                      aria-expanded={activeMilestone === m.year}
+                      onClick={() => setActiveMilestone(activeMilestone === m.year ? null : m.year)}
+                      className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/5 border border-white/12 backdrop-blur-sm hover:border-brand-accent/50 hover:bg-white/10 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent cursor-pointer"
+                    >
+                      <span className="text-brand-accent font-extrabold text-sm" style={{ fontFamily: "var(--font-heading)" }}>{m.year}</span>
+                      <span className="text-white/55 text-xs font-medium">{m.label}</span>
+                    </button>
+                    <AnimatePresence>
+                      {activeMilestone === m.year && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                          transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                          className="absolute left-0 -bottom-2 translate-y-full z-20 w-[min(290px,calc(100vw-2.5rem))] rounded-2xl glass-card-dark p-4 shadow-xl"
+                        >
+                          <p className="text-white/85 text-[13px] leading-relaxed">
+                            <span className="text-brand-accent font-extrabold text-sm block mb-1" style={{ fontFamily: "var(--font-heading)" }}>{m.year} — {m.label}</span>
+                            {m.anecdote}
+                          </p>
+                          <div className="absolute -top-1.5 left-8 w-3 h-3 rotate-45 glass-card-dark border-l border-t border-white/12" aria-hidden="true" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: photo collage card */}
+            {/* Right: photo collage card with scroll-triggered fade-in */}
             <div className="lg:col-span-6">
-              <div className="scroll-reveal relative" style={{ transitionDelay: "120ms" }}>
+              <motion.div
+                className="relative"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={{
+                  hidden: { opacity: 0, y: 48 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: prefersReducedMotion ? 0.01 : 0.7, delay: prefersReducedMotion ? 0 : 0.12, ease: [0.23, 1, 0.32, 1] }}
+              >
                 <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-brand-secondary/30 via-transparent to-brand-accent/25 blur-xl" aria-hidden="true" />
                 <div className="relative rounded-[1.75rem] overflow-hidden border border-white/10 shadow-2xl shadow-black/40">
                   <img
@@ -149,12 +201,22 @@ export default function About() {
                     </div>
                   </div>
                 </div>
-                {/* Floating stat card */}
-                <div className="absolute -top-5 -right-3 md:-right-6 scroll-reveal glass-card-dark px-5 py-4 rounded-2xl shadow-xl" style={{ transitionDelay: "240ms" }}>
+                {/* Floating stat card with scroll-triggered fade-in */}
+                <motion.div
+                  className="absolute -top-5 -right-3 md:-right-6 glass-card-dark px-5 py-4 rounded-2xl shadow-xl"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.94 },
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                  }}
+                  transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: prefersReducedMotion ? 0 : 0.35, ease: [0.23, 1, 0.32, 1] }}
+                >
                   <p className="text-2xl font-extrabold bg-gradient-to-r from-brand-accent to-brand-secondary bg-clip-text text-transparent leading-none" style={{ fontFamily: "var(--font-heading)" }}>98%</p>
                   <p className="text-white/50 text-[11px] font-medium mt-1">Client satisfaction</p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
