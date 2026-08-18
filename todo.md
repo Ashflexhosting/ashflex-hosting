@@ -1283,3 +1283,7 @@
 ## Stat sync 242+/89% → 240+/87% → 238+/85% (Aug 18, per user visual edit of homepage hero)
 - [x] Synced all site stats to 238+ projects, 85% satisfaction, 6+ years experience, 11+ countries: Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
 - [x] Verified zero remaining 240+/87%/7+/12+ mentions in client/src; homepage hero shows 238+/85%/6+/11+; 39/39 tests pass; checkpointed and auto-published
+
+## Revert stats to original counts (Aug 18, user request)
+- [x] Restored SITE_STATS in shared/const.ts to 250 projects, 98% satisfaction, 10 years, 15 countries (original counts); all consuming pages (Home, About, Services, IndustryDetail, meta description) sync automatically
+- [x] Zero stale 218+/66%/2+ mentions in client/src; homepage hero verified showing 250+/98%/10+/15+; 39/39 tests pass; checkpointed and auto-published
