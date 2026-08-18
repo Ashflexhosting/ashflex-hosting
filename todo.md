@@ -1227,3 +1227,7 @@
 - [x] Audited Services page on mobile: sticky filter bar with 4-col compact tabs renders fully visible, service cards stack cleanly, no squeeze points found
 - [x] Fixed Pricing page mobile squeeze: tier card grid now scrolls horizontally with snap points (300px min card width) instead of stacking vertically, keeping the comparison table and Business sticky column behavior intact
 - [x] Verified visually on mobile (375px) and desktop, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## About page Our Story redesign (Aug 18)
+- [x] Redesigned "Our Story" as a dark navy editorial block: pill eyebrow badge, gradient headline, synced welcome copy (lead line + 3 paragraphs), hoverable milestone chips (2016 founded / 50+ / 250+ / 15+), and a generated collage image card with glowing border, bottom caption (10+ Years of Digital Craft) and a floating 98% satisfaction stat card
+- [x] Verified on desktop and mobile (375px), 39/39 tests pass; checkpointed and auto-published with GitHub sync
