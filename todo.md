@@ -1410,3 +1410,8 @@
 - Done: About.tsx useEffect sets per-page title "About Us | Ashflex Web Design..." + dynamic meta description; duplicate import fixed; 0 TS errors
 - Done: About.tsx CounterStat now has hover card effect (rounded card, border, lift, cyan scale accent, underline glow, label brighten)
 - Remaining: Home.tsx hero CounterStat (line ~506) + Industries/Services stat sections may need same hover treatment; founder box fade-in already uses motion whileInView (confirm smooth); run tests; checkpoint
+
+## Mobile menu & dark mode (user request)
+- [x] Enhanced mobile menu: full-screen slide-in from right (spring physics), blurred dimmed backdrop, staggered menu item fade-ins, close X button, body scroll lock
+- [x] Implemented dark mode toggle in navbar (desktop + mobile): sun/moon icon with rotate animation, enabled via ThemeProvider switchable, persists in localStorage, applies site-wide
+- [x] Verified navbar renders on desktop (375x812 and 1280) with toggle; 39/39 tests pass

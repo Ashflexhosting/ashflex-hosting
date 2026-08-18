@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2 } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 import { brandLogoUrl } from "@shared/brand";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
@@ -47,6 +48,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [location] = useLocation();
+  const { theme, toggleTheme, switchable } = useTheme();
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -219,6 +228,19 @@ export default function Navbar() {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
+          {switchable && (
+            <button
+              type="button"
+              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              className={`p-2.5 rounded-xl transition-all duration-200 ${scrolled ? "text-foreground/70 hover:bg-muted" : "text-white/80 hover:bg-white/10"}`}
+              onClick={() => toggleTheme?.()}
+            >
+              <span className="relative block w-5 h-5">
+                <Sun size={20} className={`absolute inset-0 transition-all duration-300 ${theme === "dark" ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`} />
+                <Moon size={20} className={`absolute inset-0 transition-all duration-300 ${theme === "dark" ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"}`} />
+              </span>
+            </button>
+          )}
           <Link href="/contact">
             <span className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
               Get Free Quote
@@ -227,18 +249,53 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-1.5 lg:hidden">
+          {switchable && (
+            <button
+              type="button"
+              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              className={`p-2 rounded-lg transition-all duration-200 ${scrolled ? "text-foreground/70 hover:bg-muted" : "text-white hover:bg-white/10"}`}
+              onClick={() => toggleTheme?.()}
+            >
+              <span className="relative block w-5 h-5">
+                <Sun size={20} className={`absolute inset-0 transition-all duration-300 ${theme === "dark" ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`} />
+                <Moon size={20} className={`absolute inset-0 transition-all duration-300 ${theme === "dark" ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"}`} />
+              </span>
+            </button>
+          )}
+          <button
+            className={`p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden relative overflow-hidden border-t border-white/15 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-300">
+      {/* Mobile Menu — full-screen slide-in with blurred backdrop */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Blurred dimmed backdrop */}
+            <motion.div
+              className="lg:hidden fixed inset-0 z-40 bg-[#071B5A]/40 backdrop-blur-md"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+              onClick={() => setMobileOpen(false)}
+              aria-hidden="true"
+            />
+            {/* Slide-in panel */}
+            <motion.div
+              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-50 overflow-hidden shadow-2xl"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 260, damping: 34 }}
+            >
           {/* Image background: warm spotlight effect (user-provided) */}
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -254,10 +311,28 @@ export default function Navbar() {
             }}
             aria-hidden="true"
           />
-            <div ref={swipeRef} className="container relative py-5 space-y-1 max-h-[80vh] overflow-y-auto backdrop-blur-[1px] touch-pan-y">
+            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto backdrop-blur-[3px] touch-pan-y">
+            {/* Panel header with close affordance */}
+            <div className="flex items-center justify-between pb-4 mb-1 border-b border-amber-400/25">
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-300/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">Menu</p>
+              <button
+                type="button"
+                aria-label="Close menu"
+                className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all active:scale-95"
+                onClick={() => setMobileOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
             {mobileNav.map((item, i) => (
-              <Link
+              <motion.div
                 key={item.href}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.28, delay: i * 0.045, ease: [0.23, 1, 0.32, 1] }}
+              >
+              <Link
                 href={item.href}
                 className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
@@ -269,6 +344,7 @@ export default function Navbar() {
                   →
                 </span>
               </Link>
+              </motion.div>
             ))}
             <div className="flex items-center gap-3 px-4 my-2">
               <span className="h-px flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
@@ -277,9 +353,15 @@ export default function Navbar() {
               </p>
               <span className="h-px flex-1 bg-gradient-to-l from-amber-500/50 to-transparent" />
             </div>
-            {topBarNav.map((item) => (
-              <Link
+            {topBarNav.map((item, i) => (
+              <motion.div
                 key={item.href}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.28, delay: (mobileNav.length + i) * 0.045, ease: [0.23, 1, 0.32, 1] }}
+              >
+              <Link
                 href={item.href}
                 className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
               >
@@ -289,6 +371,7 @@ export default function Navbar() {
                   →
                 </span>
               </Link>
+              </motion.div>
             ))}
             <div className="flex items-center justify-center gap-3 py-3">
               <a
@@ -319,15 +402,24 @@ export default function Navbar() {
                 <Instagram size={18} />
               </a>
             </div>
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 40 }}
+              transition={{ duration: 0.28, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
+            >
             <Link href="/contact">
               <span className="group block w-full text-center px-5 py-3 mt-1 text-base font-semibold text-white bg-gradient-primary rounded-xl shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/40 hover:-translate-y-0.5 transition-all duration-300">
                 Get Free Quote
                 <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </Link>
+            </motion.div>
           </div>
-        </div>
-      )}
+          </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

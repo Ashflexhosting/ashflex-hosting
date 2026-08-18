@@ -115,7 +115,7 @@ function App() {
   const base = import.meta.env.BASE_URL ?? "/";
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme="light" switchable>
         <TooltipProvider>
           <Toaster />
           <BaseRouter base={routerBase}>
