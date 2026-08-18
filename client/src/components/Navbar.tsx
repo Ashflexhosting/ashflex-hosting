@@ -4,7 +4,7 @@ import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
-import { brandLogoUrl } from "@shared/brand";
+import { brandLogoUrl, brandLogoUrlLight } from "@shared/brand";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 
@@ -192,9 +192,16 @@ export default function Navbar() {
       <div className="container flex items-center justify-between h-18 lg:h-20">
         <Link href="/">
           <img
-            src={brandLogoUrl}
+            src={brandLogoUrlLight}
+            data-logo-light
             alt="Ashflex Website Design"
-            className="h-12 w-auto rounded-md object-contain shadow-sm sm:h-14"
+            className="hidden h-12 w-auto rounded-md object-contain shadow-sm sm:h-14 dark:block"
+          />
+          <img
+            src={brandLogoUrl}
+            data-logo-dark
+            alt="Ashflex Website Design"
+            className="block h-12 w-auto rounded-md object-contain shadow-sm sm:h-14 dark:hidden"
           />
         </Link>
 

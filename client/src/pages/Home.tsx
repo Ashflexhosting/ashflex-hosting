@@ -608,7 +608,7 @@ href="https://galconengineering.com"
       </section>
 
       {/* ============ WELCOME — modern creative intro ============ */}
-      <section id="welcome" className="py-24 md:py-32 bg-[#E8E9EC] relative overflow-hidden">
+      <section id="welcome" className="py-24 md:py-32 bg-[#E8E9EC] relative overflow-hidden dark:bg-background">
         <WelcomeOrbs />
 
         <div className="container relative z-10">
@@ -627,18 +627,18 @@ href="https://galconengineering.com"
               <div className="relative max-w-sm mx-auto lg:max-w-none">
                 {/* Floating stat badges */}
                 <div
-                  className="absolute -top-5 -right-4 md:-right-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow"
+                  className="absolute -top-5 -right-4 md:-right-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow dark:bg-[#0E1A3C] dark:shadow-brand-cyan/10"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-primary text-white"><Rocket size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">{SITE_STATS.projects}+<br />Projects Delivered</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight dark:text-foreground">{SITE_STATS.projects}+<br />Projects Delivered</span>
                 </div>
                 <div
-                  className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed"
+                  className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed dark:bg-[#0E1A3C] dark:shadow-brand-cyan/10"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#0757F7] text-white"><Star size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">{SITE_STATS.satisfaction}%<br />Client Satisfaction</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight dark:text-foreground">{SITE_STATS.satisfaction}%<br />Client Satisfaction</span>
                 </div>
 
                 <TiltEffect max={6}>
@@ -652,7 +652,7 @@ href="https://galconengineering.com"
               </div>
 
               <div className="text-center mt-12">
-                <h3 className="text-2xl md:text-[2rem] text-[#1B2A6B] leading-snug font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
+                <h3 className="text-2xl md:text-[2rem] text-[#1B2A6B] leading-snug font-extrabold dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
                   Take control of your
                   <br />
                   <span className="text-gradient">online business.</span>
@@ -671,7 +671,7 @@ href="https://galconengineering.com"
 
             {/* Right: modern editorial copy */}
             <div className="lg:col-span-7 scroll-reveal-right" style={{ transitionDelay: "120ms" }}>
-              <h2 className="text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] whitespace-nowrap mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+              <h2 className="text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] whitespace-nowrap mb-8 dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
                 Ashflex{" "}
                 <span className="text-gradient">Web Design</span>
               </h2>
@@ -683,7 +683,7 @@ href="https://galconengineering.com"
                 <span className="block h-px flex-1 bg-gradient-to-r from-[#0757F7]/60 via-[#F20549]/40 to-transparent" />
               </div>
 
-              <p className="text-xl md:text-2xl font-extrabold leading-snug text-[#1a1a1a] mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+              <p className="text-xl md:text-2xl font-extrabold leading-snug text-[#1a1a1a] mb-8 dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
                 Your Business Deserves{" "}
                 <span className="relative text-[#B31026] after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
                   More Than Just a Website
@@ -691,26 +691,26 @@ href="https://galconengineering.com"
                 <span className="text-gradient">Digital Presence That Works</span> .
               </p>
 
-              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6">
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6 dark:text-foreground/85">
                 We combine creative design, smart technology and strategic thinking to design professional, modern and high-performing websites that help businesses build credibility, attract the right customers and turn online visitors into real opportunities.
               </p>
 
-              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6">
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-6 dark:text-foreground/85">
                 Whether you are launching a new business, upgrading an outdated website or taking your brand online, we create digital experiences designed around your goals.
               </p>
 
-              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-8">
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-8 dark:text-foreground/85">
                 From corporate websites and business portals to e-commerce platforms and custom web applications, we build solutions that work for your business and your customers.
               </p>
 
-              <Link href="/about" className="scroll-reveal inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 hover:gap-3 hover:text-[#F20549] group/story">
+              <Link href="/about" className="scroll-reveal inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] group/story">
                 Read Our Story
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover/story:translate-x-1" />
               </Link>
 
               <div className="flex flex-wrap gap-2 mt-8">
                 {["Website Design", "Web Applications", "Graphic Design", "Digital Marketing"].map((chip) => (
-                  <span key={chip} className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                  <span key={chip} className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 dark:bg-[#0E1A3C] dark:text-foreground dark:ring-brand-cyan/25 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
                     {chip}
                   </span>
                 ))}

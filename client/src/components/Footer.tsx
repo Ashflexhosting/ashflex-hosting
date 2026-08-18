@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { footerCompanyLinkKey, footerCompanyLinks } from "@shared/footerNavigation";
 import { siteContact } from "@shared/siteContact";
-import { brandLogoUrl } from "@shared/brand";
+import { brandLogoUrl, brandLogoUrlLight } from "@shared/brand";
 import { motion } from "framer-motion";
 
 const SUBSCRIBED_LOCALSTORAGE_KEY = "ashflex-newsletter-subscribed";
@@ -89,9 +89,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <img
+              src={brandLogoUrlLight}
+              alt="Ashflex Website Design"
+              className="mb-4 hidden h-16 w-auto rounded-md object-contain dark:block"
+            />
+            <img
               src={brandLogoUrl}
               alt="Ashflex Website Design"
-              className="mb-4 h-16 w-auto rounded-md object-contain"
+              className="mb-4 block h-16 w-auto rounded-md object-contain dark:hidden"
             />
             <p className="text-white/60 text-sm leading-relaxed mb-4">
               We build high-performance websites that help businesses increase visibility, improve credibility, and convert visitors into paying customers.

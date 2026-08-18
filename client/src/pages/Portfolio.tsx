@@ -31,7 +31,7 @@ export default function Portfolio() {
         breadcrumb={[{ label: "Portfolio", href: "/portfolio" }]}
       />
 
-      <section className="bg-[#D8D8D8] py-20">
+      <section className="bg-[#D8D8D8] py-20 dark:bg-background">
         <div className="container">
           <div className="mb-12 rounded-3xl border border-brand-secondary/10 bg-gradient-to-br from-brand-secondary/5 via-white to-brand-cyan/5 p-5 shadow-sm sm:p-7">
             <div className="mb-6 flex flex-col gap-4 border-b border-border/70 pb-5 md:flex-row md:items-end md:justify-between">

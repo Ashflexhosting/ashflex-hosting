@@ -1419,7 +1419,7 @@
 ## Bug fixes (user report)
 - [x] Dark mode toggle not working: diagnose ThemeProvider switchable propagation and .dark CSS coverage; ensure toggle actually switches site appearance
 - [x] Cannot access the menu when scrolled: navbar may be hidden behind hero content or menu panel z-index/overflow issues when body is locked; diagnose and fix
-- [ ] Verify both fixes visually (mobile + desktop), run tests, checkpoint and publish
+- [x] Verify both fixes visually (mobile + desktop), run tests, checkpoint and publish
 
 ### Fix state notes
 Dark mode: added full `.dark { ... }` token block to client/src/index.css (matching :root vars) so the ThemeContext .dark toggle now visibly switches theme. ThemeProvider in App.tsx already has switchable=true; Navbar toggle buttons (desktop + mobile) wired to toggleTheme.
@@ -1432,3 +1432,13 @@ Remaining: verify dark mode works in browser + mobile menu opens after scroll; t
 - Site sections with hardcoded brand colors (hero #071B5A) keep dark look regardless; light-mode sections (bg-[#D8D8D8], #E8E9EC gray sections) still show light bg — acceptable since many sections are brand-dark by design.
 - Remaining check: mobile menu opens when scrolled (375px viewport). Then run tests + checkpoint.
 - Stats on live page verified 248+/96%/9+/14+ (confirmed final).
+
+## Dark-mode adaptivity (logo, text, icons)
+- [x] Audit where the logo, headings text, and icons render poorly in dark mode (e.g., dark text on dark bg, dark icons invisible)
+- [x] Provide a lighter logo variant (white/light version) for dark mode and swap via .dark classes
+- [x] Make headings and key text use theme-aware colors so dark-mode text is light
+- [x] Make icons (navbar icons, service icons, footer icons) adapt: light color in dark mode, dark in light mode
+- [x] Verify in both modes (desktop + mobile), run tests, checkpoint and publish
+
+### Logo assessment
+Current logo (ashflex-website-design-logo-v2_ad90e878.png, 1813x868): "Ash" in blue, "flex" in chrome/silver on red plate, "Website Design" in DARK BROWN/BLACK text, on light aqua background. The dark "Website Design" text and light aqua bg would clash in dark mode. Plan: generate a lighter/dark-friendly variant (dark navy bg version with "Website Design" in white) via image edit, upload via manus-upload-file --webdev, add brandLogoUrlLight to shared/brand.ts, use dark: variant in Navbar (and footer if logo used there). Also check other logo usages (Footer, mobile menu) and text/icon color swaps: navbar scrolled state text uses text-foreground/70 (already theme-aware), icons mostly inherit currentColor.
