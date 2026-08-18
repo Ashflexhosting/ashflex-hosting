@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { useState } from "react";
 import { useLocation } from "wouter";
 
 const planOrServiceLabels: Record<string, string> = {
@@ -73,15 +74,36 @@ export function buildWhatsAppHrefStatic(): string {
 }
 
 export default function WhatsAppButton() {
+  const [badgeVisible, setBadgeVisible] = useState(true);
   return (
-    <a
-      href={buildWhatsAppHref()}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-110 transition-transform duration-200"
-      aria-label="Chat on WhatsApp"
-    >
-      <MessageCircle size={28} fill="white" />
-    </a>
+    <div className="fixed bottom-6 right-6 z-40 flex items-end">
+      {/* Estimated response-time badge */}
+      {badgeVisible && (
+        <div
+          role="status"
+          className="mr-2.5 mb-1.5 rounded-full bg-white/95 dark:bg-brand px-3.5 py-1.5 text-[11px] font-semibold text-[#1B2A6B] dark:text-white shadow-md shadow-black/10 whitespace-nowrap backdrop-blur flex items-center gap-1.5 animate-in fade-in slide-in-from-bottom-1 duration-300"
+        >
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" aria-hidden="true" />
+          Typically replies within 10 minutes
+          <button
+            type="button"
+            aria-label="Dismiss response-time badge"
+            onClick={() => setBadgeVisible(false)}
+            className="ml-0.5 text-foreground/40 hover:text-foreground transition-colors"
+          >
+            ×
+          </button>
+        </div>
+      )}
+      <a
+        href={buildWhatsAppHref()}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-110 transition-transform duration-200"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle size={28} fill="white" />
+      </a>
+    </div>
   );
 }

@@ -1468,3 +1468,20 @@ Verification: tests pass, then checkpoint. Note: useLocation() works in the floa
 
 ## Hero button alignment (user request)
 - [x] Adjusted Get Free Quote button: text now matches View Portfolio (text-xs/sm:text-base, font-semibold, normal-case, no tracking-wider/uppercase), inner-span overrides applied via [- [ ] Adjust "Get Free Quote" button so its text vertically aligns with the "View Portfolio" button text>span] classes; verified aligned on desktop and mobile; 39/39 tests pass; checkpointed
+
+## CTA consistency + WhatsApp badge (user request)
+- [x] Audited CTA buttons: found two mismatched inline CTAs (Chat With Us welcome, Get Started footer) with uppercase/bold text-sm vs hero style
+- [x] Standardized Chat With Us and Get Started CTAs to hero style (text-xs sm:text-base, font-semibold, px-8 sm:px-10 py-3.5 sm:py-4); verified desktop+mobile
+- [x] Added "Typically replies within 10 minutes" badge beside WhatsApp button with pulse dot, fade-in animation, dismiss button, dark-mode styling
+- [ ] Verify visually, run tests, checkpoint and publish
+
+### CTA audit findings
+The hero fixed two mismatched styles (normal-case/semibold). Two remaining inconsistent inline CTAs: Home welcome "Chat With Us" (uppercase bold text-sm px-10 py-4) and Home footer "Get Started" shine-sweep button (uppercase bold text-sm px-8 py-3.5). Standardize both to the hero style: text-xs sm:text-base, font-semibold, normal-case, tracking-normal, px-8 sm:px-10, py-3.5 sm:py-4, rounded-2xl, keeping the shine-sweep hover on the footer one. Use [&>span] overrides where ShineButton wraps children in an inner span.
+
+### CTA standardization progress
+- Home welcome "Chat With Us": DONE (text-xs sm:text-base, semibold, px-8 sm:px-10, py-3.5 sm:py-4, rounded-full)
+- Home footer "Get Started" shine-sweep: DONE (same sizes, semibold)
+- Navbar desktop/mobile "Get Free Quote": smaller pill px-5 py-2.5 rounded-xl — keep as navbar compact style (acceptable, not a page CTA)
+- About "Start Your Project" (line 434): px-8 py-4 text-base semibold rounded-2xl — matches sizes, keep rounded-2xl consistency
+- Other CTAs (Contact/Careers/Blog): px-6 py-3 text-sm rounded-xl form buttons — standard form style, acceptable
+Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold, rounded-2xl, px-8 sm:px-10 py-3.5 sm:py-4. Remaining task: WhatsApp response-time badge.

@@ -662,9 +662,9 @@ href="https://galconengineering.com"
                   href={buildWhatsAppHrefStatic()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-10 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]"
+                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-base font-semibold text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]"
                 >
-                  <MessageSquare size={17} />
+                  <MessageSquare size={18} />
                   Chat With Us
                 </a>
               </div>
@@ -718,7 +718,7 @@ href="https://galconengineering.com"
               </div>
 
               <Link href="/contact?service=Website%20Design">
-                <span className="mt-8 group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-secondary/40 hover:ring-2 hover:ring-brand-secondary/30 active:scale-[0.97]">
+                <span className="mt-8 group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-primary px-8 sm:px-10 py-3.5 sm:py-4 text-xs sm:text-base font-semibold text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-secondary/40 hover:ring-2 hover:ring-brand-secondary/30 active:scale-[0.97]">
                   <span
                     aria-hidden="true"
                     className="absolute inset-y-0 -left-1/4 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:left-[120%] group-hover:opacity-100"
