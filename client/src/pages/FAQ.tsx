@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { faqs, faqCategories, type FaqCategory } from "@/data/faq";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const categoryIcons: Record<FaqCategory, string> = {
   "Getting Started & Pricing": "₦",
@@ -28,6 +29,9 @@ export default function FAQ() {
 
   const [activeCategory, setActiveCategory] = useState<FaqCategory | "All">("All");
   const [query, setQuery] = useState("");
+
+  // Attach the IntersectionObserver that makes .scroll-reveal sections visible
+  const revealRoot = useScrollReveal();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -49,7 +53,7 @@ export default function FAQ() {
   }, [filtered]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div ref={revealRoot} className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-brand">
         <div className="absolute inset-0 overflow-hidden">

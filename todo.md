@@ -1497,7 +1497,11 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Verify rendering and download URL (HTTP 200 application/pdf), run tests (39/39 pass), checkpoint and publish
 
 ## Consolidated FAQ Page (user request)
-- [ ] Audit all pages for FAQ sections/questions and collect them into categorized data
-- [ ] Create /faq page with categorized accordions consolidating every FAQ from the site
-- [ ] Add FAQ link to navigation/footer and per-page "View all FAQs" cross-links where useful
-- [ ] Verify rendering, run tests, checkpoint and publish
+- [x] Audit all pages for FAQ sections/questions and collect them into categorized data
+- [x] Create /faq page with categorized accordions consolidating every FAQ from the site
+- [x] Add FAQ link to navigation/footer and per-page "View all FAQs" cross-links where useful
+- [x] Verify rendering, run tests, checkpoint and publish
+
+## FAQ Accordion Bug Fix (user-reported)
+- [x] Fix FAQ accordion content not showing: FAQ.tsx used .scroll-reveal sections without calling useScrollReveal() and attaching its root ref, so all FAQ groups stayed at opacity 0; wired the observer root ref to the page wrapper and confirmed answers expand visibly with smooth animation
+- [x] Verify accordion expand/collapse in the browser, run full test suite (43/43 pass), checkpoint and publish

@@ -172,6 +172,18 @@
   .bg-gradient-primary { background: linear-gradient(135deg, #0757F7, #F20549); }
   .bg-gradient-accent { background: linear-gradient(135deg, #F20549, #0757F7); }
   .bg-gradient-brand { background: linear-gradient(135deg, #071B5A, #123DAD); }
+  /* Accordion expand/collapse (Radix content animates between 0 and measured height) */
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height, auto); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height, auto); }
+    to { height: 0; }
+  }
+  .animate-accordion-down { animation: accordion-down 220ms var(--ease-out); }
+  .animate-accordion-up { animation: accordion-up 220ms var(--ease-out); }
+
   /* Hero load-in: subtle fade + slide-up on first paint (opacity/transform only) */
   @keyframes hero-fade-in {
     from { opacity: 0; transform: translateY(22px); }
