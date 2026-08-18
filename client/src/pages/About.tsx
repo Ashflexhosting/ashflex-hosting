@@ -223,12 +223,15 @@ export default function About() {
       </section>
 
       {/* ============ Mission / Vision / Values — bento grid ============ */}
-      <section className="py-20 md:py-24 bg-brand noise-texture relative overflow-hidden">
-        <div className="absolute inset-0" aria-hidden="true">
-          <div className="glow-orb absolute top-0 right-1/3 w-[420px] h-[420px] rounded-full bg-brand-secondary" style={{ opacity: 0.35 }} />
-          <div className="glow-orb absolute bottom-0 left-1/4 w-[360px] h-[360px] rounded-full bg-brand-accent" style={{ opacity: 0.22 }} />
-        </div>
-        <div className="container relative z-10">
+      <section className="relative bg-navy noise-texture overflow-hidden">
+        {/* Reuse the services inquiry backdrop so the Mission and Vision section shares the same visual language. */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
+        />
+        <div className="absolute inset-0 bg-navy/45" aria-hidden="true" />
+        <div className="container relative z-10 py-20 md:py-24">
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Mission — spans 7 (staggered slide-up reveal) */}
             <div className="bento-reveal lg:col-span-7 glass-card-dark p-8 md:p-10 rounded-3xl">
