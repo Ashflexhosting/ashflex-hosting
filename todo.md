@@ -1166,3 +1166,8 @@
 
 - [x] Add a "Welcome to Ashflex Website Design" section on the homepage replicating the reference: left column with multi-device mockup image, "Take control of your online business." serif tagline, and a Chat With Us button; right column with WELCOME TO eyebrow, serif headline, divider line with ornament, and paragraphs with red and blue highlighted text
 - [x] Verified visually in browser (desktop), 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome section mockup replacement (Aug 18)
+
+- [x] Replace the left-side device mockup image in the welcome section: hero-galcon (3-device group) swapped for galcon-imac-hero-v2 (single iMac front view, transparent bg)
+- [x] Verified in browser, 39/39 tests pass; checkpointed and auto-published with GitHub sync

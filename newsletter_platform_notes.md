@@ -28,3 +28,8 @@
 - Dev URL: https://3000-ibzvslwfxddk7mxe7cc86-aedfdc12.us2.manus.computer ; prod: ashflexweb-pzcsotak.manus.space
 - Auto-publish enabled. DB: newsletter_subscribers table exists. 36 tests previously passing.
 - Footer has own NewsletterForm (source: "footer") + localStorage key "ashflex-newsletter-subscribed" (different key from topbar's "ashflex_newsletter_prompted").
+
+## Welcome section (Aug 18)
+- Section added to Home.tsx between trusted brands marquee and services grid (id="welcome"): light gray bg #E8E9EC, left col lg:col-span-4 (device mockup + serif tagline "Take control of your online business." + WhatsApp CHAT WITH US button wa.me/2348023138892), right col lg:col-span-8 (WELCOME TO eyebrow, Georgia serif headline, star ornament divider, red #B31026 + navy #1B2A6B highlighted text).
+- First used mockup: hero-galcon_f653d112.webp (same as hero iMac). User asked to change it → swapped to /manus-storage/galcon-imac-hero-v2-clean.webp (single iMac front view, 2176x1632, clean transparent bg). Verified in browser: looks good in the left column, no overflow issues.
+- Checkpoint 1d91d700 published for the welcome section (39/39 tests). New mockup change NOT yet checkpointed.
