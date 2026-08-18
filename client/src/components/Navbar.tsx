@@ -275,7 +275,7 @@ export default function Navbar() {
             </button>
           )}
           <button
-            className={`p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
+            className={`flex items-center justify-center w-12 h-12 -m-2 p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}

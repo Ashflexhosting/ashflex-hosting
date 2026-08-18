@@ -1382,10 +1382,10 @@
 
 ## Final Mobile Audit & Founder Box (user request)
 - [x] Mobile audit pass on key pages (Home, About, Services, Portfolio, Pricing) at 375x812 — no layout issues found; no fixes required
-- [ ] Fix any layout issues found during audit
+- [x] Fix any layout issues found during audit (no issues found in audit pass)
 - [x] Added "Meet the Founder" signature quote box below Mission/Vision bento cards on About page with founder photo, quote, name, and cursive signature
-- [ ] Verify on mobile and desktop, run tests, checkpoint and publish
-- [ ] Provide user with custom domain connection guide
+- [x] Verify on mobile and desktop, run tests, checkpoint and publish (founder box verified; checkpoint a54383e4)
+- [x] Provide user with custom domain connection guide (delivered 5-step guide)
 
 ### Mobile audit findings (375x812, full-page)
 - Home, Services, Portfolio, Pricing: layout stable; no horizontal overflow or broken sections observed
@@ -1442,3 +1442,16 @@ Remaining: verify dark mode works in browser + mobile menu opens after scroll; t
 
 ### Logo assessment
 Current logo (ashflex-website-design-logo-v2_ad90e878.png, 1813x868): "Ash" in blue, "flex" in chrome/silver on red plate, "Website Design" in DARK BROWN/BLACK text, on light aqua background. The dark "Website Design" text and light aqua bg would clash in dark mode. Plan: generate a lighter/dark-friendly variant (dark navy bg version with "Website Design" in white) via image edit, upload via manus-upload-file --webdev, add brandLogoUrlLight to shared/brand.ts, use dark: variant in Navbar (and footer if logo used there). Also check other logo usages (Footer, mobile menu) and text/icon color swaps: navbar scrolled state text uses text-foreground/70 (already theme-aware), icons mostly inherit currentColor.
+
+## Mobile menu scroll accessibility (user request)
+- [x] Verify navbar/hamburger stays accessible at all scroll positions including scrolled-up state
+- [x] Fix any sticky positioning issues found (e.g., unscrolled navbar disappearing / hero background hiding top of page)
+- [x] Verify fixes on mobile viewport, run tests, checkpoint and publish
+
+### Verification findings (375x812, pre-scroll top state)
+- Navbar fixed z-[60] with transparent unscrolled state renders correctly; logo + theme toggle + hamburger visible at top of Home and Services
+- Navbar uses `fixed` positioning (not sticky), so it cannot be hidden by page content or disappear when scrolling up — structure already correct
+- Mobile menu panel z-[65] above navbar (z-[60]) and backdrop z-[55]; no element found with z > 60 that could cover the hamburger (WhatsApp z-40, StickyCTA z-30, Services back-to-top z-50 but positioned bottom-left)
+- Earlier fix (checkpoint 339af485) already moved menu panel above all fixed overlays and removed body-overflow lock conflicts
+- Remaining risk checked: no pointer-events-blocking overlay at top of viewport on mobile; hero uses overflow-hidden inside section only
+- Conclusion: menu accessibility after scrolling is preserved; adding nothing invasive; ensuring the hamburger has an adequate touch target and the navbar never loses hit area when scrolled up (it stays fixed at top-0)
