@@ -1266,4 +1266,5 @@
 
 ## Stat sync 248+/96% → 246+/94% → 244+/91% (Aug 18, per user visual edit of homepage hero)
 - [x] Updated all project counts and satisfaction figures across Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services (highlight stat + Proven results card), IndustryDetail, and usePageMeta description
-- [x] Final figures per user's visual edit: 244+ projects, 91% satisfaction, 9+ years experience, 14+ countries; zero remaining stale mentions in client/src, 39/39 tests pass; checkpointed and auto-published
+- [x] Updated site to 242+ projects, 89% satisfaction, 8+ years experience, 13+ countries (second user visual edit): Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
+- [x] Verified zero remaining 244+/91%/9+/14+ mentions in client/src; homepage hero and About section show 242+/89%/8+/13+; 39/39 tests pass; checkpointed and auto-published
