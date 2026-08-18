@@ -586,8 +586,8 @@ href="https://galconengineering.com"
             <div className="lg:col-span-4 scroll-reveal">
               <div className="relative max-w-sm mx-auto lg:max-w-none">
                 <img
-                  src="/manus-storage/hero-galcon_f653d112.webp"
-                  alt="Ashflex website displayed across desktop, tablet, and phone"
+                  src="/manus-storage/ashflex-imac-screen_a42903ad.png"
+                  alt="Ashflex-designed website displayed on an iMac"
                   loading="lazy"
                   className="w-full drop-shadow-2xl"
                 />

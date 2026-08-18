@@ -1171,3 +1171,8 @@
 
 - [x] Replace the left-side device mockup image in the welcome section: hero-galcon (3-device group) swapped for galcon-imac-hero-v2 (single iMac front view, transparent bg)
 - [x] Verified in browser, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Ashflex-themed mockup screen (Aug 18)
+
+- [x] Generate an Ashflex-themed agency website design and composite it into the iMac mockup screen: captured the Ashflex newsletter page, quad-warped it onto the iMac screen geometry with bezel clearing and reflection overlay (/manus-storage/ashflex-imac-screen_a42903ad.png)
+- [x] Uploaded asset and integrated into welcome section (Home.tsx), verified on homepage, 39/39 tests pass; checkpointed and auto-published with GitHub sync
