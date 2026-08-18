@@ -1272,6 +1272,7 @@
 ## Centralize site stats (Aug 18)
 - [x] Extracted all site stats into SITE_STATS in shared/const.ts; Home, About, Services, IndustryDetail, and usePageMeta all read from it — a single constant change now updates the whole site, ending recurring out-of-sync edits
 - [x] Updated SITE_STATS to the user's latest visual edit (234+ projects, 80% satisfaction, 4+ years, 9+ countries); homepage hero and About stats band verified; case-study figures intentionally left hardcoded; 39/39 tests pass; checkpointed and auto-published
+- [x] Updated SITE_STATS to 231+ projects, 78% satisfaction, 3+ years, 8+ countries per user's newest hero edit; verified homepage hero; 39/39 tests pass; checkpointed and auto-published
 
 ## Stat sync 242+/89% → 240+/87% → 238+/85% (Aug 18, per user visual edit of homepage hero)
 - [x] Synced all site stats to 238+ projects, 85% satisfaction, 6+ years experience, 11+ countries: Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
