@@ -1325,3 +1325,4 @@
 - [x] Updated SITE_STATS to 240+ projects, 87% satisfaction, 5+ years, 10+ countries per user's newest hero edit; zero stale 242+/89%/6+ years/11+ mentions; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 238+ projects, 85% satisfaction, 4+ years, 9+ countries per user's newest hero edit; zero stale 240+/87%/5+ years/10+ mentions; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 236+ projects, 83% satisfaction, 3+ years, 8+ countries per user's newest hero edit; remaining 85% mentions are case-study project metrics (not site stats); 39/39 tests pass; checkpointed and auto-published
+- [x] Updated SITE_STATS to 233+ projects, 80% satisfaction, 2+ years, 7+ countries per user's newest hero edit; remaining "3+ years" mention is a job requirement in Careers (not a site stat); 39/39 tests pass; checkpointed and auto-published
