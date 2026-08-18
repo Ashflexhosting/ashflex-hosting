@@ -173,7 +173,7 @@ const groupHighlights: Record<string, { kicker: string; title: string; message: 
     kicker: "Our Promise",
     title: "Designed to be loved. Built to perform.",
     message: "Every project starts with your goals and ends with measurable results — beauty and performance, never one without the other.",
-    stat: "250+ projects crafted",
+    stat: "248+ projects crafted",
     bg: "linear-gradient(135deg, #0757F7, #F20549)",
     orbA: "rgba(255,255,255,0.18)",
     orbB: "#33C9D4",
@@ -626,7 +626,7 @@ export default function Services() {
                   <CheckCircle2 size={22} className="text-brand-secondary mt-0.5 shrink-0" />
                   <div>
                     <h3 className="font-semibold text-sm mb-1" style={{ fontFamily: "var(--font-heading)" }}>Proven results</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">250+ projects delivered with a 98% client satisfaction rate.</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">248+ projects delivered with a 96% client satisfaction rate.</p>
                   </div>
                 </div>
               </div>

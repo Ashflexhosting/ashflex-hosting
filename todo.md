@@ -1257,3 +1257,9 @@
 ## Client satisfaction stat 98% → 96% (Aug 18)
 - [x] Changed "98%" client satisfaction to "96%" on the About page in all three spots (Our Story floating stat card, Our Story body paragraph, and the stats band counter) per user visual edit
 - [x] Verified on desktop; homepage hero already shows 96% in the counter but its welcome-section floating badge still shows 98% (user did not request homepage change); all 39 tests pass; checkpointed and auto-published
+
+## Stat sync 98% → 96% and team card fix (Aug 18)
+- [x] Synced "98% Client Satisfaction" to 96% site-wide: homepage welcome floating badge, homepage hero stats band, Services page Proven results card and design highlight stat; also updated usePageMeta default description (96%)
+- [x] Updated "250+ projects" to "248+" everywhere: homepage welcome badge and stats band, About Our Story body + stats band + trust points + milestone chip, Services page (2 spots), IndustryDetail page, and usePageMeta description
+- [x] Founder team card now rendered as a featured card per the reference image: deep red gradient (brand-accent to #B2002F) background with white text, name first, matching the red "Founder & CEO" card in team.webp
+- [x] Verified full-page on / and /about (96% floating card, 248+/96% stats bands, red founder card); zero remaining 250+/98% mentions in client/src; 39/39 tests pass; checkpointed and auto-published

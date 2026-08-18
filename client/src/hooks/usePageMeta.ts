@@ -4,7 +4,7 @@ export function usePageMeta(options: { title?: string; description?: string }) {
   useEffect(() => {
     const defaultTitle = "Ashflex Web Design — Premium Web Design & Development Agency";
     const defaultDescription =
-      "Ashflex is a premium web design agency delivering stunning, high-converting websites. 250+ projects, 98% client satisfaction, 10+ years of experience.";
+      "Ashflex is a premium web design agency delivering stunning, high-converting websites. 248+ projects, 96% client satisfaction, 10+ years of experience.";
 
     const title = options.title ? `${options.title} | Ashflex Web Design` : defaultTitle;
     const description = options.description || defaultDescription;
