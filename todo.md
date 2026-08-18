@@ -1253,3 +1253,7 @@
 ## Glass-reflection glare on light cards (Aug 18)
 - [x] Added a glass-reflection glare sweep (.glass-glare utility in index.css: translateX sweep from -100% to 100% over 1s ease-in-out, triggered by .group\/glare:hover and :focus-within) to the Mission, Vision, and Core Values cards; fallback used because this project's Tailwind 4 config does not emit translate-x-* arbitrary utilities
 - [x] Verified the glare divs render with correct initial transform (computed matrix confirms translateX(-100%)), CSS rule is generated and hover/focus-within selectors present; layout clean on desktop; all 39 tests pass; checkpointed and auto-published
+
+## Client satisfaction stat 98% → 96% (Aug 18)
+- [x] Changed "98%" client satisfaction to "96%" on the About page in all three spots (Our Story floating stat card, Our Story body paragraph, and the stats band counter) per user visual edit
+- [x] Verified on desktop; homepage hero already shows 96% in the counter but its welcome-section floating badge still shows 98% (user did not request homepage change); all 39 tests pass; checkpointed and auto-published
