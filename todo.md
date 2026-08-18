@@ -1511,3 +1511,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Implement FAQ search result count display and auto-expand matching accordion items: count badge in search input, multiple-value Accordion driven by filtered faq ids, empty-state messaging, per-category anchors (id="faq-{category}"), and hash deep-link support that selects the category and scrolls on load
 - [x] Add FAQ JSON-LD structured data (FAQPage with all 20 questions) to /faq for Google rich results; added stable id field to each FaqItem used as AccordionItem value
 - [x] Verify in browser (search, auto-expand, deep link, JSON-LD present), run full test suite (43/43 pass), checkpoint and publish
+
+## Mobile Footer "Get a Quote" Overlap (user-reported)
+- [x] Diagnose why the "Get a Quote" button after/below the footer overlaps on mobile (StickyCTA fixed bar covering footer content on small screens)
+- [x] Fix the overlap: StickyCTA now renders a compact single-row bar on mobile (smaller fonts/padding, no text wrap, dark-mode background) and appends a 56px spacer so footer content is never covered; verified on 375px width, 43/43 tests pass, checkpoint and publish
