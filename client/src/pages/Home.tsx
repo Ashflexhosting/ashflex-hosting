@@ -13,6 +13,34 @@ import { portfolioItems } from "@/data/portfolio";
 import { faqs } from "@/data/faq";
 import ScrollableScreenshot from "@/components/ScrollableScreenshot";
 import { TiltEffect } from "@/components/TiltEffect";
+import { ShineButton } from "@/components/ShineButton";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+function WelcomeOrbs() {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y1 = useTransform(scrollYProgress, [0, 1], [40, -60]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [-40, 70]);
+  return (
+    <motion.div
+      ref={ref}
+      className="absolute inset-0 pointer-events-none"
+      aria-hidden="true"
+    >
+      <motion.div
+        className="glow-orb absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand-secondary"
+        style={{ opacity: 0.10, y: y1 }}
+      />
+      <motion.div
+        className="glow-orb absolute -bottom-32 right-0 w-[480px] h-[480px] rounded-full bg-[#F20549]"
+        style={{ opacity: 0.08, y: y2 }}
+      />
+    </motion.div>
+  );
+}
 
 const TRUSTED_BRANDS = [
   { name: "Gyro Air", logo: "/manus-storage/gyroair-new_79657a35.webp", url: "https://gyroairltd.com" },
@@ -460,12 +488,11 @@ export default function Home() {
               </p>
 
               <div className="hero-fade-in-d2 flex flex-row items-stretch gap-3 mb-10">
-                <Link href="/contact" className="flex-1">
-                  <span className="w-full justify-center group inline-flex items-center gap-2 px-3 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
+                <div className="flex-1">
+                  <ShineButton href="/contact" className="w-full justify-center text-xs sm:text-base px-3 py-3.5 sm:px-8 sm:py-4">
                     Get Free Quote
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
+                  </ShineButton>
+                </div>
                 <Link href="/portfolio" className="flex-1">
                   <span className="w-full justify-center group inline-flex items-center gap-2 px-3 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-base font-semibold text-white/85 border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
                     <MonitorPlay size={18} /> View Portfolio
@@ -580,11 +607,7 @@ href="https://galconengineering.com"
 
       {/* ============ WELCOME — modern creative intro ============ */}
       <section id="welcome" className="py-24 md:py-32 bg-[#E8E9EC] relative overflow-hidden">
-        {/* Decorative glow orbs */}
-        <div className="absolute inset-0" aria-hidden="true">
-          <div className="glow-orb absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand-secondary" style={{ opacity: 0.10 }} />
-          <div className="glow-orb absolute -bottom-32 right-0 w-[480px] h-[480px] rounded-full bg-[#F20549]" style={{ opacity: 0.08 }} />
-        </div>
+        <WelcomeOrbs />
 
         <div className="container relative z-10">
           {/* Eyebrow with animated badge */}
@@ -678,7 +701,12 @@ href="https://galconengineering.com"
                 From corporate websites and business portals to e-commerce platforms and custom web applications, we build solutions that work for your business and your customers.
               </p>
 
-              <div className="flex flex-wrap gap-2">
+              <Link href="/about" className="scroll-reveal inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 hover:gap-3 hover:text-[#F20549] group/story">
+                Read Our Story
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover/story:translate-x-1" />
+              </Link>
+
+              <div className="flex flex-wrap gap-2 mt-8">
                 {["Website Design", "Web Applications", "Graphic Design", "Digital Marketing"].map((chip) => (
                   <span key={chip} className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
                     {chip}

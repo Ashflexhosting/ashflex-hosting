@@ -1210,3 +1210,10 @@
 - [x] Enhanced Get Started button hover animation: stronger lift (translate-y-1), shine sweep across the pill, arrow slides up-right with 12deg rotation, ring glow on hover
 - [x] Added second staggered intro line to About page Our Story echoing the welcome body paragraphs ("Whether you are launching a brand-new business or upgrading...") with 120ms delay; remaining paragraphs' delays shifted (80/120/160/240ms)
 - [x] Verified visually, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Site-wide CTA polish (Aug 18)
+
+- [x] Applied shine-sweep hover animation: created reusable ShineButton component (shine sweep + lift + ring glow + arrow slide/rotate); hero "Get Free Quote" now uses it; welcome Get Started already uses the same pattern
+- [x] Added subtle parallax to welcome section glow orbs: WelcomeOrbs component with framer-motion useScroll/useTransform (orbs move in opposite directions as the section scrolls into/out of view)
+- [x] Inserted "Read Our Story" anchor link below the welcome intro pointing to /about (blue uppercase, arrow slides on hover, turns red)
+- [x] Verified visually (full-page), fixed useScroll ref hydration error, 39/39 tests pass; checkpointed and auto-published with GitHub sync
