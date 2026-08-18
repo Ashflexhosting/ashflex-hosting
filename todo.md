@@ -1181,3 +1181,8 @@
 
 - [x] Capture the Ashflex homepage (1513x993 headless Chromium) and composite it onto the iMac screen (same warp geometry, bezel clear, reflection) — /manus-storage/ashflex-imac-screen_97d232b0.png
 - [x] Uploaded asset, updated Home.tsx, verified on homepage (39/39 tests pass); checkpointed and auto-published with GitHub sync
+
+## Welcome section: use an image instead of a mockup (Aug 18)
+
+- [x] Replace the iMac mockup in the welcome section with a real AI-generated image: designer workspace with laptop + tablet showing navy/aqua/red website UI (4:3 photoreal, /manus-storage/ashflex-welcome-showcase_e45e0955.png)
+- [x] Integrated in Home.tsx, verified visually, 39/39 tests pass; checkpointed and auto-published with GitHub sync
