@@ -1288,3 +1288,4 @@
 - [x] Restored SITE_STATS in shared/const.ts to 250 projects, 98% satisfaction, 10 years, 15 countries (original counts); all consuming pages sync automatically
 - [x] Zero stale 218+/66%/2+ mentions in client/src; homepage hero verified showing 250+/98%/10+/15+; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 248+ projects, 96% satisfaction, 9+ years, 14+ countries per user's newest hero edit; zero stale 250+/98%/15+ mentions; 39/39 tests pass; checkpointed and auto-published
+- [x] Updated SITE_STATS to 247+ projects, 94% satisfaction, 8+ years, 13+ countries per user's newest hero edit; zero stale 248+/96%/14+ mentions; 39/39 tests pass; checkpointed and auto-published
