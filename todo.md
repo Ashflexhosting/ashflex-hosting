@@ -1378,3 +1378,4 @@
 - [x] Updated SITE_STATS to 236+ projects, 82% satisfaction, 4+ years and 8+ countries per user newest hero edit; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 235+ projects, 80% satisfaction, 3+ years and 7+ countries per user newest hero edit; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 232+ projects, 78% satisfaction, 2+ years and 6+ countries per user newest hero edit; 39/39 tests pass; checkpointed and auto-published
+- [x] Reverted SITE_STATS to original figures (250+ projects, 98% satisfaction, 10+ years, 15+ countries) per user request; stats locked - no further screenshot-driven changes; 39/39 tests pass; checkpointed and auto-published
