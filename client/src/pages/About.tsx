@@ -87,13 +87,22 @@ export default function About() {
               </div>
             </div>
             <div className="lg:col-span-8 lg:pt-14 xl:pt-16 space-y-6">
-              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed">
+              <div className="scroll-reveal">
+                <p className="text-2xl md:text-[1.9rem] font-extrabold leading-snug text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+                  Your Business Deserves{" "}
+                  <span className="relative text-[#B31026] after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
+                    More Than Just a Website
+                  </span> . It Deserves a{" "}
+                  <span className="text-gradient">Digital Presence That Works</span> .
+                </p>
+              </div>
+              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "80ms" }}>
                 Founded in Lagos, Nigeria, Ashflex Web Design has grown from a small freelance operation into one of Africa's leading digital agencies. What started as a passion for creating beautiful, functional websites has evolved into a comprehensive digital solutions provider serving businesses across Nigeria, Africa, and internationally.
               </p>
-              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "80ms" }}>
+              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "160ms" }}>
                 Over the past decade, we've helped more than 250 businesses establish their digital presence — from startups to enterprises, from local shops to international brands. Our commitment to quality, innovation, and client success has earned us a 98% satisfaction rate and a reputation for delivering exceptional results.
               </p>
-              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "160ms" }}>
+              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "240ms" }}>
                 Today, we continue to push boundaries with AI-powered solutions, advanced web technologies, and strategic digital marketing to help our clients stay ahead in an ever-evolving digital landscape.
               </p>
             </div>

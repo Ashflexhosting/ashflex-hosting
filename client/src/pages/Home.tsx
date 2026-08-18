@@ -606,14 +606,14 @@ href="https://galconengineering.com"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-primary text-white"><Rocket size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">248+<br />Projects</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">250+<br />Projects Delivered</span>
                 </div>
                 <div
                   className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#0757F7] text-white"><Star size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">96%<br />Satisfaction</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">98%<br />Client Satisfaction</span>
                 </div>
 
                 <TiltEffect max={6}>
@@ -685,6 +685,13 @@ href="https://galconengineering.com"
                   </span>
                 ))}
               </div>
+
+              <Link href="/contact?service=Website%20Design">
+                <span className="mt-8 group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]">
+                  Get Started
+                  <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
             </div>
           </div>
         </div>

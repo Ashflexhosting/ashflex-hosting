@@ -1197,3 +1197,10 @@
 - [x] Extract text from /home/ubuntu/upload/WELCOMETO.docx (headline + 3 paragraphs + services strip)
 - [x] Update welcome section copy in Home.tsx: "Ashflex Web Design" headline, "More Than Just a Website" gradient-underline lead, 3 body paragraphs, services chips (Website Design, Web Applications, Graphic Design, Digital Marketing); design preserved
 - [x] Verified visually desktop + mobile, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome section follow-ups (Aug 18)
+
+- [x] Updated floating stat badges to match hero stats: 250+ Projects Delivered / 98% Client Satisfaction
+- [x] Added Get Started CTA below the services chips (links to /contact?service=Website%20Design, pre-fills contact form)
+- [x] Synced welcome copy to About page intro: "Your Business Deserves More Than Just a Website. It Deserves a Digital Presence That Works." headline above Our Story paragraphs (staggered delays shifted)
+- [x] Verified visually (desktop), 39/39 tests pass; checkpointed and auto-published with GitHub sync
