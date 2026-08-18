@@ -223,8 +223,16 @@ export default function About() {
       </section>
 
       {/* ============ Mission / Vision / Values — bento grid ============ */}
-      <section className="py-20 md:py-24 bg-muted/30 overflow-hidden">
-        <div className="container">
+      <section className="relative bg-navy noise-texture overflow-hidden">
+        {/* Fixed background image with navy overlay for depth */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
+        />
+        <div className="absolute inset-0 bg-navy/60" aria-hidden="true" />
+
+        <div className="container relative z-10 py-20 md:py-24">
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Mission — spans 7 (staggered slide-up reveal) */}
             <div className="bento-reveal lg:col-span-7 glass-card p-8 md:p-10 rounded-3xl border-0 shadow-lg hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300">
@@ -250,7 +258,7 @@ export default function About() {
 
           {/* Core values band */}
           <div className="mt-12">
-            <p className="scroll-reveal text-brand-secondary font-semibold text-xs uppercase tracking-[0.25em] mb-8">What guides everything we do — Core Values</p>
+            <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-8">What guides everything we do — Core Values</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {coreValues.map((v, i) => (
                 <div key={i} className="scroll-reveal group/value glass-card p-5 rounded-2xl text-center border-0 hover:-translate-y-1.5 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-brand/10" style={{ transitionDelay: `${i * 60}ms` }}>

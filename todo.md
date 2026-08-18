@@ -1245,3 +1245,7 @@
 ## Mission/Vision cards match Our Team section (Aug 18)
 - [x] Updated Mission/Vision and Core Values cards to match the Our Team section styling: switched to a light bg-muted/30 section background and used the light glass-card component (rgba(255,255,255,0.74)) with dark text (text-foreground) for perfect consistency
 - [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published
+
+## Mission/Vision section background correction (Aug 18)
+- [x] Corrected Mission/Vision section: restored the dark navy background with fixed image texture and 60% overlay while keeping the cards in the light glass-card style for a high-contrast, professional look
+- [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published
