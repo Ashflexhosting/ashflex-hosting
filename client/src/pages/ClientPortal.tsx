@@ -16,6 +16,8 @@ import { useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 const mockProjects = [
   { name: "Lagos Luxury Homes", status: "In Progress", progress: 75, lastUpdate: "2 days ago" },
@@ -63,6 +65,176 @@ const submissionStatusColor: Record<string, string> = {
   read: "bg-blue-100 text-blue-700",
   responded: "bg-green-100 text-green-700",
 };
+
+function exportSubscribersCsv(subscribers: { email: string; source: string | null; createdAt: Date }[]) {
+  const escape = (value: string) => `"${value.replace(/"/g, '""')}"`;
+  const rows = ["email,source,subscribed_at", ...subscribers.map((s) => `${escape(s.email)},${escape(s.source ?? "site")},${new Date(s.createdAt).toISOString()}`)];
+  const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `newsletter-subscribers-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  URL.revokeObjectURL(url);
+}
+
+function AdminNewsletter() {
+  const utils = trpc.useUtils();
+  const [query, setQuery] = useState("");
+  const [deleteId, setDeleteId] = useState<number | null>(null);
+
+  const listQuery = trpc.newsletter.list.useQuery(undefined, {
+    refetchOnWindowFocus: false,
+  });
+
+  const deleteMutation = trpc.newsletter.deleteSubscriber.useMutation({
+    onSuccess: () => {
+      setDeleteId(null);
+      utils.newsletter.list.invalidate();
+      toast.success("Subscriber removed");
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const subscribers = listQuery.data ?? [];
+  const lowerQuery = query.trim().toLowerCase();
+  const filtered = lowerQuery
+    ? subscribers.filter((s) => s.email.toLowerCase().includes(lowerQuery) || (s.source ?? "").toLowerCase().includes(lowerQuery))
+    : subscribers;
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-semibold" style={{ fontFamily: "var(--font-heading)" }}>Newsletter Subscribers</h3>
+          <p className="text-sm text-muted-foreground">{subscribers.length} total subscriber{subscribers.length === 1 ? "" : "s"} captured from the site forms.</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="inline-flex items-center gap-1"
+            disabled={subscribers.length === 0}
+            onClick={() => exportSubscribersCsv(subscribers)}
+          >
+            <Download size={14} />Export CSV
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="inline-flex items-center gap-1"
+            disabled={subscribers.length === 0}
+            onClick={() => {
+              const csv = `email,source,subscribed_at\n${subscribers.map((s) => `"${s.email}","${s.source ?? "site"}","${new Date(s.createdAt).toISOString()}"`).join("\n")}`;
+              const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+              const url = URL.createObjectURL(blob);
+              navigator.clipboard
+                .writeText(csv)
+                .then(() => toast.success("All subscribers copied to clipboard as CSV"))
+                .catch(() => {
+                  const anchor = document.createElement("a");
+                  anchor.href = url;
+                  anchor.download = "newsletter-subscribers.csv";
+                  anchor.click();
+                })
+                .finally(() => URL.revokeObjectURL(url));
+            }}
+          >
+            <FileText size={14} />Copy CSV
+          </Button>
+        </div>
+      </div>
+
+      <div className="relative max-w-sm">
+        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by email or source…"
+          className="pl-9 bg-background"
+          aria-label="Search subscribers"
+        />
+      </div>
+
+      {listQuery.isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-2 border-brand-secondary border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : filtered.length === 0 ? (
+        <Card className="glass-card border-0 p-10 text-center">
+          <CardContent className="p-0">
+            <Inbox size={32} className="text-muted-foreground mx-auto mb-3" />
+            <p className="font-medium">{query ? "No matching subscribers" : "No subscribers yet"}</p>
+            <p className="text-sm text-muted-foreground">
+              {query ? "Try a different search term." : "Newsletter signups from the footer, top bar, and /newsletter page will appear here."}
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="glass-card border-0 overflow-hidden">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/70 text-left">
+                    <th className="px-4 py-3 font-semibold">Email</th>
+                    <th className="px-4 py-3 font-semibold">Source</th>
+                    <th className="px-4 py-3 font-semibold">Subscribed</th>
+                    <th className="px-4 py-3 font-semibold text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((s, index) => (
+                    <tr key={s.id} className={`border-t border-border/50 hover:bg-muted/40 transition-colors ${index % 2 === 1 ? "bg-muted/20" : ""}`}>
+                      <td className="px-4 py-3 font-medium">{s.email}</td>
+                      <td className="px-4 py-3">
+                        <Badge variant="outline" className="text-xs">{s.source ?? "site"}</Badge>
+                      </td>
+                      <td className="px-4 py-3 text-muted-foreground">{new Date(s.createdAt).toLocaleString()}</td>
+                      <td className="px-4 py-3 text-right">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+                          onClick={() => setDeleteId(s.id)}
+                        >
+                          <Trash2 size={14} />Remove
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      <Dialog open={deleteId !== null} onOpenChange={(open) => !open && setDeleteId(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Remove subscriber?</DialogTitle>
+            <DialogDescription>This permanently removes the email from the subscriber list. This action cannot be undone.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2">
+            <Button variant="outline" onClick={() => setDeleteId(null)}>Cancel</Button>
+            <Button
+              variant="destructive"
+              disabled={deleteMutation.isPending}
+              onClick={() => {
+                if (deleteId !== null) deleteMutation.mutate({ id: deleteId });
+              }}
+            >
+              Remove
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
 
 function AdminSubmissions() {
   const utils = trpc.useUtils();
@@ -316,13 +488,14 @@ function PortalDashboard({ user }: { user: any }) {
 
       {/* Tabs */}
       <Tabs defaultValue="projects">
-        <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${isAdmin ? 6 : 5}, minmax(0, 1fr))` }}>
+        <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${isAdmin ? 7 : 5}, minmax(0, 1fr))` }}>
           <TabsTrigger value="projects">Projects</TabsTrigger>
           <TabsTrigger value="invoices">Invoices</TabsTrigger>
           <TabsTrigger value="tickets">Tickets</TabsTrigger>
           <TabsTrigger value="files">Files</TabsTrigger>
           <TabsTrigger value="meetings">Meetings</TabsTrigger>
           {isAdmin ? <TabsTrigger value="submissions">Submissions</TabsTrigger> : null}
+          {isAdmin ? <TabsTrigger value="newsletter">Newsletter</TabsTrigger> : null}
         </TabsList>
 
         <TabsContent value="projects" className="mt-6">
@@ -428,9 +601,14 @@ function PortalDashboard({ user }: { user: any }) {
         </TabsContent>
 
         {isAdmin ? (
-          <TabsContent value="submissions" className="mt-6">
-            <AdminSubmissions />
-          </TabsContent>
+          <>
+            <TabsContent value="submissions" className="mt-6">
+              <AdminSubmissions />
+            </TabsContent>
+            <TabsContent value="newsletter" className="mt-6">
+              <AdminNewsletter />
+            </TabsContent>
+          </>
         ) : null}
       </Tabs>
     </div>

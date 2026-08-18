@@ -1136,14 +1136,23 @@
 
 ## Newsletter form functional (Aug 17)
 
-- [ ] Add a `newsletter` table (email, source, timestamps) to the schema
-- [ ] tRPC procedure: public `newsletter.subscribe` with email validation + duplicate handling + rate limiting
-- [ ] Footer newsletter form: real submit with loading spinner, success state, disables repeat prompts
-- [ ] Vitest tests for the subscribe procedure
-- [ ] Checkpoint, sync to GitHub main + master
+- [x] Added the `newsletter_subscribers` table (email unique, source, timestamps) to the schema and applied the migration
+- [x] tRPC procedure: public `newsletter.subscribe` with email validation + duplicate-safe upsert + owner notification
+- [x] Footer newsletter form: real submit with loading spinner, success state, localStorage flag to hide repeat prompts
+- [x] 7 vitest tests for the subscribe procedure (36/36 pass)
+- [x] Checkpointed and synced to GitHub main + master
 
 ## Sticky comparison table skill
 
 - [ ] Initialize skill via init_skill.py
 - [ ] Write SKILL.md + reusable reference template with the proven pattern
 - [ ] Validate and deliver skill
+
+## Newsletter platform (Aug 18)
+
+- [x] Resend integration: SKIPPED by user — owner notification banner remains the primary alert (Resend key not configured)
+- [x] Admin Newsletter tab: list subscribers with search, delete confirmation, Export CSV + Copy CSV buttons (role-gated to admin)
+- [x] /newsletter landing page with hero signup band, benefits grid, what-to-expect section; fixed double-render bug (page had nested Navbar/Footer duplicating the global layout — removed; now renders single footer/nav)
+- [x] Subscription form in the top utility bar (desktop)
+- [x] Vitest coverage for newsletter admin list + deleteSubscriber (admin gating) — 39/39 tests pass
+- [ ] Checkpoint, sync to GitHub main + master

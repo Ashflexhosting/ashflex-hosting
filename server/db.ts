@@ -197,3 +197,25 @@ export async function deleteJobApplication(id: number): Promise<void> {
   if (!db) throw new Error("Database not available; application could not be deleted");
   await db.delete(jobApplications).where(eq(jobApplications.id, id));
 }
+
+export async function listNewsletterSubscribers(
+  limit: number,
+): Promise<Array<{ id: number; email: string; source: string | null; createdAt: Date }>> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available; subscribers could not be listed");
+  }
+  const rows = await db.select().from(newsletterSubscribers).limit(limit);
+  return rows.map((row) => ({
+    id: row.id,
+    email: row.email,
+    source: row.source ?? null,
+    createdAt: row.createdAt,
+  }));
+}
+
+export async function deleteNewsletterSubscriber(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available; subscriber could not be deleted");
+  await db.delete(newsletterSubscribers).where(eq(newsletterSubscribers.id, id));
+}

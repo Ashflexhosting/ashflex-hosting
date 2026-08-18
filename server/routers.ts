@@ -12,6 +12,7 @@ import {
   upsertNewsletterSubscriber,
 } from "./db";
 import { notifyOwner } from "./_core/notification";
+import { deleteNewsletterSubscriber, listNewsletterSubscribers } from "./db";
 import { invokeLLM } from "./_core/llm";
 import { storagePut } from "./storage";
 import { getSessionCookieOptions } from "./_core/cookies";
@@ -330,13 +331,40 @@ export const appRouter = router({
           // Notify the site owner about the new subscriber so the lead is not lost.
           await notifyOwner({
             title: `New newsletter subscriber: ${input.email}`,
-            content: `A new visitor subscribed to the Ashflex newsletter via the footer form.\nEmail: ${input.email}`,
+            content: `A new visitor subscribed to the Ashflex newsletter via the ${input.source ?? "footer"} form.\nEmail: ${input.email}`,
           }).catch((error) => {
             console.error("[Newsletter] Owner notification failed:", error);
           });
+
+          // Optionally mirror the notification as a Resend email when the key is configured.
+          const resendKey = process.env.RESEND_API_KEY;
+          if (resendKey) {
+            await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${resendKey}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                from: "Ashflex Web Design <info@ashflexwebdesign.com>",
+                to: ["info@ashflexwebdesign.com"],
+                subject: `New newsletter subscriber: ${input.email}`,
+                html: `<p>A new visitor subscribed to the Ashflex newsletter via the ${input.source ?? "footer"} form.</p><p><strong>Email:</strong> ${input.email}</p>`,
+              }),
+            }).catch((error) => {
+              console.error("[Newsletter] Resend notification failed:", error);
+            });
+          }
         }
 
         return { id, inserted } as const;
+      }),
+    list: adminProcedure.query(() => listNewsletterSubscribers(500)),
+    deleteSubscriber: adminProcedure
+      .input(z.object({ id: z.number().int().positive() }))
+      .mutation(async ({ input }) => {
+        await deleteNewsletterSubscriber(input.id);
+        return { deleted: true } as const;
       }),
   }),
 });

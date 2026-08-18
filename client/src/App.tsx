@@ -29,6 +29,7 @@ import BrandingGuide from "./pages/BrandingGuide";
 import DigitalMarketingGuide from "./pages/DigitalMarketingGuide";
 import Contact from "./pages/Contact";
 import Careers from "./pages/Careers";
+import Newsletter from "./pages/Newsletter";
 import ClientPortal from "./pages/ClientPortal";
 import SEOLanding from "./pages/SEOLanding";
 import NotFound from "./pages/NotFound";
@@ -81,6 +82,7 @@ function Router() {
       <Route path="/resources/branding-guide" component={BrandingGuide} />
       <Route path="/resources/digital-marketing-guide" component={DigitalMarketingGuide} />
       <Route path="/careers" component={Careers} />
+      <Route path="/newsletter" component={Newsletter} />
       <Route path="/contact" component={Contact} />
       <Route path="/portal" component={ClientPortal} />
       <Route path="/client-portal" component={ClientPortal} />

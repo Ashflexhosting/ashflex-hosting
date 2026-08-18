@@ -3,6 +3,8 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Mail, Phone } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { brandLogoUrl } from "@shared/brand";
+import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 const mainNav = [
   { label: "Home", href: "/" },
@@ -160,6 +162,7 @@ export default function Navbar() {
             </a>
           </div>
           <div className="flex items-center gap-5">
+            <TopBarNewsletter />
             <a href="tel:08023138892" className="flex items-center gap-1.5 hover:text-white transition-colors">
               <Phone size={13} className="text-brand-cyan" />
               08023138892
@@ -325,5 +328,57 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+  );
+}
+
+function TopBarNewsletter() {
+  const subscribeMutation = trpc.newsletter.subscribe.useMutation({
+    onSuccess: () => {
+      toast.success("You're on the list!", {
+        description: "Thanks for subscribing — we'll keep you posted.",
+      });
+      try {
+        localStorage.setItem("ashflex_newsletter_prompted", "1");
+      } catch {
+        // Storage may be unavailable; ignore.
+      }
+    },
+    onError: () => {
+      toast.error("Couldn't subscribe right now", {
+        description: "Please try again or email us directly.",
+      });
+    },
+  });
+  const [email, setEmail] = useState("");
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (!email.trim()) return;
+        subscribeMutation.mutate({ email: email.trim(), source: "topbar" });
+        setEmail("");
+      }}
+      className="hidden xl:flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1.5"
+      aria-label="Newsletter subscription"
+    >
+      <Mail size={13} className="text-brand-cyan shrink-0" />
+      <input
+        type="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="Email for updates"
+        required
+        className="w-36 bg-transparent text-xs text-white placeholder:text-white/50 focus:outline-none"
+        aria-label="Your email address"
+      />
+      <button
+        type="submit"
+        disabled={subscribeMutation.isPending}
+        className="rounded-full bg-brand-cyan px-3 py-1 text-[11px] font-semibold text-brand-dark transition-all hover:bg-cyan-300 disabled:opacity-60 active:scale-95"
+      >
+        {subscribeMutation.isPending ? "Joining…" : "Join"}
+      </button>
+    </form>
   );
 }

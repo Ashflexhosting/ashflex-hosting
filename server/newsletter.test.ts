@@ -95,3 +95,28 @@ describe("newsletter.subscribe", () => {
     expect(notifyOwner).not.toHaveBeenCalled();
   });
 });
+
+describe("newsletter admin access control", () => {
+  type UserLike = { id: number; role: "user" | "admin" } | null;
+
+  function createContext(user: UserLike) {
+    return { user: user as never } as never;
+  }
+
+  it("rejects anonymous users because adminProcedure requires a logged-in admin", async () => {
+    const caller = appRouter.createCaller(createContext(null));
+    await expect(caller.newsletter.list()).rejects.toMatchObject({ code: "FORBIDDEN" });
+  });
+
+  it("rejects non-admin users with FORBIDDEN", async () => {
+    const caller = appRouter.createCaller(createContext({ id: 1, role: "user" }));
+    await expect(caller.newsletter.list()).rejects.toMatchObject({ code: "FORBIDDEN" });
+  });
+
+  it("rejects non-admin deletion attempts with FORBIDDEN", async () => {
+    const caller = appRouter.createCaller(createContext({ id: 1, role: "user" }));
+    await expect(caller.newsletter.deleteSubscriber({ id: 1 })).rejects.toMatchObject({
+      code: "FORBIDDEN",
+    });
+  });
+});
