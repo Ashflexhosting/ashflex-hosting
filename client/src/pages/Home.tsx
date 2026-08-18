@@ -492,7 +492,7 @@ export default function Home() {
 
               <div className="hero-fade-in-d2 flex flex-row items-stretch gap-3 mb-10">
                 <div className="flex-1">
-                  <ShineButton href="/contact" className="w-full justify-center text-xs sm:text-base px-3 py-3.5 sm:px-8 sm:py-4">
+                  <ShineButton href="/contact" arrow className="w-full [&>span]:text-xs [&>span]:sm:text-base [&>span]:font-semibold [&>span]:normal-case [&>span]:tracking-normal [&>span]:px-3 [&>span]:sm:px-8 [&>span]:py-3.5 [&>span]:sm:py-4 [&>span]:rounded-2xl">
                     Get Free Quote
                   </ShineButton>
                 </div>
