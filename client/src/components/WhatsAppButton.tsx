@@ -84,6 +84,15 @@ export default function WhatsAppButton() {
           className="mr-2.5 mb-1.5 rounded-full bg-white/95 dark:bg-brand px-3.5 py-1.5 text-[11px] font-semibold text-[#1B2A6B] dark:text-white shadow-md shadow-black/10 whitespace-nowrap backdrop-blur flex items-center gap-1.5 animate-in fade-in slide-in-from-bottom-1 duration-300"
         >
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" aria-hidden="true" />
+          <span className="inline-flex items-center gap-[3px]" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="typing-dot w-1 h-1 rounded-full bg-brand-secondary/70 dark:bg-brand-accent/70"
+                style={{ animationDelay: `${i * 150}ms` }}
+              />
+            ))}
+          </span>
           Typically replies within 10 minutes
           <button
             type="button"

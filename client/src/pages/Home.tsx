@@ -594,7 +594,7 @@ href="https://galconengineering.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${brand.name}`}
-                className="inline-flex items-center justify-center rounded-md px-4 py-3 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
+                className="group/logo relative inline-flex items-center justify-center rounded-md px-4 py-3 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
               >
                 <img
                   src={brand.logo}
@@ -602,6 +602,15 @@ href="https://galconengineering.com"
                   loading="lazy"
                   className="h-16 md:h-20 w-auto max-w-[230px] md:max-w-[270px] object-contain grayscale transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:grayscale-0 hover:scale-[1.12] origin-center"
                 />
+                {/* Descriptive hover label */}
+                <span
+                  role="tooltip"
+                  className="pointer-events-none absolute -bottom-9 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#1B2A6B] px-3.5 py-1.5 text-[11px] font-semibold text-white opacity-0 translate-y-1 shadow-lg shadow-black/20 transition-all duration-200 ease-out group-hover/logo:opacity-100 group-hover/logo:translate-y-0"
+                  aria-hidden="true"
+                >
+                  {brand.name}
+                  <span aria-hidden="true" className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rotate-45 bg-[#1B2A6B]" />
+                </span>
               </a>
             </div>
           ))}

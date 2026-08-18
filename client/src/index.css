@@ -388,4 +388,20 @@
       box-shadow: 0 0 0 3px transparent;
     }
   }
+
+  /* WhatsApp typing dots: staggered rise reinforces the fast-response promise */
+  .typing-dot {
+    animation: typing-rise 1.2s infinite ease-in-out;
+  }
+  @keyframes typing-rise {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
 }
