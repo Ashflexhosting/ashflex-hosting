@@ -1236,3 +1236,8 @@
 - [x] Added scroll-triggered fade-in + slide-up (framer-motion whileInView, respects prefers-reduced-motion) to the collage image (0.7s, 12px stagger) and the floating 98% stat card (0.55s, scale-from 0.94)
 - [x] Milestone chips are now clickable buttons with aria-expanded, focus-visible outlines, and an AnimatePresence tooltip card (200ms ease-out) revealing an anecdote per era (2016 founded, 50+ by year 3, 250+ projects, 15+ countries)
 - [x] Verified: clicks toggle anecdotes correctly, desktop and mobile (375px) layouts clean, 39/39 tests pass; checkpointed and auto-published
+
+## Mission/Vision bg readability + Core Values hover (Aug 18)
+- [x] Refined Mission/Vision background readability: increased section overlay opacity to 60%, darkened card backgrounds to bg-navy/80, and boosted text contrast to white/85 font-medium for crystal-clear readability against the fixed texture
+- [x] Added interactive hover effects to Core Values cards: 1.5px lift, aqua border glow (shadow-brand-cyan/10), and icon scale-up (110%) with background highlight (bg-brand-cyan/10)
+- [x] Verified visually on desktop and mobile, all 39 tests pass; checkpointed and auto-published

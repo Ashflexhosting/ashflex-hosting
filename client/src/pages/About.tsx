@@ -230,26 +230,26 @@ export default function About() {
           aria-hidden="true"
           style={{ backgroundImage: "url('/manus-storage/services-inquiry-bg_58c1e14e.png')" }}
         />
-        <div className="absolute inset-0 bg-navy/45" aria-hidden="true" />
+        <div className="absolute inset-0 bg-navy/60" aria-hidden="true" />
         <div className="container relative z-10 py-20 md:py-24">
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Mission — spans 7 (staggered slide-up reveal) */}
-            <div className="bento-reveal lg:col-span-7 glass-card-dark p-8 md:p-10 rounded-3xl">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6">
+            <div className="bento-reveal lg:col-span-7 glass-card-dark p-8 md:p-10 rounded-3xl bg-navy/80 border-white/10 shadow-2xl">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
                 <Target className="text-white" size={28} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Mission</h3>
-              <p className="text-white/60 leading-relaxed text-lg">
+              <p className="text-white/85 leading-relaxed text-lg font-medium">
                 To empower businesses with world-class digital solutions that drive growth, increase revenue, and establish lasting competitive advantages in their markets.
               </p>
             </div>
             {/* Vision — spans 5 */}
-            <div className="bento-reveal lg:col-span-5 glass-card-dark p-8 md:p-10 rounded-3xl" style={{ transitionDelay: "140ms" }}>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6">
+            <div className="bento-reveal lg:col-span-5 glass-card-dark p-8 md:p-10 rounded-3xl bg-navy/80 border-white/10 shadow-2xl" style={{ transitionDelay: "140ms" }}>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-brand-secondary/20">
                 <Eye className="text-white" size={28} />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-heading)" }}>Our Vision</h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/85 leading-relaxed font-medium">
                 To become the most trusted digital agency in Africa, known for transforming businesses through innovative design, cutting-edge technology, and strategic digital excellence.
               </p>
             </div>
@@ -260,12 +260,12 @@ export default function About() {
             <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-8">What guides everything we do — Core Values</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {coreValues.map((v, i) => (
-                <div key={i} className="scroll-reveal glass-card-dark p-5 rounded-2xl text-center hover:border-brand-cyan/40 transition-colors duration-300" style={{ transitionDelay: `${i * 60}ms` }}>
-                  <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3">
-                    <v.icon size={20} className="text-brand-cyan" />
+                <div key={i} className="scroll-reveal group/value glass-card-dark p-5 rounded-2xl text-center hover:bg-navy/90 hover:border-brand-cyan/40 hover:-translate-y-1.5 transition-all duration-300 shadow-lg hover:shadow-brand-cyan/10" style={{ transitionDelay: `${i * 60}ms` }}>
+                  <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 group-hover/value:bg-brand-cyan/10 group-hover/value:border-brand-cyan/30 transition-colors">
+                    <v.icon size={20} className="text-brand-cyan group-hover/value:scale-110 transition-transform" />
                   </div>
                   <h4 className="text-white font-semibold text-sm mb-1" style={{ fontFamily: "var(--font-heading)" }}>{v.title}</h4>
-                  <p className="text-white/50 text-xs leading-relaxed">{v.desc}</p>
+                  <p className="text-white/70 text-xs leading-relaxed group-hover/value:text-white/90 transition-colors">{v.desc}</p>
                 </div>
               ))}
             </div>
