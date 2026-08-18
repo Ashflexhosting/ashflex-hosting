@@ -215,9 +215,9 @@ export default function Pricing() {
 
       <section className="py-20">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none gap-6 pb-3 -mx-4 px-4 lg:mx-0 lg:px-0" style={{ scrollbarWidth: "thin" }}>
             {plans.map((plan, i) => (
-              <div key={plan.name} data-plan-name={plan.name} className="scroll-reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={plan.name} data-plan-name={plan.name} className="scroll-reveal max-md:min-w-[300px] max-md:snap-start max-md:flex-shrink-0" style={{ transitionDelay: `${i * 60}ms` }}>
                 <Card className={`h-full border-0 p-6 ${plan.popular ? "bg-gradient-brand text-white shadow-2xl shadow-brand-secondary/20 lg:-mt-4 lg:pb-8" : "glass-card"}`}>
                   <CardContent className="p-0">
                     {plan.popular && (

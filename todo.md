@@ -1221,3 +1221,9 @@
 ## Welcome heading mobile layout (Aug 18)
 - [x] On mobile: move the "Welcome to" badge to sit above the "Ashflex Web Design" heading (flex-col on mobile, lg:flex-row inline on desktop); heading forced single-line with whitespace-nowrap and smaller responsive font sizes (text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem])
 - [x] Verified on mobile viewport (heading renders on 1 line at 327px content width, badge sits above heading on mobile and left of heading on desktop), 39/39 tests pass; checkpoint and sync
+
+## Hero headline responsive scaling + mobile table audit (Aug 18)
+- [x] Extended responsive font-size scale-up to the homepage hero headline across breakpoints (text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem]) matching the welcome heading pattern
+- [x] Audited Services page on mobile: sticky filter bar with 4-col compact tabs renders fully visible, service cards stack cleanly, no squeeze points found
+- [x] Fixed Pricing page mobile squeeze: tier card grid now scrolls horizontally with snap points (300px min card width) instead of stacking vertically, keeping the comparison table and Business sticky column behavior intact
+- [x] Verified visually on mobile (375px) and desktop, 39/39 tests pass; checkpointed and auto-published with GitHub sync

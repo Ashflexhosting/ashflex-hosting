@@ -460,7 +460,7 @@ export default function Home() {
             {/* Left: copy */}
             <div className="lg:col-span-7">
               <h1
-                className="hero-fade-in text-[1.9rem] sm:text-5xl md:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
+                className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 <span className="whitespace-nowrap">
