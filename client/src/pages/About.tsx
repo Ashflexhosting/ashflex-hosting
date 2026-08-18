@@ -5,9 +5,10 @@ import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import { Target, Eye, Heart, Users, Award, Globe, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
+import { SITE_STATS } from "@shared/const";
 
 const team = [
-  { name: "Uzodimma Ogbonnaya", role: "Founder & CEO", bio: "6+ years leading digital innovation across Africa and beyond.", img: "/manus-storage/team-ceo_103bb175.png", accent: "from-brand-accent to-[#B2002F]", featured: true },
+  { name: "Uzodimma Ogbonnaya", role: "Founder & CEO", bio: `${SITE_STATS.years}+ years leading digital innovation across Africa and beyond.`, img: "/manus-storage/team-ceo_103bb175.png", accent: "from-brand-accent to-[#B2002F]", featured: true },
   { name: "Adaeze Nwosu", role: "Creative Director", bio: "Award-winning designer with expertise in UI/UX and brand identity.", img: "/manus-storage/team-designer_31932908.png", accent: "from-brand-accent to-brand-cyan" },
   { name: "Chidi Eze", role: "Technical Lead", bio: "Full-stack engineer specializing in scalable web applications.", img: "/manus-storage/team-developer_8a4edf68.png", accent: "from-brand-cyan to-brand-secondary" },
   { name: "Ngozi Obi", role: "Digital Marketing Lead", bio: "Data-driven marketer who drives organic growth for businesses.", img: "/manus-storage/team-marketer_e9c29036.png", accent: "from-brand-accent to-brand-secondary" },
@@ -23,8 +24,8 @@ const coreValues = [
 ];
 
 const trustPoints = [
-  "Proven track record with 238+ successful projects",
-  "Award-winning design team with 6+ years experience",
+  `Proven track record with ${SITE_STATS.projects}+ successful projects`,
+  `Award-winning design team with ${SITE_STATS.years}+ years experience`,
   "100% responsive and mobile-optimized websites",
   "SEO-optimized from the ground up",
   "Dedicated project manager for every client",
@@ -59,12 +60,12 @@ const milestones = [
     anecdote: "Word of mouth did the heavy lifting. By 2019, more than 50 local shops, clinics, and startups trusted us with their first real digital presence.",
   },
   {
-    year: "238+",
+    year: `${SITE_STATS.projects}+`,
     label: "Projects delivered",
     anecdote: "A decade of shipping has taken us from five-page websites to full-scale web applications, e-commerce platforms, and AI-powered tools across four continents.",
   },
   {
-    year: "15+",
+    year: `${SITE_STATS.countries}+`,
     label: "Countries served",
     anecdote: "Clients now reach us from London to Toronto, Dubai to Nairobi — proving that great design, done right in Lagos, resonates everywhere.",
   },
@@ -127,7 +128,7 @@ export default function About() {
                   Founded in Lagos, Nigeria, Ashflex Web Design has grown from a small freelance operation into one of Africa's leading digital agencies — serving businesses across Nigeria, Africa, and internationally.
                 </p>
                 <p className="scroll-reveal text-base md:text-lg text-white/60 leading-relaxed" style={{ transitionDelay: "220ms" }}>
-                  Over the past decade, we've helped more than 238 businesses establish their digital presence — from startups to enterprises, from local shops to international brands — earning a 85% satisfaction rate along the way.
+                  Over the past decade, we've helped more than {SITE_STATS.projects} businesses establish their digital presence — from startups to enterprises, from local shops to international brands — earning a {SITE_STATS.satisfaction}% satisfaction rate along the way.
                 </p>
                 <p className="scroll-reveal text-base md:text-lg text-white/60 leading-relaxed" style={{ transitionDelay: "260ms" }}>
                   Today, we continue to push boundaries with AI-powered solutions, advanced web technologies, and strategic digital marketing to help our clients stay ahead.
@@ -196,7 +197,7 @@ export default function About() {
                       <Award size={20} className="text-white" />
                     </div>
                     <div>
-                      <p className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-heading)" }}>6+ Years of Digital Craft</p>
+                      <p className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-heading)" }}>{SITE_STATS.years}+ Years of Digital Craft</p>
                       <p className="text-white/55 text-xs">Lagos, Nigeria → the world</p>
                     </div>
                   </div>
@@ -213,7 +214,7 @@ export default function About() {
                   }}
                   transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: prefersReducedMotion ? 0 : 0.35, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <p className="text-2xl font-extrabold bg-gradient-to-r from-brand-accent to-brand-secondary bg-clip-text text-transparent leading-none" style={{ fontFamily: "var(--font-heading)" }}>85%</p>
+                  <p className="text-2xl font-extrabold bg-gradient-to-r from-brand-accent to-brand-secondary bg-clip-text text-transparent leading-none" style={{ fontFamily: "var(--font-heading)" }}>{SITE_STATS.satisfaction}%</p>
                   <p className="text-white/50 text-[11px] font-medium mt-1">Client satisfaction</p>
                 </motion.div>
               </motion.div>
@@ -289,10 +290,10 @@ export default function About() {
         <div className="container relative z-10">
           <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-12">The numbers behind the studio</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-            <CounterStat value={238} suffix="+" label="Projects Delivered" />
-            <CounterStat value={85} suffix="%" label="Client Satisfaction" delay="100ms" />
-            <CounterStat value={6} suffix="+" label="Years Experience" delay="200ms" />
-            <CounterStat value={11} suffix="+" label="Countries Served" delay="300ms" />
+            <CounterStat value={SITE_STATS.projects} suffix="+" label="Projects Delivered" />
+            <CounterStat value={SITE_STATS.satisfaction} suffix="%" label="Client Satisfaction" delay="100ms" />
+            <CounterStat value={SITE_STATS.years} suffix="+" label="Years Experience" delay="200ms" />
+            <CounterStat value={SITE_STATS.countries} suffix="+" label="Countries Served" delay="300ms" />
           </div>
         </div>
       </section>

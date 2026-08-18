@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { SITE_STATS } from "@shared/const";
 import {
   Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug,
@@ -502,10 +503,10 @@ export default function Home() {
 
               {/* stats band */}
               <div className="hero-fade-in-d3 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 max-w-2xl">
-                <CounterStat value={238} suffix="+" label="Projects Delivered" />
-                <CounterStat value={85} suffix="%" label="Client Satisfaction" delay="100ms" />
-                <CounterStat value={6} suffix="+" label="Years Experience" delay="200ms" />
-                <CounterStat value={11} suffix="+" label="Countries Served" delay="300ms" />
+                <CounterStat value={SITE_STATS.projects} suffix="+" label="Projects Delivered" />
+                <CounterStat value={SITE_STATS.satisfaction} suffix="%" label="Client Satisfaction" delay="100ms" />
+                <CounterStat value={SITE_STATS.years} suffix="+" label="Years Experience" delay="200ms" />
+                <CounterStat value={SITE_STATS.countries} suffix="+" label="Countries Served" delay="300ms" />
               </div>
             </div>
 
@@ -629,14 +630,14 @@ href="https://galconengineering.com"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-primary text-white"><Rocket size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">238+<br />Projects Delivered</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">{SITE_STATS.projects}+<br />Projects Delivered</span>
                 </div>
                 <div
                   className="absolute top-1/3 -left-5 md:-left-8 z-10 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-xl shadow-brand-secondary/15 float-slow-delayed"
                   aria-hidden="true"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#0757F7] text-white"><Star size={17} /></span>
-                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">85%<br />Client Satisfaction</span>
+                  <span className="text-sm font-extrabold text-[#1B2A6B] leading-tight">{SITE_STATS.satisfaction}%<br />Client Satisfaction</span>
                 </div>
 
                 <TiltEffect max={6}>

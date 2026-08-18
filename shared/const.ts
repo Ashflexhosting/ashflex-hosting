@@ -2,6 +2,15 @@ export const COOKIE_NAME = "app_session_id";
 export const ONE_YEAR_MS = 1000 * 60 * 60 * 24 * 365;
 export const AXIOS_TIMEOUT_MS = 30_000;
 export const UNAUTHED_ERR_MSG = 'Please login (10001)';
+
+// Single source of truth for agency-wide stats (projects, satisfaction, years, countries).
+// All pages must read from here — never hardcode the figures elsewhere.
+export const SITE_STATS = {
+  projects: 236,
+  satisfaction: 82,
+  years: 5,
+  countries: 10,
+};
 export const NOT_ADMIN_ERR_MSG = 'You do not have required permission (10002)';
 
 // One-time nonce cookie that binds an OAuth login to the browser that started

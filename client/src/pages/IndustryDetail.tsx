@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getIndustryBySlug } from "@/data/industries";
+import { SITE_STATS } from "@shared/const";
 
 export default function IndustryDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -63,7 +64,7 @@ export default function IndustryDetail() {
               <div className="space-y-4">
                 {[
                   `Deep understanding of the ${industry.title.toLowerCase()} industry landscape`,
-                  "Proven track record with 238+ projects across multiple industries",
+                  `Proven track record with ${SITE_STATS.projects}+ projects across multiple industries`,
                   "Custom solutions built specifically for your sector",
                   "Dedicated team with industry-specific expertise",
                   "Compliance-ready solutions meeting industry standards",

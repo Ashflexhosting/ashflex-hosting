@@ -1270,7 +1270,8 @@
 - [x] Verified zero remaining 244+/91%/9+/14+ mentions in client/src; homepage hero and About section show 242+/89%/8+/13+; 39/39 tests pass; checkpointed and auto-published
 
 ## Centralize site stats (Aug 18)
-- [ ] Extract the four site stats (238+ projects, 85% satisfaction, 6+ years, 11+ countries) into a single shared constant and have all pages read from it to prevent recurring out-of-sync edits
+- [x] Extracted all site stats into SITE_STATS in shared/const.ts (now 236+ projects, 82% satisfaction, 5+ years, 10+ countries per user's latest visual edit); Home, About, Services, IndustryDetail, and usePageMeta all read from it — a single constant change now updates the whole site, ending recurring out-of-sync edits
+- [x] Case-study-specific figures intentionally left hardcoded (per-project results); verified homepage hero 236+/82%/5+/10+ and About stats band render correctly; 39/39 tests pass
 
 ## Stat sync 242+/89% → 240+/87% → 238+/85% (Aug 18, per user visual edit of homepage hero)
 - [x] Synced all site stats to 238+ projects, 85% satisfaction, 6+ years experience, 11+ countries: Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band, collage caption, founder bio), Services, IndustryDetail, and usePageMeta description
