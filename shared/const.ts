@@ -6,10 +6,10 @@ export const UNAUTHED_ERR_MSG = 'Please login (10001)';
 // Single source of truth for agency-wide stats (projects, satisfaction, years, countries).
 // All pages must read from here — never hardcode the figures elsewhere.
 export const SITE_STATS = {
-  projects: 228,
-  satisfaction: 76,
+  projects: 227,
+  satisfaction: 74,
   years: 1,
-  countries: 5,
+  countries: 4,
 };
 export const NOT_ADMIN_ERR_MSG = 'You do not have required permission (10002)';
 
