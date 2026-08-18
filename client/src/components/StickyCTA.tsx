@@ -4,18 +4,30 @@ import { Phone } from "lucide-react";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setVisible(window.scrollY > 600);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Trigger the slide-up entrance once the bar first mounts
+  useEffect(() => {
+    if (!visible) return;
+    const raf = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(raf);
+  }, [visible]);
 
   if (!visible) return null;
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/90 dark:bg-brand/95 backdrop-blur-xl border-t border-border/50 shadow-2xl shadow-black/5">
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-30 bg-white/90 dark:bg-brand/95 backdrop-blur-xl border-t border-border/50 shadow-2xl shadow-black/5 transition-all duration-300 ${entered ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+        style={{ transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)" }}
+      >
         <div className="container flex items-center justify-between gap-2 sm:gap-4 py-2.5 md:h-16 md:py-0">
           <div className="hidden md:block">
             <p className="text-sm font-medium text-foreground">

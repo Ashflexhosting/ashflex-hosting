@@ -1515,3 +1515,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Mobile Footer "Get a Quote" Overlap (user-reported)
 - [x] Diagnose why the "Get a Quote" button after/below the footer overlaps on mobile (StickyCTA fixed bar covering footer content on small screens)
 - [x] Fix the overlap: StickyCTA now renders a compact single-row bar on mobile (smaller fonts/padding, no text wrap, dark-mode background) and appends a 56px spacer so footer content is never covered; verified on 375px width, 43/43 tests pass, checkpoint and publish
+
+## Sticky Bar Entrance Animation (user-requested)
+- [x] Add a subtle slide-up entrance animation to the StickyCTA bar: on first appearance it slides up from below the viewport with fade-in over 300ms using a snappy ease-out cubic-bezier, via requestAnimationFrame trigger
