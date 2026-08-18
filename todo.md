@@ -1144,9 +1144,9 @@
 
 ## Sticky comparison table skill
 
-- [ ] Initialize skill via init_skill.py
-- [ ] Write SKILL.md + reusable reference template with the proven pattern
-- [ ] Validate and deliver skill
+- [x] Initialize skill via init_skill.py (done in previous session: /home/ubuntu/skills/sticky-comparison-table)
+- [x] Write SKILL.md + reusable reference template with the proven pattern (done: SKILL.md + references/sticky-table-pattern.md)
+- [x] Validate and deliver skill (quick_validate.py passed; skill delivered to user in previous session)
 
 ## Newsletter platform (Aug 18)
 
@@ -1161,3 +1161,8 @@
 
 - [x] Animate the subscribe success feedback: framer-motion fade + scale/slide transition with animated checkmark — top bar (shows "You're on the list" pill for 5s), footer form, and /newsletter hero card (form and success card swap with AnimatePresence mode="wait", min-h-[320px] card prevents layout jump)
 - [x] Verified renders clean (homepage + /newsletter), 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome section on homepage (Aug 18, reference aboutus.webp)
+
+- [x] Add a "Welcome to Ashflex Website Design" section on the homepage replicating the reference: left column with multi-device mockup image, "Take control of your online business." serif tagline, and a Chat With Us button; right column with WELCOME TO eyebrow, serif headline, divider line with ornament, and paragraphs with red and blue highlighted text
+- [x] Verified visually in browser (desktop), 39/39 tests pass; checkpointed and auto-published with GitHub sync

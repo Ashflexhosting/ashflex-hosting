@@ -578,6 +578,75 @@ href="https://galconengineering.com"
         </div>
       </section>
 
+      {/* ============ WELCOME — editorial intro matching reference layout ============ */}
+      <section className="py-24 md:py-28 bg-[#E8E9EC] relative overflow-hidden">
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left: device mockup, tagline, chat CTA */}
+            <div className="lg:col-span-4 scroll-reveal">
+              <div className="relative max-w-sm mx-auto lg:max-w-none">
+                <img
+                  src="/manus-storage/hero-galcon_f653d112.webp"
+                  alt="Ashflex website displayed across desktop, tablet, and phone"
+                  loading="lazy"
+                  className="w-full drop-shadow-2xl"
+                />
+              </div>
+              <div className="text-center mt-10">
+                <h3 className="text-2xl md:text-3xl text-[#1B2A6B] leading-snug" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                  Take control of your
+                  <br />
+                  online business.
+                </h3>
+                <a
+                  href="https://wa.me/2348023138892"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-10 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]"
+                >
+                  <MessageSquare size={17} />
+                  Chat With Us
+                </a>
+              </div>
+            </div>
+
+            {/* Right: editorial copy */}
+            <div className="lg:col-span-8 scroll-reveal" style={{ transitionDelay: "100ms" }}>
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#555] mb-4">Welcome to</p>
+              <h2 className="text-4xl md:text-[3.4rem] leading-tight text-[#1a1a1a] mb-6" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                Ashflex Website Design
+              </h2>
+              <div className="flex items-center gap-4 mb-8" aria-hidden="true">
+                <svg viewBox="0 0 36 36" className="h-7 w-7 text-[#1B2A6B]/70 shrink-0" fill="currentColor">
+                  <path d="M18 3 L21.5 12.5 L32 11 L26 17 L32 25 L21.5 23.5 L18 33 L14.5 23.5 L4 25 L10 17 L4 11 L14.5 12.5 Z" />
+                </svg>
+                <span className="block h-px flex-1 bg-[#1a1a1a]/40" />
+              </div>
+
+              <p className="text-lg md:text-xl text-[#1a1a1a] leading-relaxed mb-8">
+                Having a website{" "}
+                <strong className="text-[#B31026] font-extrabold">gives your business a professional look</strong>, and
+                customers can reach out to you anytime, anywhere.
+              </p>
+
+              <p className="text-base md:text-lg text-[#222] leading-relaxed mb-8">
+                We are a Web Design Agency that specializes in the professional creation of Beautiful, High-quality, Cost-effective{" "}
+                <em className="font-semibold not-italic">websites, mobile applications, graphic design, and digital marketing solutions</em>{" "}
+                for individuals, businesses, and institutions.
+              </p>
+
+              <p className="text-lg md:text-2xl text-[#1B2A6B] font-extrabold leading-snug" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+                We want to create{" "}
+                <span className="text-[#B31026]">Wonderful Websites</span>{" "}
+                <span className="text-[#1a1a1a]">and</span>{" "}
+                <span className="text-[#B31026]">Digital Services</span>{" "}
+                <span className="text-[#1a1a1a]">that your customers will love to be part of and use</span>; that&rsquo;s what your brand and audience deserve. Our goal is to deliver a level of service that exceeds our customers&rsquo; expectations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ SERVICES — bento grid with numbered cards ============ */}
       <section className="py-28 relative">
         <div className="absolute inset-0" aria-hidden="true">
