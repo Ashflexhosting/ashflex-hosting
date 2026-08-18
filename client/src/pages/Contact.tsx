@@ -2,6 +2,7 @@ import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { ArrowRight, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import { buildWhatsAppHrefStatic } from "@/components/WhatsAppButton";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -157,7 +158,7 @@ export default function Contact() {
                   </CardContent>
                 </Card>
 
-                <a href="https://wa.me/2348023138892" target="_blank" rel="noopener noreferrer">
+                <a href={buildWhatsAppHrefStatic()} target="_blank" rel="noopener noreferrer">
                   <Card className="glass-card border-0 p-6 hover-lift cursor-pointer border-brand-secondary/20">
                     <CardContent className="p-0 flex items-center gap-4">
                       <MessageSquare size={24} className="text-green-500" />

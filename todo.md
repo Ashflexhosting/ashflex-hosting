@@ -1455,3 +1455,13 @@ Current logo (ashflex-website-design-logo-v2_ad90e878.png, 1813x868): "Ash" in b
 - Earlier fix (checkpoint 339af485) already moved menu panel above all fixed overlays and removed body-overflow lock conflicts
 - Remaining risk checked: no pointer-events-blocking overlay at top of viewport on mobile; hero uses overflow-hidden inside section only
 - Conclusion: menu accessibility after scrolling is preserved; adding nothing invasive; ensuring the hamburger has an adequate touch target and the navbar never loses hit area when scrolled up (it stays fixed at top-0)
+
+## WhatsApp page-aware messages (user request)
+- [x] Make WhatsAppButton detect current page and pre-fill message with page context
+- [x] Apply same page context to WhatsApp links used inside page content (Home welcome CTA, footer CTA, Contact card)
+- [x] Verify links encode correctly (screenshots of Home/Contact/Pricing clean), run tests (39/39 pass), checkpoint and publish
+
+### WhatsApp implementation state notes (before compaction)
+WhatsAppButton.tsx is DONE: now uses useLocation() from wouter plus pageLabels map ("/"→homepage, /about→About page, /services, /portfolio, /industries, /pricing, /contact, /blog, /resources, /newsletter, /calculator) to build a pre-filled text like "Hello! I found your website through the X page and I'm interested in your web design services...". Service/message URL params still take priority; added exported buildWhatsAppHrefStatic() helper accepting optional ?text= param.
+Remaining: update page-content wa.me links at Home.tsx:661 (welcome Chat With Us) and Home.tsx:1187 (footer area "Chat on WhatsApp") to use buildWhatsAppHrefStatic() (import WhatsAppButton helpers or the component's export — better: export buildWhatsAppHrefStatic and import in Home). ServiceDetail.tsx:245 and Contact.tsx:160: Contact uses bare wa.me; update it with same static helper (Contact is the contact page so label "Contact page" applies automatically via static helper? static helper has no page label — accept it since service/message params already apply; or import useLocation directly in Contact). WhatsApp phone: 2348023138892.
+Verification: tests pass, then checkpoint. Note: useLocation() works in the floating button since wouter is the app router.

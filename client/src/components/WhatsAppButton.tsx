@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { useLocation } from "wouter";
 
 const planOrServiceLabels: Record<string, string> = {
   starter: "Starter plan",
@@ -23,8 +24,23 @@ const planOrServiceLabels: Record<string, string> = {
   "custom-business-systems": "Custom Business Systems",
 };
 
+const pageLabels: Record<string, string> = {
+  "/": "homepage",
+  "/about": "About page",
+  "/services": "Services page",
+  "/portfolio": "Portfolio page",
+  "/industries": "Industries page",
+  "/pricing": "Pricing page",
+  "/contact": "Contact page",
+  "/blog": "Blog page",
+  "/resources": "Resources page",
+  "/newsletter": "Newsletter page",
+  "/calculator": "Cost Calculator page",
+};
+
 function buildWhatsAppHref(): string {
   const whatsappNumber = "2348023138892";
+  const [location] = typeof window !== "undefined" ? useLocation() : ["/", () => {}];
   const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
   const rawService = params.get("service") || "";
   const rawMessage = params.get("message") || "";
@@ -34,9 +50,26 @@ function buildWhatsAppHref(): string {
   } else if (planOrServiceLabels[rawService]) {
     text = `Hello! I'm interested in your ${planOrServiceLabels[rawService]} services. Please share the next steps.`;
   } else {
-    text = "Hello! I'm interested in your web design services.";
+    text = `Hello! I found your website through the ${pageLabels[location] ?? location} and I'm interested in your web design services. Please share the next steps.`;
   }
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+
+export function buildWhatsAppHrefStatic(): string {
+  const whatsappNumber = "2348023138892";
+  const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const rawService = params.get("service") || "";
+  const rawMessage = params.get("message") || "";
+  const rawText = params.get("text") || "";
+  let text = "";
+  if (rawMessage) {
+    text = rawMessage;
+  } else if (rawText) {
+    text = rawText;
+  } else if (planOrServiceLabels[rawService]) {
+    text = `Hello! I'm interested in your ${planOrServiceLabels[rawService]} services. Please share the next steps.`;
+  }
+  return `https://wa.me/${whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 }
 
 export default function WhatsAppButton() {

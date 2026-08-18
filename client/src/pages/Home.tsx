@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { buildWhatsAppHrefStatic } from "@/components/WhatsAppButton";
 import { SITE_STATS } from "@shared/const";
 import {
   Palette, Code, LayoutGrid, ShoppingCart, Smartphone, PenTool,
@@ -658,7 +659,7 @@ href="https://galconengineering.com"
                   <span className="text-gradient">online business.</span>
                 </h3>
                 <a
-                  href="https://wa.me/2348023138892"
+                  href={buildWhatsAppHrefStatic()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-10 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]"
@@ -1184,7 +1185,7 @@ href="https://galconengineering.com"
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
-              <a href="https://wa.me/2348023138892" target="_blank" rel="noopener noreferrer">
+              <a href={buildWhatsAppHrefStatic()} target="_blank" rel="noopener noreferrer">
                 <span className="group inline-flex items-center gap-2.5 px-9 py-4 text-base font-semibold text-white border border-white/25 rounded-2xl hover:bg-white/5 hover:border-white/50 transition-all duration-300">
                   <MessageSquare size={20} /> Chat on WhatsApp
                 </span>
