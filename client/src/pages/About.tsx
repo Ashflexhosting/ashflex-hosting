@@ -23,7 +23,7 @@ const coreValues = [
 ];
 
 const trustPoints = [
-  "Proven track record with 248+ successful projects",
+  "Proven track record with 246+ successful projects",
   "Award-winning design team with 10+ years experience",
   "100% responsive and mobile-optimized websites",
   "SEO-optimized from the ground up",
@@ -59,7 +59,7 @@ const milestones = [
     anecdote: "Word of mouth did the heavy lifting. By 2019, more than 50 local shops, clinics, and startups trusted us with their first real digital presence.",
   },
   {
-    year: "248+",
+    year: "246+",
     label: "Projects delivered",
     anecdote: "A decade of shipping has taken us from five-page websites to full-scale web applications, e-commerce platforms, and AI-powered tools across four continents.",
   },
@@ -127,7 +127,7 @@ export default function About() {
                   Founded in Lagos, Nigeria, Ashflex Web Design has grown from a small freelance operation into one of Africa's leading digital agencies — serving businesses across Nigeria, Africa, and internationally.
                 </p>
                 <p className="scroll-reveal text-base md:text-lg text-white/60 leading-relaxed" style={{ transitionDelay: "220ms" }}>
-                  Over the past decade, we've helped more than 248 businesses establish their digital presence — from startups to enterprises, from local shops to international brands — earning a 96% satisfaction rate along the way.
+                  Over the past decade, we've helped more than 246 businesses establish their digital presence — from startups to enterprises, from local shops to international brands — earning a 94% satisfaction rate along the way.
                 </p>
                 <p className="scroll-reveal text-base md:text-lg text-white/60 leading-relaxed" style={{ transitionDelay: "260ms" }}>
                   Today, we continue to push boundaries with AI-powered solutions, advanced web technologies, and strategic digital marketing to help our clients stay ahead.
@@ -213,7 +213,7 @@ export default function About() {
                   }}
                   transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: prefersReducedMotion ? 0 : 0.35, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <p className="text-2xl font-extrabold bg-gradient-to-r from-brand-accent to-brand-secondary bg-clip-text text-transparent leading-none" style={{ fontFamily: "var(--font-heading)" }}>96%</p>
+                  <p className="text-2xl font-extrabold bg-gradient-to-r from-brand-accent to-brand-secondary bg-clip-text text-transparent leading-none" style={{ fontFamily: "var(--font-heading)" }}>94%</p>
                   <p className="text-white/50 text-[11px] font-medium mt-1">Client satisfaction</p>
                 </motion.div>
               </motion.div>
@@ -289,8 +289,8 @@ export default function About() {
         <div className="container relative z-10">
           <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-12">The numbers behind the studio</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-            <CounterStat value={248} suffix="+" label="Projects Delivered" />
-            <CounterStat value={96} suffix="%" label="Client Satisfaction" delay="100ms" />
+            <CounterStat value={246} suffix="+" label="Projects Delivered" />
+            <CounterStat value={94} suffix="%" label="Client Satisfaction" delay="100ms" />
             <CounterStat value={10} suffix="+" label="Years Experience" delay="200ms" />
             <CounterStat value={15} suffix="+" label="Countries Served" delay="300ms" />
           </div>

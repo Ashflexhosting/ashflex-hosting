@@ -1263,3 +1263,7 @@
 - [x] Updated "250+ projects" to "248+" everywhere: homepage welcome badge and stats band, About Our Story body + stats band + trust points + milestone chip, Services page (2 spots), IndustryDetail page, and usePageMeta description
 - [x] Founder team card now rendered as a featured card per the reference image: deep red gradient (brand-accent to #B2002F) background with white text, name first, matching the red "Founder & CEO" card in team.webp
 - [x] Verified full-page on / and /about (96% floating card, 248+/96% stats bands, red founder card); zero remaining 250+/98% mentions in client/src; 39/39 tests pass; checkpointed and auto-published
+
+## Stat sync 248+/96% → 246+/94% (Aug 18, per user visual edit of homepage hero)
+- [x] Updated all "248+" project counts and "96%" satisfaction figures to 246+ and 94% across Home (welcome badges + stats band), About (trust points, milestone chip, body copy, floating card, stats band), Services (highlight stat + Proven results card), IndustryDetail, and usePageMeta description
+- [x] Verified zero remaining 248+/96% mentions in client/src, homepage hero shows 246+/94%/10+/15+, 39/39 tests pass; checkpointed and auto-published
