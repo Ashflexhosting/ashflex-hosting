@@ -1204,3 +1204,9 @@
 - [x] Added Get Started CTA below the services chips (links to /contact?service=Website%20Design, pre-fills contact form)
 - [x] Synced welcome copy to About page intro: "Your Business Deserves More Than Just a Website. It Deserves a Digital Presence That Works." headline above Our Story paragraphs (staggered delays shifted)
 - [x] Verified visually (desktop), 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Get Started + About intro follow-ups (Aug 18)
+
+- [x] Enhanced Get Started button hover animation: stronger lift (translate-y-1), shine sweep across the pill, arrow slides up-right with 12deg rotation, ring glow on hover
+- [x] Added second staggered intro line to About page Our Story echoing the welcome body paragraphs ("Whether you are launching a brand-new business or upgrading...") with 120ms delay; remaining paragraphs' delays shifted (80/120/160/240ms)
+- [x] Verified visually, 39/39 tests pass; checkpointed and auto-published with GitHub sync

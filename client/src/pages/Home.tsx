@@ -687,9 +687,13 @@ href="https://galconengineering.com"
               </div>
 
               <Link href="/contact?service=Website%20Design">
-                <span className="mt-8 group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-secondary/35 active:scale-[0.97]">
-                  Get Started
-                  <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                <span className="mt-8 group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-primary px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-secondary/25 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-secondary/40 hover:ring-2 hover:ring-brand-secondary/30 active:scale-[0.97]">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 -left-1/4 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:left-[120%] group-hover:opacity-100"
+                  />
+                  <span className="relative">Get Started</span>
+                  <ArrowUpRight size={16} className="relative -translate-x-0.5 transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-1 group-hover:rotate-12" />
                 </span>
               </Link>
             </div>

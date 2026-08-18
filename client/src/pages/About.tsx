@@ -99,6 +99,9 @@ export default function About() {
               <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "80ms" }}>
                 Founded in Lagos, Nigeria, Ashflex Web Design has grown from a small freelance operation into one of Africa's leading digital agencies. What started as a passion for creating beautiful, functional websites has evolved into a comprehensive digital solutions provider serving businesses across Nigeria, Africa, and internationally.
               </p>
+              <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "120ms" }}>
+                Whether you are launching a brand-new business or upgrading an existing one, we believe your business deserves a digital presence that works — creative, user-friendly designs that attract visitors and keep them engaged until they become loyal customers.
+              </p>
               <p className="scroll-reveal text-lg md:text-xl text-foreground/75 leading-relaxed" style={{ transitionDelay: "160ms" }}>
                 Over the past decade, we've helped more than 250 businesses establish their digital presence — from startups to enterprises, from local shops to international brands. Our commitment to quality, innovation, and client success has earned us a 98% satisfaction rate and a reputation for delivering exceptional results.
               </p>
