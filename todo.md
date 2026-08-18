@@ -1217,3 +1217,7 @@
 - [x] Added subtle parallax to welcome section glow orbs: WelcomeOrbs component with framer-motion useScroll/useTransform (orbs move in opposite directions as the section scrolls into/out of view)
 - [x] Inserted "Read Our Story" anchor link below the welcome intro pointing to /about (blue uppercase, arrow slides on hover, turns red)
 - [x] Verified visually (full-page), fixed useScroll ref hydration error, 39/39 tests pass; checkpointed and auto-published with GitHub sync
+
+## Welcome heading mobile layout (Aug 18)
+- [x] On mobile: move the "Welcome to" badge to sit above the "Ashflex Web Design" heading (flex-col on mobile, lg:flex-row inline on desktop); heading forced single-line with whitespace-nowrap and smaller responsive font sizes (text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem])
+- [x] Verified on mobile viewport (heading renders on 1 line at 327px content width, badge sits above heading on mobile and left of heading on desktop), 39/39 tests pass; checkpoint and sync

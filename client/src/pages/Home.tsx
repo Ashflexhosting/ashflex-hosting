@@ -610,13 +610,13 @@ href="https://galconengineering.com"
         <WelcomeOrbs />
 
         <div className="container relative z-10">
-          {/* Eyebrow with animated badge */}
-          <div className="flex flex-wrap items-center gap-4 mb-10 scroll-reveal">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur border border-white px-5 py-2 text-sm font-bold uppercase tracking-[0.25em] text-gradient shadow-sm">
+          {/* Eyebrow badge above heading on mobile, inline on desktop */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-8 lg:mb-10 scroll-reveal">
+            <span className="inline-flex self-start lg:self-auto items-center gap-2 rounded-full bg-white/80 backdrop-blur border border-white px-5 py-2 text-sm font-bold uppercase tracking-[0.25em] text-gradient shadow-sm">
               <Sparkles size={15} />
               Welcome to
             </span>
-            <span className="block h-px flex-1 min-w-16 bg-gradient-to-r from-[#0757F7]/50 to-transparent" aria-hidden="true" />
+            <span className="hidden lg:block h-px flex-1 min-w-16 bg-gradient-to-r from-[#0757F7]/50 to-transparent" aria-hidden="true" />
           </div>
 
           <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
@@ -669,7 +669,7 @@ href="https://galconengineering.com"
 
             {/* Right: modern editorial copy */}
             <div className="lg:col-span-7 scroll-reveal-right" style={{ transitionDelay: "120ms" }}>
-              <h2 className="text-4xl md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] mb-8" style={{ fontFamily: "var(--font-heading)" }}>
+              <h2 className="text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] whitespace-nowrap mb-8" style={{ fontFamily: "var(--font-heading)" }}>
                 Ashflex{" "}
                 <span className="text-gradient">Web Design</span>
               </h2>
