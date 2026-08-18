@@ -1397,3 +1397,16 @@
 - Design: dark navy signature-style quote card with founder photo (team-ceo_103bb175.png), large quote text, and a script-style signature; Uzodimma Ogbonnaya, Founder & CEO
 - Brand colors: primary #0F172A navy, secondary #2563EB blue, red #F20549 / #B2002F, aqua #06B6D4
 - [x] Updated SITE_STATS to 248+ projects, 96% satisfaction, 9+ years and 14+ countries per user explicit confirmation (overriding earlier "original figures" revert); 39/39 tests pass; checkpointed and auto-published
+
+## Hover, animation, SEO polish (user request)
+- [x] Added subtle hover effect to statistics cards on Home hero and About stats band (lift, cyan number scale, glow underline, brightening label)
+- [x] Verified "Meet the Founder" box uses smooth Framer Motion fade-in on scroll (whileInView with ease-out); already implemented
+- [x] Updated meta title, description, og: tags and JSON-LD with new stats (248+/96%/9+/14+) and Lagos SEO keywords; About page sets per-page title and description
+- [x] Verified rendering, 39/39 tests pass, checkpointed and auto-published
+
+## Implementation state notes (hover/animation/SEO task)
+- Current locked stats (user explicit confirmation, DO NOT change further): 248+ / 96% / 9+ / 14+ in shared/const.ts SITE_STATS
+- Done: index.html meta title/description/og: updated to new stats + Lagos SEO keywords
+- Done: About.tsx useEffect sets per-page title "About Us | Ashflex Web Design..." + dynamic meta description; duplicate import fixed; 0 TS errors
+- Done: About.tsx CounterStat now has hover card effect (rounded card, border, lift, cyan scale accent, underline glow, label brighten)
+- Remaining: Home.tsx hero CounterStat (line ~506) + Industries/Services stat sections may need same hover treatment; founder box fade-in already uses motion whileInView (confirm smooth); run tests; checkpoint

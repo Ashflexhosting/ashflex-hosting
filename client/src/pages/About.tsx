@@ -2,10 +2,10 @@ import { Link } from "wouter";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { SITE_STATS } from "@shared/const";
 import { useCounter } from "@/hooks/useCounter";
 import { Target, Eye, Heart, Users, Award, Globe, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
-import { SITE_STATS } from "@shared/const";
 
 const team = [
   { name: "Uzodimma Ogbonnaya", role: "Founder & CEO", bio: `${SITE_STATS.years}+ years leading digital innovation across Africa and beyond.`, img: "/manus-storage/team-ceo_103bb175.png", accent: "from-brand-accent to-[#B2002F]", featured: true },
@@ -38,12 +38,13 @@ function CounterStat({ value, suffix, label, delay }: { value: number; suffix: s
   const msDelay = delay ? parseInt(delay, 10) : 0;
   const { count, ref } = useCounter(value, 2200, 0, msDelay);
   return (
-    <div ref={ref} className="group">
-      <div className="text-4xl md:text-5xl font-extrabold text-white leading-none" style={{ fontFamily: "var(--font-heading)", transitionDelay: delay }}>
+    <div ref={ref} className="group/stat relative rounded-2xl px-4 py-6 md:px-6 md:py-7 border border-transparent hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-1.5 transition-all duration-300 cursor-default" style={{ transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)" }}>
+      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-gradient-to-r from-brand-cyan to-brand-accent rounded-full group-hover/stat:w-12 transition-all duration-300" aria-hidden="true" />
+      <div className="text-4xl md:text-5xl font-extrabold text-white leading-none group-hover/stat:scale-105 group-hover/stat:text-brand-cyan transition-all duration-300 origin-left" style={{ fontFamily: "var(--font-heading)", transitionDelay: delay }}>
         {count}{suffix}
       </div>
-      <div className="mt-3 h-px w-10 bg-gradient-primary group-hover:w-16 transition-all duration-500" />
-      <div className="mt-3 text-white/55 text-sm">{label}</div>
+      <div className="mt-3 h-px w-10 bg-gradient-primary group-hover/stat:w-16 transition-all duration-500" />
+      <div className="mt-3 text-white/55 group-hover/stat:text-white/80 text-sm transition-colors duration-300">{label}</div>
     </div>
   );
 }
@@ -75,6 +76,26 @@ export default function About() {
   const sectionRef = useScrollReveal();
   const prefersReducedMotion = useReducedMotion();
   const [activeMilestone, setActiveMilestone] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.title = "About Us | Ashflex Web Design | Premium Web Design & Development Agency";
+    const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        `About Ashflex Web Design — a premium web design & development agency in Lagos, Nigeria. ${SITE_STATS.projects}+ projects delivered, ${SITE_STATS.satisfaction}% client satisfaction, ${SITE_STATS.years}+ years of experience across ${SITE_STATS.countries}+ countries.`,
+      );
+    }
+    return () => {
+      document.title = "Ashflex Web Design | Premium Web Design & Development Agency";
+      if (metaDesc) {
+        metaDesc.setAttribute(
+          "content",
+          "Ashflex Web Design is a premium web design & development agency in Lagos, Nigeria. 248+ projects delivered, 96% client satisfaction, 9+ years of experience serving businesses across 14+ countries. Get a free quote today.",
+        );
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen overflow-x-clip" ref={sectionRef}>
