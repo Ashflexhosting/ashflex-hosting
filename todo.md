@@ -1379,3 +1379,20 @@
 - [x] Updated SITE_STATS to 235+ projects, 80% satisfaction, 3+ years and 7+ countries per user newest hero edit; 39/39 tests pass; checkpointed and auto-published
 - [x] Updated SITE_STATS to 232+ projects, 78% satisfaction, 2+ years and 6+ countries per user newest hero edit; 39/39 tests pass; checkpointed and auto-published
 - [x] Reverted SITE_STATS to original figures (250+ projects, 98% satisfaction, 10+ years, 15+ countries) per user request; stats locked - no further screenshot-driven changes; 39/39 tests pass; checkpointed and auto-published
+
+## Final Mobile Audit & Founder Box (user request)
+- [x] Mobile audit pass on key pages (Home, About, Services, Portfolio, Pricing) at 375x812 — no layout issues found; no fixes required
+- [ ] Fix any layout issues found during audit
+- [x] Added "Meet the Founder" signature quote box below Mission/Vision bento cards on About page with founder photo, quote, name, and cursive signature
+- [ ] Verify on mobile and desktop, run tests, checkpoint and publish
+- [ ] Provide user with custom domain connection guide
+
+### Mobile audit findings (375x812, full-page)
+- Home, Services, Portfolio, Pricing: layout stable; no horizontal overflow or broken sections observed
+- About: layout stable; Mission/Vision bento cards and stats counters render correctly; team and trust sections fine
+- No fixes required; only remaining work is the Founder box feature
+
+### Founder box implementation plan (About.tsx)
+- Insert a "Meet the Founder" quote block directly after the Mission/Vision bento grid (before Core Values band)
+- Design: dark navy signature-style quote card with founder photo (team-ceo_103bb175.png), large quote text, and a script-style signature; Uzodimma Ogbonnaya, Founder & CEO
+- Brand colors: primary #0F172A navy, secondary #2563EB blue, red #F20549 / #B2002F, aqua #06B6D4

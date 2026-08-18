@@ -261,6 +261,62 @@ export default function About() {
             </div>
           </div>
 
+          {/* ============ Meet the Founder — signature quote box ============ */}
+          <div className="mt-12">
+            <motion.div
+              className="relative overflow-hidden rounded-3xl bg-[#0A1640] border border-white/10 shadow-2xl shadow-black/40"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.65, ease: [0.23, 1, 0.32, 1] }}
+            >
+              {/* Decorative orbs */}
+              <div className="absolute -top-24 -right-24 w-[380px] h-[380px] rounded-full bg-brand-accent/15 blur-3xl pointer-events-none" aria-hidden="true" />
+              <div className="absolute -bottom-28 -left-28 w-[340px] h-[340px] rounded-full bg-brand-secondary/20 blur-3xl pointer-events-none" aria-hidden="true" />
+              {/* Oversized quote glyph */}
+              <div className="absolute top-4 right-6 md:top-6 md:right-10 select-none" aria-hidden="true">
+                <span className="text-[130px] md:text-[180px] leading-none font-extrabold bg-gradient-to-b from-brand-accent/30 to-transparent bg-clip-text text-transparent" style={{ fontFamily: "var(--font-heading)" }}>&ldquo;</span>
+              </div>
+
+              <div className="relative z-10 grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 p-8 md:p-12 items-center">
+                {/* Photo with accent ring */}
+                <motion.div
+                  className="relative mx-auto md:mx-0 w-28 h-28 md:w-36 md:h-36 flex-shrink-0"
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: prefersReducedMotion ? 0 : 0.18, ease: [0.23, 1, 0.32, 1] }}
+                >
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-brand-cyan via-brand-secondary to-brand-accent blur-[6px] opacity-70" aria-hidden="true" />
+                  <div className="relative w-full h-full rounded-full p-[3px] bg-gradient-to-br from-brand-cyan via-brand-secondary to-brand-accent">
+                    <img
+                      src="/manus-storage/team-ceo_103bb175.png"
+                      alt="Uzodimma Ogbonnaya, Founder & CEO of Ashflex Web Design"
+                      className="w-full h-full rounded-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Quote content */}
+                <div>
+                  <p className="scroll-reveal text-white/35 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Meet the Founder</p>
+                  <blockquote className="text-lg md:text-[1.45rem] leading-relaxed text-white/90 font-medium" style={{ fontFamily: "var(--font-heading)" }}>
+                    We don&rsquo;t just build websites — we build <span className="bg-gradient-to-r from-brand-cyan to-brand-accent bg-clip-text text-transparent">digital legacies</span>.
+                    Every pixel we ship is a promise that your business will be seen, trusted, and chosen.
+                  </blockquote>
+                  <div className="mt-7 flex items-center gap-5">
+                    <div>
+                      <p className="text-white font-extrabold text-lg leading-tight" style={{ fontFamily: "var(--font-heading)" }}>Uzodimma Ogbonnaya</p>
+                      <p className="text-brand-cyan text-sm font-semibold">Founder &amp; CEO, Ashflex Web Design</p>
+                    </div>
+                    <span className="hidden sm:inline text-4xl text-brand-accent/70" style={{ fontFamily: "'Brush Script MT', cursive", transform: "rotate(-4deg)" }}>Ogbonnaya</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
           {/* Core values band */}
           <div className="mt-12">
             <p className="scroll-reveal text-white/40 font-semibold text-xs uppercase tracking-[0.25em] mb-8">What guides everything we do — Core Values</p>
