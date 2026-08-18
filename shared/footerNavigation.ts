@@ -5,6 +5,7 @@ export const footerCompanyLinks = [
   ["Pricing", "/pricing"],
   ["Blog", "/blog"],
   ["Careers", "/careers"],
+  ["FAQ", "/faq"],
   ["Contact", "/contact"],
 ] as const;
 

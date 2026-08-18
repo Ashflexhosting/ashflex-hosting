@@ -1160,9 +1160,14 @@ href="https://galconengineering.com"
             ))}
           </Accordion>
 
-          <div className="text-center mt-8">
-            <Link href="/contact">
+          <div className="flex flex-col items-center gap-2 mt-8">
+            <Link href="/faq">
               <span className="text-brand-secondary font-medium hover:underline">
+                View all FAQs →
+              </span>
+            </Link>
+            <Link href="/contact">
+              <span className="text-brand-secondary/80 font-medium hover:underline">
                 Still have questions? Contact us →
               </span>
             </Link>

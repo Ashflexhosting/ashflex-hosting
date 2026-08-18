@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { ArrowRight, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
@@ -312,6 +313,11 @@ export default function Contact() {
                     </AccordionItem>
                   ))}
                 </Accordion>
+                <div className="text-center mt-6">
+                  <Link href="/faq">
+                    <span className="text-brand-secondary font-medium hover:underline">View all FAQs →</span>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>

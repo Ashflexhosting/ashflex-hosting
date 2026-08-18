@@ -1495,3 +1495,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Create a one-page brochure PDF (Typst, Poppins/Inter fonts, brand navy/blue/red/aqua) covering hero stats, 15 services with prices, website plans, Why Ashflex, How We Work, and contact band
 - [x] Upload the PDF to webdev storage and add a "Download Our Brochure (PDF)" button in the footer
 - [x] Verify rendering and download URL (HTTP 200 application/pdf), run tests (39/39 pass), checkpoint and publish
+
+## Consolidated FAQ Page (user request)
+- [ ] Audit all pages for FAQ sections/questions and collect them into categorized data
+- [ ] Create /faq page with categorized accordions consolidating every FAQ from the site
+- [ ] Add FAQ link to navigation/footer and per-page "View all FAQs" cross-links where useful
+- [ ] Verify rendering, run tests, checkpoint and publish

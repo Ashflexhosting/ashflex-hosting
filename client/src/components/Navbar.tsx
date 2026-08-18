@@ -21,6 +21,7 @@ const mainNav = [
 const mobileNav = mainNav;
 
 const topBarNav = [
+  { label: "FAQ", href: "/faq" },
   { label: "Blog", href: "/blog" },
   { label: "Resources", href: "/resources" },
   { label: "Client Portal", href: "/client-portal" },
@@ -133,10 +134,13 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      {/* Top utility bar: Blog · Resources · Client Portal */}
+      {/* Top utility bar: FAQ · Blog · Resources · Client Portal */}
       <div className="hidden lg:block border-b border-white/10 bg-[#071B5A]/85 backdrop-blur-md">
         <div className="container flex items-center justify-between h-9 text-[13px] text-white/75">
           <div className="flex items-center gap-4">
+            <Link href="/faq" className={topLinkClass}>
+              FAQ
+            </Link>
             <Link href="/blog" className={topLinkClass}>
               Blog
             </Link>

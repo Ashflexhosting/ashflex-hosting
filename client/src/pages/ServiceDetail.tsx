@@ -366,6 +366,11 @@ const PROCESS_STEPS = [
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
+                  <div className="text-center mt-5">
+                    <Link href="/faq">
+                      <span className="text-brand-secondary text-sm font-medium hover:underline">View all FAQs →</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
           </div>
