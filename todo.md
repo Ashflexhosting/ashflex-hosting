@@ -1562,3 +1562,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Found the site-wide .container utility in index.css (was 1200px at 1024px+) and expanded it to 1300px; checked pages for conflicting hardcoded widths — only Pricing comparison table min-w-[1280px] remains, which is intentional for horizontal scroll
 - [x] Verified layout at 1366px desktop: homepage hero, trust marquee, section grids, pricing tiers/comparison table, services filter and cards all render correctly with the wider content area
 - [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
+
+## Remove Welcome-Section Get Started Button
+- [x] Removed the "Get Started" CTA from the right-hand side of the homepage welcome section (left the Read Our Story anchor link and service chips intact); ArrowUpRight import still used elsewhere; 43/43 tests pass
