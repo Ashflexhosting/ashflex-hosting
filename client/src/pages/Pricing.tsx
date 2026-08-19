@@ -331,7 +331,7 @@ export default function Pricing() {
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
-                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ fontFamily: "var(--font-heading)", touchAction: "auto" }}>
+                  <th className="md:sticky md:right-0 md:z-20 py-4 px-4 text-center font-semibold text-sm bg-background md:border-l md:border-border md:shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ fontFamily: "var(--font-heading)", touchAction: "auto" }}>
                     <span className="inline-flex items-center gap-1">
                       <Star size={13} fill="currentColor" className="text-brand-accent badge-pulse" /> Business
                     </span>
@@ -349,7 +349,7 @@ export default function Pricing() {
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.starter)}</td>
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.professional)}</td>
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.enterprise)}</td>
-                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>{renderValue(row.business)}</td>
+                    <td className="md:sticky md:right-0 md:z-10 py-3.5 px-4 text-center bg-background md:border-l md:border-border md:shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>{renderValue(row.business)}</td>
                   </tr>
                 ))}
                 {/* Get Started CTA row */}
@@ -364,7 +364,7 @@ export default function Pricing() {
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Enterprise" />
                   </td>
-                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>
+                  <td className="md:sticky md:right-0 md:z-10 py-4 px-4 text-center bg-background md:border-l md:border-border md:shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>
                     <GetStartedButton popular={true} planName="Business" />
                   </td>
                 </tr>

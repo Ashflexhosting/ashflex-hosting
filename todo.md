@@ -1638,3 +1638,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Investigated why horizontal scroll was not working: the `isolate` class created a new stacking context that broke native touch scrolling on iOS, and `touch-action: pan-x` restricted the gesture instead of helping; a new `.ios-table-scroll` utility with `-webkit-overflow-scrolling: touch`, `overscroll-behavior-x: contain`, and `touch-action: auto` was added to index.css and applied to the scroll wrapper and all sticky cells
 - [x] Verified on mobile and desktop: 375px render clean, scrollLeft programmatic scroll works both directions at 375px emulation, ancestor chain has no touch-blocking rules, sticky Feature/Business columns intact; tsc clean, 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Pricing Table: Remove Sticky Business Column on Mobile (user suggestion)
+- [x] Removed sticky positioning from the Business column on mobile (Business th/td/CTA changed to `md:sticky md:right-0 md:z-*` with conditional border/shadow); Feature column stays sticky left on all sizes; verified at 375px the table scrolls freely (maxScroll 485px, end reachable) and on desktop the Business column remains pinned at the right edge
+- [x] Checkpoint saved and auto-published
