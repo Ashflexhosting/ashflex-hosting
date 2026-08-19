@@ -6,7 +6,7 @@ import {
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug,
   Bot, Settings, ChevronRight, Star, ArrowRight, CheckCircle,
   MessageSquare, Users, Layers, Shield, Rocket, BarChart3, Headphones,
-  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft, StarHalf, Type,
+  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft, StarHalf,
 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCounter } from "@/hooks/useCounter";
@@ -429,21 +429,6 @@ export default function Home() {
   const [heroImgLoaded, setHeroImgLoaded] = useState(false);
   const filteredPortfolio = portfolioItems.slice(0, 6);
 
-  // Temporary font-picker toggle for comparing headline & subheading styles
-  const FONT_OPTIONS = [
-    { key: "poppins", label: "Poppins", family: "var(--font-heading)" },
-    { key: "playfair", label: "Playfair", family: "var(--font-serif-editorial)" },
-    { key: "dm", label: "DM Serif", family: "var(--font-serif-dm)" },
-    { key: "fraunces", label: "Fraunces", family: "var(--font-serif-fraunces)" },
-    { key: "quicksand", label: "Quicksand", family: "var(--font-rounded-quicksand)" },
-    { key: "nunito", label: "Nunito Sans", family: "var(--font-rounded-nunito)" },
-  ];
-  const [fontKey, setFontKey] = useState<string>(() => {
-    if (typeof window !== "undefined") return window.localStorage.getItem("af-font-picker") || "poppins";
-    return "poppins";
-  });
-  const headlineFont = FONT_OPTIONS.find((f) => f.key === fontKey)?.family ?? "var(--font-heading)";
-
   const scrollToPortfolio = () => {
     const target = document.getElementById("featured-portfolio");
     if (target) {
@@ -473,45 +458,13 @@ export default function Home() {
           <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
         </div>
 
-        {/* Temporary font-picker toggle (headline style comparison) */}
-        <div className="absolute top-20 md:top-24 right-4 md:right-6 z-20 flex flex-col items-end gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur px-2.5 py-1 text-[10px] uppercase tracking-widest text-white/60 border border-white/15">
-            <Type className="size-3" aria-hidden="true" /> Temp font picker
-          </span>
-          <div className="flex flex-row items-center gap-1 rounded-full bg-[rgba(7,27,90,0.85)] backdrop-blur border border-white/20 p-1 shadow-lg" role="radiogroup"               aria-label="Headline and section heading font style">
-            {FONT_OPTIONS.map((f) => (
-              <button
-                key={f.key}
-                type="button"
-                role="radio"
-                aria-checked={fontKey === f.key}
-                onClick={() => {
-                  setFontKey(f.key);
-                  try {
-                    window.localStorage.setItem("af-font-picker", f.key);
-                  } catch { /* ignore */ }
-                }}
-                className={
-                  "rounded-full px-2.5 py-1.5 text-[11px] md:text-xs transition-all duration-200 " +
-                  (fontKey === f.key
-                    ? "bg-brand-cyan text-brand font-semibold shadow-md"
-                    : "text-white/70 hover:text-white hover:bg-white/10")
-                }
-                title={`Preview headlines in ${f.label}`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className="container relative z-10 pt-32 pb-16 md:pt-44 md:pb-20">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
               <h1
                 className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8 transition-[font-family] duration-300"
-                style={{ fontFamily: headlineFont }}
+                style={{ fontFamily: "var(--font-heading)" }}
               >
                 <span className="whitespace-nowrap">
                   We craft{" "}
@@ -533,7 +486,7 @@ export default function Home() {
                 <span className="whitespace-nowrap text-outline">customers.</span>
               </h1>
 
-              <p className="hero-fade-in-d1 text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+              <p className="hero-fade-in-d1 text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8" style={{ fontFamily: "var(--font-heading)" }}>
                 High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
               </p>
 
@@ -728,7 +681,7 @@ href="https://galconengineering.com"
 
             {/* Right: modern editorial copy */}
             <div className="lg:col-span-7 scroll-reveal-right" style={{ transitionDelay: "120ms" }}>
-              <h2 className="text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] whitespace-nowrap mb-8 dark:text-foreground transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+              <h2 className="text-[2rem] xs:text-[2.4rem] sm:text-[2.75rem] md:text-[3.6rem] leading-[1.08] font-extrabold tracking-tight text-[#1a1a1a] whitespace-nowrap mb-8 dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
                 Ashflex{" "}
                 <span className="text-gradient">Web Design</span>
               </h2>
@@ -740,7 +693,7 @@ href="https://galconengineering.com"
                 <span className="block h-px flex-1 bg-gradient-to-r from-[#0757F7]/60 via-[#F20549]/40 to-transparent" />
               </div>
 
-              <p className="text-xl md:text-2xl font-extrabold leading-snug text-[#1a1a1a] mb-8 dark:text-foreground transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+              <p className="text-xl md:text-2xl font-extrabold leading-snug text-[#1a1a1a] mb-8 dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
                 Your Business Deserves{" "}
                 <span className="relative text-[#B31026] after:absolute after:left-0 after:-bottom-0.5 after:h-1 after:w-full after:rounded-full after:bg-gradient-to-r after:from-[#0757F7]/50 after:to-[#F20549]/50">
                   More Than Just a Website
@@ -797,7 +750,7 @@ href="https://galconengineering.com"
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
             <div>
               <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">What We Do</p>
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
                 Services built to <span className="text-gradient">scale</span>
               </h2>
             </div>
@@ -864,7 +817,7 @@ href="https://galconengineering.com"
         <div className="container relative z-10">
           <div className="max-w-2xl mb-16">
             <p className="text-brand-cyan font-semibold text-sm uppercase tracking-wider mb-3">Why Ashflex</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5" style={{ fontFamily: "var(--font-heading)" }}>
               Why clients <span className="text-brand-cyan">choose us</span>
             </h2>
             <p className="text-white/60 text-lg leading-relaxed">
@@ -915,7 +868,7 @@ href="https://galconengineering.com"
         <div className="container relative">
           <div className="text-center mb-16">
             <p className="text-sky-400 font-semibold text-sm uppercase tracking-wider mb-3">Our Process</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white" style={{ fontFamily: "var(--font-heading)" }}>
               How we <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-white bg-clip-text text-transparent">work</span>
             </h2>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
@@ -998,7 +951,7 @@ href="https://galconengineering.com"
         <div className="container">
           <div className="mb-10">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Our Work</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
               Featured <span className="text-gradient">portfolio</span>
             </h2>
             <div className="mt-4 h-1 w-24 rounded-full bg-gradient-brand" />
@@ -1069,7 +1022,7 @@ href="https://galconengineering.com"
         <div className="container">
           <div className="text-center mb-14">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Industries</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
               Industries we <span className="text-gradient">serve</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -1116,7 +1069,7 @@ href="https://galconengineering.com"
         <div className="container relative z-10">
           <div className="text-center mb-16">
             <p className="text-brand-cyan font-semibold text-sm uppercase tracking-wider mb-3">Testimonials</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
               What our <span className="text-brand-cyan">clients say</span>
             </h2>
           </div>
@@ -1130,7 +1083,7 @@ href="https://galconengineering.com"
         <div className="container">
           <div className="text-center mb-16">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">Pricing</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
               Transparent <span className="text-gradient">pricing</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -1193,7 +1146,7 @@ href="https://galconengineering.com"
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
             <p className="text-brand-secondary font-semibold text-sm uppercase tracking-wider mb-3">FAQ</p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4" style={{ fontFamily: "var(--font-heading)" }}>
               Frequent questions, <span className="text-gradient">clear answers</span>
             </h2>
           </div>
@@ -1233,7 +1186,7 @@ href="https://galconengineering.com"
             <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-white/70 text-sm mb-8">
               <Users size={15} /> Ready when you are
             </p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 transition-[font-family] duration-300" style={{ fontFamily: headlineFont }}>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               Let's build your <span className="text-brand-cyan">next big thing</span>
             </h2>
             <p className="text-lg text-white/65 max-w-xl mx-auto mb-12 leading-relaxed">

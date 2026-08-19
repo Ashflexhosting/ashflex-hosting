@@ -51,8 +51,6 @@
   --font-serif-editorial: 'Playfair Display', 'Georgia', serif;
   --font-serif-dm: 'DM Serif Display', 'Georgia', serif;
   --font-serif-fraunces: 'Fraunces', 'Georgia', serif;
-  --font-rounded-quicksand: 'Quicksand', 'Poppins', sans-serif;
-  --font-rounded-nunito: 'Nunito Sans', 'Poppins', sans-serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }

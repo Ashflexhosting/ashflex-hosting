@@ -1543,3 +1543,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Extend the font picker to also preview subheading and section heading styles across the homepage: hero subhead, Welcome section heading + subheading, and all nine major section headings (Services, Why Ashflex, Our Process, Portfolio, Industries, Testimonials, Pricing, FAQ, Final CTA) now switch with the picker
 - [x] Add rounded geometric sans font options to the picker: Quicksand and Nunito Sans, loaded via Google Fonts in index.html with new theme tokens (--font-rounded-quicksand, --font-rounded-nunito); picker now shows full font labels
 - [x] Verified font switching visually on the homepage, TypeScript check passed, 43/43 tests pass, checkpoint saved
+
+## Font Picker Revert (user-requested: "Revert all")
+- [x] Remove the temporary font-picker toggle (chips, state, localStorage, Type icon import) from the homepage hero
+- [x] Restore original var(--font-heading) references on hero subhead, Welcome section headings, and all section headings (removed all 13 headlineFont bindings)
+- [x] Remove Quicksand/Nunito Sans fonts from index.html and the new theme tokens (--font-rounded-quicksand, --font-rounded-nunito) from index.css
+- [x] Verified homepage renders cleanly without the picker, TypeScript check passed, 43/43 tests pass, checkpoint saved
