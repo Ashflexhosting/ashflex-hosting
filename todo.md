@@ -1537,4 +1537,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Apply the same lift/glow hover effect to the sticky bottom bar "Get in Touch" button (translate-y -0.5, aqua glow, brightness, press feedback) and added the matching sliding arrow; verified visually, 43/43 tests pass
 
 ## Font-Picker Toggle (user-requested)
-- [ ] Add a temporary font-picker toggle to the homepage to compare headline styles (current Poppins, editorial serif, plus one more option)
+- [x] Add a temporary font-picker toggle to the homepage: pill chip bar in the hero top-right corner with four headline styles — Poppins (current), Playfair Display, DM Serif Display, Fraunces — active style highlighted in cyan, localStorage persistence (af-font-picker), smooth font-family transition on the hero h1; loaded the serif web fonts in index.html and added theme tokens; verified visually on desktop, 43/43 tests pass
+
+## Font Picker Extension (user-requested)
+- [x] Extend the font picker to also preview subheading and section heading styles across the homepage: hero subhead, Welcome section heading + subheading, and all nine major section headings (Services, Why Ashflex, Our Process, Portfolio, Industries, Testimonials, Pricing, FAQ, Final CTA) now switch with the picker
+- [x] Add rounded geometric sans font options to the picker: Quicksand and Nunito Sans, loaded via Google Fonts in index.html with new theme tokens (--font-rounded-quicksand, --font-rounded-nunito); picker now shows full font labels
+- [x] Verified font switching visually on the homepage, TypeScript check passed, 43/43 tests pass, checkpoint saved
