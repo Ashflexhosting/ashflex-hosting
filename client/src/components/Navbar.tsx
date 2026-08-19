@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown, Search } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -303,6 +303,11 @@ export function MobileMenu({
   const [location] = useLocation();
   const swipeRef = useRef<HTMLDivElement>(null);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [servicesQuery, setServicesQuery] = useState("");
+
+  const filteredServices = servicesDropdown.filter((s) =>
+    s.label.toLowerCase().includes(servicesQuery.trim().toLowerCase()),
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -424,18 +429,37 @@ export function MobileMenu({
                             transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
                             className="overflow-hidden"
                           >
+                            {/* Search bar to filter the 15 services */}
+                            <div className="px-4 pt-2 pb-1">
+                              <label className="relative flex items-center" aria-label="Filter services">
+                                <Search size={14} className="absolute left-3 text-white/40 pointer-events-none" aria-hidden="true" />
+                                <input
+                                  type="search"
+                                  value={servicesQuery}
+                                  onChange={(event) => setServicesQuery(event.target.value)}
+                                  placeholder="Search services…"
+                                  autoComplete="off"
+                                  className="w-full rounded-lg bg-white/10 border border-white/15 py-2 pl-9 pr-3 text-sm text-white placeholder:text-white/45 focus:outline-none focus:border-amber-400/50 focus:bg-white/15 transition-colors"
+                                />
+                              </label>
+                            </div>
                             <div className="px-4 pb-2 pt-1 space-y-0.5">
-                              {servicesDropdown.map((s) => (
-                                <Link
-                                  key={s.href}
-                                  href={s.href}
-                                  onClick={onClose}
-                                  className="group/sub flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white/10"
-                                >
-                                  <span className="h-1 w-1 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
-                                  <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
-                                </Link>
-                              ))}
+                              {filteredServices.length === 0 ? (
+                                <p className="px-3 py-3 text-xs font-medium text-white/55">No services match "{servicesQuery.trim()}"</p>
+                              ) : (
+                                filteredServices.map((s) => (
+                                  <Link
+                                    key={s.href}
+                                    href={s.href}
+                                    onClick={onClose}
+                                    className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                                  >
+                                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
+                                    <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
+                                    <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
+                                  </Link>
+                                ))
+                              )}
                             </div>
                           </motion.div>
                         )}

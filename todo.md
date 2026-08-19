@@ -1656,3 +1656,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Investigated and found the mobile menu only rendered plain links — the Services sub-menu existed desktop-only; fixed by adding an expandable accordion: tapping Services reveals all 15 service links with a rotating ChevronDown and smooth height animation, matching the desktop dropdown, with each sub-link auto-closing the menu
 - [x] Verified in live DOM (matchMedia override + hamburger tap): aria-expanded toggles false→true, all 15 sub-links (Web Design → Custom Systems) render in the panel; tsc clean, 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Mobile Menu: Sub-link Styling + Search
+- [x] Styled Services sub-links as a clearly indented sub-level: ml-3 indent, amber left border, subtle white/5 background with right-rounded corners, amber dot marker, and a sliding arrow on hover (amber highlight state) so they read distinctly from main menu items
+- [x] Added a search bar inside the mobile menu (Search icon, "Search services…" placeholder, amber focus border) that filters the 15 services in real time and shows a "No services match …" empty state; the query is scoped to the mobile panel only
+- [x] Verified: tsc clean, 43/43 tests pass, desktop nav and services page unaffected; filtering logic is a plain array filter on servicesDropdown labels
