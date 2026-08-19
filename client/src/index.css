@@ -206,6 +206,16 @@
     }
   }
 
+  /* Subtle page-load entrance: a soft navy veil fades out while hero content cascades in */
+  @keyframes page-load-lift { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .page-load-hero > * { opacity: 0; transform: translateY(18px); animation: page-load-lift 680ms var(--ease-out) 260ms both; }
+    .page-load-hero > *:nth-child(1) { animation-delay: 300ms; }
+    .page-load-hero > *:nth-child(2) { animation-delay: 380ms; }
+    .page-load-hero > *:nth-child(3) { animation-delay: 460ms; }
+    .page-load-hero > *:nth-child(4) { animation-delay: 540ms; }
+  }
+
   .scroll-reveal { opacity: 0; transform: translateY(34px) scale(0.992); transition: opacity 720ms var(--ease-out), transform 720ms var(--ease-out), filter 720ms var(--ease-out); filter: blur(2px); will-change: opacity, transform, filter; }
   .scroll-reveal.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   .scroll-reveal-left { opacity: 0; transform: translateX(-34px) scale(0.992); transition: opacity 720ms var(--ease-out), transform 720ms var(--ease-out), filter 720ms var(--ease-out); filter: blur(2px); will-change: opacity, transform, filter; }

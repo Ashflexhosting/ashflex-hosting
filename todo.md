@@ -1549,3 +1549,11 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Restore original var(--font-heading) references on hero subhead, Welcome section headings, and all section headings (removed all 13 headlineFont bindings)
 - [x] Remove Quicksand/Nunito Sans fonts from index.html and the new theme tokens (--font-rounded-quicksand, --font-rounded-nunito) from index.css
 - [x] Verified homepage renders cleanly without the picker, TypeScript check passed, 43/43 tests pass, checkpoint saved
+
+## Homepage Loading Animation + Mobile Audit + Copy Review (user-requested)
+- [x] Add a subtle page-loading entrance animation to the homepage: `.page-load-hero` CSS utility lifts/fades hero children in staggered 680ms ease-out (300-540ms delays), prefers-reduced-motion respected, applied to hero container; hero fade-in kept intact; 43/43 tests pass
+- [x] Mobile audit of Services pages at 375px: filter, category sections, cards, inquiry form all render correctly; no fixes needed beyond existing sticky-filter implementation
+- [x] Mobile audit of Pricing page at 375px: comparison table scrolls with sticky Business column, tooltips and CTAs accessible; no fixes needed
+- [x] Mobile audit of Portfolio pages: grid and filters fine at 375px; fixed portfolio detail route to also accept human-readable slugs derived from project titles (e.g., /portfolio/karossy-travels-tours) so shared links resolve on mobile; verified Karossy detail renders fully
+- [x] Review homepage copy and statistics; delivered "Homepage Copy & Stats Review.md" with subhead alternatives, stat reframing, trust-bar word fix, and a prioritized action plan
+- [x] Verified with tsc and full test suite (43/43 pass), checkpoint saved and auto-published

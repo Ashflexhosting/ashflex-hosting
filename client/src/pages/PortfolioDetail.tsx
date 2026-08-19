@@ -12,7 +12,12 @@ import LaptopFrame from "@/components/LaptopFrame";
 export default function PortfolioDetail() {
   const { id } = useParams<{ id: string }>();
   const sectionRef = useScrollReveal();
-  const project = portfolioItems.find((p) => p.id === Number(id));
+  const slug = typeof id === "string" ? id.toLowerCase() : "";
+  const project = portfolioItems.find(
+    (p) =>
+      p.id === Number(id) ||
+      p.title.toLowerCase().replace(/\s*&\s*/g, "-").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") === slug,
+  );
   const heroScrollerRef = useRef<HTMLDivElement | null>(null);
   const gallery = project?.screenshots?.length ? project.screenshots : [];
   const captions = project?.screenshotCaptions?.length ? project.screenshotCaptions : [];

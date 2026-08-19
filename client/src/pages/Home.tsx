@@ -458,7 +458,7 @@ export default function Home() {
           <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
         </div>
 
-        <div className="container relative z-10 pt-32 pb-16 md:pt-44 md:pb-20">
+        <div className="page-load-hero container relative z-10 pt-32 pb-16 md:pt-44 md:pb-20">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
