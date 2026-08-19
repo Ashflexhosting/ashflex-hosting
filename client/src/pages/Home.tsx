@@ -722,7 +722,7 @@ href="https://galconengineering.com"
               </div>
 
               {/* Anchor links below the service chips */}
-              <div className="flex flex-wrap items-center gap-x-7 gap-y-4 mt-8">
+              <div className="flex flex-nowrap items-center gap-x-6 mt-8">
                 <Link
                 href="/services"
                 onClick={(e) => {
@@ -732,14 +732,14 @@ href="https://galconengineering.com"
                     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }
                 }}
-                className="group/services inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(7,87,247,0.35)] active:scale-[0.97]">
+                className="shrink-0 group/services inline-flex items-center gap-1.5 text-[11px] sm:text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(7,87,247,0.35)] active:scale-[0.97]">
                   <span className="relative">
                     View Services
                     <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out group-hover/services:w-full" aria-hidden="true" />
                   </span>
                   <ArrowRight size={16} className="transition-all duration-300 ease-out group-hover/services:translate-x-1 group-hover/services:-translate-y-0.5" />
                 </Link>
-                <Link href="/about" className="group/story inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(242,5,73,0.35)] active:scale-[0.97]">
+                <Link href="/about" className="shrink-0 group/story inline-flex items-center gap-1.5 text-[11px] sm:text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(242,5,73,0.35)] active:scale-[0.97]">
                   <span className="relative">
                     Read Our Story
                     <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out group-hover/story:w-full" aria-hidden="true" />

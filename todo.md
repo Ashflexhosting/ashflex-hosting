@@ -1571,6 +1571,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added a "View Services" link beside "Read Our Story" after the chips with matching style plus a gradient underline that sweeps in on hover
 - [x] Verified welcome section on desktop (full-page screenshot), TypeScript check passed, 43/43 tests pass
 
+## Mobile Link Alignment
+- [x] Aligned the "View Services" and "Read Our Story" links on the same line on mobile: flex-nowrap row, shrink-0 links at 11px on mobile (sm:text-sm on larger screens), verified via cropped mobile screenshot at 375px; tests and tsc pass
+
 ## Trust Bar Copy + View Services Scroll + Nav Hover Consistency
 - [x] Changed trust bar label from "emerging brands" to "growing brands" in the trust marquee section
 - [x] Made the welcome-section "View Services" link smooth-scroll to the services section when clicked from the homepage (id="services" anchor added with scroll-mt offset); from other pages it navigates normally
