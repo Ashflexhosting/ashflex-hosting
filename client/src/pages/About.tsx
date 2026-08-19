@@ -431,7 +431,7 @@ export default function About() {
           </div>
           <div className="scroll-reveal text-center mt-14" style={{ transitionDelay: "200ms" }}>
             <Link href="/contact">
-              <span className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
+              <span className="btn-press group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-gradient-primary rounded-2xl hover:shadow-2xl hover:shadow-brand-accent/25 hover:-translate-y-0.5 transition-all duration-300">
                 Start Your Project <ArrowRight size={19} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>

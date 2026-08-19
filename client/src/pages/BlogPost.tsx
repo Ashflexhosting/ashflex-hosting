@@ -65,7 +65,7 @@ export default function BlogPost() {
               Need expert help implementing these strategies? Let's discuss how we can help your business grow.
             </p>
             <Link href="/contact">
-              <span className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
+              <span className="btn-press inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
                 Contact Us <ArrowRight size={18} />
               </span>
             </Link>

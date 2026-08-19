@@ -269,7 +269,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={submitMutation.isPending}
-                        className="w-full px-6 py-3.5 rounded-xl bg-gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full px-6 py-3.5 rounded-xl bg-gradient-primary text-white font-semibold hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200 btn-press flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {submitMutation.isPending ? (
                           <>

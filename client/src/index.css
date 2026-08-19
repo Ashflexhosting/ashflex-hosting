@@ -430,3 +430,14 @@
     }
   }
 }
+
+/* Global subtle press feedback: a light tactile "push down" when any button/interactive element is pressed.
+   Scales from 1 to 0.97 over ~150ms ease-out, works alongside existing hover lifts. */
+@media (prefers-reduced-motion: no-preference) {
+  .btn-press {
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+}

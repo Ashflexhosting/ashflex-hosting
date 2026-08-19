@@ -1579,3 +1579,10 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Made the welcome-section "View Services" link smooth-scroll to the services section when clicked from the homepage (id="services" anchor added with scroll-mt offset); from other pages it navigates normally
 - [x] Applied matching hover styling to the main desktop nav links: gradient blue-to-red underline sweeping in on hover (centered, 300ms ease-out), with the active link keeping a persistent short underline; verified visually on / and /about
 - [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
+
+## Proof-Led Subhead + About/Contact Mobile Review + Button Click Feedback
+- [x] Applied the proof-led hero subhead from the copy review to the homepage hero: "We've built 248+ websites for businesses across 14 countries — each one engineered to rank, convert, and grow. From Lagos SMEs to international brands, see what a website that sells can do for yours."
+- [x] Mobile responsiveness review of the About page at 375px — mission/vision cards, stats band, Meet the Experts, trust section, and footer all render cleanly; no fixes needed
+- [x] Mobile responsiveness review of the Contact page at 375px — form fields, dropdowns, FAQ accordion, brochure teaser card, and footer all render cleanly; no fixes needed
+- [x] Added subtle click/active-state animation: new `.btn-press` utility in index.css (scale to 0.97 over 160ms ease-out, prefers-reduced-motion gated) applied to gradient-primary buttons missing press feedback (About CTA, Contact Send Message, Careers, BlogPost, BrandingGuide, CaseStudyDetail, DigitalMarketingGuide, FreeWebsiteAudit); hero, navbar, and sticky bar buttons already had equivalent feedback
+- [x] TypeScript check passed, 43/43 tests pass

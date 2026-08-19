@@ -487,7 +487,7 @@ export default function Home() {
               </h1>
 
               <p className="hero-fade-in-d1 text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8" style={{ fontFamily: "var(--font-heading)" }}>
-                High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
+                We've built 248+ websites for businesses across 14 countries — each one engineered to rank, convert, and grow. From Lagos SMEs to international brands, see what a website that sells can do for yours.
               </p>
 
               <div className="hero-fade-in-d2 flex flex-row items-stretch gap-3 mb-10">
