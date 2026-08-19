@@ -584,7 +584,7 @@ href="https://galconengineering.com"
       {/* ============ TRUSTED BY — marquee band ============ */}
       <section className="py-8 relative overflow-hidden" style={{ background: "#D8D8D8" }}>
         <div className="container">
-          <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4 font-medium">Trusted by emerging brands across Nigeria & beyond</p>
+          <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4 font-medium">Trusted by growing brands across Nigeria & beyond</p>
         </div>
         <div className="marquee-track group" aria-label="Trusted brands" style={{ maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)" }}>
           {TRUSTED_BRANDS.concat(TRUSTED_BRANDS).map((brand, i) => (
@@ -723,7 +723,16 @@ href="https://galconengineering.com"
 
               {/* Anchor links below the service chips */}
               <div className="flex flex-wrap items-center gap-x-7 gap-y-4 mt-8">
-                <Link href="/services" className="group/services inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(7,87,247,0.35)] active:scale-[0.97]">
+                <Link
+                href="/services"
+                onClick={(e) => {
+                  // Already on the homepage — smooth-scroll to the services section instead of navigating
+                  if (window.location.pathname === "/") {
+                    e.preventDefault();
+                    document.querySelector("#services")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                className="group/services inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(7,87,247,0.35)] active:scale-[0.97]">
                   <span className="relative">
                     View Services
                     <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out group-hover/services:w-full" aria-hidden="true" />
@@ -745,6 +754,7 @@ href="https://galconengineering.com"
       </section>
 
       {/* ============ SERVICES — bento grid with numbered cards ============ */}
+      <div id="services" className="scroll-mt-24" aria-hidden="true" />
       <section className="py-28 relative">
         <div className="absolute inset-0" aria-hidden="true">
           <div className="glow-orb absolute top-10 right-10 w-[340px] h-[340px] rounded-full bg-brand-secondary" style={{ opacity: 0.12 }} />

@@ -215,13 +215,19 @@ export default function Navbar() {
             <div key={item.href} className="relative group">
               <Link
                 href={item.href}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-300 ${
                   location === item.href
                     ? activeNavLinkClass
                     : navLinkClass
                 }`}
               >
                 {item.label}
+                <span
+                  className={`absolute -bottom-0.5 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out ${
+                    location === item.href ? "w-8" : "w-0 group-hover:w-7"
+                  }`}
+                  aria-hidden="true"
+                />
               </Link>
               {item.label === "Services" && (
                 <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">

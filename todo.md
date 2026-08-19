@@ -1570,3 +1570,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Moved the "Read Our Story" link below the services chips and enhanced it with a smooth hover animation (arrow slide-up + color shift to brand red + soft glow, 300ms ease-out, press feedback)
 - [x] Added a "View Services" link beside "Read Our Story" after the chips with matching style plus a gradient underline that sweeps in on hover
 - [x] Verified welcome section on desktop (full-page screenshot), TypeScript check passed, 43/43 tests pass
+
+## Trust Bar Copy + View Services Scroll + Nav Hover Consistency
+- [x] Changed trust bar label from "emerging brands" to "growing brands" in the trust marquee section
+- [x] Made the welcome-section "View Services" link smooth-scroll to the services section when clicked from the homepage (id="services" anchor added with scroll-mt offset); from other pages it navigates normally
+- [x] Applied matching hover styling to the main desktop nav links: gradient blue-to-red underline sweeping in on hover (centered, 300ms ease-out), with the active link keeping a persistent short underline; verified visually on / and /about
+- [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
