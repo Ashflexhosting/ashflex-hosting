@@ -441,3 +441,17 @@
     transform: scale(0.97);
   }
 }
+
+/* Horizontal pricing comparison table scroll (iOS + touch devices) */
+.ios-table-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: auto;
+}
+.ios-table-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.ios-table-scroll::-webkit-scrollbar-thumb {
+  background: oklch(0.45 0.1 264 / 0.35);
+  border-radius: 3px;
+}

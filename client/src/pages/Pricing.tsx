@@ -313,7 +313,7 @@ export default function Pricing() {
           <EstimatedSummary />
 
 
-          <div ref={tableScrollRef} className="overflow-x-auto relative isolate">
+          <div ref={tableScrollRef} className="overflow-x-auto relative ios-table-scroll" style={{ WebkitOverflowScrolling: "touch", touchAction: "auto", overscrollBehaviorX: "contain" }}>
             <p className="flex items-center gap-1.5 px-1 pb-2 text-xs font-medium text-muted-foreground md:hidden">
               <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
             </p>
@@ -327,11 +327,11 @@ export default function Pricing() {
               </colgroup>
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
+                  <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white" style={{ touchAction: "auto" }}>Feature</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
-                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ fontFamily: "var(--font-heading)" }}>
+                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ fontFamily: "var(--font-heading)", touchAction: "auto" }}>
                     <span className="inline-flex items-center gap-1">
                       <Star size={13} fill="currentColor" className="text-brand-accent badge-pulse" /> Business
                     </span>
@@ -341,7 +341,7 @@ export default function Pricing() {
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
-                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-white/85 bg-brand">
+                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-white/85 bg-brand" style={{ touchAction: "auto" }}>
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                       {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
@@ -349,12 +349,12 @@ export default function Pricing() {
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.starter)}</td>
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.professional)}</td>
                     <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.enterprise)}</td>
-                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]">{renderValue(row.business)}</td>
+                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>{renderValue(row.business)}</td>
                   </tr>
                 ))}
                 {/* Get Started CTA row */}
                 <tr className="border-b-2 border-border">
-                  <td className="sticky left-0 z-10 py-4 px-5 bg-brand text-white font-semibold text-sm">Get Started</td>
+                  <td className="sticky left-0 z-10 py-4 px-5 bg-brand text-white font-semibold text-sm" style={{ touchAction: "auto" }}>Get Started</td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Starter" />
                   </td>
@@ -364,7 +364,7 @@ export default function Pricing() {
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Enterprise" />
                   </td>
-                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]">
+                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ touchAction: "auto" }}>
                     <GetStartedButton popular={true} planName="Business" />
                   </td>
                 </tr>
