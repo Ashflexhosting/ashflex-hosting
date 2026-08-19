@@ -1647,3 +1647,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Gave the anchored Feature label column a distinct deep-navy background (`feature-label-cell`, oklch(0.28 0.1 264)) on all its cells with white text, and a slightly deeper navy on the CTA-row label, so it stands out clearly while scrolling horizontally
 - [x] Added a mobile-only swipe indicator strip above the table: the existing hint text on the left plus a "Swipe →" cue in brand blue with a looping slide-and-fade animation (2.2s ease-in-out, reduced-motion fallback)
 - [x] Verified on mobile (375px) and desktop renders, tsc clean, 43/43 tests pass
+
+## Pricing Table: Sticky Hint Strip
+- [x] Moved the "Scroll to compare" strip into the table as a mobile-only sticky header row (colSpan 5, sticky top-0 left-0, opaque bg-background, z-30) so it stays pinned to the top of the scroll container while swiping; verified in live DOM at emulated 375px: row stays at left 0 with zero horizontal shift while scrolling, hintStartTop 0, tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published

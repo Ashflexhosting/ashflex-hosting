@@ -314,14 +314,6 @@ export default function Pricing() {
 
 
           <div ref={tableScrollRef} className="overflow-x-auto relative ios-table-scroll" style={{ WebkitOverflowScrolling: "touch", touchAction: "auto", overscrollBehaviorX: "contain" }}>
-            <div className="flex items-center justify-between gap-2 px-1 pb-2 md:hidden">
-              <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
-              </p>
-              <span className="flex items-center gap-1.5 text-xs font-medium text-brand-secondary animate-slide-right-indicator" aria-hidden="true">
-                Swipe <ChevronsRight size={14} />
-              </span>
-            </div>
             <table className="w-full min-w-[860px] table-fixed border-separate border-spacing-0 text-sm bg-background">
               <colgroup>
                 <col className="w-[170px]" />
@@ -331,6 +323,18 @@ export default function Pricing() {
                 <col className="w-[180px]" />
               </colgroup>
               <thead>
+                <tr className="md:hidden">
+                  <th colSpan={5} className="sticky left-0 top-0 z-30 py-3 px-5 text-left bg-background border-b border-border/60" style={{ touchAction: "auto" }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                        <ArrowRight size={13} className="animate-pulse shrink-0" /> Scroll to compare — the Business plan sits at the end
+                      </p>
+                      <span className="flex items-center gap-1.5 text-xs font-medium text-brand-secondary animate-slide-right-indicator shrink-0" aria-hidden="true">
+                        Swipe <ChevronsRight size={14} />
+                      </span>
+                    </div>
+                  </th>
+                </tr>
                 <tr className="border-b-2 border-border">
                   <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider text-white feature-label-cell" style={{ touchAction: "auto" }}>Feature</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
