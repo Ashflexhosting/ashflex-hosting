@@ -1565,3 +1565,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 
 ## Remove Welcome-Section Get Started Button
 - [x] Removed the "Get Started" CTA from the right-hand side of the homepage welcome section (left the Read Our Story anchor link and service chips intact); ArrowUpRight import still used elsewhere; 43/43 tests pass
+
+## Welcome Section Link Enhancements
+- [x] Moved the "Read Our Story" link below the services chips and enhanced it with a smooth hover animation (arrow slide-up + color shift to brand red + soft glow, 300ms ease-out, press feedback)
+- [x] Added a "View Services" link beside "Read Our Story" after the chips with matching style plus a gradient underline that sweeps in on hover
+- [x] Verified welcome section on desktop (full-page screenshot), TypeScript check passed, 43/43 tests pass

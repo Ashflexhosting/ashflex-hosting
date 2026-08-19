@@ -713,17 +713,30 @@ href="https://galconengineering.com"
                 From corporate websites and business portals to e-commerce platforms and custom web applications, we build solutions that work for your business and your customers.
               </p>
 
-              <Link href="/about" className="scroll-reveal inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] group/story">
-                Read Our Story
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover/story:translate-x-1" />
-              </Link>
-
               <div className="flex flex-wrap gap-2 mt-8">
                 {["Website Design", "Web Applications", "Graphic Design", "Digital Marketing"].map((chip) => (
                   <span key={chip} className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#0757F7] shadow-sm ring-1 ring-[#0757F7]/10 dark:bg-[#0E1A3C] dark:text-foreground dark:ring-brand-cyan/25 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md">
                     {chip}
                   </span>
                 ))}
+              </div>
+
+              {/* Anchor links below the service chips */}
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-4 mt-8">
+                <Link href="/services" className="group/services inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(7,87,247,0.35)] active:scale-[0.97]">
+                  <span className="relative">
+                    View Services
+                    <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out group-hover/services:w-full" aria-hidden="true" />
+                  </span>
+                  <ArrowRight size={16} className="transition-all duration-300 ease-out group-hover/services:translate-x-1 group-hover/services:-translate-y-0.5" />
+                </Link>
+                <Link href="/about" className="group/story inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-[#0757F7] transition-all duration-300 ease-out dark:text-brand-cyan hover:gap-3 hover:text-[#F20549] hover:drop-shadow-[0_0_10px_rgba(242,5,73,0.35)] active:scale-[0.97]">
+                  <span className="relative">
+                    Read Our Story
+                    <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-[#0757F7] to-[#F20549] transition-all duration-300 ease-out group-hover/story:w-full" aria-hidden="true" />
+                  </span>
+                  <ArrowRight size={16} className="transition-all duration-300 ease-out group-hover/story:translate-x-1 group-hover/story:-translate-y-0.5" />
+                </Link>
               </div>
 
             </div>
