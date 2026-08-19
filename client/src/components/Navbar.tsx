@@ -45,12 +45,29 @@ const servicesDropdown = [
   { label: "Custom Systems", href: "/services/custom-business-systems" },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  onMenuOpen,
+  onMenuClose,
+}: {
+  onMenuOpen?: () => void;
+  onMenuClose?: () => void;
+} = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location] = useLocation();
   const { theme, toggleTheme, switchable } = useTheme();
+
+  // Notify the app-level MobileMenu overlay (rendered after all page content)
+  // of open/close changes so both stay in sync
+  useEffect(() => {
+    if (mobileOpen) {
+      onMenuOpen?.();
+    } else {
+      onMenuClose?.();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mobileOpen]);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -89,55 +106,6 @@ export default function Navbar() {
       if (openTimerRef.current) clearTimeout(openTimerRef.current);
     };
   }, []);
-
-  // Swipe-to-close gesture on the mobile menu panel (left or right swipes)
-  const swipeRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const el = swipeRef.current;
-    if (!el) return;
-    let startX = 0;
-    let startY = 0;
-    let dismissed = false;
-
-    const onDown = (e: PointerEvent) => {
-      startX = e.clientX;
-      startY = e.clientY;
-      dismissed = false;
-    };
-    const onMove = (e: PointerEvent) => {
-      if (dismissed) return;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-      // Only dismiss on a deliberate horizontal swipe: ignore vertical scrolling
-      // (raise thresholds so fling-scrolls and horizontal drift never close the menu)
-      if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 2) {
-        dismissed = true;
-        setMobileOpen(false);
-      }
-    };
-    const onUp = () => {
-      dismissed = true;
-    };
-
-    // Also support keyboard dismissal for accessibility
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
-    };
-
-    el.addEventListener("pointerdown", onDown);
-    el.addEventListener("pointermove", onMove);
-    el.addEventListener("pointerup", onUp);
-    el.addEventListener("pointercancel", onUp);
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      el.removeEventListener("pointerdown", onDown);
-      el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerup", onUp);
-      el.removeEventListener("pointercancel", onUp);
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [mobileOpen]);
 
   const topLinkClass = "hover:text-white transition-colors";
   const navLinkClass = scrolled
@@ -315,143 +283,207 @@ export default function Navbar() {
         </div>
       </div>
 
-        {/* Mobile Menu — full-screen slide-in with blurred backdrop */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            {/* Blurred dimmed backdrop */}
-            <motion.div
-              className="lg:hidden fixed inset-0 z-[55] bg-[#071B5A]/40 backdrop-blur-md"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-              onClick={toggleMobile}
-              aria-hidden="true"
-            />
-            {/* Slide-in panel */}
-            <motion.div
-              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-[65] overflow-hidden shadow-2xl touch-action-manipulation"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 260, damping: 34 }}
-            >
-          {/* Solid navy gradient background (replaced the spotlight image for reliable tap behavior) */}
-          <div
-            className="absolute inset-0 bg-gradient-brand"
+    </nav>
+  );
+}
+
+/**
+ * Mobile menu overlay rendered at the very end of the app (after all page
+ * content, WhatsApp button, and sticky CTA bar) so it always paints on top —
+ * fixes the menu being hidden behind page sections on scroll. Controlled via
+ * props passed from Navbar to keep the state in one place.
+ */
+export function MobileMenu({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const [location] = useLocation();
+  const swipeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const el = swipeRef.current;
+    if (!el) return;
+    let startX = 0;
+    let startY = 0;
+    let dismissed = false;
+
+    const onDown = (e: PointerEvent) => {
+      startX = e.clientX;
+      startY = e.clientY;
+      dismissed = false;
+    };
+    const onMove = (e: PointerEvent) => {
+      if (dismissed) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 2) {
+        dismissed = true;
+        onClose();
+      }
+    };
+    const onUp = () => {
+      dismissed = true;
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, onClose]);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          {/* Dimmed backdrop — closes menu on tap */}
+          <motion.div
+            className="lg:hidden fixed inset-0 z-[70] bg-[#071B5A]/40 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+            onClick={onClose}
             aria-hidden="true"
           />
-            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto touch-pan-y overscroll-contain">
-            {/* Panel header with close affordance */}
-            <div className="flex items-center justify-between pb-4 mb-1 border-b border-amber-400/25">
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-300/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">Menu</p>
-              <button
-                type="button"
-                aria-label="Close menu"
-                className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all active:scale-95"
-                onClick={toggleMobile}
-              >
-                <X size={18} />
-              </button>
-            </div>
-            {mobileNav.map((item, i) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.28, delay: i * 0.045, ease: [0.23, 1, 0.32, 1] }}
-              >
-              <Link
-                href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
-                <span className="text-base font-semibold text-white tracking-tight">
-                  {item.label}
-                </span>
-                <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
-                  →
-                </span>
-              </Link>
-              </motion.div>
-            ))}
-            <div className="flex items-center gap-3 px-4 my-2">
-              <span className="h-px flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">
-                More
-              </p>
-              <span className="h-px flex-1 bg-gradient-to-l from-amber-500/50 to-transparent" />
-            </div>
-            {topBarNav.map((item, i) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.28, delay: (mobileNav.length + i) * 0.045, ease: [0.23, 1, 0.32, 1] }}
-              >
-              <Link
-                href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-                <span className="text-base font-medium text-white">{item.label}</span>
-                <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
-                  →
-                </span>
-              </Link>
-              </motion.div>
-            ))}
-            <div className="flex items-center justify-center gap-3 py-3">
-              <a
-                href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Ashflex on Facebook"
-                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
-              >
-                <Facebook size={18} />
-              </a>
-              <a
-                href="https://twitter.com/AshflexH"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Ashflex on X"
-                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
-              >
-                <Twitter size={18} />
-              </a>
-              <a
-                href="https://www.instagram.com/ashflexwebdesign/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Ashflex on Instagram"
-                className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
-              >
-                <Instagram size={18} />
-              </a>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 40 }}
-              transition={{ duration: 0.28, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
+          {/* Slide-in panel — topmost layer, rendered after all page content */}
+          <motion.div
+            className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-[71] overflow-hidden shadow-2xl touch-action-manipulation"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 260, damping: 34 }}
+          >
+            {/* Solid navy gradient background */}
+            <div className="absolute inset-0 bg-gradient-brand" aria-hidden="true" />
+            <div
+              ref={swipeRef}
+              className="container relative py-5 space-y-1 h-full overflow-y-auto touch-pan-y overscroll-contain"
             >
-            <Link href="/contact">
-              <span className="group block w-full text-center px-5 py-3 mt-1 text-base font-semibold text-white bg-gradient-primary rounded-xl shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/40 hover:-translate-y-0.5 transition-all duration-300">
-                Get in Touch
-                <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
-              </span>
-            </Link>
-            </motion.div>
-          </div>
+              {/* Panel header with close affordance */}
+              <div className="flex items-center justify-between pb-4 mb-1 border-b border-amber-400/25">
+                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-300/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+                  Menu
+                </p>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all active:scale-95"
+                  onClick={onClose}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              {mobileNav.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 40 }}
+                  transition={{ duration: 0.28, delay: i * 0.045, ease: [0.23, 1, 0.32, 1] }}
+                >
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
+                    <span className="text-base font-semibold text-white tracking-tight">{item.label}</span>
+                    <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      →
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+              <div className="flex items-center gap-3 px-4 my-2">
+                <span className="h-px flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">More</p>
+                <span className="h-px flex-1 bg-gradient-to-l from-amber-500/50 to-transparent" />
+              </div>
+              {topBarNav.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 40 }}
+                  transition={{
+                    duration: 0.28,
+                    delay: (mobileNav.length + i) * 0.045,
+                    ease: [0.23, 1, 0.32, 1],
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
+                    <span className="text-base font-medium text-white">{item.label}</span>
+                    <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      →
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+              <div className="flex items-center justify-center gap-3 py-3">
+                <a
+                  href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ashflex on Facebook"
+                  className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                >
+                  <Facebook size={18} />
+                </a>
+                <a
+                  href="https://twitter.com/AshflexH"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ashflex on X"
+                  className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                >
+                  <Twitter size={18} />
+                </a>
+                <a
+                  href="https://www.instagram.com/ashflexwebdesign/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ashflex on Instagram"
+                  className="p-2.5 rounded-full bg-amber-400/20 text-[#0f33a8] hover:bg-amber-400 hover:text-[#3d1e05] transition-all duration-200 active:scale-110 active:animate-[bounce-scale_400ms_ease-out] will-change-transform"
+                >
+                  <Instagram size={18} />
+                </a>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.28, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <Link href="/contact">
+                  <span className="group block w-full text-center px-5 py-3 mt-1 text-base font-semibold text-white bg-gradient-primary rounded-xl shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/40 hover:-translate-y-0.5 transition-all duration-300">
+                    Get in Touch
+                    <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
+                </Link>
+              </motion.div>
+            </div>
           </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </nav>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
 

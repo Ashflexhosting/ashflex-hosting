@@ -4,7 +4,8 @@ import { Route, Router as BaseRouter, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Navbar from "./components/Navbar";
+import { useState } from "react";
+import Navbar, { MobileMenu } from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import StickyCTA from "./components/StickyCTA";
@@ -34,6 +35,22 @@ import Newsletter from "./pages/Newsletter";
 import ClientPortal from "./pages/ClientPortal";
 import SEOLanding from "./pages/SEOLanding";
 import NotFound from "./pages/NotFound";
+
+function AppLayout() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  return (
+    <>
+      <Navbar
+        onMenuOpen={() => setMobileOpen(true)}
+        onMenuClose={() => setMobileOpen(false)}
+      />
+      <MobileMenu
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+      />
+    </>
+  );
+}
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -121,7 +138,6 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <BaseRouter base={routerBase}>
-          <Navbar />
           <ScrollToTop />
           <RestoreRedirectedPath />
           <Router />
