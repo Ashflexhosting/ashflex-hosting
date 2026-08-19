@@ -1611,3 +1611,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Diagnosed the disappearance: while moving the Navbar render into an AppLayout wrapper, the final App render block lost the Navbar reference — <AppLayout /> was not actually placed in the render tree, so no navbar (and thus no hamburger) rendered at all
 - [x] Restored it: inserted <AppLayout /> (Navbar + MobileMenu) into the App render block inside BaseRouter; verified logo, theme toggle, and hamburger show at 375px on / and /services
 - [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
+
+## Mobile Menu Auto-Close on Link Click
+- [x] Ensured the mobile menu closes smoothly on any in-menu navigation click: wired onClick={onClose} to all main nav links, all utility (FAQ/Blog/Resources/Portal) links, and the Get in Touch CTA — the panel now slides out with the same spring easing it uses to enter (stiffness 260, damping 34), and the backdrop fades out in sync via AnimatePresence; route-driven close via ScrollToTop remains as a fallback
+- [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
