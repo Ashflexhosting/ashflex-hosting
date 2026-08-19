@@ -257,7 +257,7 @@ export default function Navbar() {
             </button>
           )}
           <Link href="/contact">
-            <span className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl hover:shadow-lg hover:shadow-brand-secondary/25 transition-all duration-200">
+            <span className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-accent/30 hover:brightness-110 active:scale-[0.97]">
               Get in Touch
             </span>
           </Link>

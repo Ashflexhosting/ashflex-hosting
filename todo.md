@@ -1528,3 +1528,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 
 ## Navbar CTA Label Change (user-requested)
 - [x] Change the "Get Free Quote" button in the menu bar to "Get in Touch" (both desktop and mobile nav), and for consistency also updated the sticky bottom bar button and the homepage hero CTA; verified visually, 43/43 tests pass
+
+## Navbar CTA Hover Effect (user-requested)
+- [x] Add a subtle hover effect to the "Get in Touch" button in the menu bar: gentle 0.5rem lift, soft aqua glow shadow, slight brighten, 300ms smooth transition, plus a subtle press-down on click; the mobile menu button already has a matching lift/glow treatment; verified visually, 43/43 tests pass
