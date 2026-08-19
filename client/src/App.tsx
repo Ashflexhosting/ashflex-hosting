@@ -138,6 +138,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <BaseRouter base={routerBase}>
+          <AppLayout />
           <ScrollToTop />
           <RestoreRedirectedPath />
           <Router />

@@ -1606,3 +1606,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Fixed the stacking: the mobile menu overlay was nested inside the Navbar, so page sections could paint over it when scrolled; extracted it into a standalone `MobileMenu` component rendered at the end of the app (after Footer, WhatsApp button, and sticky CTA bar) in App.tsx via an `AppLayout` wrapper with shared open state (Navbar fires optional onMenuOpen/onMenuClose callbacks); backdrop now z-[70], panel z-[71] — topmost of the whole app; removed the now-dead swipe effect from Navbar
 - [x] Verified navbar renders correctly at 375px on / and /services; backdrop closes the menu, Escape closes it, navigation route changes close it (callbacks keep both states in sync); removed dead swipeRef code
 - [x] TypeScript check passed, 43/43 tests pass; checkpoint saved and auto-published
+
+## Mobile Menu Not Visible (user: menu disappeared completely)
+- [x] Diagnosed the disappearance: while moving the Navbar render into an AppLayout wrapper, the final App render block lost the Navbar reference — <AppLayout /> was not actually placed in the render tree, so no navbar (and thus no hamburger) rendered at all
+- [x] Restored it: inserted <AppLayout /> (Navbar + MobileMenu) into the App render block inside BaseRouter; verified logo, theme toggle, and hamburger show at 375px on / and /services
+- [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
