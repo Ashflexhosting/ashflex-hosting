@@ -1651,3 +1651,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Pricing Table: Sticky Hint Strip
 - [x] Moved the "Scroll to compare" strip into the table as a mobile-only sticky header row (colSpan 5, sticky top-0 left-0, opaque bg-background, z-30) so it stays pinned to the top of the scroll container while swiping; verified in live DOM at emulated 375px: row stays at left 0 with zero horizontal shift while scrolling, hintStartTop 0, tsc clean, 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Mobile Menu: Services Drop-down Missing
+- [x] Investigated and found the mobile menu only rendered plain links — the Services sub-menu existed desktop-only; fixed by adding an expandable accordion: tapping Services reveals all 15 service links with a rotating ChevronDown and smooth height animation, matching the desktop dropdown, with each sub-link auto-closing the menu
+- [x] Verified in live DOM (matchMedia override + hamburger tap): aria-expanded toggles false→true, all 15 sub-links (Web Design → Custom Systems) render in the panel; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published

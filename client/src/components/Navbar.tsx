@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -302,6 +302,7 @@ export function MobileMenu({
 }) {
   const [location] = useLocation();
   const swipeRef = useRef<HTMLDivElement>(null);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -396,17 +397,63 @@ export function MobileMenu({
                   exit={{ opacity: 0, x: 40 }}
                   transition={{ duration: 0.28, delay: i * 0.045, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
-                    className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
-                    <span className="text-base font-semibold text-white tracking-tight">{item.label}</span>
-                    <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
-                      →
-                    </span>
-                  </Link>
+                  {item.label === "Services" ? (
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => setServicesOpen((v) => !v)}
+                        aria-expanded={servicesOpen}
+                        className="group flex w-full items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
+                        <span className="text-base font-semibold text-white tracking-tight">{item.label}</span>
+                        <span className="ml-auto flex items-center gap-2 text-amber-300">
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {servicesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-4 pb-2 pt-1 space-y-0.5">
+                              {servicesDropdown.map((s) => (
+                                <Link
+                                  key={s.href}
+                                  href={s.href}
+                                  onClick={onClose}
+                                  className="group/sub flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-white/10"
+                                >
+                                  <span className="h-1 w-1 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
+                                  <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={onClose}
+                      className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
+                      <span className="text-base font-semibold text-white tracking-tight">{item.label}</span>
+                      <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                        →
+                      </span>
+                    </Link>
+                  )}
                 </motion.div>
               ))}
               <div className="flex items-center gap-3 px-4 my-2">
