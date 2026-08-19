@@ -48,6 +48,7 @@ const servicesDropdown = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location] = useLocation();
   const { theme, toggleTheme, switchable } = useTheme();
 
@@ -72,6 +73,23 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location]);
 
+  // Debounced toggle: prevents double-tap races on touch devices that can
+  // leave the panel mid-animation (open/close stuck halfway)
+  const toggleMobile = () => {
+    if (openTimerRef.current) return;
+    const wasOpen = mobileOpen;
+    setMobileOpen(!wasOpen);
+    openTimerRef.current = setTimeout(() => {
+      openTimerRef.current = null;
+    }, 350);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (openTimerRef.current) clearTimeout(openTimerRef.current);
+    };
+  }, []);
+
   // Swipe-to-close gesture on the mobile menu panel (left or right swipes)
   const swipeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -91,8 +109,9 @@ export default function Navbar() {
       if (dismissed) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
-      // Register a clear horizontal swipe (ignore vertical scroll gestures)
-      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+      // Only dismiss on a deliberate horizontal swipe: ignore vertical scrolling
+      // (raise thresholds so fling-scrolls and horizontal drift never close the menu)
+      if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 2) {
         dismissed = true;
         setMobileOpen(false);
       }
@@ -287,7 +306,7 @@ export default function Navbar() {
           )}
           <button
             className={`flex items-center justify-center w-12 h-12 -m-2 p-2 rounded-lg transition-colors ${scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={toggleMobile}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -307,7 +326,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-              onClick={() => setMobileOpen(false)}
+              onClick={toggleMobile}
               aria-hidden="true"
             />
             {/* Slide-in panel */}
@@ -333,7 +352,7 @@ export default function Navbar() {
             }}
             aria-hidden="true"
           />
-            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto backdrop-blur-[3px] touch-pan-y">
+            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto backdrop-blur-[3px] touch-pan-y overscroll-contain">
             {/* Panel header with close affordance */}
             <div className="flex items-center justify-between pb-4 mb-1 border-b border-amber-400/25">
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-300/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">Menu</p>
@@ -341,7 +360,7 @@ export default function Navbar() {
                 type="button"
                 aria-label="Close menu"
                 className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all active:scale-95"
-                onClick={() => setMobileOpen(false)}
+                onClick={toggleMobile}
               >
                 <X size={18} />
               </button>

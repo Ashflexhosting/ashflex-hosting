@@ -1586,3 +1586,13 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Mobile responsiveness review of the Contact page at 375px — form fields, dropdowns, FAQ accordion, brochure teaser card, and footer all render cleanly; no fixes needed
 - [x] Added subtle click/active-state animation: new `.btn-press` utility in index.css (scale to 0.97 over 160ms ease-out, prefers-reduced-motion gated) applied to gradient-primary buttons missing press feedback (About CTA, Contact Send Message, Careers, BlogPost, BrandingGuide, CaseStudyDetail, DigitalMarketingGuide, FreeWebsiteAudit); hero, navbar, and sticky bar buttons already had equivalent feedback
 - [x] TypeScript check passed, 43/43 tests pass
+
+## Mobile Menu Bug Fix (reported by user)
+- [ ] Reproduce and diagnose the mobile menu problem at 375px
+- [ ] Fix the identified mobile menu issues
+- [ ] Verify on mobile widths, run tests, checkpoint, and report
+
+## Mobile Menu Bug Fix (user-reported "still having problems")
+- [x] Reproduced the mobile menu flow: toggle opens/closes correctly, 14 links render, backdrop closes menu, swipe gesture logic tested in emulated mobile layout; identified fling-scroll false-closes (threshold 48px too low) and double-tap mid-animation races as the likely mobile pain points
+- [x] Fixed in Navbar.tsx: raised swipe dismiss threshold to 90px with 2:1 horizontal/vertical ratio so scrolling never closes the menu; added overscroll-contain to the panel so body scroll doesn't bleed while menu is open; added a 350ms debounced toggle (toggle button, X close, and backdrop all use it) to prevent mid-animation race states
+- [x] Verified navbar and menu area render cleanly at 375px on / and /about, TypeScript check passed, 43/43 tests pass
