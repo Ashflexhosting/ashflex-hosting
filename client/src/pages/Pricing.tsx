@@ -136,7 +136,7 @@ function EstimatedSummary() {
             </p>
           ) : (
             <p className="text-sm text-muted-foreground">
-              Hover over any plan card above to see its estimated cost and delivery timeline.
+              Tap or hover on a plan in the table below to see its estimated cost and delivery timeline.
             </p>
           )}
         </div>
@@ -225,9 +225,9 @@ export default function Pricing() {
 
       <section className="py-20">
         <div className="container">
-          <div className="flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none gap-6 pb-3 -mx-4 px-4 lg:mx-0 lg:px-0" style={{ scrollbarWidth: "thin" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {plans.map((plan, i) => (
-              <div key={plan.name} data-plan-name={plan.name} className="scroll-reveal max-md:min-w-[300px] max-md:snap-start max-md:flex-shrink-0" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={plan.name} data-plan-name={plan.name} className="scroll-reveal min-w-0" style={{ transitionDelay: `${i * 60}ms` }}>
                 <Card className={`h-full border-0 p-6 ${plan.popular ? "bg-gradient-brand text-white shadow-2xl shadow-brand-secondary/20 lg:-mt-4 lg:pb-8" : "glass-card"}`}>
                   <CardContent className="p-0">
                     {plan.popular && (
@@ -253,15 +253,15 @@ export default function Pricing() {
                     </div>
                     <ul className="space-y-2.5 mb-6">
                       {plan.features.map((f) => (
-                        <li key={f} className={`flex items-start gap-2 text-sm ${plan.popular ? "text-white/80" : "text-foreground/70"}`}>
+                        <li key={f} className={`flex items-start gap-2 text-sm leading-snug ${plan.popular ? "text-white/80" : "text-foreground/70"}`}>
                           <CheckCircle size={16} className={`mt-0.5 flex-shrink-0 ${plan.popular ? "text-brand-accent" : "text-brand-success"}`} />
-                          {f}
+                          <span className="min-w-0 break-words">{f}</span>
                         </li>
                       ))}
                       {plan.excluded.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground/50">
+                        <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground/50 leading-snug">
                           <X size={16} className="mt-0.5 flex-shrink-0" />
-                          {f}
+                          <span className="min-w-0 break-words">{f}</span>
                         </li>
                       ))}
                     </ul>
@@ -303,14 +303,17 @@ export default function Pricing() {
           <EstimatedSummary />
 
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto relative">
+            <p className="flex items-center gap-1.5 px-1 pb-2 text-xs font-medium text-muted-foreground md:hidden">
+              <ArrowRight size={13} className="animate-pulse" /> Scroll horizontally to compare all plans
+            </p>
             <table className="w-full min-w-[1280px]">
               <thead>
                 <tr className="border-b-2 border-border">
                   <th className="sticky left-0 z-10 w-[170px] bg-brand text-white text-left py-4 px-4 font-semibold">Feature</th>
                   <th className="w-[280px] text-center py-4 px-4 font-semibold">Starter</th>
                   <th className="w-[280px] text-center py-4 px-4 font-semibold">Professional</th>
-                  <th className="md:sticky right-0 z-20 w-[270px] text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
+                  <th className="sticky right-0 z-20 w-[270px] text-center py-4 px-4 font-semibold text-brand-secondary bg-background">Business</th>
                   <th className="w-[280px] text-center py-4 px-4 font-semibold">Enterprise</th>
                 </tr>
               </thead>
@@ -324,7 +327,7 @@ export default function Pricing() {
                     </td>
                     <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.starter)}</td>
                     <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.professional)}</td>
-                    <td className="md:sticky right-0 z-10 w-[270px] py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
+                    <td className="sticky right-0 z-10 w-[270px] py-3 px-4 text-center bg-brand-secondary/5">{renderValue(row.business)}</td>
                     <td className="w-[280px] py-3 px-4 text-center">{renderValue(row.enterprise)}</td>
                   </tr>
                 ))}
@@ -337,7 +340,7 @@ export default function Pricing() {
                   <td className="w-[280px] py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Professional" />
                   </td>
-                  <td className="md:sticky right-0 z-10 w-[270px] py-4 px-4 text-center bg-brand-secondary/5">
+                  <td className="sticky right-0 z-10 w-[270px] py-4 px-4 text-center bg-brand-secondary/5">
                     <GetStartedButton popular={true} planName="Business" />
                   </td>
                   <td className="w-[280px] py-4 px-4 text-center">

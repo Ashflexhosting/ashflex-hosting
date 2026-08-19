@@ -1615,3 +1615,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Mobile Menu Auto-Close on Link Click
 - [x] Ensured the mobile menu closes smoothly on any in-menu navigation click: wired onClick={onClose} to all main nav links, all utility (FAQ/Blog/Resources/Portal) links, and the Get in Touch CTA — the panel now slides out with the same spring easing it uses to enter (stiffness 260, damping 34), and the backdrop fades out in sync via AnimatePresence; route-driven close via ScrollToTop remains as a fallback
 - [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
+
+## Pricing Page Mobile Fix (user: page not mobile-friendly)
+- [x] Audited the Pricing page at 375px (full page): tier cards rendered as a horizontal scroll strip bleeding edge-to-edge, long feature text (hosting line) overflowed card edges, comparison-table hint said "hover" which is wrong on touch
+- [x] Fixed in Pricing.tsx: tier cards now use a 1/2/4-column grid (stack full-width on mobile instead of scroll strip), feature list items wrapped with min-w-0/break-words, hint text changed to "Tap or hover on a plan in the table below", Business column sticky right on all widths with a mobile "Scroll horizontally to compare all plans" hint above the table
+- [x] Verified at 375px: cards fully contained within padding, hero and starter card render correctly; TypeScript check passed, 43/43 tests pass
