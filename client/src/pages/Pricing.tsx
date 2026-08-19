@@ -305,53 +305,57 @@ export default function Pricing() {
 
           <div className="overflow-x-auto relative">
             <p className="flex items-center gap-1.5 px-1 pb-2 text-xs font-medium text-muted-foreground md:hidden">
-              <ArrowRight size={13} className="animate-pulse" /> Scroll horizontally to compare all plans
+              <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
             </p>
-            <table className="w-full min-w-[1000px] table-fixed">
+            <table className="w-full min-w-[860px] table-fixed text-sm">
               <colgroup>
                 <col className="w-[170px]" />
-                <col className="w-[210px]" />
-                <col className="w-[210px]" />
-                <col className="w-[200px]" />
-                <col className="w-[210px]" />
+                <col className="w-[170px]" />
+                <col className="w-[170px]" />
+                <col className="w-[170px]" />
+                <col className="w-[180px]" />
               </colgroup>
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="sticky left-0 z-10 bg-brand text-white text-left py-4 px-4 font-semibold text-sm">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold text-sm">Starter</th>
-                  <th className="text-center py-4 px-4 font-semibold text-sm">Professional</th>
-                  <th className="sticky right-0 z-20 text-center py-4 px-4 font-semibold text-sm text-brand-secondary bg-background">Business</th>
-                  <th className="text-center py-4 px-4 font-semibold text-sm">Enterprise</th>
+                  <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
+                  <th className="py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
+                  <th className="w-[170px] py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
+                  <th className="w-[170px] py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
+                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>
+                    <span className="inline-flex items-center gap-1">
+                      <Star size={13} fill="currentColor" className="text-brand-accent badge-pulse" /> Business
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, i) => (
-                  <tr key={row.name} className={`border-b border-border/50 ${i % 2 === 0 ? "bg-white/50" : ""}`}>
-                    <td className="sticky left-0 z-10 bg-brand text-white/85 py-3 px-4 text-sm font-medium">
+                  <tr key={row.name} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
+                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-white/85 bg-brand">
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                       {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
                     </td>
-                    <td className="py-3 px-4 text-center text-sm">{renderValue(row.starter)}</td>
-                    <td className="py-3 px-4 text-center text-sm">{renderValue(row.professional)}</td>
-                    <td className="sticky right-0 z-10 py-3 px-4 text-center text-sm bg-brand-secondary/5">{renderValue(row.business)}</td>
-                    <td className="py-3 px-4 text-center text-sm">{renderValue(row.enterprise)}</td>
+                    <td className="py-3.5 px-4 text-center">{renderValue(row.starter)}</td>
+                    <td className="py-3.5 px-4 text-center">{renderValue(row.professional)}</td>
+                    <td className="py-3.5 px-4 text-center">{renderValue(row.enterprise)}</td>
+                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-brand-secondary/[0.04]">{renderValue(row.business)}</td>
                   </tr>
                 ))}
                 {/* Get Started CTA row */}
                 <tr className="border-b-2 border-border">
-                  <td className="sticky left-0 z-10 bg-brand text-white py-4 px-4 font-semibold text-sm">Get Started</td>
+                  <td className="sticky left-0 z-10 py-4 px-5 bg-brand text-white font-semibold text-sm">Get Started</td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Starter" />
                   </td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Professional" />
                   </td>
-                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-brand-secondary/5">
-                    <GetStartedButton popular={true} planName="Business" />
-                  </td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Enterprise" />
+                  </td>
+                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-brand-secondary/[0.04]">
+                    <GetStartedButton popular={true} planName="Business" />
                   </td>
                 </tr>
               </tbody>

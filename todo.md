@@ -1623,3 +1623,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Diagnosed the broken table: min-w-[1280px] made the scroll distance huge on mobile, and auto table layout collapsed the sticky Feature/Business columns (their text truncated and cells overlapped neighboring columns)
 - [x] Fixed in Pricing.tsx: table now uses table-fixed with a colgroup enforcing consistent widths (170/210/210/200/210 = 1000px), min-width reduced to 1000px, all per-cell w-* classes removed so the colgroup controls sizing; sticky Feature column (left, z-10) and sticky Business column (right, z-20 header / z-10 body) now render at full column width without overlap
 - [x] Verified at 375px: table columns render at correct widths and the sticky Business column pins cleanly at the right edge; TypeScript check passed, 43/43 tests pass
+
+## Pricing Table Matching Hosting & Domain Table Flow (user request)
+- [x] Examined the Hosting & Domain comparison table on mobile to understand its design (shorter min-width table with auto layout)
+- [x] Rebuilt the Pricing comparison table to flow like the Hosting & Domain table: colgroup enforces 170/170/170/170/180 = 860px widths, Business column moved to the rightmost position (Starter, Professional, Enterprise, Business order) as the sticky right column, scroll hint updated to "Scroll to compare — the Business plan sits at the end", estimated-timeline and Get Started rows retained
+- [x] Verified at 375px (cropped screenshot): sticky Feature column, all middle plan columns visible without overlap, sticky Business column pins at the right edge with pulse star and gradient CTA; tests pass (43/43), TypeScript clean; checkpoint saved and auto-published
