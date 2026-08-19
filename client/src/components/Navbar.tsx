@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -257,8 +257,9 @@ export default function Navbar() {
             </button>
           )}
           <Link href="/contact">
-            <span className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-accent/30 hover:brightness-110 active:scale-[0.97]">
+            <span className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-primary rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-accent/30 hover:brightness-110 active:scale-[0.97]">
               Get in Touch
+              <ArrowRight size={15} className="transition-transform duration-300 translate-x-0 opacity-70 group-hover:translate-x-0.5 group-hover:opacity-100" />
             </span>
           </Link>
         </div>
