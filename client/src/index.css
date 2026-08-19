@@ -374,12 +374,12 @@
 
 } /* end components */
 
-/* Site-wide container: 1200px — placed in @layer utilities so it overrides Tailwind's
+/* Site-wide container: 1300px — placed in @layer utilities so it overrides Tailwind's
    default .container utility (1536px at 1280px+), which otherwise wins the cascade. */
 @layer utilities {
   .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
   @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
-  @media (min-width: 1024px) { .container { max-width: 1200px; padding-left: 2rem; padding-right: 2rem; } }
+  @media (min-width: 1024px) { .container { max-width: 1300px; padding-left: 2rem; padding-right: 2rem; } }
 }
 
 @media (prefers-reduced-motion: no-preference) {

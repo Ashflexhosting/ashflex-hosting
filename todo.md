@@ -1557,3 +1557,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Mobile audit of Portfolio pages: grid and filters fine at 375px; fixed portfolio detail route to also accept human-readable slugs derived from project titles (e.g., /portfolio/karossy-travels-tours) so shared links resolve on mobile; verified Karossy detail renders fully
 - [x] Review homepage copy and statistics; delivered "Homepage Copy & Stats Review.md" with subhead alternatives, stat reframing, trust-bar word fix, and a prioritized action plan
 - [x] Verified with tsc and full test suite (43/43 pass), checkpoint saved and auto-published
+
+## Layout Width Expansion to ~1300px
+- [x] Found the site-wide .container utility in index.css (was 1200px at 1024px+) and expanded it to 1300px; checked pages for conflicting hardcoded widths — only Pricing comparison table min-w-[1280px] remains, which is intentional for horizontal scroll
+- [x] Verified layout at 1366px desktop: homepage hero, trust marquee, section grids, pricing tiers/comparison table, services filter and cards all render correctly with the wider content area
+- [x] TypeScript check passed, 43/43 tests pass, checkpoint saved and auto-published
