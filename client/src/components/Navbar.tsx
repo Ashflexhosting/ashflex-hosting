@@ -331,28 +331,18 @@ export default function Navbar() {
             />
             {/* Slide-in panel */}
             <motion.div
-              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-[65] overflow-hidden shadow-2xl"
+              className="lg:hidden fixed inset-x-0 top-0 bottom-0 z-[65] overflow-hidden shadow-2xl touch-action-manipulation"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 260, damping: 34 }}
             >
-          {/* Image background: warm spotlight effect (user-provided) */}
+          {/* Solid navy gradient background (replaced the spotlight image for reliable tap behavior) */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/manus-storage/focus-spotlight-effect_ce3ba633.jpg')" }}
+            className="absolute inset-0 bg-gradient-brand"
             aria-hidden="true"
           />
-          {/* Pulsing warm glow overlay that follows the spotlight's center */}
-          <div
-            className="absolute inset-0 animate-[glow-pulse_4s_ease-in-out_infinite] pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 55% 50% at 50% 22%, rgba(255, 213, 153, 0.35), rgba(255, 183, 100, 0.14) 45%, transparent 75%), radial-gradient(ellipse 45% 35% at 50% 92%, rgba(255, 200, 120, 0.30), transparent 70%)",
-            }}
-            aria-hidden="true"
-          />
-            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto backdrop-blur-[3px] touch-pan-y overscroll-contain">
+            <div ref={swipeRef} className="container relative py-5 space-y-1 h-full overflow-y-auto touch-pan-y overscroll-contain">
             {/* Panel header with close affordance */}
             <div className="flex items-center justify-between pb-4 mb-1 border-b border-amber-400/25">
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-300/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">Menu</p>
@@ -375,10 +365,10 @@ export default function Navbar() {
               >
               <Link
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary shrink-0" aria-hidden="true" />
-                <span className="text-base font-semibold text-white tracking-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+                <span className="text-base font-semibold text-white tracking-tight">
                   {item.label}
                 </span>
                 <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
@@ -404,10 +394,10 @@ export default function Navbar() {
               >
               <Link
                 href={item.href}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-amber-500/15 hover:pl-5"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 hover:pl-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-                <span className="text-base font-medium text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{item.label}</span>
+                <span className="text-base font-medium text-white">{item.label}</span>
                 <span className="ml-auto text-amber-300 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                   →
                 </span>
