@@ -48,8 +48,6 @@
   --color-brand-cyan: #33C9D4;
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --font-serif-editorial: 'Playfair Display', 'Georgia', serif;
-  --color-brand-editorial-accent: #E8762E;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }

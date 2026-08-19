@@ -1535,6 +1535,3 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## CTA Hover Consistency (user-requested)
 - [x] Add a small arrow icon that slides in on hover next to the navbar "Get in Touch" label: 15px ArrowRight with 0.7→1 opacity and subtle translate-x shift on hover, matching the mobile menu style
 - [x] Apply the same lift/glow hover effect to the sticky bottom bar "Get in Touch" button (translate-y -0.5, aqua glow, brightness, press feedback) and added the matching sliding arrow; verified visually, 43/43 tests pass
-
-## Editorial Serif Typography Trial (user-requested)
-- [x] Adopt the editorial serif font style on the homepage: loaded Playfair Display, added --font-serif-editorial token; hero h1 ("We craft websites that turn clicks into customers") and subhead plus the Welcome section h3 now use the elegant serif at lighter weights (semibold) for a refined editorial look matching the user's screenshot; delivered for user review — further rollout to other pages pending feedback; 43/43 tests pass
