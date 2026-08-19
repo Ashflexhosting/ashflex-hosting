@@ -6,7 +6,7 @@ import {
   Search, Target, Share2, FileText, Wrench, Zap, Server, Plug,
   Bot, Settings, ChevronRight, Star, ArrowRight, CheckCircle,
   MessageSquare, Users, Layers, Shield, Rocket, BarChart3, Headphones,
-  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft, StarHalf,
+  MonitorPlay, ArrowUpRight, Sparkles, ArrowLeft, StarHalf, Type,
 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCounter } from "@/hooks/useCounter";
@@ -429,6 +429,19 @@ export default function Home() {
   const [heroImgLoaded, setHeroImgLoaded] = useState(false);
   const filteredPortfolio = portfolioItems.slice(0, 6);
 
+  // Temporary font-picker toggle for comparing headline styles
+  const FONT_OPTIONS = [
+    { key: "poppins", label: "Poppins", family: "var(--font-heading)" },
+    { key: "playfair", label: "Playfair Display", family: "var(--font-serif-editorial)" },
+    { key: "dm", label: "DM Serif Display", family: "var(--font-serif-dm)" },
+    { key: "fraunces", label: "Fraunces", family: "var(--font-serif-fraunces)" },
+  ];
+  const [fontKey, setFontKey] = useState<string>(() => {
+    if (typeof window !== "undefined") return window.localStorage.getItem("af-font-picker") || "poppins";
+    return "poppins";
+  });
+  const headlineFont = FONT_OPTIONS.find((f) => f.key === fontKey)?.family ?? "var(--font-heading)";
+
   const scrollToPortfolio = () => {
     const target = document.getElementById("featured-portfolio");
     if (target) {
@@ -458,13 +471,45 @@ export default function Home() {
           <span className="inline-block w-8 h-px bg-white/40" /> Ashflex Studio · Lagos
         </div>
 
+        {/* Temporary font-picker toggle (headline style comparison) */}
+        <div className="absolute top-20 md:top-24 right-4 md:right-6 z-20 flex flex-col items-end gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur px-2.5 py-1 text-[10px] uppercase tracking-widest text-white/60 border border-white/15">
+            <Type className="size-3" aria-hidden="true" /> Temp font picker
+          </span>
+          <div className="flex flex-row items-center gap-1 rounded-full bg-[rgba(7,27,90,0.85)] backdrop-blur border border-white/20 p-1 shadow-lg" role="radiogroup" aria-label="Headline font style">
+            {FONT_OPTIONS.map((f) => (
+              <button
+                key={f.key}
+                type="button"
+                role="radio"
+                aria-checked={fontKey === f.key}
+                onClick={() => {
+                  setFontKey(f.key);
+                  try {
+                    window.localStorage.setItem("af-font-picker", f.key);
+                  } catch { /* ignore */ }
+                }}
+                className={
+                  "rounded-full px-2.5 py-1.5 text-[11px] md:text-xs transition-all duration-200 " +
+                  (fontKey === f.key
+                    ? "bg-brand-cyan text-brand font-semibold shadow-md"
+                    : "text-white/70 hover:text-white hover:bg-white/10")
+                }
+                title={`Preview the headline in ${f.label}`}
+              >
+                {f.label.split(" ")[0]}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="container relative z-10 pt-32 pb-16 md:pt-44 md:pb-20">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left: copy */}
             <div className="lg:col-span-7">
               <h1
-                className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
-                style={{ fontFamily: "var(--font-heading)" }}
+                className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8 transition-[font-family] duration-300"
+                style={{ fontFamily: headlineFont }}
               >
                 <span className="whitespace-nowrap">
                   We craft{" "}

@@ -1535,3 +1535,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## CTA Hover Consistency (user-requested)
 - [x] Add a small arrow icon that slides in on hover next to the navbar "Get in Touch" label: 15px ArrowRight with 0.7→1 opacity and subtle translate-x shift on hover, matching the mobile menu style
 - [x] Apply the same lift/glow hover effect to the sticky bottom bar "Get in Touch" button (translate-y -0.5, aqua glow, brightness, press feedback) and added the matching sliding arrow; verified visually, 43/43 tests pass
+
+## Font-Picker Toggle (user-requested)
+- [ ] Add a temporary font-picker toggle to the homepage to compare headline styles (current Poppins, editorial serif, plus one more option)
