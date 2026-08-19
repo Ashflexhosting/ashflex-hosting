@@ -463,8 +463,8 @@ export default function Home() {
             {/* Left: copy */}
             <div className="lg:col-span-7">
               <h1
-                className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-extrabold text-white leading-[1.04] tracking-tight mb-8"
-                style={{ fontFamily: "var(--font-heading)" }}
+                className="hero-fade-in text-[1.9rem] xs:text-[2.3rem] sm:text-5xl md:text-[3.5rem] lg:text-6xl xl:text-[4.6rem] font-semibold text-white leading-[1.08] tracking-tight mb-8"
+                style={{ fontFamily: "var(--font-serif-editorial)" }}
               >
                 <span className="whitespace-nowrap">
                   We craft{" "}
@@ -486,7 +486,7 @@ export default function Home() {
                 <span className="whitespace-nowrap text-outline">customers.</span>
               </h1>
 
-              <p className="hero-fade-in-d1 text-base md:text-xl text-white/65 max-w-xl leading-relaxed mb-8">
+              <p className="hero-fade-in-d1 text-base md:text-lg text-white/70 max-w-xl leading-relaxed md:leading-loose mb-8" style={{ fontFamily: "var(--font-serif-editorial)" }}>
                 High-performance design, conversion-first strategy, and pixel-perfect development for businesses that want to be seen, trusted, and chosen.
               </p>
 
@@ -662,7 +662,7 @@ href="https://galconengineering.com"
               </div>
 
               <div className="text-center mt-12">
-                <h3 className="text-2xl md:text-[2rem] text-[#1B2A6B] leading-snug font-extrabold dark:text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
+                <h3 className="text-2xl md:text-[2rem] text-[#1B2A6B] leading-snug font-semibold dark:text-foreground" style={{ fontFamily: "var(--font-serif-editorial)" }}>
                   Take control of your
                   <br />
                   <span className="text-gradient">online business.</span>
