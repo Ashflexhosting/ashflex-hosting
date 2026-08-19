@@ -1518,3 +1518,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 
 ## Sticky Bar Entrance Animation (user-requested)
 - [x] Add a subtle slide-up entrance animation to the StickyCTA bar: on first appearance it slides up from below the viewport with fade-in over 300ms using a snappy ease-out cubic-bezier, via requestAnimationFrame trigger
+
+## Footer Brochure Alignment (user-requested)
+- [x] Move the PDF brochure download link to align with the contact details card: on desktop it now sits in the full-width contact bar beside email/phone/location with a vertical divider, and on mobile it appears directly below the contact card; verified visually on desktop, 43/43 tests pass

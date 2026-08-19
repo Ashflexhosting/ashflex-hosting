@@ -130,14 +130,6 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
             </div>
-            <a
-              href="/manus-storage/ashflex-brochure_cffef549.pdf"
-              download="Ashflex-Web-Design-Brochure.pdf"
-              className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-brand-accent hover:text-brand hover:border-brand-accent active:scale-[0.98]"
-            >
-              <FileDown size={15} />
-              Download Our Brochure (PDF)
-            </a>
           </div>
 
           <div>
@@ -196,6 +188,27 @@ export default function Footer() {
             <MapPin size={16} className="shrink-0 text-brand-accent" />
             <span className="whitespace-nowrap">Lagos, Nigeria</span>
           </div>
+          <div className="hidden md:block h-5 w-px bg-white/20" />
+          <a
+            href="/manus-storage/ashflex-brochure_cffef549.pdf"
+            download="Ashflex-Web-Design-Brochure.pdf"
+            className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-brand-accent hover:text-brand hover:border-brand-accent active:scale-[0.98] whitespace-nowrap"
+          >
+            <FileDown size={15} />
+            Download Our Brochure (PDF)
+          </a>
+        </div>
+
+        {/* Mobile brochure download, aligned below the contact details */}
+        <div className="mb-6 md:hidden">
+          <a
+            href="/manus-storage/ashflex-brochure_cffef549.pdf"
+            download="Ashflex-Web-Design-Brochure.pdf"
+            className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-brand-accent hover:text-brand hover:border-brand-accent active:scale-[0.98] whitespace-nowrap"
+          >
+            <FileDown size={15} />
+            Download Our Brochure (PDF)
+          </a>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
