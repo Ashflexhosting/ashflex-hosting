@@ -1525,3 +1525,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Brochure Teaser Expansion (user-requested)
 - [x] Add a brochure teaser to the contact page: a dark navy gradient card with "Want the full story in one page?" headline and white Download Brochure (PDF) button placed below the FAQ section, styled to match the site CTA band
 - [x] Add a short "Get our brochure" text link (FileDown icon, aqua, hover-to-white) to the footer brand block below the tagline, giving a second download path on wide screens; verified visually on both pages, 43/43 tests pass
+
+## Navbar CTA Label Change (user-requested)
+- [x] Change the "Get Free Quote" button in the menu bar to "Get in Touch" (both desktop and mobile nav), and for consistency also updated the sticky bottom bar button and the homepage hero CTA; verified visually, 43/43 tests pass
