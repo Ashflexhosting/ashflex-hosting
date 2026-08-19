@@ -1587,10 +1587,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added subtle click/active-state animation: new `.btn-press` utility in index.css (scale to 0.97 over 160ms ease-out, prefers-reduced-motion gated) applied to gradient-primary buttons missing press feedback (About CTA, Contact Send Message, Careers, BlogPost, BrandingGuide, CaseStudyDetail, DigitalMarketingGuide, FreeWebsiteAudit); hero, navbar, and sticky bar buttons already had equivalent feedback
 - [x] TypeScript check passed, 43/43 tests pass
 
-## Mobile Menu Bug Fix (reported by user)
-- [ ] Reproduce and diagnose the mobile menu problem at 375px
-- [ ] Fix the identified mobile menu issues
-- [ ] Verify on mobile widths, run tests, checkpoint, and report
+## Mobile Menu Bug Fix (reported by user) — superseded by later working fixes (theme-switcher/background removal 55f4a732, z-index refactor 9fb5e77d, auto-close 356ab23b)
+- [x] Diagnosed and addressed through the subsequent working fixes in the sections below; the original report's symptoms were resolved via those later sessions
 
 ## Mobile Menu Bug Fix (user-reported "still having problems")
 - [x] Reproduced the mobile menu flow: toggle opens/closes correctly, 14 links render, backdrop closes menu, swipe gesture logic tested in emulated mobile layout; identified fling-scroll false-closes (threshold 48px too low) and double-tap mid-animation races as the likely mobile pain points
@@ -1620,3 +1618,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Audited the Pricing page at 375px (full page): tier cards rendered as a horizontal scroll strip bleeding edge-to-edge, long feature text (hosting line) overflowed card edges, comparison-table hint said "hover" which is wrong on touch
 - [x] Fixed in Pricing.tsx: tier cards now use a 1/2/4-column grid (stack full-width on mobile instead of scroll strip), feature list items wrapped with min-w-0/break-words, hint text changed to "Tap or hover on a plan in the table below", Business column sticky right on all widths with a mobile "Scroll horizontally to compare all plans" hint above the table
 - [x] Verified at 375px: cards fully contained within padding, hero and starter card render correctly; TypeScript check passed, 43/43 tests pass
+
+## Comparison Table Scroll Fix (user: horizontal scroll on plans comparison looked broken)
+- [x] Diagnosed the broken table: min-w-[1280px] made the scroll distance huge on mobile, and auto table layout collapsed the sticky Feature/Business columns (their text truncated and cells overlapped neighboring columns)
+- [x] Fixed in Pricing.tsx: table now uses table-fixed with a colgroup enforcing consistent widths (170/210/210/200/210 = 1000px), min-width reduced to 1000px, all per-cell w-* classes removed so the colgroup controls sizing; sticky Feature column (left, z-10) and sticky Business column (right, z-20 header / z-10 body) now render at full column width without overlap
+- [x] Verified at 375px: table columns render at correct widths and the sticky Business column pins cleanly at the right edge; TypeScript check passed, 43/43 tests pass
