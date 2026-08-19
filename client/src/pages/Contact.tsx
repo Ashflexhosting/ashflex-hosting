@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
-import { ArrowRight, Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Clock, MessageSquare, FileDown } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { buildWhatsAppHrefStatic } from "@/components/WhatsAppButton";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -319,6 +319,30 @@ export default function Contact() {
                   </Link>
                 </div>
               </CardContent>
+            </Card>
+          </div>
+
+          {/* Brochure teaser */}
+          <div className="mt-10 scroll-reveal">
+            <Card className="glass-card border-0 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-brand via-brand/95 to-[#0B1333]" />
+              <div className="relative p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <div className="max-w-xl">
+                  <p className="text-brand-accent text-xs font-semibold tracking-widest uppercase mb-2">Company Brochure</p>
+                  <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "var(--font-heading)" }}>Want the full story in one page?</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    Download our brochure with every service, plan tier, and price — perfect for sharing with your team or stakeholders.
+                  </p>
+                </div>
+                <a
+                  href="/manus-storage/ashflex-brochure_cffef549.pdf"
+                  download="Ashflex-Web-Design-Brochure.pdf"
+                  className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-white text-brand px-5 py-3 text-sm font-semibold hover:shadow-lg hover:shadow-brand-accent/25 transition-all duration-200 active:scale-[0.98] whitespace-nowrap"
+                >
+                  <FileDown size={16} />
+                  Download Brochure (PDF)
+                </a>
+              </div>
             </Card>
           </div>
         </div>

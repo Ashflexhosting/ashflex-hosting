@@ -101,6 +101,14 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed mb-4">
               We build high-performance websites that help businesses increase visibility, improve credibility, and convert visitors into paying customers.
             </p>
+            <a
+              href="/manus-storage/ashflex-brochure_cffef549.pdf"
+              download="Ashflex-Web-Design-Brochure.pdf"
+              className="inline-flex items-center gap-1.5 text-brand-accent text-sm font-medium hover:text-white transition-colors mb-4"
+            >
+              <FileDown size={14} className="shrink-0" />
+              Get our brochure
+            </a>
             <div className="flex items-center gap-3 mb-4">
               <a
                 href="https://www.facebook.com/Ashflex-Web-Hosting-547113659083437"

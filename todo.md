@@ -1521,3 +1521,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 
 ## Footer Brochure Alignment (user-requested)
 - [x] Move the PDF brochure download link to align with the contact details card: on desktop it now sits in the full-width contact bar beside email/phone/location with a vertical divider, and on mobile it appears directly below the contact card; verified visually on desktop, 43/43 tests pass
+
+## Brochure Teaser Expansion (user-requested)
+- [x] Add a brochure teaser to the contact page: a dark navy gradient card with "Want the full story in one page?" headline and white Download Brochure (PDF) button placed below the FAQ section, styled to match the site CTA band
+- [x] Add a short "Get our brochure" text link (FileDown icon, aqua, hover-to-white) to the footer brand block below the tagline, giving a second download path on wide screens; verified visually on both pages, 43/43 tests pass
