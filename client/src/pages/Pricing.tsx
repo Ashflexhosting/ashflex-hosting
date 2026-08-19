@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, X, Star, Info, Clock } from "lucide-react";
+import { ArrowRight, CheckCircle, X, Star, Info, Clock, ChevronsRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
@@ -314,9 +314,14 @@ export default function Pricing() {
 
 
           <div ref={tableScrollRef} className="overflow-x-auto relative ios-table-scroll" style={{ WebkitOverflowScrolling: "touch", touchAction: "auto", overscrollBehaviorX: "contain" }}>
-            <p className="flex items-center gap-1.5 px-1 pb-2 text-xs font-medium text-muted-foreground md:hidden">
-              <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
-            </p>
+            <div className="flex items-center justify-between gap-2 px-1 pb-2 md:hidden">
+              <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
+              </p>
+              <span className="flex items-center gap-1.5 text-xs font-medium text-brand-secondary animate-slide-right-indicator" aria-hidden="true">
+                Swipe <ChevronsRight size={14} />
+              </span>
+            </div>
             <table className="w-full min-w-[860px] table-fixed border-separate border-spacing-0 text-sm bg-background">
               <colgroup>
                 <col className="w-[170px]" />
@@ -327,7 +332,7 @@ export default function Pricing() {
               </colgroup>
               <thead>
                 <tr className="border-b-2 border-border">
-                  <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white" style={{ touchAction: "auto" }}>Feature</th>
+                  <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider text-white feature-label-cell" style={{ touchAction: "auto" }}>Feature</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
                   <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
@@ -341,7 +346,7 @@ export default function Pricing() {
               <tbody>
                 {comparisonFeatures.map((row, i) => (
                   <tr key={row.name} className="border-b border-border/40 transition-colors duration-200 hover:bg-muted/40">
-                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-white/85 bg-brand" style={{ touchAction: "auto" }}>
+                    <td className="sticky left-0 z-10 py-3.5 px-5 text-sm font-medium text-white/85 feature-label-cell" style={{ touchAction: "auto" }}>
                       {row.name}
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                       {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
@@ -354,7 +359,7 @@ export default function Pricing() {
                 ))}
                 {/* Get Started CTA row */}
                 <tr className="border-b-2 border-border">
-                  <td className="sticky left-0 z-10 py-4 px-5 bg-brand text-white font-semibold text-sm" style={{ touchAction: "auto" }}>Get Started</td>
+                  <td className="sticky left-0 z-10 py-4 px-5 bg-[oklch(0.24_0.09_264)] text-white font-semibold text-sm" style={{ touchAction: "auto" }}>Get Started</td>
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Starter" />
                   </td>

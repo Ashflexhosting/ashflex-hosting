@@ -1642,3 +1642,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Pricing Table: Remove Sticky Business Column on Mobile (user suggestion)
 - [x] Removed sticky positioning from the Business column on mobile (Business th/td/CTA changed to `md:sticky md:right-0 md:z-*` with conditional border/shadow); Feature column stays sticky left on all sizes; verified at 375px the table scrolls freely (maxScroll 485px, end reachable) and on desktop the Business column remains pinned at the right edge
 - [x] Checkpoint saved and auto-published
+
+## Pricing Table: Feature Column Styling + Mobile Scroll Indicator
+- [x] Gave the anchored Feature label column a distinct deep-navy background (`feature-label-cell`, oklch(0.28 0.1 264)) on all its cells with white text, and a slightly deeper navy on the CTA-row label, so it stands out clearly while scrolling horizontally
+- [x] Added a mobile-only swipe indicator strip above the table: the existing hint text on the left plus a "Swipe →" cue in brand blue with a looping slide-and-fade animation (2.2s ease-in-out, reduced-motion fallback)
+- [x] Verified on mobile (375px) and desktop renders, tsc clean, 43/43 tests pass

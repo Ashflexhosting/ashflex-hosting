@@ -455,3 +455,38 @@
   background: oklch(0.45 0.1 264 / 0.35);
   border-radius: 3px;
 }
+
+/* Anchored Feature label column: distinct deep-navy background */
+.feature-label-cell {
+  background-color: oklch(0.28 0.1 264);
+}
+
+/* Mobile swipe indicator: slides right and fades to invite horizontal scrolling */
+@keyframes slide-right-indicator {
+  0% {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+}
+.animate-slide-right-indicator {
+  animation: slide-right-indicator 2.2s ease-in-out 1.2s infinite;
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-right-indicator {
+    animation: none;
+    opacity: 1;
+  }
+}
