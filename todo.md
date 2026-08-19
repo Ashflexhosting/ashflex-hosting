@@ -1628,3 +1628,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Examined the Hosting & Domain comparison table on mobile to understand its design (shorter min-width table with auto layout)
 - [x] Rebuilt the Pricing comparison table to flow like the Hosting & Domain table: colgroup enforces 170/170/170/170/180 = 860px widths, Business column moved to the rightmost position (Starter, Professional, Enterprise, Business order) as the sticky right column, scroll hint updated to "Scroll to compare — the Business plan sits at the end", estimated-timeline and Get Started rows retained
 - [x] Verified at 375px (cropped screenshot): sticky Feature column, all middle plan columns visible without overlap, sticky Business column pins at the right edge with pulse star and gradient CTA; tests pass (43/43), TypeScript clean; checkpoint saved and auto-published
+
+## Pricing Comparison Overlap Follow-Up (user: still overlapping)
+- [x] Reproduced and located the remaining overlap: translucent sticky Business column backgrounds let middle-column text bleed through at the sticky boundary, and the container could start scrolled to the right hiding plan columns
+- [x] Applied the layout fix: forced scrollLeft=0 on mount via ref effect, opaque bg-background on all middle th/td, fully opaque sticky Business cells with border-l + separation shadow, added `isolate` on the overflow wrapper (fixed invalid `isolation-isolate` class); verified in live DOM at emulated 375px (adjacent rects, no numeric overlap, sticky pinning works at both scroll extremes) and desktop (clean 5-column render)
+- [x] tsc clean, 43/43 tests pass, checkpoint saved and auto-published

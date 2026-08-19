@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle, X, Star, Info, Clock } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
@@ -213,6 +213,16 @@ function RenewalTooltip() {
 }
 
 export default function Pricing() {
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+
+  // Ensure the comparison table always starts scrolled to the left edge on mobile
+  // (browsers may restore a previous horizontal scroll position, hiding the plan columns
+  // behind the sticky Business column and looking like an overlap).
+  useEffect(() => {
+    const el = tableScrollRef.current;
+    if (!el) return;
+    if (el.scrollLeft !== 0) el.scrollLeft = 0;
+  }, []);
   const sectionRef = useScrollReveal();
 
   return (
@@ -303,11 +313,11 @@ export default function Pricing() {
           <EstimatedSummary />
 
 
-          <div className="overflow-x-auto relative">
+          <div ref={tableScrollRef} className="overflow-x-auto relative isolate">
             <p className="flex items-center gap-1.5 px-1 pb-2 text-xs font-medium text-muted-foreground md:hidden">
               <ArrowRight size={13} className="animate-pulse" /> Scroll to compare — the Business plan sits at the end
             </p>
-            <table className="w-full min-w-[860px] table-fixed text-sm">
+            <table className="w-full min-w-[860px] table-fixed border-separate border-spacing-0 text-sm bg-background">
               <colgroup>
                 <col className="w-[170px]" />
                 <col className="w-[170px]" />
@@ -318,10 +328,10 @@ export default function Pricing() {
               <thead>
                 <tr className="border-b-2 border-border">
                   <th className="sticky left-0 z-10 py-4 px-5 text-left font-semibold text-xs uppercase tracking-wider bg-brand text-white">Feature</th>
-                  <th className="py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
-                  <th className="w-[170px] py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
-                  <th className="w-[170px] py-4 px-4 text-center font-semibold text-sm" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
-                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>
+                  <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Starter</th>
+                  <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Professional</th>
+                  <th className="py-4 px-4 text-center font-semibold text-sm bg-background" style={{ fontFamily: "var(--font-heading)" }}>Enterprise</th>
+                  <th className="sticky right-0 z-20 py-4 px-4 text-center font-semibold text-sm bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]" style={{ fontFamily: "var(--font-heading)" }}>
                     <span className="inline-flex items-center gap-1">
                       <Star size={13} fill="currentColor" className="text-brand-accent badge-pulse" /> Business
                     </span>
@@ -336,10 +346,10 @@ export default function Pricing() {
                       {"hasRenewalTooltip" in row && row.hasRenewalTooltip && <RenewalTooltip />}
                       {"hasTimelineTooltip" in row && row.hasTimelineTooltip && <TimelineTooltip />}
                     </td>
-                    <td className="py-3.5 px-4 text-center">{renderValue(row.starter)}</td>
-                    <td className="py-3.5 px-4 text-center">{renderValue(row.professional)}</td>
-                    <td className="py-3.5 px-4 text-center">{renderValue(row.enterprise)}</td>
-                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-brand-secondary/[0.04]">{renderValue(row.business)}</td>
+                    <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.starter)}</td>
+                    <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.professional)}</td>
+                    <td className="py-3.5 px-4 text-center bg-background">{renderValue(row.enterprise)}</td>
+                    <td className="sticky right-0 z-10 py-3.5 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]">{renderValue(row.business)}</td>
                   </tr>
                 ))}
                 {/* Get Started CTA row */}
@@ -354,7 +364,7 @@ export default function Pricing() {
                   <td className="py-4 px-4 text-center">
                     <GetStartedButton popular={false} planName="Enterprise" />
                   </td>
-                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-brand-secondary/[0.04]">
+                  <td className="sticky right-0 z-10 py-4 px-4 text-center bg-background border-l border-border shadow-[-10px_0_16px_rgba(15,23,42,0.08)]">
                     <GetStartedButton popular={true} planName="Business" />
                   </td>
                 </tr>
