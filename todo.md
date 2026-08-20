@@ -1666,3 +1666,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added a clear "X" button (XCircle icon) inside the search bar, animated in/out, visible when the query is non-empty, resets the query to "" with a dedicated aria-label; input right padding adapts to reserve space for it
 - [x] Added smooth filter animation: each sub-link is wrapped in a motion.div with layout + AnimatePresence popLayout (180ms fade/slide/scale), the list container animates with a spring, and the empty-state message fades in/out
 - [x] Auto-close on sub-link tap confirmed: every sub-link (and main link) carries onClick={onClose} so the menu exits with its smooth spring slide-out; tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Mobile Menu: Icons + Match Highlight
+- [x] Added a small lucide icon next to each of the 15 service sub-links (Palette, Code2, FileText, ShoppingCart, LayoutTemplate, Stamp, Search, Megaphone, Share2, PenLine, Wrench, Gauge, Server, Bot, Network) in amber tone, replacing the plain dot marker; icon mapping defined once in serviceIcons and reusable elsewhere
+- [x] Added match highlighting: a highlightMatch renderer bolds and tints amber-300 the matching substring within each sub-link label while typing in the search bar
+- [x] Verified: tsc clean, 43/43 tests pass; checkpoint saved and auto-published

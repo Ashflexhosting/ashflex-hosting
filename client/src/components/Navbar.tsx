@@ -1,6 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown, Search, XCircle } from "lucide-react";
+import {
+  Menu,
+  X,
+  Mail,
+  Phone,
+  CheckCircle2,
+  Sun,
+  Moon,
+  ArrowRight,
+  ChevronDown,
+  Search,
+  XCircle,
+  Palette,
+  Code2,
+  FileText,
+  ShoppingCart,
+  LayoutTemplate,
+  Stamp,
+  Search as SearchIcon,
+  Megaphone,
+  Share2,
+  PenLine,
+  Wrench,
+  Gauge,
+  Server,
+  Bot,
+  Network,
+} from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -27,6 +54,24 @@ const topBarNav = [
   { label: "Client Portal", href: "/client-portal" },
 ];
 
+const serviceIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  "Web Design": Palette,
+  "Web Development": Code2,
+  "WordPress": FileText,
+  "E-commerce": ShoppingCart,
+  "UI/UX Design": LayoutTemplate,
+  "Branding": Stamp,
+  "SEO": SearchIcon,
+  "Google Ads": Megaphone,
+  "Social Media": Share2,
+  "Content Writing": PenLine,
+  "Maintenance": Wrench,
+  "Speed Optimization": Gauge,
+  "Hosting & Domain": Server,
+  "AI Automation": Bot,
+  "Custom Systems": Network,
+};
+
 const servicesDropdown = [
   { label: "Web Design", href: "/services/website-design" },
   { label: "Web Development", href: "/services/website-development" },
@@ -44,6 +89,26 @@ const servicesDropdown = [
   { label: "AI Automation", href: "/services/ai-automation" },
   { label: "Custom Systems", href: "/services/custom-business-systems" },
 ];
+
+// Renders a label with matching query letters shown bold/amber
+function highlightMatch(label: string, query: string): React.ReactNode {
+  const trimmed = query.trim();
+  if (!trimmed) return label;
+  const lower = label.toLowerCase();
+  const needle = trimmed.toLowerCase();
+  const index = lower.indexOf(needle);
+  if (index === -1) return label;
+  const before = label.slice(0, index);
+  const match = label.slice(index, index + needle.length);
+  const after = label.slice(index + needle.length);
+  return (
+    <>
+      {before}
+      <span className="font-bold text-amber-300">{match}</span>
+      {after}
+    </>
+  );
+}
 
 export default function Navbar({
   onMenuOpen,
@@ -478,26 +543,35 @@ export function MobileMenu({
                                     No services match "{servicesQuery.trim()}"
                                   </motion.p>
                                 ) : (
-                                  filteredServices.map((s) => (
-                                    <motion.div
-                                      key={s.href}
-                                      layout
-                                      initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                                      exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                                      transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-                                    >
-                                      <Link
-                                        href={s.href}
-                                        onClick={onClose}
-                                        className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                                  filteredServices.map((s) => {
+                                    const Icon = serviceIcons[s.label];
+                                    return (
+                                      <motion.div
+                                        key={s.href}
+                                        layout
+                                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                                        transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
                                       >
-                                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
-                                        <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
-                                        <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
-                                      </Link>
-                                    </motion.div>
-                                  ))
+                                        <Link
+                                          href={s.href}
+                                          onClick={onClose}
+                                          className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                                        >
+                                          {Icon ? (
+                                            <Icon size={14} className="text-amber-300/80 shrink-0" aria-hidden="true" />
+                                          ) : (
+                                            <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
+                                          )}
+                                          <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">
+                                            {highlightMatch(s.label, servicesQuery)}
+                                          </span>
+                                          <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
+                                        </Link>
+                                      </motion.div>
+                                    );
+                                  })
                                 )}
                               </AnimatePresence>
                             </motion.div>
