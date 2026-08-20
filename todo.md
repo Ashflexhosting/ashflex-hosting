@@ -1671,3 +1671,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added a small lucide icon next to each of the 15 service sub-links (Palette, Code2, FileText, ShoppingCart, LayoutTemplate, Stamp, Search, Megaphone, Share2, PenLine, Wrench, Gauge, Server, Bot, Network) in amber tone, replacing the plain dot marker; icon mapping defined once in serviceIcons and reusable elsewhere
 - [x] Added match highlighting: a highlightMatch renderer bolds and tints amber-300 the matching substring within each sub-link label while typing in the search bar
 - [x] Verified: tsc clean, 43/43 tests pass; checkpoint saved and auto-published
+
+## Mobile Menu: Sticky Search + Services Link Fix
+- [x] Made the mobile search bar sticky at the top of the scrollable services list (sticky top-2 z-20 with a fading navy gradient backing) so it stays visible while scrolling the long list
+- [x] Restored services page access: added an "All Services" entry (gradient-tinted, arrow icon) at the top of the sub-link list pointing to /services; tsc clean, 43/43 tests pass, 375px render verified

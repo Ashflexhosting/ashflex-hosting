@@ -494,8 +494,8 @@ export function MobileMenu({
                             transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
                             className="overflow-hidden"
                           >
-                            {/* Search bar to filter the 15 services */}
-                            <div className="px-4 pt-2 pb-1">
+                            {/* Search bar to filter the 15 services — sticky at the top of the scrollable list */}
+                            <div className="sticky top-2 z-20 px-4 pb-1 pt-2 [background:linear-gradient(180deg,rgba(7,19,74,0.96)_70%,rgba(7,19,74,0))]">
                               <label className="relative flex items-center" aria-label="Filter services">
                                 <Search size={14} className="absolute left-3 text-white/40 pointer-events-none" aria-hidden="true" />
                                 <input
@@ -543,8 +543,12 @@ export function MobileMenu({
                                     No services match "{servicesQuery.trim()}"
                                   </motion.p>
                                 ) : (
-                                  filteredServices.map((s) => {
-                                    const Icon = serviceIcons[s.label];
+                                  [
+                                    { label: "All Services", href: "/services" },
+                                    ...filteredServices,
+                                  ].map((s) => {
+                                    const Icon = s.label === "All Services" ? undefined : serviceIcons[s.label];
+                                    const isAll = s.label === "All Services";
                                     return (
                                       <motion.div
                                         key={s.href}
@@ -557,17 +561,17 @@ export function MobileMenu({
                                         <Link
                                           href={s.href}
                                           onClick={onClose}
-                                          className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                                          className={`group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 ${isAll ? "border-gradient-primary bg-gradient-primary/15 rounded-r-lg mb-1" : "border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400"} transition-all duration-200`}
                                         >
                                           {Icon ? (
                                             <Icon size={14} className="text-amber-300/80 shrink-0" aria-hidden="true" />
                                           ) : (
-                                            <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
+                                            <ArrowRight size={14} className="text-amber-300 shrink-0" aria-hidden="true" />
                                           )}
-                                          <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">
-                                            {highlightMatch(s.label, servicesQuery)}
+                                          <span className={`text-sm font-medium ${isAll ? "text-amber-200 font-semibold" : "text-white/85 group-hover/sub:text-white"}`}>
+                                            {isAll ? s.label : highlightMatch(s.label, servicesQuery)}
                                           </span>
-                                          <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
+                                          <span className={`ml-auto opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all ${isAll ? "text-amber-300 opacity-100" : "text-amber-300/70"}`}>→</span>
                                         </Link>
                                       </motion.div>
                                     );
