@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page Not Found — Ashflex Web Design</title>
+<style>
+  :root {
+    --navy: #0F172A;
+    --navy-2: #15203B;
+    --blue: #2563EB;
+    --red: #F20549;
+    --aqua: #06B6D4;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(900px 500px at 15% 0%, oklch(0.32 0.12 262 / 0.55) 0%, transparent 60%),
+      radial-gradient(700px 400px at 85% 100%, oklch(0.45 0.22 355 / 0.35) 0%, transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .wrap { max-width: 640px; width: 100%; }
+  .logo {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(6, 182, 212, 0.12));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    padding: 12px 22px;
+    margin-bottom: 40px;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  .logo b { background: linear-gradient(135deg, #4D8DFF, #06B6D4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .code {
+    font-weight: 800;
+    font-size: clamp(96px, 18vw, 160px);
+    line-height: 1;
+    background: linear-gradient(135deg, #4D8DFF, #06B6D4 55%, #FFFFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+  }
+  h1 { font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin: 20px 0 12px; }
+  p { color: rgba(255, 255, 255, 0.65); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+  .actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), opacity 200ms;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--red));
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff;
+  }
+  .path {
+    margin-top: 28px;
+    display: inline-block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 6px 14px;
+    word-break: break-all;
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="logo"><b>Ashflex</b>&nbsp;Web&nbsp;Design</div>
+    <div class="code">404</div>
+    <h1>This page couldn't be found</h1>
+    <p>The page you were looking for may have moved, or you arrived here from an old link. Taking you back to the website in a moment.</p>
+    <div class="actions">
+      <a id="continueLink" class="btn btn-primary" href="/">Continue to the website &rarr;</a>
+      <a class="btn btn-secondary" href="/">Back to Home</a>
+    </div>
+    <div id="requestedPath" class="path"></div>
+  </main>
+
+  <script>
+    (function () {
+      var repoPath = "/ashflex-hosting";
+      var atMirror = location.pathname.indexOf(repoPath + "/") === 0 || location.pathname === repoPath || location.pathname === repoPath + "/";
+      var home = atMirror ? repoPath + "/" : "/";
+      var requested = location.pathname.replace(repoPath, "").replace(/^\/+/, "");
+
+      var pathEl = document.getElementById("requestedPath");
+      if (requested) {
+        pathEl.textContent = "You requested: " + repoPath + "/" + requested;
+        // Redirect into the SPA app with the original path, so it can render
+        // the right page (or its own in-app 404) instead of this static page.
+        var target = home + (requested ? "?r=" + encodeURIComponent(requested) : "");
+        document.getElementById("continueLink").setAttribute("href", target);
+        window.location.replace(target);
+      } else {
+        pathEl.style.display = "none";
+        window.location.replace(home);
+      }
+    })();
+  </script>
+</body>
+</html>
