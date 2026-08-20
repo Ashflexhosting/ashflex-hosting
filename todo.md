@@ -1684,3 +1684,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
 - [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [ ] Enhance the individual service link hover state in the desktop drop-down with a subtle background highlight and a sliding arrow icon

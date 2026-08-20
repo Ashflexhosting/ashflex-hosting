@@ -318,13 +318,16 @@ export default function Navbar({
                             <Link
                               key={s.href}
                               href={s.href}
-                              className="group/item flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-gradient-primary/10 hover:shadow-sm"
+                              className="group/item flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-gradient-primary/8 hover:shadow-sm hover:shadow-brand-accent/10"
                             >
                               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary/10 text-gradient transition-all duration-200 group-hover/item:bg-gradient-primary group-hover/item:text-white group-hover/item:scale-105 group-hover/item:shadow-md group-hover/item:shadow-brand-accent/25">
                                 {Icon ? <Icon size={14} /> : <ArrowRight size={14} />}
                               </span>
-                              <span className="text-[13px] font-medium text-foreground/85 group-hover/item:text-foreground transition-colors">
+                              <span className="flex-1 text-[13px] font-medium text-foreground/85 group-hover/item:text-foreground transition-colors">
                                 {s.label}
+                              </span>
+                              <span className="flex items-center justify-center w-4 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200 text-gradient">
+                                <ArrowRight size={12} />
                               </span>
                             </Link>
                           );
