@@ -1661,3 +1661,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Styled Services sub-links as a clearly indented sub-level: ml-3 indent, amber left border, subtle white/5 background with right-rounded corners, amber dot marker, and a sliding arrow on hover (amber highlight state) so they read distinctly from main menu items
 - [x] Added a search bar inside the mobile menu (Search icon, "Search services…" placeholder, amber focus border) that filters the 15 services in real time and shows a "No services match …" empty state; the query is scoped to the mobile panel only
 - [x] Verified: tsc clean, 43/43 tests pass, desktop nav and services page unaffected; filtering logic is a plain array filter on servicesDropdown labels
+
+## Mobile Search Refinements
+- [x] Added a clear "X" button (XCircle icon) inside the search bar, animated in/out, visible when the query is non-empty, resets the query to "" with a dedicated aria-label; input right padding adapts to reserve space for it
+- [x] Added smooth filter animation: each sub-link is wrapped in a motion.div with layout + AnimatePresence popLayout (180ms fade/slide/scale), the list container animates with a spring, and the empty-state message fades in/out
+- [x] Auto-close on sub-link tap confirmed: every sub-link (and main link) carries onClick={onClose} so the menu exits with its smooth spring slide-out; tsc clean, 43/43 tests pass, checkpoint saved and auto-published

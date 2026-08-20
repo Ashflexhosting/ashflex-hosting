@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown, Search } from "lucide-react";
+import { Menu, X, Mail, Phone, CheckCircle2, Sun, Moon, ArrowRight, ChevronDown, Search, XCircle } from "lucide-react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -439,28 +439,68 @@ export function MobileMenu({
                                   onChange={(event) => setServicesQuery(event.target.value)}
                                   placeholder="Search services…"
                                   autoComplete="off"
-                                  className="w-full rounded-lg bg-white/10 border border-white/15 py-2 pl-9 pr-3 text-sm text-white placeholder:text-white/45 focus:outline-none focus:border-amber-400/50 focus:bg-white/15 transition-colors"
+                                  className="w-full rounded-lg bg-white/10 border border-white/15 py-2 pl-9 text-sm text-white placeholder:text-white/45 focus:outline-none focus:border-amber-400/50 focus:bg-white/15 transition-colors"
+                                  style={{ paddingRight: servicesQuery ? "2.75rem" : "0.75rem" }}
                                 />
+                                <AnimatePresence>
+                                  {servicesQuery && (
+                                    <motion.button
+                                      type="button"
+                                      aria-label="Clear search"
+                                      initial={{ opacity: 0, scale: 0.7 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      exit={{ opacity: 0, scale: 0.7 }}
+                                      transition={{ duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
+                                      onClick={() => setServicesQuery("")}
+                                      className="absolute right-2.5 p-0.5 text-white/50 hover:text-white active:scale-90 transition-colors"
+                                    >
+                                      <XCircle size={15} aria-hidden="true" />
+                                    </motion.button>
+                                  )}
+                                </AnimatePresence>
                               </label>
                             </div>
-                            <div className="px-4 pb-2 pt-1 space-y-0.5">
-                              {filteredServices.length === 0 ? (
-                                <p className="px-3 py-3 text-xs font-medium text-white/55">No services match "{servicesQuery.trim()}"</p>
-                              ) : (
-                                filteredServices.map((s) => (
-                                  <Link
-                                    key={s.href}
-                                    href={s.href}
-                                    onClick={onClose}
-                                    className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                            <motion.div
+                              className="px-4 pb-2 pt-1 space-y-0.5"
+                              layout
+                              transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                            >
+                              <AnimatePresence mode="popLayout">
+                                {filteredServices.length === 0 ? (
+                                  <motion.p
+                                    key="no-match"
+                                    initial={{ opacity: 0, y: -6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 6 }}
+                                    transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                                    className="px-3 py-3 text-xs font-medium text-white/55"
                                   >
-                                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
-                                    <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
-                                    <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
-                                  </Link>
-                                ))
-                              )}
-                            </div>
+                                    No services match "{servicesQuery.trim()}"
+                                  </motion.p>
+                                ) : (
+                                  filteredServices.map((s) => (
+                                    <motion.div
+                                      key={s.href}
+                                      layout
+                                      initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                                      exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                                      transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+                                    >
+                                      <Link
+                                        href={s.href}
+                                        onClick={onClose}
+                                        className="group/sub ml-3 flex items-center gap-2.5 pl-4 pr-3 py-2 border-l-2 border-amber-400/40 rounded-r-lg bg-white/5 hover:bg-amber-400/15 hover:border-amber-400 transition-all duration-200"
+                                      >
+                                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400/80 shrink-0" aria-hidden="true" />
+                                        <span className="text-sm font-medium text-white/85 group-hover/sub:text-white">{s.label}</span>
+                                        <span className="ml-auto text-amber-300/70 opacity-0 group-hover/sub:opacity-100 group-hover/sub:translate-x-0.5 transition-all">→</span>
+                                      </Link>
+                                    </motion.div>
+                                  ))
+                                )}
+                              </AnimatePresence>
+                            </motion.div>
                           </motion.div>
                         )}
                       </AnimatePresence>
