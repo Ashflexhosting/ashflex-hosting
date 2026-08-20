@@ -1675,3 +1675,6 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Mobile Menu: Sticky Search + Services Link Fix
 - [x] Made the mobile search bar sticky at the top of the scrollable services list (sticky top-2 z-20 with a fading navy gradient backing) so it stays visible while scrolling the long list
 - [x] Restored services page access: added an "All Services" entry (gradient-tinted, arrow icon) at the top of the sub-link list pointing to /services; tsc clean, 43/43 tests pass, 375px render verified
+
+## Mobile Search Bar: Stays Pinned
+- [x] Fixed the search bar pinning: replaced the unreliable sticky positioning (broke because the surrounding accordion had `overflow-hidden`) with a structural approach — the search bar now sits above the sub-link list in normal flow, and the sub-link list itself is the only scrollable region (max-h-[42vh] overflow-y-auto with touch-pan-y); scrolling the list can never move the search bar; tsc clean, 43/43 tests pass

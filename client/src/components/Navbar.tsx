@@ -492,10 +492,9 @@ export function MobileMenu({
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                            className="overflow-hidden"
                           >
-                            {/* Search bar to filter the 15 services — sticky at the top of the scrollable list */}
-                            <div className="sticky top-2 z-20 px-4 pb-1 pt-2 [background:linear-gradient(180deg,rgba(7,19,74,0.96)_70%,rgba(7,19,74,0))]">
+                            {/* Search bar pinned at the top — rendered above the scrollable list, backed by the panel background */}
+                            <div className="px-4 pb-2 pt-1">
                               <label className="relative flex items-center" aria-label="Filter services">
                                 <Search size={14} className="absolute left-3 text-white/40 pointer-events-none" aria-hidden="true" />
                                 <input
@@ -525,8 +524,9 @@ export function MobileMenu({
                                 </AnimatePresence>
                               </label>
                             </div>
+                            {/* Scrollable sub-link list — the only scrollable region, so the search bar above stays pinned */}
                             <motion.div
-                              className="px-4 pb-2 pt-1 space-y-0.5"
+                              className="px-4 pb-2 max-h-[42vh] overflow-y-auto space-y-0.5 touch-pan-y"
                               layout
                               transition={{ type: "spring", stiffness: 420, damping: 32 }}
                             >
