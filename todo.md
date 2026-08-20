@@ -1678,3 +1678,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 
 ## Mobile Search Bar: Stays Pinned
 - [x] Fixed the search bar pinning: replaced the unreliable sticky positioning (broke because the surrounding accordion had `overflow-hidden`) with a structural approach — the search bar now sits above the sub-link list in normal flow, and the sub-link list itself is the only scrollable region (max-h-[42vh] overflow-y-auto with touch-pan-y); scrolling the list can never move the search bar; tsc clean, 43/43 tests pass
+
+## Desktop Services Drop-down Redesign
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published

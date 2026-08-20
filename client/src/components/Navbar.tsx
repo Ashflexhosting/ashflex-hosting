@@ -282,17 +282,53 @@ export default function Navbar({
                 />
               </Link>
               {item.label === "Services" && (
-                <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
-                  <div className="w-64 bg-white rounded-xl shadow-xl shadow-black/10 border border-border/50 p-2 max-h-96 overflow-y-auto">
-                    {servicesDropdown.map((s) => (
+                <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 z-[60]">
+                  <div className="group/menu w-[480px] rounded-2xl shadow-2xl shadow-black/15 border border-border/50 bg-white/95 dark:bg-[#0B1233]/95 backdrop-blur-xl overflow-hidden">
+                    {/* Dropdown header */}
+                    <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-border/60">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-gradient">What we offer</p>
+                        <p className="text-[11px] text-muted-foreground mt-0.5">15 services to grow your business</p>
+                      </div>
                       <Link
-                        key={s.href}
-                        href={s.href}
-                        className="block px-3 py-2 text-sm rounded-lg hover:bg-muted transition-colors"
+                        href="/services"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-gradient hover:underline underline-offset-2"
                       >
-                        {s.label}
+                        All Services
+                        <ArrowRight size={12} className="transition-transform duration-200 group-hover/menu:translate-x-0.5" />
                       </Link>
-                    ))}
+                    </div>
+                    {/* Two-column grouped grid */}
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 px-3 py-3 max-h-[360px] overflow-y-auto">
+                      {servicesDropdown.map((s) => {
+                        const Icon = serviceIcons[s.label];
+                        return (
+                          <Link
+                            key={s.href}
+                            href={s.href}
+                            className="group/item flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-gradient-primary/10 hover:shadow-sm"
+                          >
+                            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary/10 text-gradient transition-all duration-200 group-hover/item:bg-gradient-primary group-hover/item:text-white group-hover/item:scale-105 group-hover/item:shadow-md group-hover/item:shadow-brand-accent/25">
+                              {Icon ? <Icon size={14} /> : <ArrowRight size={14} />}
+                            </span>
+                            <span className="text-[13px] font-medium text-foreground/85 group-hover/item:text-foreground transition-colors">
+                              {s.label}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                    {/* Dropdown footer CTA */}
+                    <div className="flex items-center justify-between gap-3 px-5 py-3 bg-muted/60 border-t border-border/60">
+                      <p className="text-[11px] text-muted-foreground">Not sure what you need?</p>
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-gradient-primary rounded-lg px-3 py-1.5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:shadow-brand-accent/25 active:scale-[0.97]"
+                      >
+                        Get a free quote
+                        <ArrowRight size={11} />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
