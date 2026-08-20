@@ -12,6 +12,7 @@ import {
   ChevronDown,
   Search,
   XCircle,
+  LayoutGrid,
   Palette,
   Code2,
   FileText,
@@ -298,25 +299,37 @@ export default function Navbar({
                         <ArrowRight size={12} className="transition-transform duration-200 group-hover/menu:translate-x-0.5" />
                       </Link>
                     </div>
-                    {/* Two-column grouped grid */}
-                    <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 px-3 py-3 max-h-[360px] overflow-y-auto">
-                      {servicesDropdown.map((s) => {
-                        const Icon = serviceIcons[s.label];
-                        return (
-                          <Link
-                            key={s.href}
-                            href={s.href}
-                            className="group/item flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-gradient-primary/10 hover:shadow-sm"
-                          >
-                            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary/10 text-gradient transition-all duration-200 group-hover/item:bg-gradient-primary group-hover/item:text-white group-hover/item:scale-105 group-hover/item:shadow-md group-hover/item:shadow-brand-accent/25">
-                              {Icon ? <Icon size={14} /> : <ArrowRight size={14} />}
-                            </span>
-                            <span className="text-[13px] font-medium text-foreground/85 group-hover/item:text-foreground transition-colors">
-                              {s.label}
-                            </span>
-                          </Link>
-                        );
-                      })}
+                    {/* Two-column grouped grid with an "All Services" row at the top */}
+                    <div className="flex flex-col gap-y-0.5 px-3 py-3 max-h-[360px] overflow-y-auto">
+                      <Link
+                        href="/services"
+                        className="group/all flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gradient-primary/8 text-gradient transition-all duration-200 hover:bg-gradient-primary hover:text-white hover:shadow-md hover:shadow-brand-accent/25"
+                      >
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary/10 transition-all duration-200 group-hover/all:bg-white/15 group-hover/all:scale-105">
+                          <LayoutGrid size={14} />
+                        </span>
+                        <span className="text-[13px] font-bold">All Services</span>
+                        <ArrowRight size={13} className="ml-auto opacity-70 transition-all duration-200 group-hover/all:translate-x-0.5 group-hover/all:opacity-100" />
+                      </Link>
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 pt-1.5">
+                        {servicesDropdown.map((s) => {
+                          const Icon = serviceIcons[s.label];
+                          return (
+                            <Link
+                              key={s.href}
+                              href={s.href}
+                              className="group/item flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-gradient-primary/10 hover:shadow-sm"
+                            >
+                              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-primary/10 text-gradient transition-all duration-200 group-hover/item:bg-gradient-primary group-hover/item:text-white group-hover/item:scale-105 group-hover/item:shadow-md group-hover/item:shadow-brand-accent/25">
+                                {Icon ? <Icon size={14} /> : <ArrowRight size={14} />}
+                              </span>
+                              <span className="text-[13px] font-medium text-foreground/85 group-hover/item:text-foreground transition-colors">
+                                {s.label}
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                     {/* Dropdown footer CTA */}
                     <div className="flex items-center justify-between gap-3 px-5 py-3 bg-muted/60 border-t border-border/60">
