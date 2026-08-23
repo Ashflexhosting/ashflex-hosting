@@ -4008,3 +4008,27 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 ## Session Metadata
 - Project: ashflex-agency (Ashflex Web Design)
 - Latest previous version before CHI
+
+## CHI-ZARAM Screenshot Sharpening
+- [x] Sharpened the supplied CHI-ZARAM homepage, story/values, and product-catalogue screenshots with faithful high-resolution restoration while preserving the existing content and composition
+- [x] Uploaded the enhanced PNG assets to persistent webdev storage and replaced the portfolio hero/gallery references with `/manus-storage/chi-zaram-homepage-sharp_57b0d9b4.png`, `/manus-storage/chi-zaram-story-values-sharp_b7b1a918.png`, and `/manus-storage/chi-zaram-product-catalogue-sharp_94dafbda.png`
+- [x] Verified the CHI-ZARAM detail page at desktop 1280px and mobile 375px: hero and three gallery images resolve, content remains responsive, tsc clean, and 43/43 tests pass
+- [ ] Checkpoint and report
+
+## Portfolio: CHI-ZARAM Palm Oil & More
+- [x] Reviewed the live reference at https://ashflexhosting.github.io/chi-zaram/ and the existing shared portfolio/detail-page patterns; confirmed the brand focus on retail and bulk supply, palm oil and pantry products, fabrics, home essentials, and direct WhatsApp ordering
+- [x] Copied the supplied screenshots to /home/ubuntu/webdev-static-assets/chi-zaram and uploaded them to persistent webdev storage: homepage, Our story & brand values, and product catalogue
+- [x] Added CHI-ZARAM as portfolio item 14 in client/src/data/portfolio.ts with E-commerce category, Website Design + E-commerce services, accurate challenge/solution copy, live-site URL, uploaded hero image, three screenshot gallery entries, and captions; existing numeric/slugs detail routing and Previous/Next navigation automatically include it
+- [x] Verified /portfolio and /portfolio/14 at desktop 1280px and mobile 375px: project count is 14, card/detail hero render without overflow, gallery assets resolve through /manus-storage, and Project Info/live link display correctly; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Current request: Sharpen the three CHI-ZARAM portfolio screenshots without changing their content or composition
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; enhanced images remain outside project and referenced via webdev uploaded URLs
+- Checkpoint after enhancement and verification; attachment only checkpoint in final report
+
+## Notes
+- Previous CHI-ZARAM checkpoint: 56de79a0
+- Auto-publish: enabled
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
