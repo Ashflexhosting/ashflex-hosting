@@ -157,6 +157,31 @@ export default function PortfolioDetail() {
             </div>
           </div>
 
+          {project.caseStudy && (
+            <section className="scroll-reveal mb-16 rounded-[2rem] border border-brand-secondary/10 bg-brand-secondary/[0.04] p-6 sm:p-10 lg:p-12" aria-labelledby="case-study-title">
+              <div className="max-w-3xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-brand-accent">Inside the build</p>
+                <h2 id="case-study-title" className="text-3xl font-bold text-foreground sm:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>A considered path from story to order</h2>
+                <p className="mt-5 text-base leading-relaxed text-foreground/75 sm:text-lg">{project.caseStudy.intro}</p>
+              </div>
+              <div className="mt-10 grid gap-4 md:grid-cols-2">
+                {project.caseStudy.stages.map((stage, index) => (
+                  <article
+                    key={stage.label}
+                    className="group rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-xl hover:shadow-brand-accent/10"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-accent">{stage.label}</span>
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-secondary/10 text-sm font-bold text-brand-secondary transition-colors group-hover:bg-gradient-primary group-hover:text-white">{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                    <h3 className="mt-6 text-xl font-semibold leading-tight text-foreground" style={{ fontFamily: "var(--font-heading)" }}>{stage.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.body}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Screenshots Gallery */}
           <div className="scroll-reveal">
             <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>

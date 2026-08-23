@@ -12,6 +12,10 @@ export interface PortfolioItem {
   website: string;
   screenshots?: string[];
   screenshotCaptions?: string[];
+  caseStudy?: {
+    intro: string;
+    stages: Array<{ label: string; title: string; body: string }>;
+  };
 }
 
 export const categories = [
@@ -264,7 +268,7 @@ export const portfolioItems: PortfolioItem[] = [
     title: "CHI-ZARAM Palm Oil & More",
     category: "E-commerce",
     overview: "An editorial consumer-products website for CHI-ZARAM’s palm oil, pantry staples, fabrics, and home essentials, with direct retail and bulk enquiries.",
-    image: "/manus-storage/chi-zaram-homepage-sharp_57b0d9b4.png",
+    image: "/manus-storage/chi-zaram-homepage-sharp_95998841.webp",
     challenge: "CHI-ZARAM needed a warm, trustworthy digital presence for its growing everyday-products range, while making it easier for retail and wholesale customers to understand the offer and enquire directly.",
     solution: "Ashflex created an image-led brand and catalogue experience that introduces the CHI-ZARAM story, groups products across food, fabrics, and home essentials, and guides customers toward direct WhatsApp ordering for retail and bulk supply.",
     technologies: ["Website Design", "E-commerce"],
@@ -272,11 +276,36 @@ export const portfolioItems: PortfolioItem[] = [
     client: "CHI-ZARAM Palm Oil & More",
     website: "https://ashflexhosting.github.io/chi-zaram/",
     screenshots: [
-      "/manus-storage/chi-zaram-homepage-sharp_57b0d9b4.png",
-      "/manus-storage/chi-zaram-story-values-sharp_b7b1a918.png",
-      "/manus-storage/chi-zaram-product-catalogue-sharp_94dafbda.png",
+      "/manus-storage/chi-zaram-homepage-sharp_95998841.webp",
+      "/manus-storage/chi-zaram-story-values-sharp_e913c3b8.webp",
+      "/manus-storage/chi-zaram-product-catalogue-sharp_d4694436.webp",
     ],
     screenshotCaptions: ["Homepage", "Our story & brand values", "Product catalogue"],
+    caseStudy: {
+      intro: "The CHI-ZARAM experience was shaped as a guided journey from brand trust to product discovery to direct enquiry. Each design decision keeps the everyday-products range approachable while giving retail and bulk buyers a clear next step.",
+      stages: [
+        {
+          label: "01 / Discover",
+          title: "Start with the people behind the products",
+          body: "The opening story puts CHI-ZARAM's purpose, product quality, and human side before the catalogue. Warm editorial typography and product-led imagery create a credible first impression without making the brand feel corporate or distant.",
+        },
+        {
+          label: "02 / Frame",
+          title: "Turn a broad range into a simple story",
+          body: "Palm oil, cooking products, fabrics, and home essentials are introduced through clear editorial groupings. This gives the brand room to grow while helping visitors understand the range at a glance.",
+        },
+        {
+          label: "03 / Guide",
+          title: "Make product exploration feel effortless",
+          body: "The catalogue uses alternating image-and-information blocks, concise product descriptions, and visible pack details to help visitors compare options without losing the visual warmth of the brand.",
+        },
+        {
+          label: "04 / Convert",
+          title: "End every path with a human conversation",
+          body: "Retail and wholesale visitors are repeatedly guided toward direct WhatsApp ordering. The result is a clear bridge from browsing to availability, pricing, quantities, and delivery conversations.",
+        },
+      ],
+    },
   },
   {
     id: 9,

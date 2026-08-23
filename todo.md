@@ -4013,7 +4013,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Sharpened the supplied CHI-ZARAM homepage, story/values, and product-catalogue screenshots with faithful high-resolution restoration while preserving the existing content and composition
 - [x] Uploaded the enhanced PNG assets to persistent webdev storage and replaced the portfolio hero/gallery references with `/manus-storage/chi-zaram-homepage-sharp_57b0d9b4.png`, `/manus-storage/chi-zaram-story-values-sharp_b7b1a918.png`, and `/manus-storage/chi-zaram-product-catalogue-sharp_94dafbda.png`
 - [x] Verified the CHI-ZARAM detail page at desktop 1280px and mobile 375px: hero and three gallery images resolve, content remains responsive, tsc clean, and 43/43 tests pass
-- [ ] Checkpoint and report
+- [x] Checkpoint saved and auto-published as version `10be46d9`
 
 ## Portfolio: CHI-ZARAM Palm Oil & More
 - [x] Reviewed the live reference at https://ashflexhosting.github.io/chi-zaram/ and the existing shared portfolio/detail-page patterns; confirmed the brand focus on retail and bulk supply, palm oil and pantry products, fabrics, home essentials, and direct WhatsApp ordering
@@ -4032,3 +4032,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - Previous CHI-ZARAM checkpoint: 56de79a0
 - Auto-publish: enabled
 - User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## CHI-ZARAM WebP + Case Study + Lightbox
+- [x] Converted the three sharpened CHI-ZARAM screenshots to optimized WebP assets (about 223KB, 277KB, and 305KB) and replaced the portfolio hero/gallery references with the uploaded WebP paths
+- [x] Added a detailed CHI-ZARAM case-study narrative section, "A considered path from story to order," covering Discover, Frame, Guide, and Convert stages: brand story, range structure, catalogue UX, and retail/bulk WhatsApp ordering journey
+- [x] Confirmed and retained the accessible full-page lightbox gallery: gallery cards are keyboard-focusable buttons, the dialog supports close, Escape, previous/next controls, fit/zoom-and-pan modes, captions, and touch-friendly viewing; it now displays the optimized WebP assets
+- [x] Verified the CHI-ZARAM detail page at 375px mobile and desktop, with no overflow in the narrative or gallery; tsc clean and 43/43 tests pass; checkpoint saved and auto-published
