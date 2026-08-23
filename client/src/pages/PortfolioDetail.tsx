@@ -200,10 +200,14 @@ export default function PortfolioDetail() {
                       <button
                         type="button"
                         onClick={() => setLightboxIndex(n)}
-                        className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-brand-secondary/90 px-3 py-1.5 text-[10px] font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-200 hover:bg-brand-secondary hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
+                        className="group/fullsize absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-brand-secondary/90 px-3 py-1.5 text-[10px] font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-brand-secondary hover:shadow-xl active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
                         aria-label={`View ${project.title} screenshot ${n + 1} full size`}
+                        title="Open the full-page screenshot viewer"
                       >
-                        View full size
+                        <span>View full size</span>
+                        <span className="pointer-events-none absolute right-0 top-full mt-2 w-max max-w-[13rem] translate-y-1 rounded-lg bg-brand px-2.5 py-1.5 text-[10px] font-medium text-white opacity-0 shadow-xl transition-all duration-200 group-hover/fullsize:translate-y-0 group-hover/fullsize:opacity-100">
+                          Open full-page viewer
+                        </span>
                       </button>
                     </div>
                     <span className="block bg-card px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>

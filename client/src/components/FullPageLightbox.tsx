@@ -37,6 +37,7 @@ export default function FullPageLightbox({
   const panRef = useRef({ x: 0, y: 0 });
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const dragRef = useRef({ active: false, startX: 0, startY: 0, panX: 0, panY: 0 });
+  const swipeRef = useRef({ active: false, startX: 0, startY: 0, consumed: false });
   const viewportRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -91,7 +92,12 @@ export default function FullPageLightbox({
 
   // Drag-to-pan in zoom mode
   const onPointerDown = (e: React.PointerEvent) => {
-    if (!zoomed) return;
+    if (!zoomed) {
+      if (e.pointerType === "touch") {
+        swipeRef.current = { active: true, startX: e.clientX, startY: e.clientY, consumed: false };
+      }
+      return;
+    }
     dragRef.current = { active: true, startX: e.clientX, startY: e.clientY, panX: panRef.current.x, panY: panRef.current.y };
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   };
@@ -102,8 +108,18 @@ export default function FullPageLightbox({
     panRef.current = { x: dragRef.current.panX + dx, y: dragRef.current.panY + dy };
     setPan({ ...panRef.current });
   };
-  const onPointerUp = () => {
+  const onPointerUp = (e?: React.PointerEvent) => {
     dragRef.current.active = false;
+    if (!zoomed && e?.pointerType === "touch" && swipeRef.current.active) {
+      const dx = e.clientX - swipeRef.current.startX;
+      const dy = e.clientY - swipeRef.current.startY;
+      const isHorizontalSwipe = Math.abs(dx) >= 56 && Math.abs(dx) > Math.abs(dy) * 1.25;
+      if (isHorizontalSwipe && shots.length > 1) {
+        swipeRef.current.consumed = true;
+        goShot(dx < 0 ? 1 : -1);
+      }
+      swipeRef.current.active = false;
+    }
   };
 
   const toggleZoom = () => {
@@ -195,11 +211,16 @@ export default function FullPageLightbox({
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
           onClick={() => {
-            // Single tap in zoom mode recenters; in fit mode opens the detail view
+            // A horizontal swipe navigates between captures; do not treat its
+            // release as a tap. In zoom mode a tap recenters the image.
+            if (swipeRef.current.consumed) {
+              swipeRef.current.consumed = false;
+              return;
+            }
             if (zoomed) resetView();
           }}
-          className={`h-full w-full overflow-y-auto overscroll-none ${
-            zoomed ? "touch-pan-y cursor-grab active:cursor-grabbing" : ""
+          className={`h-full w-full overflow-y-auto overscroll-none touch-pan-y ${
+            zoomed ? "cursor-grab active:cursor-grabbing" : ""
           }`}
           style={{
             scrollbarWidth: "thin",
@@ -236,7 +257,7 @@ export default function FullPageLightbox({
 
         {/* Mode hint */}
         <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 text-[11px] text-white/70 bg-white/10 rounded-full backdrop-blur-sm">
-          {zoomed ? "Scroll to zoom · drag to pan · click to reset" : "Scroll to view the full-page capture"}
+          {zoomed ? "Scroll to zoom · drag to pan · click to reset" : "Swipe left/right to change · scroll to view"}
         </span>
       </div>
     </div>

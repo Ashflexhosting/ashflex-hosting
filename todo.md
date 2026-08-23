@@ -4043,3 +4043,9 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Replaced the full-card hover overlay with a compact, dedicated “View full size” button positioned at the top-right of each screenshot card; the large overlay no longer covers the screenshot, so the bottom “Scroll to view” hint and its scrollable area remain unobstructed
 - [x] Verified the CHI-ZARAM detail page at 375px and desktop: the scroll hint remains visible at the bottom, the compact control is keyboard-focusable with a visible focus ring, and clicking it still opens the existing accessible lightbox; tsc clean, 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Lightbox Swipe + Full-Size Control
+- [x] Added touch swipe navigation inside the lightbox: horizontal swipes of at least 56px with a horizontal-dominance threshold move to the previous or next screenshot, while vertical scrolling remains available; swipe-triggered clicks are suppressed to prevent accidental resets
+- [x] Enhanced the View full size button with a subtle lift/scale/press animation, a visible keyboard focus ring, a native title tooltip, and a richer hover tooltip reading “Open full-page viewer”
+- [x] Verified the CHI-ZARAM detail page at 375px and desktop, including the lightbox trigger presentation; tsc clean and 43/43 tests pass
+- [x] Checkpoint saved and auto-published
