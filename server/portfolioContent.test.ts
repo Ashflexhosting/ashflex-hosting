@@ -21,6 +21,7 @@ describe("verified portfolio content", () => {
       "Marvel Tex Attraction",
       "Galcon Engineering (Nig) Limited",
       "Karossy Travels & Tours Limited",
+      "CHI-ZARAM Palm Oil & More",
       "Neboc Hotel & Suites",
     ]);
   });
@@ -46,7 +47,7 @@ describe("portfolio filters", () => {
       "Travel",
       "Hospitality",
     ]);
-    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application", "Travel Booking"]);
+    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application", "Travel Booking", "E-commerce"]);
   });
 
   it("returns projects that match the selected industry and service together", () => {

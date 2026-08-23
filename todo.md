@@ -1686,4 +1686,2325 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Checkpoint saved and auto-published
 
 ## Desktop Dropdown: Service Link Hover
-- [ ] Enhance the individual service link hover state in the desktop drop-down with a subtle background highlight and a sliding arrow icon
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found; crop inspected and confirmed. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Portfolio: CHI-ZARAM Palm Oil & More
+- [x] Reviewed the live reference at https://ashflexhosting.github.io/chi-zaram/ and the existing shared portfolio/detail-page patterns; confirmed the brand focus on retail and bulk supply, palm oil and pantry products, fabrics, home essentials, and direct WhatsApp ordering
+- [x] Copied the supplied screenshots to /home/ubuntu/webdev-static-assets/chi-zaram and uploaded them to persistent webdev storage: homepage, Our story & brand values, and product catalogue
+- [x] Added CHI-ZARAM as portfolio item 14 in client/src/data/portfolio.ts with E-commerce category, Website Design + E-commerce services, accurate challenge/solution copy, live-site URL, uploaded hero image, three screenshot gallery entries, and captions; existing numeric/slugs detail routing and Previous/Next navigation automatically include it
+- [x] Verified /portfolio and /portfolio/14 at desktop 1280px and mobile 375px: project count is 14, card/detail hero render without overflow, gallery assets resolve through /manus-storage, and Project Info/live link display correctly; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Portfolio: Desktop Dropdown Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found; crop inspected and confirmed. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Mobile Menu: Sticky Search + Services Link Fix
+- [x] Made the mobile search bar sticky at the top of the scrollable services list (sticky top-2 z-20 with a fading navy gradient backing) so it stays visible while scrolling the long list
+- [x] Restored services page access: added an "All Services" entry (gradient-tinted, arrow icon) at the top of the sub-link list pointing to /services; tsc clean, 43/43 tests pass, 375px render verified
+
+## Mobile Menu: Sub-link Styling + Search
+- [x] Styled Services sub-links as a clearly indented sub-level: ml-3 indent, amber left border, subtle white/5 background with right-rounded corners, amber dot marker, and a sliding arrow on hover (amber highlight state) so they read distinctly from main menu items
+- [x] Added a search bar inside the mobile menu (Search icon, "Search services…" placeholder, amber focus border) that filters the 15 services in real time and shows a "No services match …" empty state; the query is scoped to the mobile panel only
+- [x] Verified: tsc clean, 43/43 tests pass, desktop nav and services page unaffected; filtering logic is a plain array filter on servicesDropdown labels
+
+## Mobile Search Refinements
+- [x] Added a clear "X" button (XCircle icon) inside the search bar, animated in/out, visible when the query is non-empty, resets the query to "" with a dedicated aria-label; input right padding adapts to reserve space for it
+- [x] Added smooth filter animation: each sub-link is wrapped in a motion.div with layout + AnimatePresence popLayout (180ms fade/slide/scale), the list container animates with a spring, and the empty-state message fades in/out
+- [x] Auto-close on sub-link tap confirmed: every sub-link (and main link) carries onClick={onClose} so the menu exits with its smooth spring slide-out; tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Mobile Menu: Icons + Match Highlight
+- [x] Added a small lucide icon next to each of the 15 service sub-links in the mobile menu (Palette, Code2, FileText, ShoppingCart, LayoutTemplate, Stamp, Search, Megaphone, Share2, PenLine, Wrench, Gauge, Server, Bot, Network) in amber tone, replacing the plain dot marker; icon mapping defined once in serviceIcons and reusable elsewhere
+- [x] Added match highlighting: a highlightMatch renderer bolds and tints amber-300 the matching substring within each sub-link label while typing in the search bar
+- [x] Verified: tsc clean, 43/43 tests pass; checkpoint saved and auto-published
+
+## Mobile Search Bar: Stays Pinned
+- [x] Fixed the search bar pinning: replaced the unreliable sticky positioning (broke because the surrounding accordion had overflow-hidden) with a structural approach — the search bar now sits above the sub-link list in normal flow, and the sub-link list itself is the only scrollable region (max-h-[42vh] overflow-y-auto with touch-pan-y); scrolling the list can never move the search bar; tsc clean, 43/43 tests pass
+
+## Pricing Table: Feature Column + Scroll Indicator
+- [x] Gave the anchored Feature label column a distinct deep-navy background (feature-label-cell, oklch(0.28 0.1 264)) on all its cells with white text, and a slightly deeper navy on the CTA-row label, so it stands out clearly while scrolling horizontally
+- [x] Added a mobile-only swipe indicator strip above the table: the existing hint text on the left plus a "Swipe →" cue in brand blue with a looping slide-and-fade animation (2.2s ease-in-out, reduced-motion fallback)
+- [x] Verified on mobile (375px) and desktop renders, tsc clean, 43/43 tests pass
+
+## Pricing Table: Sticky Hint Strip
+- [x] Moved the "Scroll to compare" strip into the table as a mobile-only sticky header row (colSpan 5, sticky top-0 left-0, opaque bg-background, z-30) so it stays pinned to the top of the scroll container while swiping; verified in live DOM at emulated 375px: row stays at left 0 with zero horizontal shift while scrolling, hintStartTop 0, tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Pricing Comparison Table Scroll
+- [x] Investigated why horizontal scroll was not working: the isolate class created a stacking context that broke native touch scrolling on iOS, and touch-action: pan-x restricted the gesture instead of helping; a new .ios-table-scroll utility with -webkit-overflow-scrolling: touch, overscroll-behavior-x: contain, and touch-action: auto was added to index.css and applied to the scroll wrapper and all sticky cells
+- [x] Verified on mobile and desktop: 375px render clean, scrollLeft programmatic scroll works both directions at 375px emulation, ancestor chain has no touch-blocking rules, sticky Feature/Business columns intact; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Pricing Table: Remove Sticky Business Column
+- [x] Removed sticky positioning from the Business column on mobile (Business th/td/CTA changed to md:sticky md:right-0 md:z-* with conditional border/shadow); Feature column stays sticky left on all sizes; verified at 375px the table scrolls freely (maxScroll 485px, end reachable) and on desktop the Business column remains pinned at the right edge
+- [x] Checkpoint saved and auto-published
+
+## Pricing Comparison Overlap Fix
+- [x] Reproduced and located the remaining overlap: translucent sticky Business column backgrounds let middle-column text bleed through at the sticky boundary, and the container could start scrolled to the right hiding plan columns
+- [x] Applied the layout fix: forced scrollLeft=0 on mount via ref effect, opaque bg-background on all middle th/td, fully opaque sticky Business cells with border-l + separation shadow, added isolate on the overflow wrapper (fixed invalid isolation-isolate class); verified in live DOM at emulated 375px (adjacent rects, no numeric overlap, sticky pinning works at both scroll extremes) and desktop (clean 5-column render)
+- [x] tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Pricing Comparison Table Mobile Fix
+- [x] Examined the Hosting & Domain comparison table on mobile to understand its design (shorter min-width table with auto layout)
+- [x] Rebuilt the Pricing comparison table to flow like the Hosting & Domain table: colgroup enforces 170/170/170/170/180 = 860px widths, Business column moved to the rightmost position (Starter, Professional, Enterprise, Business order) as the sticky right column, scroll hint updated to "Scroll to compare — the Business plan sits at the end", estimated-timeline and Get Started rows retained
+- [x] Verified at 375px (cropped screenshot): sticky Feature column, all middle plan columns visible without overlap, sticky Business column pins at the right edge with pulse star and gradient CTA; tests pass (43/43), TypeScript clean; checkpoint saved and auto-published
+
+## Pricing Mobile Fix
+- [x] Tier cards stacked responsively and feature text wraps cleanly on mobile
+- [x] Comparison table mobile horizontal-scroll layout and hint fixed
+- [x] Verified full Pricing page at 375px viewport, tsc clean, 43/43 tests pass
+
+## Other Completed Session Work
+- [x] Set site container max-width to 1300px at desktop widths
+- [x] Removed home welcome-section Get Started CTA and aligned View Services + Read Our Story links
+- [x] Applied proof-led homepage subheading and mobile button press feedback
+- [x] Hardened and lifted the mobile menu overlay above page content with smooth close animation
+- [x] Added mobile Services accordion, service search, clear button, filter animation, icons, matching-text highlight, and pinned search architecture
+- [x] Added desktop Services dropdown redesign and prominent All Services entry
+- [x] Added Pricing table Feature column styling and fixed mobile scroll/hint behavior
+- [x] Verified Service/About/Contact/Pricing mobile layouts; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Prior Session Notes
+- [x] Restored original stats and later updated site figures to 248+ projects, 96% satisfaction, 9+ years, 14+ countries; maintained those figures
+- [x] Added newsletter backend, admin tab, landing page, owner notification, and success animation
+- [x] Added FAQ page consolidation, search, auto-expand, JSON-LD, and pricing tooltip link
+- [x] Added brochure PDF downloads to footer/contact CTA
+- [x] Added marquee logos, hover transitions, tooltips, and website links
+- [x] Added portfolio project navigation, expanded project list, View more/Show less behavior
+- [x] Added reusable skill for the agency build process via skill-creator
+- [x] Connected GitHub workflow and mirrored branch operations per prior request
+- [x] Updated metadata title/description and theme toggle behavior
+- [x] Implemented founder signature/quote box and About page storytelling refinements
+- [x] Added CTA hover shine/lift effects, parallax welcome glow, and scroll reveal animations
+- [x] Added cost calculator extras, tooltips, breakdown download, and Pricing/Case Studies API integration line items
+- [x] Added hosting/domain renewal pricing, comparison table, WhatsApp plan prefill, and FAQ renewals section
+- [x] Added responsive layouts and layout fixes across public pages
+- [x] Completed other service detail page visual refinements and pricing CTAs
+- [x] Added client portfolio imagery, service card imagery, and related-service imagery
+- [x] Added site-wide navigation, footer, WhatsApp, newsletter, and contact interactions
+- [x] All prior tests passing (43/43)
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+- For all future edits, append to todo.md before implementation and checkpoint after verification.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found; crop inspected and confirmed. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found; crop inspected and confirmed. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+- For all future edits, append to todo.md before implementation and checkpoint after verification.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found; crop inspected and confirmed. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable; no layout or text-contrast issues found. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Desktop Services Drop-down Redesign
+- [x] Added a prominent full-width "All Services" row at the top of the dropdown grid: gradient-tinted background, grid icon, bold label, and a sliding arrow that appears on hover, above the two-column list of 15 services; verified in live DOM (18 links total, 480px wide card renders correctly)
+- [x] Reviewed the old dropdown: a plain 256px white list of 15 text-only links
+- [x] Redesigned it as a premium 480px glass card (white/95 light, navy/95 dark, backdrop-blur, z-60): a "What we offer" gradient header with an All Services shortcut, a two-column grid of 15 services each with a gradient-tinted icon chip (from serviceIcons) that inverts to gradient fill on hover with scale and shadow, plus a footer strip with a "Get a free quote" CTA; hover animation 200ms; verified in live DOM (all 15 links + header + CTA render, no overflow issues), tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
+
+## Desktop Dropdown: Service Link Hover
+- [x] Enhanced the service link hover state: subtle gradient-tinted background highlight (bg-gradient-primary/8) with a soft accent shadow, label now flex-1 to keep the arrow at the right edge, and a sliding gradient ArrowRight (opacity-0 -translate-x-1 → opacity-100 translate-x-0, 200ms) on hover; verified in live DOM, tsc clean, 43/43 tests pass, checkpoint saved and auto-published
+
+## Services Page: "Have a project in mind?" Mobile Check
+- [x] Verified the inquiry CTA section at 375px: the background image (bg-cover bg-center) renders correctly on mobile, layered under a navy/45 overlay so the cyan kicker, white heading, and glass form remain readable. Note: bg-fixed uses bg-cover bg-center so the image scales naturally on narrow screens without distortion.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous live version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI-ZARAM: 809e3a14
+- Auto-publish: enabled
+- Current request: Add CHI-ZARAM Palm Oil & More to Portfolio from supplied screenshots and live URL
+- Must preserve: no fabricated reviews/testimonials; no unrelated stats/copy changes; all images outside project and referenced via webdev uploaded URLs
+- Checkpoint after implementation and verification; attachment only checkpoint in final report
+
+## Notes
+- User’s next suggested follow-ups from prior work: domain binding; homepage satisfaction source note; remaining homepage copy review.
+
+## Session Metadata
+- Project: ashflex-agency (Ashflex Web Design)
+- Latest previous version before CHI
