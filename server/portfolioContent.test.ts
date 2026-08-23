@@ -10,7 +10,7 @@ describe("verified portfolio content", () => {
   it("uses the approved client projects from Ashflex’s official projects listing", () => {
     expect(portfolioItems.map((project) => project.client)).toEqual([
       "Shutterspeed Projects",
-      "Kingwesl Interior",
+      "CHI-ZARAM Palm Oil & More",
       "B.C. First Nations Auto Finance",
       "Aerolead Aviation",
       "8 Radiance Empowerment",
@@ -21,7 +21,6 @@ describe("verified portfolio content", () => {
       "Marvel Tex Attraction",
       "Galcon Engineering (Nig) Limited",
       "Karossy Travels & Tours Limited",
-      "CHI-ZARAM Palm Oil & More",
       "Neboc Hotel & Suites",
     ]);
   });
@@ -47,7 +46,7 @@ describe("portfolio filters", () => {
       "Travel",
       "Hospitality",
     ]);
-    expect(serviceTypes).toEqual(["Website Design", "One-page Website Design", "Web Application", "Travel Booking", "E-commerce"]);
+    expect(serviceTypes).toEqual(["Website Design", "E-commerce", "One-page Website Design", "Web Application", "Travel Booking"]);
   });
 
   it("returns projects that match the selected industry and service together", () => {

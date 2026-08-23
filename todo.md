@@ -4049,3 +4049,7 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Enhanced the View full size button with a subtle lift/scale/press animation, a visible keyboard focus ring, a native title tooltip, and a richer hover tooltip reading “Open full-page viewer”
 - [x] Verified the CHI-ZARAM detail page at 375px and desktop, including the lightbox trigger presentation; tsc clean and 43/43 tests pass
 - [x] Checkpoint saved and auto-published
+
+## Portfolio Grid: Replace Kingwesl Interior
+- [x] Replaced the Kingwesl Interior grid entry with CHI-ZARAM Palm Oil & More while preserving the CHI-ZARAM ID, detail route, gallery, and case-study content
+- [x] Verified the portfolio listing at desktop and 375px mobile widths; updated regression expectations; 43/43 tests pass and TypeScript is clean; checkpoint pending
