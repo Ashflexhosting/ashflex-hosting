@@ -187,25 +187,27 @@ export default function PortfolioDetail() {
             <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-heading)" }}>Project Screenshots</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {gallery.map((shot, n) => (
-                  <button
+                  <div
                     key={n}
-                    type="button"
-                    className="scroll-reveal text-left rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px] group"
-                    onClick={() => setLightboxIndex(n)}
-                    aria-label={`View ${project.title} screenshot ${n + 1}`}
+                    className="scroll-reveal relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-secondary via-brand-accent to-brand-cyan p-[2px]"
                   >
-                      <span className="relative">
-                        <ScrollableScreenshot
-                          src={shot}
-                          alt={`Scroll through ${project.title} screenshot ${n + 1}`}
-                          height="h-64"
-                        />
-                        <span className="absolute inset-0 flex items-center justify-center bg-brand/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                          <span className="px-4 py-2 text-xs font-semibold text-white bg-brand-secondary rounded-full">View full size</span>
-                        </span>
-                      </span>
-                      <span className="block px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
-                    </button>
+                    <div className="relative overflow-hidden rounded-[0.9rem] bg-brand">
+                      <ScrollableScreenshot
+                        src={shot}
+                        alt={`Scroll through ${project.title} screenshot ${n + 1}`}
+                        height="h-64"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setLightboxIndex(n)}
+                        className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-brand-secondary/90 px-3 py-1.5 text-[10px] font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-200 hover:bg-brand-secondary hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
+                        aria-label={`View ${project.title} screenshot ${n + 1} full size`}
+                      >
+                        View full size
+                      </button>
+                    </div>
+                    <span className="block bg-card px-3 py-2 text-xs font-medium text-muted-foreground">{captionFor(n)}</span>
+                  </div>
                 ))}
               </div>
           </div>

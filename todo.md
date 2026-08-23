@@ -4038,3 +4038,8 @@ Decision: primary on-page CTAs now unified: text-xs sm:text-base, font-semibold,
 - [x] Added a detailed CHI-ZARAM case-study narrative section, "A considered path from story to order," covering Discover, Frame, Guide, and Convert stages: brand story, range structure, catalogue UX, and retail/bulk WhatsApp ordering journey
 - [x] Confirmed and retained the accessible full-page lightbox gallery: gallery cards are keyboard-focusable buttons, the dialog supports close, Escape, previous/next controls, fit/zoom-and-pan modes, captions, and touch-friendly viewing; it now displays the optimized WebP assets
 - [x] Verified the CHI-ZARAM detail page at 375px mobile and desktop, with no overflow in the narrative or gallery; tsc clean and 43/43 tests pass; checkpoint saved and auto-published
+
+## Project Screenshot Overlay Scroll Fix
+- [x] Replaced the full-card hover overlay with a compact, dedicated “View full size” button positioned at the top-right of each screenshot card; the large overlay no longer covers the screenshot, so the bottom “Scroll to view” hint and its scrollable area remain unobstructed
+- [x] Verified the CHI-ZARAM detail page at 375px and desktop: the scroll hint remains visible at the bottom, the compact control is keyboard-focusable with a visible focus ring, and clicking it still opens the existing accessible lightbox; tsc clean, 43/43 tests pass
+- [x] Checkpoint saved and auto-published
